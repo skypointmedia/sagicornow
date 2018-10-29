@@ -71,7 +71,7 @@ namespace SagicorNow.Models
             new State() { Text = "West Virginia", Value = "WV" },       
             new State() { Text = "Wisconsin", Value = "WI" },
        
-            new State() { Text = "Wyoming", Value = "WY" }
+            //new State() { Text = "Wyoming", Value = "WY" }
 
             };
         }
