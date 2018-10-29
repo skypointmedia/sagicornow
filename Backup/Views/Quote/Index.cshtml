@@ -1,0 +1,164 @@
+@using System.Collections.Generic
+@using SagicorNow.Models
+
+@model SagicorNow.ViewModels.QuoteViewModel
+
+@{
+    ViewBag.Title = "Sagicor Life Insurance ";
+}
+
+<div class="container">
+    <section class="heading text-center">
+        <h1>Protect The Ones You Love Today.</h1>
+        <h2>Get your FREE quote in seconds.</h2>
+    </section>
+    <section class="replacement-heading text-center">
+        <h1>One Quick Question...</h1>
+        <h2>Some states have restrictions regarding replacement policies.</h2>
+    </section>
+</div>
+
+@ViewBag.Result
+
+<form id="quote-form" method="POST" action="/quote">
+
+<div class="container">
+<section class="input-section" id="step-one">
+
+
+<div class="row main-inputs">
+<div class="col-md-4">
+<div class="form-group">
+<label for="state" class="col-lg-12 col-form-label">State Where Located <div class="tip hidden-sm-down sagicor-tooltip" data-toggle="tooltip" data-placement="top" title="Select the state where you are present while completing and signing this application.">?</div></label>
+<div class="col-lg-12">  
+    @Html.DropDownListFor(x => x.state, new SelectList(Model.States, "Value", "Text"),new { @class="form-control"} )        
+</div>
+<div class="form-control-feedback"></div>
+</div>
+</div>
+            
+<div class="col-md-4">
+<div class="form-group">
+<label class="col-lg-12 col-form-label" for="gender">Gender</label>
+<div class="col-lg-12">
+<div class="col-xs-5 selectContainer">
+    @Html.DropDownListFor(x => x.gender, new SelectList(Model.Genders, "Value", "Text"), new { @class="form-control"} )  
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="form-group">
+<label for="birthday" class="col-lg-12 col-form-label">Date of Birth</label>
+<div class="col-lg-12">            
+@Html.TextBoxFor(x=>x.birthday, "{0:MM/dd/yyyy}", new {@class="form-control", id="birthday", placeholder="__/__/____" })
+<div id="birthday_message"></div>
+</div>
+<div class="form-control-feedback"></div>
+</div>
+</div>
+</div><!-- End Row -->      
+
+<div class="row main-inputs">
+    <div class="col-md-4">
+        <div class="form-group">
+        <label class="col-lg-12 col-form-label" for="tobacco">Tobacco / Nicotine Use* </label>
+        <div class="col-lg-12">
+            <div class="col-xs-5 selectContainer">
+                @Html.ValidationMessageFor(x => x.tobacco, "The smoker status is required", new { @class = "text-danger" })
+                @Html.DropDownListFor(x => x.tobacco, new SelectList(Model.SmokerStatuses, "Value", "Text"),new { @class="form-control"} )  
+
+            </div>
+        </div>
+        </div>        
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+        <label class="col-lg-12 col-form-label" for="health">Overall Health      <div class="tip hidden-sm-down" data-toggle="tooltip" data-placement="top" title="In general, how would you rate your current health status? Health means not only the absence of disease or injury but also includes overall physical, mental and social well-being.">?</div></label>      
+        <div class="col-lg-12">
+            <div class="col-xs-5 selectContainer">
+                @Html.DropDownListFor(x => x.health, new SelectList(Model.HealthStatuses, "Value", "Text"), new { @class="form-control"})     
+            </div>
+        </div>
+        </div> 
+    </div>
+
+        <div class="col-md-4 replacement-policy-box">
+            <div class="form-group">
+            <label class="col-lg-12 col-form-label" for="health">Replacement Policy?   <div class="tip hidden-sm-down" data-toggle="tooltip" data-placement="top" title="Do you plan to replace existing life insurance coverage with the purchase of this policy?">?</div></label>
+            <div class="col-lg-12">
+                <div class="col-xs-12 selectContainer">
+                    @Html.DropDownListFor(x => x.ReplacementPolicy, 
+                                    new SelectList(
+                                    new List<SelectListItem>() { 
+                                    new SelectListItem() {Text="", Value = "" }, 
+                                    new SelectListItem() {Text="No", Value = "false"},
+                                    new SelectListItem() {Text="Yes", Value = "true"}
+                                    }, "Value", "Text"), new { @class="form-control"})  
+                    <input type="hidden" name="replacementPolicyVisible" value="true" />
+                </div>
+            </div>
+            </div>
+        </div>      
+            
+
+</div>
+            
+<div class="row submitrow">
+    <div class="col arrow_left"></div>
+    <div class="col text-center">
+        <!--    <div class="submit_arrow arrow_left">1</div>-->
+        <button type="submit" class="btn calculate-btn">Get My Quotes</button>
+        <!--    <div class="submit_arrow arrow_right">2</div>   -->
+    </div>
+    <div class="col arrow_right"></div>
+</div>
+            
+@foreach(var m in Model.ViewMessages) {
+<span style="color:red;font-size:10pt;padding:0 20px;text-align:0 auto;">@m</span>
+<br /> }
+</section>
+<section class="input-section text-center" id="submit-section">
+</section>
+</div>
+    
+<section class="disclaimer">
+    <div class="container text-center"><small>* In the past 24 Months have you used any form of tobacco or nicotine products including cigarettes, e-cigarettes, cigars, pipes, chewing tobacco, snuff, nicotine patches or gums?</small></div>
+</section> 
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if ($('select[name="state"]').find('option:selected').val() == "FL")
+            {
+                $('.replacement-policy-box').show();
+            }
+            else
+            {
+                $('.replacement-policy-box').hide();
+
+            }
+                    
+            $('select[name="state"]').on('change', function() {
+                if ($(this).find('option:selected').val() != "FL")
+                {
+                    $('.replacement-policy-box').hide();
+                }
+                else
+                {
+                    $('.replacement-policy-box').show();
+
+                }
+            });
+
+
+                    
+            //hide the rest of the form
+            //$('.main-inputs').hide();
+            //$('section.heading').hide();                
+            //$('section.replacement-heading').show();                
+                
+        });
+    </script>
+    }

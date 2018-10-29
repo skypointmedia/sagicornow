@@ -1,0 +1,112 @@
+﻿@model SagicorNow.ViewModels.NeedsViewModel
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="~/Content/Site.css">
+
+<div id="needsModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <table id="needsModalTable" class="table table-condensed table-borderless">
+          <thead>
+          </thead>
+          <tbody>
+          <tr>
+            <th colspan="3" class="hlabel">Lump Sum Needs at Death:</th>
+          </tr>
+              <tr>
+                  <td class="align-left nlabel">Final expenses:</td>
+				  <td class="align-right">&nbsp;</td>
+                  <td class="align-left">@Math.Round(Model.finalExpenses == null ? 0.0M : Model.finalExpenses.Value).ToString("C0")</td>
+              </tr>
+              <tr>
+                  <td class="align-left nlabel">Outstanding debts:</td>
+				  <td class="align-right mlabel">+</td>
+                  <td class="align-left">@Math.Round(Model.otherDebtExpenses == null ? 0.0M : Model.otherDebtExpenses.Value).ToString("C0")</td>
+              </tr>                 
+              <tr>
+                  <td class="align-left nlabel">Mortgage:</td>
+				  <td class="align-right mlabel">+</td>
+                  <td class="align-left">@Math.Round(Model.mortgageExpenses == null ? 0.0M : Model.mortgageExpenses.Value).ToString("C0")</td>
+              </tr>      
+              <tr>
+                  <td class="align-left nlabel">College funding:</td>
+				  <td class="align-right mlabel">+</td>
+                  <td class="align-left">@Math.Round(Model.needsModel.collegeFunding).ToString("C0")</td>
+              </tr>                 
+              <tr>
+                  <td class="align-left nlabel">Total lump sum needs:</td>
+				  <td class="align-right mlabel">=</td>
+                  <td class="align-left">@Math.Round(Model.needsModel.lumpSumNeedsAtDeath).ToString("C0")</td>
+              </tr>                                     
+
+          <tr>
+            <th colspan="3" class="hlabel">Income Needs:</th>
+          </tr>
+                    
+              <tr>
+                  <td class="align-left nlabel">Annual income to be provided:</td>
+				  <td class="align-right mlabel">&nbsp;</td>
+                  <td class="align-left">@Math.Round(Model.needsModel.incomeNeeds).ToString("C0")</td>
+              </tr> 
+              <tr>
+                  <td class="align-left nlabel">Number of years to provide income:</td>
+				  <td class="align-right mlabel">&nbsp;</td>
+                  <td class="align-left">@(Model.yearsOfIncomeLeft == null ? 0 : Model.yearsOfIncomeLeft.Value)</td>
+              </tr>                     
+
+               <tr>
+                  <td class="align-left nlabel">Estimated inflation rate:</td>
+				  <td class="align-right mlabel">&nbsp;</td>
+                  <td class="align-left">3%</td>
+              </tr>
+              <tr>
+                  <td class="align-left nlabel">After-tax net investment yield:</td>
+				  <td class="align-right mlabel">&nbsp</td>
+                  <td class="align-left">3%</td>
+              </tr>
+
+        <tr>
+            <th colspan="3" class="hlabel">Calculation & Results:</th>
+          </tr>             
+              <tr>
+                  <td class="align-left nlabel">Present value of income needs:</td>
+				  <td class="align-right mlabel">&nbsp;</td>
+                  <td class="align-left">@Math.Round(Model.needsModel.presentValueOfIncomeNeeds).ToString("C0")</td>
+              </tr>
+              <tr>
+                  <td class="align-left nlabel">Lump sum needs:</td>
+				  <td class="align-right mlabel">+</td>
+                  <td class="align-left">@Math.Round(Model.needsModel.lumpSumNeedsAtDeath).ToString("C0")</td>
+              </tr>
+              <tr>
+                  <td>&nbsp;</td>
+				  <td class="align-right mlabel">=</td>
+                  <td class="align-left">@Math.Round(Model.needsModel.presentValueOfIncomeNeeds + Model.needsModel.lumpSumNeedsAtDeath).ToString("C0")</td>
+              </tr>                 
+              <tr>
+                  <td class="align-left nlabel">Less current investment capital:</td>
+				  <td class="align-right mlabel">-</td>
+                  <td class="align-left">@Math.Round(Model.needsModel.currentInvestmentCapital).ToString("C0")</td>
+              </tr>
+			  <tr>
+                  <td class="align-left nlabel">Less existing life insurance:</td>
+				  <td class="align-right mlabel">-</td>
+                  <td class="align-left">@Math.Round(Model.needsModel.existingLifeInsurance).ToString("C0")</td>
+              </tr> 
+              <tr>
+                  <td class="align-left nlabel">Less present value of spouse's income:</td>
+				  <td class="align-right mlabel">-</td>
+                  <td class="align-left">@Math.Round(Model.needsModel.presentValueOfSpouseIncomeNeeds).ToString("C0")</td>
+              </tr>
+              <tr>
+                  <td class="align-left nlabel">Your need for additional life insurance:</td>
+				  <td class="align-right mlabel">=</td>
+                  <td class="align-left">@Math.Round(Model.needsModel.overallNeeds).ToString("C0")</td>
+              </tr>
+                    
+                </tbody>
+      </table>  
+      		
+		</div>
+  </div>
+</div>

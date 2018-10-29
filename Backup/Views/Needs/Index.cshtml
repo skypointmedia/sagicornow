@@ -1,0 +1,493 @@
+﻿﻿@using System.Collections.Generic
+@using SagicorNow.Models
+@model SagicorNow.ViewModels.NeedsViewModel
+
+@{
+    Layout = "~/Views/Shared/_NeedsAnalysis.cshtml";
+    ViewBag.Title = "Sagicor Life Insurance";
+
+    var postAction = "/needs";
+
+    if(Model != null && Model.needsModel != null)
+    {
+        postAction = "/quote";
+    }
+        
+}
+
+
+
+<form id="quote-form" method="POST" action="/needs">
+	<input type="hidden" name="CoverageAmount" id="CoverageAmount" value="@Model.CoverageAmount" />
+   <div class="container">
+   <section class="heading text-center">
+      <h1>Calculate Your Needs</h1>
+      <h2>Understand your goals and financial values</h2>
+   </section>
+   <section class="input-section" id="step-one">
+            <div class="col-lg-12 section-heading">
+               <div class="section-number-container">
+                  <img class='section-banner-image' src="@Url.Content("~/content/images/Banners/Banner1.png")" alt="" />
+               </div>
+               <h2>Basic Information</h2>
+               <div class="tip hidden-sm-down" data-toggle="tooltip" data-placement="right" title="Tooltip on top">?</div>
+             </div>
+<div class="inner">
+         <div class="row">
+           <div class="col-md-4">
+<div class="form-group">
+<label for="state" class="col-lg-12 col-form-label">State Where Located <div class="tip hidden-sm-down sagicor-tooltip" data-toggle="tooltip" data-placement="top" title="Select the state where you are present while completing and signing this application.">?</div></label>
+<div class="col-lg-12">  
+    @Html.DropDownListFor(x => x.state, new SelectList(Model.States, "Value", "Text"),new { @class="form-control"} )        
+</div>
+<div class="form-control-feedback"></div>
+</div>
+</div>
+            
+<div class="col-md-4">
+<div class="form-group">
+<label class="col-lg-12 col-form-label" for="gender">Gender</label>
+<div class="col-lg-12">
+<div class="col-xs-5 selectContainer">
+    @Html.DropDownListFor(x => x.gender, new SelectList(Model.Genders, "Value", "Text"), new { @class="form-control"} )  
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="form-group">
+<label for="birthday" class="col-lg-12 col-form-label">Date of Birth</label>
+<div class="col-lg-12">            
+@Html.TextBoxFor(x=>x.birthday, "{0:MM/dd/yyyy}", new {@class="form-control", id="birthday", placeholder="__/__/____" })
+<div id="birthday_message"></div>
+</div>
+<div class="form-control-feedback"></div>
+</div>
+</div>
+</div><!-- End Row -->      
+
+<div class="row main-inputs">
+    <div class="col-md-4">
+        <div class="form-group">
+        <label class="col-lg-12 col-form-label" for="tobacco">Tobacco / Nicotine Use* </label>
+        <div class="col-lg-12">
+            <div class="col-xs-5 selectContainer">
+                @Html.ValidationMessageFor(x => x.tobacco, "The smoker status is required", new { @class = "text-danger" })
+                @Html.DropDownListFor(x => x.tobacco, new SelectList(Model.SmokerStatuses, "Value", "Text"),new { @class="form-control"} )  
+
+            </div>
+        </div>
+        </div>        
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+        <label class="col-lg-12 col-form-label" for="health">Overall Health      <div class="tip hidden-sm-down" data-toggle="tooltip" data-placement="top" title="In general, how would you rate your current health status? Health means not only the absence of disease or injury but also includes overall physical, mental and social well-being.">?</div></label>      
+        <div class="col-lg-12">
+            <div class="col-xs-5 selectContainer">
+                @Html.DropDownListFor(x => x.health, new SelectList(Model.HealthStatuses, "Value", "Text"), new { @class="form-control"})     
+            </div>
+        </div>
+        </div> 
+    </div>
+
+        <div class="col-md-4 replacement-policy-box">
+            <div class="form-group">
+            <label class="col-lg-12 col-form-label" for="health">Replacement Policy?   <div class="tip hidden-sm-down" data-toggle="tooltip" data-placement="top" title="Do you plan to replace existing life insurance coverage with the purchase of this policy?">?</div></label>
+            <div class="col-lg-12">
+                <div class="col-xs-12 selectContainer">
+                    @Html.DropDownListFor(x => x.ReplacementPolicy, 
+                                    new SelectList(
+                                    new List<SelectListItem>() { 
+                                    new SelectListItem() {Text="", Value = "" }, 
+                                    new SelectListItem() {Text="No", Value = "false"},
+                                    new SelectListItem() {Text="Yes", Value = "true"}
+                                    }, "Value", "Text"), new { @class="form-control"})  
+                    <input type="hidden" name="replacementPolicyVisible" value="true" />
+                </div>
+            </div>
+            </div>
+        </div> 
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label for="inputEmail3" class="col-lg-12 col-form-label ">My Family Consists Of</label>
+                  <div class="col-lg-12">                         
+                     @Html.DropDownListFor(x => x.familyMakeup, new SelectList(Model.FamilyMakeupOptions, "Value", "Text"), new { @class="form-control", id="familyMakeup" } )  
+                  </div>
+                  <div class="form-control-feedback"></div>
+               </div>
+            </div>
+         </div>
+         <div id="family-details" class="row" >
+            <div class="col-md-12">
+               <div class="family-details" style="display:none;" >
+                  <div class="row">
+                     <div class="col-md-12">
+									<label>Family Details</label><br />
+									<div class="row horizontal-divider">&nbsp;</div>
+					</div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           
+                           <div class="col-lg-12">
+								<label for="" class="col-form-label">How Many Children Requiring College Funding?</label>
+                                @Html.TextBoxFor(x=>x.numKidsNeedFunding, "", new {@class="form-control two-digits", id="numKidsNeedFunding", placeholder="" })
+                                            
+                           </div>
+                           <div class="form-control-feedback"></div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <div class="col-lg-12">
+								<label for="" class="col-form-label">School Type</label>
+                               @Html.DropDownListFor(x => x.schoolType, new SelectList(Model.SchoolTypes, "Value", "Text"), 
+                                            new { @class="form-control", id="schoolType" })
+                           </div>
+                           <div class="form-control-feedback"></div>
+                        </div>
+                     </div>
+                    </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+    <div class="disclaimer-div"><small>* In the past 24 Months have you used any form of tobacco or nicotine products including cigarettes, e-cigarettes, cigars, pipes, chewing tobacco, snuff, nicotine patches or gums?</small></div>
+   </section>
+
+   <section class="input-section" id="step-two">
+      <div class="col-lg-12 section-heading">
+         <div class="section-number-container">
+            <img class='section-banner-image' src="@Url.Content("~/content/images/Banners/Banner2.png")" alt="" />
+         </div>
+         <h2>Estimate Your Family's Expenses</h2>
+         <div class="tip hidden-sm-down" data-toggle="tooltip" data-placement="right" title="Tooltip on top">?</div>
+      </div>
+      <div class="inner">
+         <div class="row">
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label for="inputEmail3" class="col-lg-12 col-form-label">Final Expenses</label>
+                  <div class="col-lg-12">                         
+                     @Html.TextBoxFor(x=>x.finalExpenses, "{0:F2}", new {@class="form-control money", placeholder="", data_prefix="$" })
+                  </div>
+                  <div class="form-control-feedback"></div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label for="inputEmail3" class="col-lg-12 col-form-label">Outstanding Mortgage(s)</label>
+                  <div class="col-lg-12">
+                     @Html.TextBoxFor(x=>x.mortgageExpenses, "{0:F2}", new {@class="form-control money", placeholder="", data_prefix="$" })
+                  </div>
+                  <div class="form-control-feedback"></div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label for="inputEmail3" class="col-lg-12 col-form-label">Other Debts</label>
+                  <div class="col-lg-12">                         
+                     @Html.TextBoxFor(x=>x.otherDebtExpenses, "{0:F2}", new {@class="form-control money", placeholder="", data_prefix="$" })
+                  </div>
+                  <div class="form-control-feedback"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section class="input-section" id="step-three">
+         <div class="col-lg-12 section-heading">
+            <div class="section-number-container">
+               <img class='section-banner-image' src="@Url.Content("~/content/images/Banners/Banner3.png")" alt="" />
+            </div>
+            <h2>Income & Retirement Savings</h2>
+            <div class="tip hidden-sm-down" data-toggle="tooltip" data-placement="right" title="Tooltip on top">?</div>
+         </div>
+
+   <div class="inner">
+      <div class="row">
+         <div class="col-md-4">
+            <div class="form-group">
+               <label for="inputEmail3" class="col-lg-12 col-form-label"><br />Total Annual Income</label>
+               <div class="col-lg-12">                         
+                  @Html.TextBoxFor(x=>x.totalAnnualIncome, "{0:F2}", new {id= "totalAnnualIncome", @class="form-control money", placeholder="", data_prefix="$" })
+               </div>
+               <div class="form-control-feedback"></div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="form-group">
+               <label for="inputEmail3" class="col-lg-12 col-form-label ">Number of Years to Provide Income</label>
+               <div class="col-lg-12">
+                  @Html.TextBoxFor(x=>x.yearsOfIncomeLeft, "", new {@class="form-control two-digits", placeholder="" })
+               </div>
+               <div class="form-control-feedback"></div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="form-group">
+               <label for="inputEmail3" class="col-lg-12 col-form-label"><br />Current Savings</label>
+               <div class="col-lg-12">                         
+                  @Html.TextBoxFor(x=>x.currentSavings, "{0:F2}", new {@class="form-control money", placeholder="", data_prefix="$" })
+               </div>
+               <div class="form-control-feedback"></div>
+            </div>
+         </div>
+      </div>
+      <!-- Second Row of questins -->
+      <div class="row">
+         <div class="col-md-4">
+            <div class="form-group">
+               <label for="inputEmail3" class="col-lg-12 col-form-label">Current Retirement Savings</label>
+               <div class="col-lg-12">
+                  @Html.TextBoxFor(x=>x.currentRetirementSavings, "{0:F2}", new {@class="form-control money", placeholder="", data_prefix="$" })
+               </div>
+               <div class="form-control-feedback"></div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="form-group">
+               <label for="inputEmail3" class="col-lg-12 col-form-label">Existing Life Insurance Value</label>
+               <div class="col-lg-12">                         
+                  @Html.TextBoxFor(x=>x.existingLifeInsuranceValue, "{0:F2}", new {@class="form-control money", placeholder="", data_prefix="$" })
+               </div>
+               <div class="form-control-feedback"></div>
+            </div>
+         </div>
+         <div class="col-md-4">
+         </div>
+      </div>
+    </div>
+
+   </section>
+   <section class="input-section" id="step-four">
+            <div class="col-lg-12 section-heading">
+               <div class="section-number-container">
+                  <img class='section-banner-image' src="@Url.Content("~/content/images/Banners/Banner4.png")" alt="" />
+               </div>
+               <h2>Spouse Income</h2>
+               <div class="tip hidden-sm-down" data-toggle="tooltip" data-placement="right" title="Tooltip on top">?</div>
+            </div>
+	<div class="inner">   
+         <div class="row">
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label for="inputEmail3" class="col-lg-12 col-form-label"><br />Spouse's Annual Income</label>
+                  <div class="col-lg-12">                             
+                     @Html.TextBoxFor(x=>x.spouseTotalAnnualIncome, "{0:F2}", new {id= "spouseTotalAnnualIncome", @class="form-control money", placeholder="", data_prefix="$" })
+                  </div>
+                  <div class="form-control-feedback"></div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label for="inputEmail3" class="col-lg-12 col-form-label">Years of Work Remaining for Spouse</label>
+                  <div class="col-lg-12">                             
+                     @Html.TextBoxFor(x=>x.spouseYearsOfIncomeLeft, "", new {@class="form-control two-digits" })
+                  </div>
+                  <div class="form-control-feedback"></div>
+               </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+         </div>
+        </div>
+   </section>
+   <section class="input-section text-center" id="submit-section">
+   <button id="calculate-btn" class="btn btn-primary needs-btn" type="submit">Calculate</button>
+   </section>
+   <section class="input-section text-center" id="get-quote-section">
+			<br />
+			@if(Model!= null && Model.needsModel != null && Model.needsModel.overallNeeds <= 0)
+			{
+			    <span><b>Based upon the values you entered, you do not have a need for life insurance at this time.</b></span>
+			}
+			else
+			{
+                <span><b>Based upon the values you entered, we recommend a coverage amount of:</b></span>
+			    <br />
+                <span style="font-size:300%;font-weight:bold;">@(Model != null ? Model.CoverageAmount.ToString("C0") : "$0")</span>
+			}
+			
+			<br />
+			<a href="#needsModal" style="font-size:80%;text-decoration:underline;" data-toggle="modal" role="button">View how this figure was calculated</a>
+
+			@if(Model!= null && Model.needsModel != null && Model.needsModel.overallNeeds > 500000)
+			{
+			    <br />
+			    <br />
+			    <div style="width:750px;text-align:center;margin:0 auto;">
+			    <span><b>Sagicor Life currently only supports online policies up to $500,000</b>.</span>
+			    <br />
+                <span>To get a quote for this amount, click the Get Quote button below. For higher policy limits, dedicated Sagicor Life agents are available to review other options. Contact us at 888-472-4426.</span>
+				</div>
+			}
+			<br />
+            <button id="quote-btn" class="btn btn-primary quote-btn" type="submit">Get Quote</button>
+
+			
+				@if(Model!= null && Model.needsModel != null)
+				{
+				    <div id="needsModalContainer">@Html.Partial("_NeedsModal", Model)</div>
+                    
+				}
+   </section>
+
+		
+   </div>
+
+    @section scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+         $('.money').attr('maxlength', '12');
+
+		//submit to get quote 
+		$('#quote-btn').on('click', function(){
+		    $('#quote-form').attr('action', '/quote');
+		});
+
+		//submit to needs 
+        $('#calculate-btn').on('click', function(){
+            $('#quote-form').attr('action', '/needs');
+        });
+    
+        if ($('select[name="state"]').find('option:selected').val() == "FL")
+        {
+            $('.replacement-policy-box').show();
+        }
+        else
+        {
+            $('.replacement-policy-box').hide();
+
+        }
+                    
+        $('select[name="state"]').on('change', function() {
+            if ($(this).find('option:selected').val() != "FL")
+            {
+                $('.replacement-policy-box').hide();
+	
+            }
+            else
+            {
+                $('.replacement-policy-box').show();
+
+            }
+        });
+
+		//scroll to calc button
+		@if(Model!= null && Model.needsModel != null){
+            @:var divPosition = $('#quote-btn').offset();
+            @:$('html, body').scrollTop(divPosition.top);
+         }
+    
+        //hide by default
+		DisplayFieldsBasedOnFamilyOptions();
+		
+
+		@if(Model != null && Model.needsModel == null)
+        {
+		    @:$('#get-quote-section').hide();
+		    @:$('#submit-section').css('margin-bottom', '20px').css('border-bottom-right-radius', '.5em').css('border-bottom-left-radius', '.5em');
+		}
+		else
+		{
+		    @:$('#submit-section').css('margin-bottom', '0px').css('border-radius', '0');
+		}
+
+
+		$('.money').each(function(){ // function to apply mask on load!
+		    if ($(this).val() != "" && $(this).val() != "0")
+	            $(this).maskMoney('mask', $(this).val());
+	    });
+        /*
+		$('.money').on('blur', function(){
+            //revalidate fields
+		    $('quote-form').formValidation('enableFieldValidators', $(this).prop('name'), true);
+		    $('quote-form').formValidation('validateField', $(this).prop('name'));
+		});*/
+		
+        //family makeup change
+        $('select[name="familyMakeup"]').on('change', function() {
+	        DisplayFieldsBasedOnFamilyOptions(); //change display
+        });
+
+		//dynamic field display
+		function DisplayFieldsBasedOnFamilyOptions()
+		{
+            var famVal = $('select[name="familyMakeup"]').find('option:selected').val();
+            if (famVal == "ME_MYKIDS" || famVal == "ME_PARTNER_MYKIDS" )
+            {
+                $('.family-details').show();
+                $('#step-three').show();
+
+                if (famVal == "ME_PARTNER_MYKIDS")
+                {   
+                    $('#step-four').show();
+	                $('#submit-section').css('border-top', '0px solid #bfc0c2');
+                }
+                else
+                {
+                    $('#step-four').hide();
+                    clearInputs($('#step-four'));
+		            $('#submit-section').css('border-top', '1px solid #bfc0c2');
+                }
+            }
+            else if (famVal == "ME_PARTNER"){
+                    $('#step-three').show();
+                    $('#step-four').show();
+                    $('#submit-section').css('border-top', '0px solid #bfc0c2');
+
+                    $('.family-details').hide();
+                    clearInputs($('#family-details'));
+            }
+            else if (famVal == "ME" || famVal == ""){
+                    $('#step-three').hide();
+                    $('#step-four').hide();
+                    clearInputs($('#step-three'));
+                    clearInputs($('#step-four'));
+                    $('#submit-section').css('border-top', '1px solid #bfc0c2');
+
+                    $('.family-details').hide();
+                    clearInputs($('#family-details'));
+            }
+            else
+            {
+                //unknown value
+            }
+		}
+		
+    
+        $('#numKidsNeedFunding').on('change', function() {
+            if (parseInt($(this).val(), 10) > 0)
+            {
+                //$('#schoolType').removeAttr('disabled').removeAttr('readonly'); //.removeClass('disabled');
+            }
+            else
+            {
+	             $('#schoolType')[0].selectedIndex = -1;
+                 //$('#schoolType').attr('disabled', 'disabled').attr('readonly', 'readonly'); //.addClass('disabled');
+            }
+        });
+    
+                                   
+                
+        });
+
+		//clear input values
+		function clearInputs(container)
+		{
+		    container.find('input').each(function() { 
+                $(this).val('');
+		    });
+
+		    container.find('select').each(function() { 
+                $(this)[0].selectedIndex = -1; //val('');
+            });
+		}
+		
+    </script>
+    }
+    
+</form>
+

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">        
+<link rel="stylesheet" href="~/Content/Site.css">
+<link rel="icon" href="~/content/favicon.ico">
+
+<title>@ViewBag.Title</title>
+
+</head>
+    
+<body id="short">
+        
+@Html.Partial("Header")
+@RenderBody()
+@Html.Partial("Footer")
+        
+        
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>       
+<script type="text/javascript" src="~/Content/js/tether.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/Content/js/formValidation.min.js"></script>
+<script type="text/javascript" src="~/Content/js/framework/bootstrap4.min.js"></script>
+<script type="text/javascript" src="~/Content/js/quote-page-functions.js"></script>
+<script type="text/javascript" src="~/Scripts/typeahead.bundle.min.js"></script>
+@*<script type="text/javascript" src="~/Content/js/TypeAhead.js"></script>*@
+<script type="text/javascript" src="~/Content/js/jquery.mask.min.js"></script>
+@RenderSection("scripts", required: false)
+
+        
+<!--Chat Script-->
+<div id="comm100-button-1051"></div>
+<script type="text/javascript">var Comm100API=Comm100API||{}; (function(t) {function e(e) { var a = document.createElement("script"), c = document.getElementsByTagName("script")[0]; a.type = "text/javascript", a.async = !0, a.src = e + t.site_id, c.parentNode.insertBefore(a, c) }t.chat_buttons=t.chat_buttons||[], t.chat_buttons.push({code_plan:1051, div_id: "comm100-button-1051"}), t.site_id=1000157, t.main_code_plan=1051, e("https://ent.comm100.com/chatserver/livechat.ashx?siteId="), setTimeout(function() {t.loaded || e("https://entmax.comm100.com/chatserver/livechat.ashx?siteId=") }, 5e3) }) (Comm100API||{})</script>      
+</body>
+</html>

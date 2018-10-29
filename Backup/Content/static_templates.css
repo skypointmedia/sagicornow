@@ -1,0 +1,144 @@
+﻿﻿body#statictemplate1 p {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    line-height: 36px;
+    color: #333;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato';
+}
+
+body#statictemplate1 h1 {
+    color: #26ace2;
+}
+.hero_homepage {
+    background-color: #daedfb;
+    background-image: url(Images/homepage_bg.jpg);
+    margin-bottom: 50px;
+}
+
+
+h2.static_pages {
+    color:#474747;
+    font-size:22pt;
+    display:inline-block;
+    margin-bottom:20px;
+    position:relative;
+    top:-10px
+}
+#legal {
+    margin-bottom:80px;
+}
+h2 {
+    font-family: 'Lato', sans-serif;
+    color: #3399cc;
+    font-size: 22pt;
+}
+#legal p {
+    margin-bottom:40px;
+}
+#legal h2 {
+    font-size: 24px;
+}
+
+#legal h1, h2, h3 {
+    color: #26ace2;
+}
+#legal h1, h2, hr {
+    margin-bottom: 40px;
+}
+.heading_graphic {
+    display: inline-block;
+    width: 47px;
+    height: 45px;
+    margin-right: 10px;
+    position: relative;
+    background-repeat: no-repeat;
+}
+.one {
+    background-image: url(Images/heading_graphic_01.png);
+    }
+.two {
+    background-image: url(Images/heading_graphic_02.png);
+    }
+.three {
+    background-image: url(Images/heading_graphic_03.png);
+    }
+
+.hero_homepage {
+    background-color: #daedfb;
+    background-image: url(Images/homepage_bg.jpg);
+    margin-bottom: 50px;
+}
+
+
+.hero_about_us {
+    background-color: #daedfb;
+    background-image: url(Images/about_us_bg.jpg);
+    margin-bottom: 50px;
+}
+.hero_contact_us {
+    background-color: #daedfb;
+    background-image: url(Images/contact_us_bg.jpg);
+    margin-bottom: 50px;
+}
+
+.hero_faq {
+    background-color: #daedfb;
+    background-image: url(Images/faq_bg.jpg);
+    margin-bottom: 50px;
+}
+
+.hero_landingpage {
+    background-color: #daedfb;
+    background-image: url(Images/landingpage_bg.jpg);
+    margin-bottom: 50px;
+}
+
+.hero_larger_than_life {
+    background-color: #daedfb;
+    background-image: url(Images/larger_than_life_bg.jpg);
+    margin-bottom: 50px;
+}
+
+.hero_life_insurance_101 {
+    background-color: #daedfb;
+    background-image: url(Images/life_insurance_101_bg.jpg);
+}
+
+.hero_term_vs_whole_life {
+    background-color: #daedfb;
+    background-image: url(Images/term_vs_whole_life_bg.jpg);
+    margin-bottom: 50px;
+}
+
+.hero_whole_life {
+    background-color: #daedfb;
+    background-image: url(Images/whole_life_bg.jpg);
+    margin-bottom: 50px;
+}
+.hero_term_life {
+    background-color: #daedfb;
+    background-image: url(Images/term_life_bg.jpg);
+    margin-bottom: 50px;
+}
+.hero_why_buy_life_insurance {
+    background-color: #daedfb;
+    background-image: url(Images/why_buy_insurance_bg.jpg);
+    margin-bottom: 50px;
+}
+.hero_legal {
+    background-color: #daedfb;
+    background-image: url(Images/legal_bg.jpg);
+    margin-bottom: 50px;
+}
+
+
+/*FORM STYLES*/
+.form_container {
+    padding: 20px;
+    background-color: #4a617b;
+}
+
+

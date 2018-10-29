@@ -1,0 +1,97 @@
+﻿﻿@{
+    Layout = "~/Views/Shared/_StaticTemplate1.cshtml";
+    ViewBag.Title = "Sage Term Life Insurance - Coverage Options | Sagicor Life Insurance";
+}
+
+<!--HERO-->
+<div class="container-fluid">
+   <div id="hero" class="row row hero hero_term_life">
+      <div class="container padtop60">
+         <div class="col-lg-6">
+            <h1>Sage Term Life Insurance</h1>
+            <p>Term Life Insurance provides life insurance coverage for a fixed time period.  If you only need 10, 15 or 20 years of coverage, term life is an affordable potential solution until your needs change or the term runs out.  Also, many term policies will allow you to convert the coverage to permanent life insurance, such as Whole Life, without reapplying.</p>
+            <p><a class="cbpdf" href="/Content/pdf/9042.pdf">Consumer Brochure PDF</a></p>    
+		</div>
+      </div>
+   </div>
+</div>
+
+<!--START MAIN PAGE CONTENT-->
+<div class="container main-content">
+   <div class="row">
+      <div class="col-lg-7">
+		<p>Life is full of responsibilities. You have people who count on you: a spouse, children, relatives, business partners, etc. It is important to make sure that they are protected if the unexpected happens. Protection against unforeseen expenses and the loss of income can help your family maintain their lifestyle or keep your business going during a tough time.</p>
+		<p>Sagicor's Sage Term 10/15/20 Year Life Insurance offers security with the following benefits:</p>
+			
+		<ul class="checklist">
+		    <li>Affordable Protection</li>
+		    <li>Guaranteed level premium during the initial 10, 15, 20-year term</li>
+		    <li>Level Death Benefit to age 95</li>
+		    <li>Ability to convert to a permanent life policy</li>
+		    <li>Help in providing income due to a terminal condition or confinement to a nursing home</li>
+		    <li>SagicorNow's fully online experience with no agents, no medical exams&#42; and no waiting</li>
+		</ul>
+        
+		<h2>Inherent Accelerated Benefit Insurance Rider&#42;</h2>
+
+		<p>Sage Term Life Insurance also provides additional protection through its inherent Accelerated
+		Benefit Insurance Rider, which is included at no additional cost.</p>
+
+		<p>The Accelerated Benefit Insurance Rider will help cover medical costs or nursing home care by
+		allowing you to use a portion of the death benefit proceeds if you are diagnosed with a terminal
+		condition or confined to a nursing home facility.</p>
+
+		<p>The accelerated benefit amount is the lesser of $300,000 or 50% of the death benefit amount
+		and is paid as a lump sum. A one-time administrative fee (the lesser of $250 or maximum
+		allowed by state law) will be deducted from the accelerated death benefit payout.</p>
+
+		<p>The death benefit will be reduced by the accelerated death benefit and the administrative fee.</p>
+
+			
+		<h2>Sage Term Life – Optional Riders</h2>
+		<p>Optional riders are available for an additional cost. They are designed to allow you to customize your policy to fit your lifestyle and family needs. Discover the benefits that may best suit you and your loved ones.</p>
+
+		<h2>Accidental Death Benefit Rider</h2>
+		<p>This rider provides an additional death benefit to your beneficiaries if death occurs due to a covered accident.</p>
+
+		<h2>Children's Term Rider</h2>
+		<p>This rider provides term life insurance protection for your children (ages 15 days to 19 years) and remains in force for each child until the earlier of age 25 or marriage. At the end of the term period the benefit may be converted to a eligible permanent life insurance policy for up to five times the original amount, regardless of their current health.</p>
+
+		<h2>Waiver of Premium Rider</h2>
+		<p>This rider waives the premium payments if the primary insured becomes totally disabled.  If the total disability ceases, simply resume the premium payments of the policy.</p>
+			
+      </div>
+
+      <!--RIGHT HAND COL-->
+      <div class="col-lg-4 offset-lg-1">
+         <div class="row">
+            <div class="col-lg-12 landingpage_form_container">
+               <h4 class="text-center">Get your <strong>FREE</strong><br/> life insurance quote today!</h4>
+
+                <!--INCLUDE FORM-->
+               @Html.Partial("_QuoteFormPartial", new SagicorNow.ViewModels.QuoteViewModel(SagicorNow.ViewModels.QuoteViewModel.DisplayInfo.SINGLE_COLUMN_BARE))
+                <small class="white">* In the past 24 Months have you used any form of tobacco or nicotine products including cigarettes, e-cigarettes, cigars, pipes, chewing tobacco, snuff, nicotine patches or gums?</small>    				
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--END MAIN PAGE CONTENT-->
+
+<!--TRUST PILOT-->
+@Html.Partial("TrustPilotEmpty")
+
+<!--2col creative 50/50
+<div class="container main-content-bottom">
+   <div class="row">
+      <div class="col-lg-6"> 
+         <img src="~/Content/Images/term_girl_photo.jpg" class="img-fluid push60">
+      </div>
+      <div class="col-lg-6 ">
+			<h2>Benefits are built in.</h2>
+		    <p>Sage Term also provides additional protection through its inherent Accelerated Benefit Insurance Rider. This rider is included at no additional cost.</p>
+		    <p>The Accelerated Benefit Insurance Rider will help cover medical costs or nursing home care by allowing you to use a portion of the death benefit proceeds if you are diagnosed with a terminal condition or confined to a nursing home facility. The benefit amount is the lesser of $300,000 or 50% of the death benefit amount. A one-time administrative fee, the lesser of $250 or maximum allowed by state law, will be deducted from the elected accelerated death benefit amount and the remainder will be paid in a lump sum.</p>
+      </div>
+   </div>
+</div>
+-->

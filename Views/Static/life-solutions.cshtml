@@ -1,0 +1,87 @@
+﻿﻿@{
+    Layout = "~/Views/Shared/_StaticTemplate1.cshtml";
+    ViewBag.Title = "Life Solutions | Sagicor Life Insurance";
+}
+
+<!--HERO-->
+<div class="container-fluid">
+   <div id="hero" class="row row hero hero_term_life">
+      <div class="container padtop60">
+         <div class="col-lg-6">
+            <h1>Life Solutions for every stage of life.</h1>
+            <p>Meeting life’s challenges, whether on a personal or financial level, can be demanding.  With so many factors to consider, it can often be difficult to truly understand what real choice you have.  That’s why Sagicor has Life Solutions Term Life Insurance, a product that helps you enjoy the benefits of wise financial thinking for life.</p>
+            <p><a class="cbpdf" href="/Content/pdf/9042.pdf">Consumer Brochure PDF</a></p>    
+		</div>
+      </div>
+   </div>
+</div>
+
+<!--START MAIN PAGE CONTENT-->
+<div class="container main-content" role="main">
+   <div class="row">
+      <div class="col-lg-7">
+	    
+	    <h2>Term Life Insurance</h2>
+        <p>Term Life Insurance is certainly a cost-effective way to solve any short-term financial needs you may have.  Term Life policies provide you with great flexibility should your short-term needs change.</p>
+
+        <p>The Term Life Insurance component of Life Solutions allows you:</p>
+        <ul class="checklist">
+            <li>An affordable way to get maximum coverage</li>
+            <li>To cover specific financial responsibilities like a mortgage or university expenses</li>
+            <li>To supplement you Permanent Life Insurance during periods when coverage needs are higher</li>    
+        </ul>
+
+
+<p><strong>Total Disability Option</strong><br/>
+Should you choose to purchase this option, in the unfortunate event that you become totally disabled, Sagicor will waive the payment of the premium.</p>
+
+<p><strong>Accidental Death & Dismemberment Option</strong><br/>
+With the purchase of this option, a benefit will be paid you or you’re beneficiary should you die in an accident or become dismembered.</p>
+
+<h2>Giving you more for your money.  </h2>
+
+<p>With Term Life Insurance, you get more for your premium dollar than any other form of life insurance.</p>            
+
+<p>Term Life coverage is the solution especially suited to you if you need:</p>
+
+<ul class="checklist">
+    <li>Substantial coverage over a defined period of time for your mortgage or loan.</li>                
+    <li>Substantial insurance but have a limited budget.</li>
+    <li>Insurance protection at a low cost.  You can convert it to a permanent plan later, as money becomes available.</li>
+    <li>Insurance for a specific business need, such as covering the life of a key employee.</li>                
+ </ul>            
+
+            
+<p><strong>Convertibility</strong><br/>
+With Term Life Insurance, you can purchase the insurance protection you need at a low cost and convert it to a permanent plan later when money becomes available.  Some Term Life policies are convertible within a period specified in the policy.  Your plan can be converted into a permanent life insurance plan, without any medical tests or underwriting.  The premium charged for the permanent plan will be based on the age of the insured person at the time of the conversion.</p>           
+
+<p>This plan provides a minimum insurance coverage of $50,000 and the option to purchase additional benefits to accompany the product such as:</p>            
+
+<ul class="checklist">
+   <li>Total Disability</li>
+<li>Accidental Death and Dismemberment</li>       
+<li>Payor’s Waiver (This option is only available when the Owner and Insured are different)</li>                
+</ul>
+
+<p>Term Life is one of many solutions offered by Sagicor to help you reach your goals.  Please contact a Sagicor Advisor to discover how this product can be part of a wise approach to your financial well-being. </p>
+
+        </div>
+
+      <!--RIGHT HAND COL-->
+      <div class="col-lg-4 offset-lg-1">
+         <div class="row">
+            <div class="col-lg-12 landingpage_form_container">
+               <h4 class="text-center">Get your <strong>FREE</strong><br/> life insurance quote today!</h4>
+
+                <!--INCLUDE FORM-->
+               @Html.Partial("_QuoteFormPartial", new SagicorNow.ViewModels.QuoteViewModel(SagicorNow.ViewModels.QuoteViewModel.DisplayInfo.SINGLE_COLUMN_BARE))
+                <small class="white">* In the past 24 Months have you used any form of tobacco or nicotine products including cigarettes, e-cigarettes, cigars, pipes, chewing tobacco, snuff, nicotine patches or gums?</small>    				
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--END MAIN PAGE CONTENT-->
+
+<!--TRUST PILOT-->
+@Html.Partial("TrustPilotEmpty")
