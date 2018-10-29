@@ -69,7 +69,7 @@ namespace SagicorNow.Models
             //new State() { Text = "Washington", Value = "WA" },
     
             new State() { Text = "West Virginia", Value = "WV" },       
-            new State() { Text = "Wisconsin", Value = "WI" },
+            new State() { Text = "Wisconsin", Value = "WI" }
        
             //new State() { Text = "Wyoming", Value = "WY" }
 
