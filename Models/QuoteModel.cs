@@ -13,9 +13,9 @@ namespace SagicorNow.Models
         {
             return new List<State>() {
             new State() { Text = "", Value = "" },
-            //new State() { Text = "Alabama", Value = "AL" },
+            new State() { Text = "Alabama", Value = "AL" },
             new State() { Text = "Arizona", Value = "AZ" },
-            //new State() { Text = "Arkansas", Value = "AR" },
+            new State() { Text = "Arkansas", Value = "AR" },
 
             //new State() { Text = "California", Value = "CA" },
             new State() { Text = "Colorado", Value = "CO" },
@@ -23,11 +23,11 @@ namespace SagicorNow.Models
 
             //new State() { Text = "Georgia", Value = "GA" },
             new State() { Text = "Hawaii", Value = "HI" },
-            //new State() { Text = "Idaho", Value = "ID" },
+            new State() { Text = "Idaho", Value = "ID" },
 
-            //new State() { Text = "Illinois", Value = "IL" },
+            new State() { Text = "Illinois", Value = "IL" },
 
-            //new State() { Text = "Indiana", Value = "IN" },
+            new State() { Text = "Indiana", Value = "IN" },
             new State() { Text = "Iowa", Value = "IA" },
 
             //new State() { Text = "Kansas", Value = "KS" },
@@ -36,17 +36,17 @@ namespace SagicorNow.Models
             new State() { Text = "Louisiana", Value = "LA" },
             new State() { Text = "Maryland", Value = "MD" },
 
-            //new State() { Text = "Massachusetts", Value = "MA" },
+            new State() { Text = "Massachusetts", Value = "MA" },
 
-            //new State() { Text = "Michigan", Value = "MI" },
-            //new State() { Text = "Minnesota", Value = "MN" },
+            new State() { Text = "Michigan", Value = "MI" },
+            new State() { Text = "Minnesota", Value = "MN" },
 
             new State() { Text = "Mississippi", Value = "MS" },
             new State() { Text = "Missouri", Value = "MO" },
 
             new State() { Text = "Nebraska", Value = "NE" },
 
-            //new State() { Text = "Nevada", Value = "NV" },
+            new State() { Text = "Nevada", Value = "NV" },
             new State() { Text = "New Hampshire", Value = "NH" },
             new State() { Text = "New Jersey", Value = "NJ" },
 
@@ -57,16 +57,16 @@ namespace SagicorNow.Models
             //new State() { Text = "Oklahoma", Value = "OK" },
             new State() { Text = "Oregon", Value = "OR" },
 
-            //new State() { Text = "Pennsylvania", Value = "PA" },
-            //new State() { Text = "Rhode Island", Value = "RI" },
+            new State() { Text = "Pennsylvania", Value = "PA" },
+            new State() { Text = "Rhode Island", Value = "RI" },
             new State() { Text = "South Carolina", Value = "SC" },
 
-            //new State() { Text = "Tennessee", Value = "TN" },
+            new State() { Text = "Tennessee", Value = "TN" },
             new State() { Text = "Texas", Value = "TX" },
             new State() { Text = "Utah", Value = "UT" },
 
             new State() { Text = "Virginia", Value = "VA" },
-            //new State() { Text = "Washington", Value = "WA" },
+            new State() { Text = "Washington", Value = "WA" },
     
             new State() { Text = "West Virginia", Value = "WV" },       
             new State() { Text = "Wisconsin", Value = "WI" }
