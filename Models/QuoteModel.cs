@@ -16,63 +16,49 @@ namespace SagicorNow.Models
             new State() { Text = "Alabama", Value = "AL" },
             new State() { Text = "Arizona", Value = "AZ" },
             new State() { Text = "Arkansas", Value = "AR" },
-
-            //new State() { Text = "California", Value = "CA" },
+            new State() { Text = "California", Value = "CA" },
             new State() { Text = "Colorado", Value = "CO" },
+            new State() { Text = "Delaware", Value = "DE" }, 
+            new State() { Text = "District of Columbia", Value = "DC" },
             new State() { Text = "Florida", Value = "FL" },
-
-            //new State() { Text = "Georgia", Value = "GA" },
+            new State() { Text = "Georgia", Value = "GA" },
             new State() { Text = "Hawaii", Value = "HI" },
             new State() { Text = "Idaho", Value = "ID" },
-
             new State() { Text = "Illinois", Value = "IL" },
-
             new State() { Text = "Indiana", Value = "IN" },
             new State() { Text = "Iowa", Value = "IA" },
-
-            //new State() { Text = "Kansas", Value = "KS" },
-
+          //new State() { Text = "Kansas", Value = "KS" },
             new State() { Text = "Kentucky", Value = "KY" },
             new State() { Text = "Louisiana", Value = "LA" },
             new State() { Text = "Maryland", Value = "MD" },
-
             new State() { Text = "Massachusetts", Value = "MA" },
-
             new State() { Text = "Michigan", Value = "MI" },
             new State() { Text = "Minnesota", Value = "MN" },
-
             new State() { Text = "Mississippi", Value = "MS" },
             new State() { Text = "Missouri", Value = "MO" },
-
+            new State() { Text = "Montana", Value = "MT" },
             new State() { Text = "Nebraska", Value = "NE" },
-
             new State() { Text = "Nevada", Value = "NV" },
             new State() { Text = "New Hampshire", Value = "NH" },
             new State() { Text = "New Jersey", Value = "NJ" },
-
             new State() { Text = "New Mexico", Value = "NM" },
             new State() { Text = "North Carolina", Value = "NC" },
-
+            new State() { Text = "North Dakota", Value = "ND" },
             new State() { Text = "Ohio", Value = "OH" },
-            //new State() { Text = "Oklahoma", Value = "OK" },
+            new State() { Text = "Oklahoma", Value = "OK" },
             new State() { Text = "Oregon", Value = "OR" },
-
             new State() { Text = "Pennsylvania", Value = "PA" },
             new State() { Text = "Rhode Island", Value = "RI" },
-            new State() { Text = "South Carolina", Value = "SC" },
-
+            new State() { Text = "South Carolina", Value = "SC" },            
+            new State() { Text = "South Dakota", Value = "SD" },
             new State() { Text = "Tennessee", Value = "TN" },
             new State() { Text = "Texas", Value = "TX" },
             new State() { Text = "Utah", Value = "UT" },
-
             new State() { Text = "Virginia", Value = "VA" },
             new State() { Text = "Washington", Value = "WA" },
-    
             new State() { Text = "West Virginia", Value = "WV" },       
-            new State() { Text = "Wisconsin", Value = "WI" }
-       
-            //new State() { Text = "Wyoming", Value = "WY" }
-
+            new State() { Text = "Wisconsin", Value = "WI" },
+            new State() { Text = "Wyoming", Value = "WY" }
             };
         }
 
@@ -83,8 +69,8 @@ namespace SagicorNow.Models
             {
                 "FL",
                 "IL",
-                "IA",
-                "MA",
+                "IN",
+                "NV",
                 "WA",
                 "WY"
             };
