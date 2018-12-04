@@ -3,6 +3,8 @@ using System.Web;
 using SagicorNow.Models; 
 using System.ComponentModel.DataAnnotations;
 using SagicorNow.ViewModels;
+using System.Linq;
+
 
 namespace SagicorNow.Models
 {
@@ -14,8 +16,8 @@ namespace SagicorNow.Models
         {
             var riskClass = QuoteViewModel.GetRiskClass(health, tobacco);
 
-            var validStates = new System.Collections.Generic.List<String>() { "alabama", "arizona", "arkansas", "california", "colorado", "florida", "georgia", "hawaii", "idaho", "illinois", "indiana", "iowa", "kansas", "kentucky", "louisiana", "maryland", "massachusetts", "michigan", "minnesota", "mississippi", "missouri", "nebraska", "nevada", "new hampshire", "new jersey", "new mexico", "north carolina", "ohio", "oklahoma", "oregon", "pennsylvania", "rhode island", "south carolina", "tennessee", "texas", "utah", "virginia", "washington", "west virginia", "wisconsin", "wyoming"};            
-            
+            var validStates = QuoteModel.States().Select(s => s.Text.ToLower()).ToList();
+
             if (age > 55 && age <= 65 && (riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED_TOBACCO ||
                 riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED2_NONTOBACCO ||
                 riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED2_TOBACCO ))

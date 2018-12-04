@@ -29,7 +29,7 @@ $(document).ready(function () {
     }
     resize();
 
-    window.onresize = function() {
+    window.onresize = function () {
         resize();
     };
 
@@ -37,7 +37,7 @@ $(document).ready(function () {
     // Tool tips
     $('[data-toggle="tooltip"]').tooltip();
 
-    
+
     //$('#code').focus();
     //mask input
     $('#birthday').mask('99/99/9999');
@@ -46,28 +46,12 @@ $(document).ready(function () {
     $('input[placeholder="Phone Number"]').mask('999-999-9999');
     $('input[placeholder="___-___-____"]').mask('999-999-9999');
 
-    /*$('.money').maskMoney({thousands:',', prefix: '$', precision: 0});
-    $('.money').each(function(){ // function to apply mask on load!
-    $(this).maskMoney('mask', $(this).val());
-    });
-    */
-
     //quote page functions
-
     var stateSelected = $('select[name="state"]').find('option:selected').val();
 
     //quote page functions
 
-    if (
-    stateSelected == null &&
-        stateSelected == "FL" &&
-        stateSelected == "IL" &&
-        stateSelected == "IN" &&
-        stateSelected == "MA" &&
-        stateSelected == "NV" &&
-        stateSelected == "WA" &&
-        stateSelected == "WY"
-    ) {
+    if (stateSelected == "FL" || stateSelected == "IL" || stateSelected == "IN" || stateSelected == "NV" || stateSelected == "WA" || stateSelected == "WY") {
         $('.replacement-policy-box').show();
     } else {
         $('.replacement-policy-box').hide();
@@ -76,15 +60,14 @@ $(document).ready(function () {
 
     $('select[name="state"]').on('change', function () {
 
-    var stateSelected = $('select[name="state"]').find('option:selected').val();
+        var stateSelected = $(this).find('option:selected').val();
 
-        if ($(this).find('option:selected').val() != "FL" &&
-            $(this).find('option:selected').val() != "IL" &&
-            $(this).find('option:selected').val() != "IN" &&
-            $(this).find('option:selected').val() != "MA" &&
-            $(this).find('option:selected').val() != "NV" &&
-            $(this).find('option:selected').val() != "WA" &&
-            $(this).find('option:selected').val() != "WY"
+        if (stateSelected != "FL" &&
+            stateSelected != "IL" &&
+            stateSelected != "IN" &&
+            stateSelected != "NV" &&
+            stateSelected != "WA" &&
+            stateSelected != "WY"
         ) {
             $('.replacement-policy-box').hide();
         } else {
@@ -111,14 +94,14 @@ $(document).ready(function () {
         stringLength: {
             max: 9,
             message: 'Number too large',
-            transformer: function($field, validatorName, validator) {
+            transformer: function ($field, validatorName, validator) {
                 var value = $field.val();
                 return value.split(',').join('').replace('$', '');
             }
         },
         digits: {
             message: 'The value must be a whole number',
-            transformer: function($field, validatorName, validator) {
+            transformer: function ($field, validatorName, validator) {
                 var value = $field.val();
                 return value.split(',').join('').replace('$', '');
             }
@@ -250,7 +233,7 @@ $(document).ready(function () {
         .on('submit', function (e) {
             $('#quote-form').formValidation('revalidateField', 'ReplacementPolicy');
 
-            $('.money').each(function() {
+            $('.money').each(function () {
                 var elemName = $(this).attr('name');
                 $('#quote-form').data('formValidation').revalidateField(elemName);
                 var value = $(this).val();
@@ -261,19 +244,19 @@ $(document).ready(function () {
             var fv = $('#quote-form').data('formValidation');
             var fn = $(this).attr('name');
             var currFieldValid = true;
-            fv.$invalidFields.each(function() {
+            fv.$invalidFields.each(function () {
                 if ($(this).attr('name') === fn)
                     currFieldValid = false;
             });
             if (!currFieldValid) //revalidate field if not valid on blur 
                 fv.revalidateField(fn);
         })
-        .on('err.field.fv', function(e, data) {
+        .on('err.field.fv', function (e, data) {
             //form has errors 
             //if (data.fv.getSubmitButton()) {
             //    data.fv.disableSubmitButtons(false);
             //}
-            $('.money').each(function() { // function to apply mask
+            $('.money').each(function () { // function to apply mask
                 $(this).maskMoney('mask', $(this).val());
             });
         })
@@ -289,60 +272,60 @@ $(document).ready(function () {
         });
 
     $('#contactform').formValidation({
-            framework: 'Bootstrap4',
-            live: 'submitted',
-            icon: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
+        framework: 'Bootstrap4',
+        live: 'submitted',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            firstName: {
+                validators: {
+                    notEmpty: {
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> The First Name is required."
+                    }
+                }
             },
-            fields: {
-                firstName: {
-                    validators: {
-                        notEmpty: {
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> The First Name is required."
-                        }
+            comment: {
+                validators: {
+                    notEmpty: {
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Please enter a comment."
+                    },
+                    stringLength: {
+                        max: 500,
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> You have exceeded the maximum number of characters allowed."
                     }
-                },
-                comment: {
-                    validators: {
-                        notEmpty: {
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Please enter a comment."
-                        },
-                        stringLength: {
-                            max: 500,
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> You have exceeded the maximum number of characters allowed."
-                        }
-                    }
-                },
-                phone: {
-                    validators: {
-                        notEmpty: {
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Please enter a valid phone number (###-###-####)."
-                        },
-                        stringLength: {
-                            min: 10,
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Please enter a valid phone number (###-###-####)",
-                            transformer: function($field, validatorName, validator) {
-                                var value = $field.val();
-                                return value.split('-').join('');
-                            }
-                        }
-                    }
-                },
-                email: {
-                    validators: {
-                        emailAddress: {
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> The email address provided appears to be an invalid address."
-                        },
-                        notEmpty: {
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> The email address is required."
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Please enter a valid phone number (###-###-####)."
+                    },
+                    stringLength: {
+                        min: 10,
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Please enter a valid phone number (###-###-####)",
+                        transformer: function ($field, validatorName, validator) {
+                            var value = $field.val();
+                            return value.split('-').join('');
                         }
                     }
                 }
+            },
+            email: {
+                validators: {
+                    emailAddress: {
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> The email address provided appears to be an invalid address."
+                    },
+                    notEmpty: {
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> The email address is required."
+                    }
+                }
             }
-        })
-        .on('submit', function() {
+        }
+    })
+        .on('submit', function () {
             //$('#contactform').formValidation('revalidateField', 'email');
             //if ($('#phone').val().length < 10) {
             //}
@@ -351,12 +334,12 @@ $(document).ready(function () {
 
 
 
-  
 
 
-(function($) {
+
+(function ($) {
     FormValidation.Validator.email = {
-        validate: function(validator, $field, options) {
+        validate: function (validator, $field, options) {
             var value = $field.val();
             if (value === '') {
                 return true;
@@ -384,13 +367,13 @@ $(document).ready(function () {
 
 
 // Make nav dropdown on hover
-$(document).ready(function() {
+$(document).ready(function () {
     var navbarToggle = '.navbar-toggler';
-    $('.dropdown, .dropup').each(function() {
+    $('.dropdown, .dropup').each(function () {
         var dropdown = $(this),
             dropdownToggle = $('[data-toggle="dropdown"]', dropdown),
             dropdownHoverAll = dropdownToggle.data('dropdown-hover-all') || false;
-        dropdown.hover(function() {
+        dropdown.hover(function () {
             var notMobileMenu = $(navbarToggle).length > 0 && $(navbarToggle).css('display') === 'none';
             if ((dropdownHoverAll == true || (dropdownHoverAll == false && notMobileMenu))) {
                 dropdownToggle.trigger('click');
@@ -400,10 +383,10 @@ $(document).ready(function() {
 });
 
 /*Grab the Google Client ID and send to Controller menthod*/
-$(function() {
+$(function () {
     var serviceURL = '/quote/SetGoogleCid';
     ga('create', 'UA-97044577-1', 'auto', 'sagTracker'); //use Sagicor provider ID to create tracker
-    ga(function() {
+    ga(function () {
         var clientId = ga.getByName('sagTracker').get('clientId'); //get client id from tracker
         $.ajax({
             type: "POST",
@@ -417,8 +400,8 @@ $(function() {
         });
     });
 
-    function successFunc(data, status) {}
+    function successFunc(data, status) { }
 
-    function errorFunc() {}
+    function errorFunc() { }
 });
 
