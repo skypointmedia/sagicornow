@@ -63,7 +63,6 @@ $(document).ready(function () {
         stateSelected == "FL" &&
         stateSelected == "IL" &&
         stateSelected == "IN" &&
-        stateSelected == "MA" &&
         stateSelected == "NV" &&
         stateSelected == "WA" &&
         stateSelected == "WY"
@@ -81,7 +80,6 @@ $(document).ready(function () {
         if ($(this).find('option:selected').val() != "FL" &&
             $(this).find('option:selected').val() != "IL" &&
             $(this).find('option:selected').val() != "IN" &&
-            $(this).find('option:selected').val() != "MA" &&
             $(this).find('option:selected').val() != "NV" &&
             $(this).find('option:selected').val() != "WA" &&
             $(this).find('option:selected').val() != "WY"

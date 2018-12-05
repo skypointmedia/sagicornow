@@ -53,3 +53,4 @@
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.WebPages.Razor.xml
 /Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.csproj.CoreCompileInputs.cache
 /Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.dll
+/Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.csprojResolveAssemblyReference.cache
