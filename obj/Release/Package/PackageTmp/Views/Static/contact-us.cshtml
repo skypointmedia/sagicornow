@@ -1,0 +1,119 @@
+﻿@model SagicorNow.Models.ContactModel
+
+@{    Layout = "~/Views/Shared/_StaticTemplate1.cshtml";   
+    ViewBag.Title = "Contact Us | Sagicor Life Insurance";
+
+}
+
+<!--HERO-->
+<div class="container-fluid push60">
+   <div class="row hero hero_contact_us">
+      <div id="hero" class="container padtop60">
+         <div class="col-lg-6">
+            <h1>General Questions, Concerns, or Feedback</h1>
+            <p>SagicorNow offers a fully online experience with no agents, no medical exams&#42; and no waiting. However, should you have questions or require assistance, we want you to know that we are here for you. Call us toll-free at 1 (888) 472-4426 or use our chat/e-mail feature.</p>
+         </div>
+         <div class="col-lg-6"></div>
+      </div>
+   </div>
+</div>
+
+<!--MAIN PAGE CONTENT-->
+<div class="container push60" role="main">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>General Questions, Quotes, or Assistance?</h1>
+            <hr class="heading_decor">
+
+            <p><strong>Have a Question, need a Quote, or Assistance Applying for SagicorNow Online Life Insurance?</strong><br/>
+            Call the SagicorNow helpline <strong>Toll-Free at <a href="tel:1-888-472-4426">1 (888) 472-4426</a></strong> or use the website's chat/e-mail feature.  We are here to assist you!</p>
+
+            <p><strong>Existing Sagicor Life (U.S.) Client?</strong><br/>
+            If you are an existing Sagicor Life U.S. customer and require assistance, please contact Client Services <strong>Toll-Free at <a href="tel:1-888-724-4267">1 (888) 724-4267</a></strong> extension 4610 or email us at <a href="mailto:clientservices@sagicorlifeusa.com"><strong>ClientServices@SagicorLifeUSA.com</strong></a></p>
+
+            <p><strong>Sagicor Jamaica Client?</strong><br/>
+            If you are a Sagicor Jamaica Client calling from within the United States or Canada, please call Sagicor Jamaica Client Services for assistance <strong>Toll-Free at <a href="tel:1-877-724-4267">1 (877) 724-4267</a></strong> or email <a href="mailto:InfoJa@Sagicor.com"><strong>InfoJa@Sagicor.com</strong></a></p>
+        </div>
+    </div>
+    @using (Html.BeginForm("SendEmail",  "Contact", FormMethod.Post, new { id = "contactform", name = "contactform" }))
+    {
+        <div class="row pad60">
+            <div class="col-lg-6 text-center">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.firstName, "", new { @class = "form-control", maxlength = "20", placeholder = "First Name" }) 
+                    <div class="form-control-feedback"></div>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.email, "", new { @class = "form-control", maxlength = "50", placeholder = "Email" })      
+                    <div class="form-control-feedback"></div>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.phone, "", new { @class = "form-control", placeholder = "Phone Number" })
+                    <div class="form-control-feedback"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-center">
+
+                <div class="form-group">
+                    @Html.TextArea("comment", (Model!=null?Model.comment:""), new { @class = "form-control", maxlength = "500", form = "contactform", cols = "50", rows="7", placeholder = "Comment" })                    
+                    @*<textarea rows="7" class="form-control" cols="50" name="comment" id="comment" maxlegnth="500" form="contactform"> </textarea>*@
+                    <div class="form-control-feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 text-right">
+              <span style="margin-right:50px;color:red;">@TempData["ContactSendEmailMessage"]</span><button type="submit" class="btn contact-btn btn-lg">SEND</button>
+            </div>
+                @*<div class="col-lg-12 text-right"><a href="#" class="contact-btn" role="button">SEND</a> </div>*@
+         </div>
+    }
+</div>
+<!--END MAIN CONTENT-->
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            @if(TempData["ContactSendEmailMessage"] != null)
+            {
+                @:var divPosition = $('#contactform').offset();
+                @:$('html, body').scrollTop(divPosition.top);
+            }
+        });
+    </script>
+}
+
+<!--HERO-->
+<div class="container-fluid">
+   <div class="row hero hero_contact_us_other">
+      <div class="container padtop60">
+         <div class="col-lg-12"></div>
+      </div>
+   </div>
+</div>
+
+<!--  2 COL 50/50    -->
+<div class="container pad60">
+   <div class="row">
+      <div class="col-lg-6">
+		    <h2>Head Office</h2>
+			<p>Sagicor Life Insurance Company<br/>
+			4343 N. Scottsdale Road, Suite 300<br/>
+			Scottsdale, AZ 85251
+			</p>			
+      </div>
+      <div class="col-lg-6">
+         <h2>Toll-Free Phone Number</h2>
+         <p>Toll-Free <a href="tel:1-888-472-4426">1 (888) 472-4426</a><br/>
+            Monday - Friday, 7:30 AM to 8:00 PM CST<br/>
+            Saturday & Sunday, 8:00 AM to 7:00 PM CST</p>
+       </div>		
+   </div>
+	<div class="row">
+    <div class="col-lg-12 padtop60">
+	    <p>Sagicor Life Insurance Company is committed to offering customers world-class service with integrity and value.</p>
+	</div>
+	</div>
+</div>

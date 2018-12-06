@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Views/Shared/_StaticTemplate1.cshtml";
+    ViewBag.Title = "Sagicor Life Insurance ";
+}
+
+<style> 
+
+body{
+	background-image: url(/Content/Images/landingpage_bg.jpg);
+	background-repeat:no-repeat;
+	background-position: top;
+		}
+@@media (max-width: 991px) {
+body {
+    background-image: url(/Content/Images/mobile_landingpage_bg.jpg);
+	
+	}
+h1.landingpage {
+    margin-top: 80px;
+	}	
+}	
+</style>	
+
+<!--MAIN PAGE CONTENT-->
+<div class="container padtop60 push60">
+   <div class="row">
+      <div class="col-lg-8">
+	    	<h1>It's easy to protect<br/> the ones you love.</h1>
+			<p>Receive your quote for term life and <br/> whole
+				life coverage in seconds. <br/>It's fast, it's easy, and it's free.</p>
+
+   		 <h1 class="landingpage">Sagicor Life makes the process painless </h1>	
+            <hr class="heading_decor_other">			
+         <div class="heading_graphic calculate"></div>
+         <h2 class="static_pages">Calculate Your Needs</h2>
+         <p class="indent">Use our <a href="/needs"> Online Calculator</a> to determine how much coverage you need.</p>
+         <hr/>
+         <div class="heading_graphic coverage"></div>
+         <h2 class="static_pages">Get Your Instant Quote</h2>
+         <p class="indent">10 year term? 20 year term? Whole life? We've got you covered! Compare your options and see rates side by side.</p>
+         <hr/>
+         <div class="heading_graphic application"></div>
+         <h2 class="static_pages">Complete Your Application</h2>
+         <p class="indent">Our online application makes the process painless - no agent, no doctor's visit, no medical exam, and no waiting.</p>
+		<br/>
+			
+	    <!-- Start Responsive Embed 16x9-->
+	    <div class="embed-responsive embed-responsive-16by9 push60">
+	      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/X9CmPYIZ6Ts?rel=0" allowfullscreen></iframe>
+	    </div>
+        <!--End Responsive Embed-->
+			
+		</div>
+
+      <!--RIGHT HAND COL-->
+      <div class="col-lg-4">
+         <div class="row">
+            <div class="col-lg-12 landingpage_form_container">
+               <h4 class="text-center">Get your <strong>FREE</strong><br/> life insurance quote today!</h4>
+                @Html.Partial("_QuoteFormPartial", new SagicorNow.ViewModels.QuoteViewModel(SagicorNow.ViewModels.QuoteViewModel.DisplayInfo.SINGLE_COLUMN_BARE))
+                <small class="white">* In the past 24 Months have you used any form of tobacco or nicotine products including cigarettes, e-cigarettes, cigars, pipes, chewing tobacco, snuff, nicotine patches or gums?</small>    
+            </div>
+         </div>
+         <div class="row">
+                   <div class="col-lg-12 text-center padtop60">
+	                 <img src="~/Content/Images/am-best-lp.jpg">
+					<p>A- (Excellent) is 4th best out of 16<br/>possible ratings.</p>
+				</div>		
+         </div>
+      </div>
+   </div>
+</div>
+<section class="lp_cta text-center">
+	<p>Protect the ones you love. Fill out the quote form to get started today!</p>
+</section>
+

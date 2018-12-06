@@ -1,0 +1,67 @@
+﻿@{
+    Layout = "~/Views/Shared/_StaticTemplate1.cshtml";
+    ViewBag.Title = "Frequently Asked Questions | Sagicor Life Insurance";
+}
+
+<!--HERO-->
+<div class="container-fluid">
+   <div id="hero" class="row row hero hero_faq push60">
+      <div class="container padtop60">
+         <div class="col-lg-6">
+            <h1>Frequently Asked Questions</h1>
+            <p class="white">Want to learn more about Sagicor Life Insurance Company? You're in the right place. Below, you'll find answers to some of the most frequently asked questions.</p>
+            <a class="btn hero-btn" href="/quote">Get Quote</a>
+			</div>
+      </div>
+   </div>
+</div>
+
+<!--START MAIN PAGE CONTENT-->
+<div class="container main-content" role="main">
+   <div class="row">
+      <div class="col-lg-7">
+
+        <ul class="nostyles push60">
+            <li><a href="#q1">What is SagicorNow?</a></li>
+            <li><a href="#q2">Who is SagicorNow.com for?</a></li>
+            <li><a href="#q3">What life insurance products does SagicorNow offer?</a></li>
+            <li><a href="#q4">What is the process?</a></li>
+            <li><a href="#q5">How do I determine how much life insurance I need?</a></li>
+            <li><a href="#q6">Who is eligible to apply for a SagicorNow policy</a></li>                
+        </ul>
+            
+		<h2><a name="q1">What is SagicorNow?</a></h2>
+		<p>SagicorNow is a new way for you to get life insurance, the moment you want it. It's a fast, fully online experience with no agents, no medical exams&#42; and, more importantly, no waiting.  In just 20 minutes you can get life insurance coverage up to $1,000,000 on term or up to $250,000 on whole life.  With SagicorNow, getting life insurance has never been easier.</p>
+
+		<h2><a name="q2">Who is SagicorNow.com for?</a></h2>
+		<p>SagicorNow is ideally suited for healthy individuals, 18 to 65 years of age who are applying for, and purchasing, life insurance coverage for themselves to protect their beneficiary(ies).  It is not intended for those who may be applying for coverage for someone other than themselves, (i.e. a spouse, business partner), or who are not in reasonably good health. Should you have questions, you can work with a Sagicor Agent directly by requesting to be contacted. There is no additional cost for utilizing a Sagicor Agent.</p>
+
+		<h2><a name="q3">What life insurance products does SagicorNow offer?</a></h2>
+		<p>SagicorNow offers 10-year, 15-year or 20-year Sage Term Life Insurance and Sage Whole Life Insurance.  Both polices offer an inherent Accelerated Benefit Insurance Rider (at no additional cost) along with optional riders (for an additional cost) to customize a policy to best suit you and your loved ones.</p>
+
+		<h2><a name="q4">What is the process?</a></h2>
+		<p>SagicorNow makes it easy to apply for life insurance, online and on your time. Simply fill in a few fields of information, get a quote, adjust your premium rate to fit your budget and then complete the online application. If you get stuck and need some assistance, we're here for you. Just use the chat/e-mail feature or call us toll-free <a href="tel:1-888-472-4426">1-888-472-4426</a>, Monday - Friday, 7:30 AM to 8:00 PM CST, or Saturday & Sunday, 8:00 AM to 7:00 PM CST. Once you submit your application, you will receive a notice with further instructions.  The complete process will take approximately 20 minutes.</p>
+        <p>If you are an existing Sagicor Life customer and require assistance, please contact Client Services toll-free at <a href="tel:1-888-724-4267">1 (888) 724-4267</a> extension 4610 or email us at <a href="mailto:ClientServices@SagicorLifeUSA.com">ClientServices@SagicorLifeUSA.com</a>.</p>
+
+        <h2><a name="q5">How do I determine how much life insurance I need?</a></h2>
+		<p>The amount should be enough to provide for dependents' immediate cash needs and their ongoing living expenses for a period of time.  As a general rule, individuals require 5 to 10 times their annual income, depending on their lifestyle, number of dependents, and other sources of income.  You can also use the <a href="/needs">Needs Analysis calculator</a> to help determine a starting amount.</p>
+
+		<h2><a name="q6">Who is eligible to apply for a SagicorNow policy?</a></h2>
+		<p>Adults age 18 to 65 years. Not available in all states. State variations may apply. If you live outside one of these states, call us toll-free at <a href="tel:1-888-472-4426"> 1 (888) 472-4426</a>, or email us and we will have a Sagicor Agent contact you.</p>			
+      </div>
+
+      <!--RIGHT HAND COL-->
+      <div class="col-lg-4 offset-lg-1">
+         <div class="row">
+            <div class="col-lg-12 landingpage_form_container">
+               <h4 class="text-center">Get your <strong>FREE</strong><br/> life insurance quote today!</h4>
+
+                <!--INCLUDE FORM-->
+                @Html.Partial("_QuoteFormPartial", new SagicorNow.ViewModels.QuoteViewModel(SagicorNow.ViewModels.QuoteViewModel.DisplayInfo.SINGLE_COLUMN_BARE))
+                <small class="white">* In the past 24 Months have you used any form of tobacco or nicotine products including cigarettes, e-cigarettes, cigars, pipes, chewing tobacco, snuff, nicotine patches or gums?</small>    
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--END MAIN PAGE CONTENT-->

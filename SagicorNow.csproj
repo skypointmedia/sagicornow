@@ -281,6 +281,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\GeoLite2-Country.mmdb" />
+    <None Include="FolderProfile.pubxml" />
     <None Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\Shared\_QuoteFormPartial.cshtml" />
     <None Include="Scripts\jquery-3.2.1.slim.min.map" />
@@ -289,6 +290,12 @@
     <None Include="Content\bootstrap.css.map" />
     <None Include="Content\bootstrap-theme.min.css.map" />
     <None Include="Content\bootstrap-theme.css.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

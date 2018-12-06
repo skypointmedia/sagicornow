@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\am4759\Source\Repos\msantucci\sagicornow\bin\Release\Publish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_Data/GeoLite2-Country.mmdb">
+      <publishTime>12/03/2018 10:06:47</publishTime>
+    </File>
+    <File Include="bin/BouncyCastle.Crypto.dll">
+      <publishTime>12/03/2018 10:06:49</publishTime>
+    </File>
+    <File Include="bin/MailKit.dll">
+      <publishTime>12/03/2018 10:06:49</publishTime>
+    </File>
+    <File Include="bin/MaxMind.Db.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/MaxMind.GeoIP2.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/MimeKit.dll">
+      <publishTime>12/03/2018 10:06:52</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>12/03/2018 10:06:53</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>12/03/2018 10:06:54</publishTime>
+    </File>
+    <File Include="bin/SagicorNow.dll">
+      <publishTime>12/06/2018 10:57:08</publishTime>
+    </File>
+    <File Include="bin/SagicorNow.pdb">
+      <publishTime>12/06/2018 10:57:08</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Owin.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>12/03/2018 10:06:51</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/Images/Banners/Banner1.png">
+      <publishTime>12/03/2018 10:06:47</publishTime>
+    </File>
+    <File Include="Content/Images/Banners/Banner2.png">
+      <publishTime>12/03/2018 10:06:47</publishTime>
+    </File>
+    <File Include="Content/Images/Banners/Banner3.png">
+      <publishTime>12/03/2018 10:06:47</publishTime>
+    </File>
+    <File Include="Content/Images/Banners/Banner4.png">
+      <publishTime>12/03/2018 10:06:47</publishTime>
+    </File>
+    <File Include="Content/Images/Banners/Banner5.png">
+      <publishTime>12/03/2018 10:06:47</publishTime>
+    </File>
+    <File Include="Content/Images/Banners/BannerBlank.png">
+      <publishTime>12/03/2018 10:06:47</publishTime>
+    </File>
+    <File Include="Content/js/formValidation.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/formValidation.popular.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/bootstrap.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/bootstrap.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/bootstrap4.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/bootstrap4.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/foundation.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/foundation.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/foundation5.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/foundation5.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/pure.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/pure.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/semantic.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/semantic.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/uikit.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/framework/uikit.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/jquery.mask.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/ar_MA.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/bg_BG.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/ca_ES.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/cs_CZ.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/da_DK.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/de_DE.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/el_GR.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/en_US.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/es_CL.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/es_ES.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/eu_ES.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/fa_IR.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/fi_FI.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/fr_BE.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/fr_FR.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/he_IL.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/hi_IN.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/hu_HU.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/id_ID.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/it_IT.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/ja_JP.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/nl_BE.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/nl_NL.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/no_NO.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/pl_PL.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/pt_BR.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/pt_PT.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/ro_RO.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/ru_RU.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/sk_SK.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/sq_AL.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/sr_RS.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/sv_SE.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/th_TH.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/tr_TR.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/ua_UA.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/vi_VN.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/zh_CN.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/language/zh_TW.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/page-functions.js">
+      <publishTime>12/03/2018 10:16:41</publishTime>
+    </File>
+    <File Include="Content/js/tether.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/js/TypeAhead.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/static_templates.css">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Content/typeahead.css">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>12/03/2018 10:06:49</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>12/03/2018 10:06:49</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>12/03/2018 10:06:49</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>12/03/2018 10:06:49</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>12/03/2018 10:06:49</publishTime>
+    </File>
+    <File Include="Scripts/bloodhound.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/bloodhound.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.2.1-vsdoc.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.2.1.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.2.1.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.2.1.slim.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.2.1.slim.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery.moneymask.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/typeahead.bundle.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/typeahead.bundle.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/typeahead.jquery.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Scripts/typeahead.jquery.min.js">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Contact/Contact.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Needs/Index.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Quote/Index.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/Footer.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/Header.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/LandingPageForm.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/MarketingBanner.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/NeedsCreative.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/TrustPilot.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/_NeedsAnalysis.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/_NeedsModal.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/_QuoteFormPartial.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/_Short.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/_Static.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Shared/_StaticTemplate1.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/about-us.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/congratulations.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/contact-us.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/electronic-consent-and-disclosure.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/faq.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/homepage.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/index.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/landingpage.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/larger-than-life.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/life-insurance-101.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/privacy-policy.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/privacy-statement.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/sage-term-life.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/sage-whole-life.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/term-vs-whole-life.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/terms.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/testimonials.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/thankyou.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Static/why-buy-life-insurance.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>12/03/2018 10:06:48</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>12/06/2018 10:57:09</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

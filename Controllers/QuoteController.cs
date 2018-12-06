@@ -1,12 +1,7 @@
-﻿using System;
-using System.Web;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.SessionState;
-using System.Web.Mvc;
-using SagicorNow.Models;
-using System.Globalization;
+﻿using SagicorNow.Models;
 using SagicorNow.ViewModels;
+using System;
+using System.Web.Mvc;
 
 namespace SagicorNow.Controllers
 {
@@ -75,7 +70,11 @@ namespace SagicorNow.Controllers
                     if (code == "RESULT_SUCCESS")
                     {
                         //redirect to url 
+#if DEBUG
+                        string url = String.Format("https://uat.firelighteapp.com/EGApp/PassiveCall.aspx?O=3138&C=D2C&refid={0}&GAT=UA-97044577-1&GAC={1}", response.TXLifeResponse[0].TransRefGUID ?? String.Empty, Session["GCId"] ?? String.Empty);
+#else
                         string url = String.Format("https://www.firelighteapp.com/EGApp/PassiveCall.aspx?O=3138&C=D2C&refid={0}&GAT=UA-97044577-1&GAC={1}", response.TXLifeResponse[0].TransRefGUID ?? String.Empty, Session["GCId"] ?? String.Empty);
+#endif
                         return Redirect(url);
                     }
                     else
