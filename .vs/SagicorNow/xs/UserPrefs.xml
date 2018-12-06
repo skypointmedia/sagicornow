@@ -1,11 +1,9 @@
 ﻿<Properties StartupConfiguration="{A8F41264-346E-45F0-B6E7-735768311F26}|">
   <MonoDevelop.Ide.ItemProperties.SagicorNow PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Desktop/page-functions.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Web.config">
     <Files>
-      <File FileName="Models/QuoteModel.cs" Line="171" Column="2" />
-      <File FileName="Content/js/page-functions.js" Line="425" Column="1" />
-      <File FileName="../../Desktop/QuoteModel.cs" Line="185" Column="2" />
-      <File FileName="../../Desktop/page-functions.js" Line="425" Column="1" />
+      <File FileName="Content/js/page-functions.js" Line="1" Column="1" />
+      <File FileName="Web.config" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
