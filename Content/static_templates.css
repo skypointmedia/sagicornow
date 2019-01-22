@@ -36,7 +36,6 @@ font-size: 18pt;
 p {
 font-size: 16px;
 line-height: 1.7em;
-font-color:#333;
 }
 
 #legal p {
@@ -108,6 +107,10 @@ font-color:#333;
     background-color: #daedfb;
     background-image: url(Images/larger_than_life_hero.jpg);
 }
+.hero_charity_other {
+    background-color: #daedfb;
+    background-image: url(Images/hero_charity_other.jpg);
+}
 .hero_larger_than_life_other {
     background-color: #fdf3d9;
     background-image: url(Images/larger_than_life_other_bg.jpg);
@@ -151,8 +154,13 @@ font-color:#333;
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
-
+.hero_charity {
+    background-color: #fff;
+    background-image: url(Images/charity_bg.jpg);
+}
+#charities-container {
+    background-color: #11b1e5;
+}
 /*FORM STYLES*/
 .landingpage_form_container {
     background-color: #4a617b;
@@ -167,7 +175,6 @@ font-color:#333;
 .landingpage_form_container h4 {
     color: #fff;
     margin-bottom:20px;
-
 }
 
 ul.checklist {
@@ -279,6 +286,9 @@ color:#fff;
     }
     .hero_about_us {
         background-image: url(Images/about_us_bg_mobile.jpg);
+    }
+    .hero_charity {
+        background-image: url(Images/charity_hero_mobile.jpg);
     }
     .hero_contact_us {
         background-image: url(Images/contact_us_bg_mobile.jpg);

@@ -693,17 +693,11 @@ body#static .has-warning .col-form-label {
 }
 
 
-body#needs #step-one {
-    padding-top: 0;
-}
+body#needs #step-one { padding-top: 0;}
 
-body#needs .section-heading {
-    margin-bottom: 30px;
-}
+body#needs .section-heading {    margin-bottom: 30px; }
 
-body#needs section {
-    padding-bottom: 60px;
-}
+body#needs section {  padding-bottom: 60px;}
 
 body#needs #get-quote-section {
     background-color: #DEF8FD;
@@ -831,13 +825,18 @@ Utilities
 .padbottom20 {
     padding-bottom:20px;
 }
-
+.padbottom60 {
+    padding-bottom: 60px;
+}
 #donations img {
     margin-bottom:30px;
 }
 
 .white {
     color: #fff;
+}
+.whitebg {
+    background-color: #ffffff !important;
 }
 
 .blue_bg {
@@ -853,9 +852,9 @@ Utilities
 
 
 /* 
-MARKETING BANNER 
-    
+MARKETING BANNER   
 */
+
 #marketing_banner {
     background: #41809a;
     color: #fff;
@@ -1019,7 +1018,6 @@ a.dropdown-item:focus {
     font-size: 75%;
     display: inline-block;
 }
-
 .cbpdf {
     color: #292b2c;
     text-decoration:underline !important;
