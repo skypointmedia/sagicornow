@@ -1,14 +1,7 @@
 ﻿<Properties StartupConfiguration="{A8F41264-346E-45F0-B6E7-735768311F26}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Shared/Footer.cshtml">
-    <Files>
-      <File FileName="Views/Static/homepage.cshtml" Line="3" Column="32" />
-      <File FileName="Views/Static/about-us.cshtml" Line="1" Column="1" />
-      <File FileName="Views/Shared/Header.cshtml" Line="1" Column="1" />
-      <File FileName="Views/Shared/Footer.cshtml" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.ItemProperties.SagicorNow PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
