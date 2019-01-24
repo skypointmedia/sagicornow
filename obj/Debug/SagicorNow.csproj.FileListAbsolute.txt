@@ -109,8 +109,6 @@ C:/Users/am4759/Source/Repos/msantucci/sagicornow/obj/Debug/SagicorNow.csproj.Co
 C:/Users/am4759/Source/Repos/msantucci/sagicornow/obj/Debug/SagicorNow.csproj.CopyComplete
 C:/Users/am4759/Source/Repos/msantucci/sagicornow/obj/Debug/SagicorNow.dll
 C:/Users/am4759/Source/Repos/msantucci/sagicornow/obj/Debug/SagicorNow.pdb
-/Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.csprojAssemblyReference.cache
-/Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.csproj.CoreCompileInputs.cache
 /Users/mrsantucci/Projects/SagicorNow/bin/SagicorNow.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/SagicorNow.pdb
 /Users/mrsantucci/Projects/SagicorNow/bin/BouncyCastle.Crypto.dll
@@ -148,6 +146,7 @@ C:/Users/am4759/Source/Repos/msantucci/sagicornow/obj/Debug/SagicorNow.pdb
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.WebPages.Deployment.xml
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.WebPages.xml
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.WebPages.Razor.xml
+/Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.csproj.CoreCompileInputs.cache
 /Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.csproj.CopyComplete
 /Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.dll
 /Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.pdb
