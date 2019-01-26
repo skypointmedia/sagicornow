@@ -1,0 +1,88 @@
+﻿@model SagicorNow.ViewModels.EmbeddedViewModel
+
+@{
+    ViewBag.Title = "EmbeddedApp";
+}
+
+@section header{
+    <link type="text/css" rel="stylesheet" href="@Url.Content(Model.FirelightBaseUrl+"Resource/CSS/eApp")" />
+}
+
+<h2>EmbeddedApp</h2>
+
+<p>
+    Percent Complete: <div id="activityStatus" class="percentComplete"></div>
+</p>
+<div style="display:flex;">
+    <div>
+        <button class="btn btn-primary" id="btnProceedToSignatures">Proceed to Signatures</button>
+    </div>
+    <div>
+        <button class="btn btn-primary" id="btnShowDocumentsDialog">Show Documents Dialog</button>
+    </div>
+    <div>
+        <button class="btn btn-primary" id="btnSubmitApplication">Submit Application</button>
+    </div>
+</div>
+<br /><hr /><br />
+<p id="errMessage"></p>
+<div id="fireLightMainDiv">
+    Loading...
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        const token = '@(Model.AccessToken)';
+        const isNew = '@(Model.IsNew)' === 'true';
+        const activityId = '@(Model.ActivityId)';
+        const btnProceedToSignatures = document.getElementById('btnProceedToSignatures');
+        const btnShowDocumentsDialog = document.getElementById('btnShowDocumentsDialog');
+        const btnSubmitApplication = document.getElementById('btnSubmitApplication');
+        btnProceedToSignatures.disabled = true;
+        $('#fireLightMainDiv').on('fireLightLoaded', function ()
+        {
+            FireLightAPI.init(token, activityId, isNew);
+            FireLightAPI.statusEvent.subscribe(statusChange);
+            FireLightAPI.signatureStatusEvent.subscribe(signatureStatusChange);
+            FireLightAPI.errorEvent.subscribe(handleErrorEvent);
+        });
+        var statusChange = function (status) {
+            console.log('statusEvent - status = ' + JSON.stringify(status));
+            console.log('statusEvent = Field: percentComplete = ' + status.percentComplete);
+            if (status.percentComplete === 100) {
+            btnProceedToSignatures.disabled = false;
+            }
+            else {
+            btnProceedToSignatures.disabled = true;
+            }
+            activityStatus.innerText = status.percentComplete + '% Complete';
+        }
+        function signatureStatusChange(sig) {
+            if (sig.succeeded) {
+                window.location.href = sig.redirectUrl;
+            }
+            else {
+                console.log('Signature status message = ' + sig.message);
+            }
+        }
+        function handleErrorEvent(err) {
+            var msg = err.error.ApiSource + ' - ' + err.error.ErrorMessage;
+            document.getElementById('errMessage').innerHTML = 'Error message = ' + msg;
+            console.log('errorEvent = ' + msg);
+        }
+
+        btnProceedToSignatures.addEventListener('click', () => {
+            FireLightAPI.proceedToSignatures();
+        });
+
+        btnShowDocumentsDialog.addEventListener('click', () => {
+            FireLightAPI.showDocumentsDialog();
+        });
+
+        btnSubmitApplication.addEventListener('click', () => {
+            FireLightAPI.submitApplication();
+        });
+    </script>
+    <script src="@Url.Content(Model.FirelightBaseUrl + "Resource/Scripts/eApp?segmentId=" + Model.AccessToken)"></script>
+}

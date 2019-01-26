@@ -1,12 +1,37 @@
 ﻿using SagicorNow.Models;
 using SagicorNow.ViewModels;
 using System;
+using System.Collections;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace SagicorNow.Controllers
 {
     public class QuoteController : Controller
     {
+
+#if DEBUG
+        //private const string _firelightBaseUrl = "https://uat.firelighteapp.com/EGApp/"; //UAT
+        private const string _firelightBaseUrl = "https://firelight.insurancetechnologies.com/EGApp/"; //QE
+#else
+        private const string _firelightBaseUrl = "https://www.firelighteapp.com/EGApp/";                       
+#endif
+
+        //private const string _sagApiSecret = "ec511cdf9f8a4bd3b6bd90aea74c853d"; //UAT
+        private const string _sagApiSecret = "43983160a16d4f0996f98d04fe5ea36d"; //QE
+        private const string _sagOrgId = "D2C";
+        private const string _sagCarrierCode = "SAG";
+        private const string _certSerialNum = "24000001c5e9e39d3274150b7b0002000001c5";
+        private const string _agentPartyId = "14529e88-60ed-4877-847a-3f682862c14f";
+        private const string _producerId = "SAG0301";
 
         public ActionResult Index()
         {
@@ -63,18 +88,33 @@ namespace SagicorNow.Controllers
                     var newAddress = new System.ServiceModel.EndpointAddress(newUri);
                     client.Endpoint.Address = newAddress;
 
+                    var user1228Str = Create1228(vm);
+                    string token = GetFirelightTokenAsync(user1228Str).Result;
+                    FirelightTokenReturn tokenReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightTokenReturn>(token);
+
+                    string activityRequestApiString = this.CreateEAppActivity(tokenReturn.access_token, vm.stateInfo.TC, "", "", "24"); //24 = whole man 
+                    FirelightActivityReturn activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(activityRequestApiString); 
+
+                    EmbeddedViewModel evm = new EmbeddedViewModel()
+                    {
+                        AccessToken = tokenReturn.access_token,
+                        ActivityId = activityReturn.ActivityId,
+                        FirelightBaseUrl = _firelightBaseUrl,
+                        IsNew = true
+                    };
+
+                    return View("EmbeddedApp", evm);
+
+                    /*
                     var txLife = Create103(vm);
+                    Console.Write(txLife.ToString());
                     NewBusinessService.TXLife response = client.SubmitNewBusinessApplication(txLife);
 
                     var code = response.TXLifeResponse[0].TransResult.ResultCode.Value; //response code??
                     if (code == "RESULT_SUCCESS")
                     {
                         //redirect to url 
-#if DEBUG
-                        string url = String.Format("https://uat.firelighteapp.com/EGApp/PassiveCall.aspx?O=3138&C=D2C&refid={0}&GAT=UA-97044577-1&GAC={1}", response.TXLifeResponse[0].TransRefGUID ?? String.Empty, Session["GCId"] ?? String.Empty);
-#else
-                        string url = String.Format("https://www.firelighteapp.com/EGApp/PassiveCall.aspx?O=3138&C=D2C&refid={0}&GAT=UA-97044577-1&GAC={1}", response.TXLifeResponse[0].TransRefGUID ?? String.Empty, Session["GCId"] ?? String.Empty);
-#endif
+                        string url = $"{_firelightBaseUrl}PassiveCall.aspx?O=3138&C=D2C&refid={response.TXLifeResponse[0].TransRefGUID ?? String.Empty}&GAT=UA-97044577-1&GAC={Session["GCId"] ?? String.Empty}";
                         return Redirect(url);
                     }
                     else
@@ -84,6 +124,7 @@ namespace SagicorNow.Controllers
                         vm.ViewMessages.Add("Web Service Returned a Failure Code: " + msg);
                         return View(vm);
                     }
+                    */
                 }
                 else
                 {
@@ -111,7 +152,7 @@ namespace SagicorNow.Controllers
             var holdingId = Guid.NewGuid().ToString();
             var fileControlId = Guid.NewGuid().ToString();
             var clientPartyId = Guid.NewGuid().ToString();
-            var agentPartyId = "14529e88-60ed-4877-847a-3f682862c14f"; //Guid.NewGuid().ToString();
+             //Guid.NewGuid().ToString();
 
             //set properties 
             req.TransRefGUID = Guid.NewGuid().ToString();
@@ -124,7 +165,7 @@ namespace SagicorNow.Controllers
             {
                 SourceInfo = new NewBusinessService.SourceInfo()
                 {
-                    SourceInfoName = "D2C", //Sagicor Life Insurance USA
+                    SourceInfoName = _sagOrgId, //Sagicor Life Insurance USA
                     SourceInfoDescription = "Version: 1.0",
                     FileControlID = fileControlId
                 },
@@ -136,7 +177,7 @@ namespace SagicorNow.Controllers
                         HoldingName = "Consumer Portal 3/17",
                         Policy = new NewBusinessService.Policy() {
                             ProductCode = "26",
-                            CarrierCode = "SAG",
+                            CarrierCode = _sagCarrierCode,
                             Jurisdiction = new NewBusinessService.Jurisdiction() { tc = vm.stateInfo.TC.ToString(), Value = vm.stateInfo.Value}, //need to get the OLIFE state code based on the state entered. Should the state be an autocomplete dropdown?
                             Life = new NewBusinessService.Life() {
                                 Coverage = new NewBusinessService.Coverage[] {
@@ -177,15 +218,15 @@ namespace SagicorNow.Controllers
                 },
                 Party = new NewBusinessService.Party[] {
                     new NewBusinessService.Party() {
-                        id = agentPartyId,
+                        id = _agentPartyId,
                         PartyTypeCode = new NewBusinessService.PartyTypeCode() { tc = "1", Value = "OLI_PT_PERSON"},
                         Person = new NewBusinessService.Person(),
                         Producer = new NewBusinessService.Producer() {
                             CarrierAppointment = new NewBusinessService.CarrierAppointment[] {
                                 new NewBusinessService.CarrierAppointment() {
-                                    PartyID = agentPartyId,
-                                    CompanyProducerID = "SAG0301",
-                                    CarrierCode = "SAG",
+                                    PartyID = _agentPartyId,
+                                    CompanyProducerID = _producerId,
+                                    CarrierCode = _sagCarrierCode,
                                 }
                             }
                         }
@@ -216,7 +257,7 @@ namespace SagicorNow.Controllers
                 {
                     new NewBusinessService.Relation() {
                         OriginatingObjectID = holdingId,
-                        RelatedObjectID = agentPartyId,
+                        RelatedObjectID = _agentPartyId,
                         OriginatingObjectType = new NewBusinessService.OriginatingObjectType() { tc="4", Value ="OLI_HOLDING"},
                         RelatedObjectType = new NewBusinessService.RelatedObjectType() { tc="6", Value = "OLI_PARTY" },
                         RelationRoleCode = new NewBusinessService.RelationRoleCode() { tc = "37", Value="OLI_REL_PRIMAGENT" }
@@ -232,6 +273,186 @@ namespace SagicorNow.Controllers
             txLife.TXLifeRequest[0] = req;
 
             return txLife;
+        }
+
+        /// <summary>
+        /// creates a 1228 request XML
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
+        public string Create1228(QuoteViewModel vm)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("<TXLife xmlns=\"http://ACORD.org/Standards/Life/2\">");
+            builder.Append("<TXLifeRequest>");
+            builder.Append("<TransRefGUID>"+Guid.NewGuid()+"</TransRefGUID>");
+            builder.Append("<TransType tc=\"1228\">OLI_TRANS_TRNPRODINQ</TransType>");
+            builder.Append("<OLifE>");
+            builder.Append("<SourceInfo>");
+            builder.Append("<CreationDate>"+DateTime.Today.ToString("yyyy-MM-dd")+"</CreationDate>");
+            builder.Append("<CreationTime>"+DateTime.Now.ToString("hh:mm:ss.fffffffzzz")+"</CreationTime>");
+            builder.Append("<SourceInfoName>"+_sagOrgId+"</SourceInfoName>");
+            builder.Append("</SourceInfo>");
+            builder.Append("<Party id=\""+ _agentPartyId + "\">");
+            builder.Append("<PartyTypeCode tc=\"1\">OLI_PT_Person</PartyTypeCode>");
+            builder.Append("<FullName>Sagicor D2C</FullName>");
+            builder.Append("<EmailAddress>");
+            builder.Append("<AddrLine>sagicornow@sagicorlifeusa.com</AddrLine>");
+            builder.Append("</EmailAddress>");
+            builder.Append("<Producer>");
+            builder.Append("<CarrierAppointment PartyID=\""+_agentPartyId + "\">");
+            builder.Append("<CompanyProducerID>"+ _producerId +"</CompanyProducerID>");
+            builder.Append("<CarrierCode>"+_sagCarrierCode+"</CarrierCode>");
+            builder.Append("</CarrierAppointment>");
+            builder.Append("</Producer>");
+            builder.Append("</Party>");
+            builder.Append("<OLifEExtension VendorCode=\"25\">");
+            builder.Append("<UserRoleCode tc=\"InsTech\">InsTech</UserRoleCode>");
+            builder.Append("</OLifEExtension>");
+            builder.Append("<Relation OriginatingObjectID=\""+_agentPartyId+"\">");
+            builder.Append("<RelationRoleCode tc=\"11\">OLI_REL_AGENT</RelationRoleCode>");
+            builder.Append("</Relation>");
+            builder.Append("</OLifE>");
+            builder.Append("</TXLifeRequest>");
+            builder.Append("</TXLife>");
+
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// request Firelight token
+        /// </summary>
+        /// <returns></returns>
+        private async Task<string> GetFirelightTokenAsync(string user1228)
+        {
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create($"{_firelightBaseUrl}api/Security/GetToken");
+            req.Method = "POST";
+            req.ContentType = "text/plain";
+            byte[] secretBinary = Encoding.UTF8.GetBytes(_sagApiSecret);
+            byte[] hashBinary = new SHA256Managed().ComputeHash(secretBinary);
+            //convert to hex string
+            StringBuilder builder = new StringBuilder();
+
+            for (Int32 idx = 0; idx < hashBinary.Length; idx++)
+            {
+                builder.Append(hashBinary[idx].ToString("X2"));
+            }
+
+            string hashValue = builder.ToString();
+            DateTime reqDate = DateTime.UtcNow;
+
+            string xml1228 = String.Empty; //get 1228 XML
+            if (!string.IsNullOrWhiteSpace(user1228))
+                xml1228 = Convert.ToBase64String(Encoding.UTF8.GetBytes(user1228));
+            //remember, the user 1228 is optional
+            String textToSign = _sagApiSecret + reqDate.ToString("MMddyyyyHHmmss") + _sagCarrierCode + xml1228;
+            byte[] nonSignedBinary = Encoding.UTF8.GetBytes(textToSign);
+
+            //load up the test cert - in this example, it comes from a pfx file in a local directory - you
+            // may need to get it from your machine's certificate store
+            X509Certificate2 cert = this.FindClientCertificate(_certSerialNum);
+            RSA rsa = cert.GetRSAPrivateKey();
+            byte[] signedBinary = rsa.SignData(nonSignedBinary, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+
+            //base64-encoded, then url-encoded
+            String signed64 = HttpUtility.UrlEncode(Convert.ToBase64String(signedBinary));
+            //optionally place the user's 1228 on the request if it has value (url-encode it)
+            String body = $"grant_type=hashsig&id={_sagCarrierCode}&secret={hashValue}&sig={signed64}"
+            + (string.IsNullOrWhiteSpace(xml1228) ? "" : $"&xml={HttpUtility.UrlEncode(xml1228)}");
+
+            byte[] bodyBinary = Encoding.UTF8.GetBytes(body);
+            req.Date = reqDate;
+            req.ContentLength = bodyBinary.LongLength;
+
+            using (Stream post = req.GetRequestStream())
+            {
+                post.Write(bodyBinary, 0, bodyBinary.Length);
+            }
+
+            // Get response
+            String result = "";
+            using (HttpWebResponse response = (HttpWebResponse)req.GetResponse())
+            {
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                result = reader.ReadToEnd();
+            }
+
+            return result;
+        }
+
+        private string CreateEAppActivity(string token, int jurisdiction, string firstName, string lastName, string cusip)
+        {
+            string reqId = Guid.NewGuid().ToString();
+            string body = $"{{ \"Id\": \"{reqId}\", \"CUSIP\": \"{cusip}\", \"Jurisdiction\": {jurisdiction}, \"TransactionType\": 1, \"CarrierCode\": \"{_sagCarrierCode}\", " +
+                $"\"DataItems\": [ {{\"DataItemId\":\"Owner_NonNaturalName\",\"Value\":\"{firstName} {lastName}\"}}] }}";
+
+            return CreateActivity(token, body);
+        }
+
+        /// <summary>
+        /// create Activity on Firelight 
+        /// </summary>
+        /// <returns></returns>
+        private string CreateActivity(string token, string requestBody)
+        {
+            string url = $"{_firelightBaseUrl}/api/Activity/CreateActivity";          
+
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.ContentType = "application/json";
+                request.Headers.Add("authorization", "Bearer " + token);
+                request.Method = "POST";
+                Byte[] contentBytes = Encoding.UTF8.GetBytes(requestBody);
+                request.ContentLength = contentBytes.LongLength;
+                
+                // Send request
+                using (Stream post = request.GetRequestStream())
+                {
+                    post.Write(contentBytes, 0, contentBytes.Length);
+                }
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream());
+                    string result = reader.ReadToEnd();
+                    
+                    Console.WriteLine(result);
+                    return result;
+                }
+            }
+            catch (WebException ex)
+            {
+                if (ex.Response != null && ex.Response.ContentLength > 0)
+                {
+                    using (StreamReader s = new StreamReader(ex.Response.GetResponseStream())) {
+                        string message = s.ReadToEnd();
+                        Console.WriteLine(message);
+                    }
+                }
+
+                return String.Empty;
+            }
+        }
+
+        /// <summary>
+        /// find cert on machine
+        /// </summary>
+        /// <param name="serialNumber"></param>
+        /// <returns></returns>
+        public X509Certificate2 FindClientCertificate(string serialNumber)
+        {
+            return
+                FindCertificate(StoreLocation.CurrentUser) ??
+                FindCertificate(StoreLocation.LocalMachine);
+
+            X509Certificate2 FindCertificate(StoreLocation location)
+            {
+                X509Store store = new X509Store(location);
+                store.Open(OpenFlags.OpenExistingOnly);
+                IEnumerable certs = store.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true);
+                return certs.OfType<X509Certificate2>().FirstOrDefault();
+            };
         }
 
         public ActionResult Details(int id)

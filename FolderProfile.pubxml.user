@@ -40,10 +40,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2018 10:06:54</publishTime>
     </File>
     <File Include="bin/SagicorNow.dll">
-      <publishTime>12/06/2018 10:57:08</publishTime>
+      <publishTime>01/25/2019 23:33:14</publishTime>
     </File>
     <File Include="bin/SagicorNow.pdb">
-      <publishTime>12/06/2018 10:57:08</publishTime>
+      <publishTime>01/25/2019 23:31:52</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>12/03/2018 10:06:51</publishTime>
@@ -274,7 +274,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2018 10:06:48</publishTime>
     </File>
     <File Include="Content/js/page-functions.js">
-      <publishTime>12/03/2018 10:16:41</publishTime>
+      <publishTime>12/06/2018 11:34:19</publishTime>
     </File>
     <File Include="Content/js/tether.min.js">
       <publishTime>12/03/2018 10:06:48</publishTime>
@@ -360,6 +360,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Needs/Index.cshtml">
       <publishTime>12/03/2018 10:06:48</publishTime>
     </File>
+    <File Include="Views/Quote/EmbeddedApp.cshtml">
+      <publishTime>01/25/2019 17:59:51</publishTime>
+    </File>
     <File Include="Views/Quote/Index.cshtml">
       <publishTime>12/03/2018 10:06:48</publishTime>
     </File>
@@ -385,7 +388,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2018 10:06:48</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>12/03/2018 10:06:48</publishTime>
+      <publishTime>01/25/2019 17:58:09</publishTime>
     </File>
     <File Include="Views/Shared/_NeedsAnalysis.cshtml">
       <publishTime>12/03/2018 10:06:48</publishTime>
@@ -400,7 +403,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2018 10:06:48</publishTime>
     </File>
     <File Include="Views/Shared/_Static.cshtml">
-      <publishTime>12/03/2018 10:06:48</publishTime>
+      <publishTime>01/25/2019 17:57:49</publishTime>
     </File>
     <File Include="Views/Shared/_StaticTemplate1.cshtml">
       <publishTime>12/03/2018 10:06:48</publishTime>
@@ -436,7 +439,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2018 10:06:48</publishTime>
     </File>
     <File Include="Views/Static/privacy-policy.cshtml">
-      <publishTime>12/03/2018 10:06:48</publishTime>
+      <publishTime>12/06/2018 11:34:06</publishTime>
     </File>
     <File Include="Views/Static/privacy-statement.cshtml">
       <publishTime>12/03/2018 10:06:48</publishTime>
@@ -469,7 +472,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2018 10:06:48</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/06/2018 10:57:09</publishTime>
+      <publishTime>01/25/2019 23:33:18</publishTime>
     </File>
   </ItemGroup>
 </Project>
