@@ -131,6 +131,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\QuoteController.cs" />
     <Compile Include="Models\BusinessRulesClass.cs" />
+    <Compile Include="Models\FirelightActivityBody.cs" />
+    <Compile Include="Models\FirelightActivityDataItem.cs" />
     <Compile Include="Models\FirelightActivityReturn.cs" />
     <Compile Include="Models\FirelightTokenReturn.cs" />
     <Compile Include="Models\Form1.cs">

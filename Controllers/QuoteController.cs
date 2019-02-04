@@ -2,6 +2,7 @@
 using SagicorNow.ViewModels;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -92,7 +93,7 @@ namespace SagicorNow.Controllers
                     string token = GetFirelightTokenAsync(user1228Str).Result;
                     FirelightTokenReturn tokenReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightTokenReturn>(token);
 
-                    string activityRequestApiString = this.CreateEAppActivity(tokenReturn.access_token, vm.stateInfo.TC, "", "", "24"); //24 = whole man 
+                    string activityRequestApiString = this.CreateEAppActivity(tokenReturn.access_token, "26", vm); // 26 = Sage Term 
                     FirelightActivityReturn activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(activityRequestApiString); 
 
                     EmbeddedViewModel evm = new EmbeddedViewModel()
@@ -380,12 +381,32 @@ namespace SagicorNow.Controllers
             return result;
         }
 
-        private string CreateEAppActivity(string token, int jurisdiction, string firstName, string lastName, string cusip)
+        private string CreateEAppActivity(string token, string cusip, QuoteViewModel vm)
         {
             string reqId = Guid.NewGuid().ToString();
-            string body = $"{{ \"Id\": \"{reqId}\", \"CUSIP\": \"{cusip}\", \"Jurisdiction\": {jurisdiction}, \"TransactionType\": 1, \"CarrierCode\": \"{_sagCarrierCode}\", " +
-                $"\"DataItems\": [ {{\"DataItemId\":\"Owner_NonNaturalName\",\"Value\":\"{firstName} {lastName}\"}}] }}";
+            //string body = $"{{ \"Id\": \"{reqId}\", \"CUSIP\": \"{cusip}\", \"Jurisdiction\": {jurisdiction}, \"TransactionType\": 1, \"CarrierCode\": \"{_sagCarrierCode}\", " +
+            //    $"\"DataItems\": [ {{\"DataItemId\":\"Owner_NonNaturalName\",\"Value\":\"{firstName} {lastName}\"}}] }}";
 
+            FirelightActivityBody actBody = new FirelightActivityBody() {
+                Id = reqId,
+                CUSIP = cusip,
+                Jurisdiction = vm.stateInfo.TC,
+                CarrierCode = _sagCarrierCode,
+                TransactionType = 1,// create activity 
+                DataItems = new List<FirelightActivityDataItem>()
+                {
+                    new FirelightActivityDataItem() { DataItemId = "Owner_NonNaturalName", Value = $"" },
+                    //new FirelightActivityDataItem() { DataItemId = "Owner_FirstName", Value = $"{firstName}" },
+                    //new FirelightActivityDataItem() { DataItemId = "Owner_LastName", Value = $"{lastName}" },
+                    new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_BIRTHDATE", Value = vm.birthday.Value.ToString("MM/dd/yyyy") },
+                    new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_GENDER", Value = (vm.genderInfo.TC == 1 ? "M" : vm.genderInfo.TC == 2 ? "F" : "") },
+                    new FirelightActivityDataItem() { DataItemId = "RISK_CLASS", Value = vm.riskClass.TC == 1 ? "" : ""},
+                    new FirelightActivityDataItem() { DataItemId = "PREMIUM_TOBACCO_USER", Value = vm.smoketStatusInfo.TC == 1 ? "N" : "Y"}
+                }
+                
+            };
+
+            string body = Newtonsoft.Json.JsonConvert.SerializeObject(actBody);
             return CreateActivity(token, body);
         }
 
