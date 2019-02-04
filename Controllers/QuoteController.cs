@@ -400,7 +400,7 @@ namespace SagicorNow.Controllers
                     //new FirelightActivityDataItem() { DataItemId = "Owner_LastName", Value = $"{lastName}" },
                     new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_BIRTHDATE", Value = vm.birthday.Value.ToString("MM/dd/yyyy") },
                     new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_GENDER", Value = (vm.genderInfo.TC == 1 ? "M" : vm.genderInfo.TC == 2 ? "F" : "") },
-                    new FirelightActivityDataItem() { DataItemId = "RISK_CLASS", Value = vm.riskClass.TC == 1 ? "" : ""},
+                    new FirelightActivityDataItem() { DataItemId = "RISK_CLASS", Value = vm.riskClass.TC.ToString()  },
                     new FirelightActivityDataItem() { DataItemId = "PREMIUM_TOBACCO_USER", Value = vm.smoketStatusInfo.TC == 1 ? "N" : "Y"}
                 }
                 
