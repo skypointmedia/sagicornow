@@ -400,14 +400,37 @@ namespace SagicorNow.Controllers
                     //new FirelightActivityDataItem() { DataItemId = "Owner_LastName", Value = $"{lastName}" },
                     new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_BIRTHDATE", Value = vm.birthday.Value.ToString("MM/dd/yyyy") },
                     new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_GENDER", Value = (vm.genderInfo.TC == 1 ? "M" : vm.genderInfo.TC == 2 ? "F" : "") },
-                    new FirelightActivityDataItem() { DataItemId = "RISK_CLASS", Value = vm.riskClass.TC.ToString()  },
+                    new FirelightActivityDataItem() { DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(vm.riskClass.TC) },
                     new FirelightActivityDataItem() { DataItemId = "PREMIUM_TOBACCO_USER", Value = vm.smoketStatusInfo.TC == 1 ? "N" : "Y"}
                 }
-                
             };
 
             string body = Newtonsoft.Json.JsonConvert.SerializeObject(actBody);
             return CreateActivity(token, body);
+        }
+
+        public string GetRickClassFromTC(int TC)
+        {
+            switch (TC)
+            {
+                case 1:
+                case 2:
+                    return "2";
+                case 3:
+                case 4:
+                    return "1";
+                case 5:
+                case 6:
+                    return "3";
+                case 7:
+                case 8:
+                    return "19";
+                case 9:
+                case 10:
+                    return "8";
+                default:
+                    return "";
+            }
         }
 
         /// <summary>
