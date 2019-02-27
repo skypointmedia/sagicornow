@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs/SagicorNow/v15/Server/sqlite3
+/.vs/slnx.sqlite-journal
+/obj/Release/SagicorNow.csprojAssemblyReference.cache
+*.cache
