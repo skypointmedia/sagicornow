@@ -60,26 +60,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-    <script>
-    window.addEventListener("load", function(){
-    window.cookieconsent.initialise({
-      "palette": {
-        "popup": {
-          "background": "#333333",
-          "text": "#ffffff"
-        },
-        "button": {
-          "background": "#82c341",
-          "text": "#ffffff"
-        }
-      },
-      "content": {
-        "message": "By continuing to use this site, or by clicking \"I Accept\", you acknowledge and agree to this website's use of cookies to track performance and analytics, and that it may use cookies for other purposes as described in Sagicor's Privacy Statement. ",
-        "dismiss": "I Accept",
-        "href": "/privacy-statement/"
-      }
-    })});
-    </script>        
+    <script>window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#333333",
+      "text": "#ffffff"
+    },
+    "button": {
+      "background": "#82c341",
+      "text": "#ffffff"
+    }
+  },
+  "content": {
+    "message": "By continuing to use this site, or by clicking \"I Accept\", you acknowledge and agree to this website's use of cookies to track performance and analytics, and that it may use cookies for other purposes as described in Sagicor's Privacy Statement. ",
+    "dismiss": "I Accept",
+    "href": "/pages/privacy-statement/"
+  },
+
+onPopupOpen: function() {
+    var h = $('.cc-window').css( "height" );
+    document.getElementById("legal_links").style.paddingBottom = h;
+},
+
+onPopupClose: function() {
+    document.getElementById("legal_links").style.paddingBottom = '0px';
+}
+
+
+})});</script>
         
     <!-- Call Tool Tips	-->
     <script type="text/javascript">

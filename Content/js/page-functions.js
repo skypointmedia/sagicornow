@@ -23,15 +23,22 @@ $(document).ready(function () {
         return age;
     }
 
-    // Window resize 
-    function resize() {
-        $('#resize').css('height', window.innerHeight - '360');
-    }
-    resize();
+// Window resize 
+function resize() {
+    $('#resize').css('height', window.innerHeight - '360');
+        }
+resize();
 
-    window.onresize = function () {
-        resize();
-    };
+window.onresize = function () {
+    resize();
+};
+
+
+
+
+
+
+
 
 
     // Tool tips
@@ -404,4 +411,3 @@ $(function () {
 
     function errorFunc() { }
 });
-
