@@ -132,6 +132,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\Entities\ProposalHistory.cs" />
     <Compile Include="Data\SageNowContext.cs" />
+    <Compile Include="ForeSightQuoting\QuotingService.cs" />
+    <Compile Include="ForeSightQuoting\Util.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,6 +165,7 @@
     <Compile Include="Models\NeedsModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\SAG.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

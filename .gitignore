@@ -2,8 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+*.cache
 /.vs
 /obj
+/sagicornow\obj
+/obj\Debug
 /bin
-*.cache
 /.vs\SagicorNow
