@@ -4,4 +4,6 @@
 
 /.vs
 /obj
+/bin
 *.cache
+/.vs\SagicorNow
