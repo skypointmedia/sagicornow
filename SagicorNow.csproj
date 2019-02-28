@@ -130,6 +130,8 @@
   <ItemGroup>
     <Compile Include="Controllers\GeoAwareControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data\Entities\ProposalHistory.cs" />
+    <Compile Include="Data\SageNowContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -307,6 +309,7 @@
     <None Include="Content\bootstrap-theme.min.css.map" />
     <None Include="Content\bootstrap-theme.css.map" />
     <Content Include="Views\Quote\EmbeddedApp.cshtml" />
+    <Content Include="Views\Shared\_QuoteModal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -443,11 +443,11 @@ namespace SagicorNow.Controllers
                     new FirelightActivityDataItem() { DataItemId = "Owner_NonNaturalName", Value = $"" },
                     //new FirelightActivityDataItem() { DataItemId = "Owner_FirstName", Value = $"{firstName}" },
                     //new FirelightActivityDataItem() { DataItemId = "Owner_LastName", Value = $"{lastName}" },
-                    new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_BIRTHDATE", Value = vm.birthday.HasValue ? vm.birthday.Value.ToString("yyyy/MM/dd"): string.Empty },
+                    new FirelightActivityDataItem() { DataItemId = "HiddenField_DOB", Value = vm.birthday.Value.ToString("yyyy/MM/dd") },
                     new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_GENDER", Value = (vm.genderInfo.TC == 1 ? "M" : vm.genderInfo.TC == 2 ? "F" : "") },
                     new FirelightActivityDataItem() { DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(vm.riskClass.TC) },
                     new FirelightActivityDataItem() { DataItemId = "PREMIUM_TOBACCO_USER", Value = vm.smoketStatusInfo.TC == 1 ? "N" : "Y"},
-                    new FirelightActivityDataItem() {DataItemId = "APP_FACE_AMOUNT", Value = vm.CoverageAmount > 0? vm.CoverageAmount.ToString() : _defaultCoverage}
+                    new FirelightActivityDataItem() { DataItemId = "APP_FACE_AMOUNT", Value = vm.CoverageAmount > 0? vm.CoverageAmount.ToString() : _defaultCoverage}
                 }
             };
 
