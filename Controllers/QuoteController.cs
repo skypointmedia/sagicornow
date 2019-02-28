@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using SagicorNow.Data;
+using SagicorNow.Data.Entities;
 
 namespace SagicorNow.Controllers
 {
@@ -33,6 +35,9 @@ namespace SagicorNow.Controllers
         private const string _certSerialNum = "24000001c5e9e39d3274150b7b0002000001c5";
         private const string _agentPartyId = "14529e88-60ed-4877-847a-3f682862c14f";
         private const string _producerId = "SAG0301";
+        private const string _defaultCoverage = "250000";
+
+        private readonly SageNowContext _db = new SageNowContext();
 
         public ActionResult Index()
         {
@@ -93,16 +98,42 @@ namespace SagicorNow.Controllers
                     string token = GetFirelightTokenAsync(user1228Str).Result;
                     FirelightTokenReturn tokenReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightTokenReturn>(token);
 
-                    string activityRequestApiString = this.CreateEAppActivity(tokenReturn.access_token, "26", vm); // 26 = Sage Term 
-                    FirelightActivityReturn activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(activityRequestApiString); 
-
-                    EmbeddedViewModel evm = new EmbeddedViewModel()
+                    EmbeddedViewModel evm = new EmbeddedViewModel
                     {
                         AccessToken = tokenReturn.access_token,
-                        ActivityId = activityReturn.ActivityId,
                         FirelightBaseUrl = _firelightBaseUrl,
-                        IsNew = true
-                    };
+                        IsNew = vm.IsNewProposal
+                    }; 
+
+                    var proposalHistory = _db.ProposalHistories.Find(vm.SocialSecurityNumber);
+
+                    if (vm.IsNewProposal)
+                    {
+                        string activityRequestApiString = this.CreateEAppActivity(tokenReturn.access_token, "26", vm); // 26 = Sage Term 
+                        FirelightActivityReturn activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(activityRequestApiString);
+
+                        
+                        if (proposalHistory == null)
+                        {
+                            proposalHistory = new ProposalHistory
+                                { SSN = vm.SocialSecurityNumber, ActivityId = activityReturn.ActivityId };
+
+                            _db.ProposalHistories.Add(proposalHistory);
+                        }
+                        else
+                        {
+                            proposalHistory.ActivityId = activityReturn.ActivityId;
+                            proposalHistory.LastActiveDateTime = DateTime.Now;
+                        }
+                        evm.ActivityId = activityReturn.ActivityId;
+                    }
+                    else
+                    {
+                        evm.ActivityId = proposalHistory.ActivityId;
+                        proposalHistory.LastActiveDateTime = DateTime.Now;
+                    }
+                    
+                    _db.SaveChanges();
 
                     return View("EmbeddedApp", evm);
 
@@ -140,6 +171,20 @@ namespace SagicorNow.Controllers
                 vm.ViewMessages.Add(msg);
                 return View(vm);
             }
+        }
+
+        [HttpGet]
+        public JsonResult ProposalExist(string socialSecurityNumber)
+        {
+            var exist = _db.ProposalHistories.Any(record => record.SSN == socialSecurityNumber);
+            return Json(exist,JsonRequestBehavior.AllowGet);
+        }
+
+        public PartialViewResult ConfirmContinue(string socialSecurityNumber)
+        {
+            var model = _db.ProposalHistories.Find(socialSecurityNumber);
+
+            return PartialView("_QuoteModal", model);
         }
 
         //accepts the view model and returns a TX Request object 
@@ -392,16 +437,17 @@ namespace SagicorNow.Controllers
                 CUSIP = cusip,
                 Jurisdiction = vm.stateInfo.TC,
                 CarrierCode = _sagCarrierCode,
-                TransactionType = 1,// create activity 
+                TransactionType = 1,// create activity "
                 DataItems = new List<FirelightActivityDataItem>()
                 {
                     new FirelightActivityDataItem() { DataItemId = "Owner_NonNaturalName", Value = $"" },
                     //new FirelightActivityDataItem() { DataItemId = "Owner_FirstName", Value = $"{firstName}" },
                     //new FirelightActivityDataItem() { DataItemId = "Owner_LastName", Value = $"{lastName}" },
-                    new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_BIRTHDATE", Value = vm.birthday.Value.ToString("MM/dd/yyyy") },
+                    new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_BIRTHDATE", Value = vm.birthday.HasValue ? vm.birthday.Value.ToString("yyyy/MM/dd"): string.Empty },
                     new FirelightActivityDataItem() { DataItemId = "PROPOSED_INSURED_GENDER", Value = (vm.genderInfo.TC == 1 ? "M" : vm.genderInfo.TC == 2 ? "F" : "") },
                     new FirelightActivityDataItem() { DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(vm.riskClass.TC) },
-                    new FirelightActivityDataItem() { DataItemId = "PREMIUM_TOBACCO_USER", Value = vm.smoketStatusInfo.TC == 1 ? "N" : "Y"}
+                    new FirelightActivityDataItem() { DataItemId = "PREMIUM_TOBACCO_USER", Value = vm.smoketStatusInfo.TC == 1 ? "N" : "Y"},
+                    new FirelightActivityDataItem() {DataItemId = "APP_FACE_AMOUNT", Value = vm.CoverageAmount > 0? vm.CoverageAmount.ToString() : _defaultCoverage}
                 }
             };
 
@@ -409,9 +455,9 @@ namespace SagicorNow.Controllers
             return CreateActivity(token, body);
         }
 
-        public string GetRickClassFromTC(int TC)
+        public string GetRickClassFromTC(int tc)
         {
-            switch (TC)
+            switch (tc)
             {
                 case 1:
                 case 2:

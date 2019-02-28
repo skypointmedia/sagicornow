@@ -108,6 +108,9 @@ namespace SagicorNow.ViewModels
         private List<string> _viewMessages = new List<string>();
         public List<string> ViewMessages { get { return _viewMessages; } set { _viewMessages = value; } }
 
+        public string SocialSecurityNumber { get; set; }
+        public bool IsNewProposal { get; set; } = true;
+
         public List<State> States = QuoteModel.States();
         public List<Gender> Genders = QuoteModel.Genders();
         public List<SmokerStatus> SmokerStatuses = QuoteModel.SmokerStatuses();

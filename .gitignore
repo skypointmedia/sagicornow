@@ -2,7 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/SagicorNow/v15/Server/sqlite3
-/.vs/slnx.sqlite-journal
-/obj/Release/SagicorNow.csprojAssemblyReference.cache
+/.vs
+/obj
 *.cache

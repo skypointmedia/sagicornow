@@ -17,4 +17,54 @@ ViewBag.Title = "Get A Free Life Insurance Quote | Sagicor Life Insurance ";
 
 @Html.Partial("_QuoteFormPartial", Model)
 
+
+
 @ViewBag.Result
+
+@section scripts
+{
+    <script>
+        $(function() {
+            $("#quote-form").submit(function(e) {
+                e.preventDefault();
+                $("#quote-form").off("submit");
+                var ssn = $("#txt-ssn").val();
+                
+                $.ajax({ url: "@Url.Content("~/Quote/ProposalExist")", method: "get", data: { socialSecurityNumber: ssn } }).done(function (exist) {
+                    if (!exist)
+                        $("#quote-form").submit();
+                    else {
+                        $.ajax({ url: "@Url.Content("~/Quote/ConfirmContinue")", data: { socialSecurityNumber: ssn }}).done(function(result) {
+                            $("body").append(result);
+                            $('#quoteModal').modal('show');
+                        });
+                    }
+                });
+            });
+
+            $("body").on("click", "#btn-continue-proposal", function () {
+                $('#quoteModal').modal('hide');
+                $("#field-isNew").val(false);
+
+                var form = $("#quote-form");
+
+                //form.off("submit");
+                form.submit();
+            });
+
+            $("body").on("click", "#btn-start-proposal", function () {
+                $('#quoteModal').modal('hide');
+                var form = $("#quote-form");
+
+                //form.off("submit");
+                form.submit();
+                @*var serializedForm = form.serialize();
+
+                $.ajax({ url: "@Url.Content("~/Quote/Index")", method: "post", data: {serializedForm}});*@
+
+            });
+
+            
+        });
+    </script>
+}
