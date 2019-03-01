@@ -41,6 +41,7 @@ $(document).ready(function () {
     //$('#code').focus();
     //mask input
     $('#birthday').mask('99/99/9999');
+    $('#txt-ssn').mask('999-99-9999');
     $('input[placeholder="12345"]').mask('99999');
     $('.two-digits').mask('99');
     $('input[placeholder="Phone Number"]').mask('999-999-9999');
@@ -107,6 +108,26 @@ $(document).ready(function () {
             }
         }
     };
+    var ssnfieldsValidators = {
+        notEmpty: {
+            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Social Security Number is required."
+        },
+        stringLength: {
+            max: 9,
+            message: 'Number too large',
+            transformer: function ($field, validatorName, validator) {
+                var value = $field.val();
+                return value.split('-').join('');
+            }
+        },
+        digits: {
+            message: 'Only numbers are allowed.',
+            transformer: function ($field, validatorName, validator) {
+                var value = $field.val();
+                return value.split('-').join('');
+            }
+        }
+    };
 
     var requiredFieldValidators = {
         notEmpty: {
@@ -131,6 +152,9 @@ $(document).ready(function () {
                         message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Your State is required"
                     }
                 },
+            },
+            SocialSecurityNumber: {
+                validators: ssnfieldsValidators
             },
             birthday: {
                 threshold: 10,

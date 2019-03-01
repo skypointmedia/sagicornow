@@ -133,7 +133,6 @@
     <Compile Include="Data\Entities\ProposalHistory.cs" />
     <Compile Include="Data\SageNowContext.cs" />
     <Compile Include="ForeSightQuoting\QuotingService.cs" />
-    <Compile Include="ForeSightQuoting\Util.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
