@@ -3,6 +3,7 @@ using SagicorNow.ViewModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -13,29 +14,14 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using SagicorNow.Common;
 using SagicorNow.Data;
 using SagicorNow.Data.Entities;
 
 namespace SagicorNow.Controllers
 {
-    public class QuoteController : Controller
+    public class QuoteController : FirelightAwareControllerBase
     {
-
-#if DEBUG
-        //private const string _firelightBaseUrl = "https://uat.firelighteapp.com/EGApp/"; //UAT
-        private const string _firelightBaseUrl = "https://firelight.insurancetechnologies.com/EGApp/"; //QE
-#else
-        private const string _firelightBaseUrl = "https://www.firelighteapp.com/EGApp/";                       
-#endif
-
-        //private const string _sagApiSecret = "b2c7c178f0294d89948f9b7616debd9d"; //UAT
-        private const string _sagApiSecret = "43983160a16d4f0996f98d04fe5ea36d"; //QE
-        private const string _sagOrgId = "D2C";
-        private const string _sagCarrierCode = "SAG";
-        private const string _certSerialNum = "24000001c5e9e39d3274150b7b0002000001c5";
-        private const string _agentPartyId = "14529e88-60ed-4877-847a-3f682862c14f";
-        private const string _producerId = "SAG0301";
-        private const string _defaultCoverage = "250000";
 
         private readonly SageNowContext _db = new SageNowContext();
 
@@ -55,7 +41,7 @@ namespace SagicorNow.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(QuoteViewModel vm)
+        public async Task<ActionResult> Index(QuoteViewModel vm)
         {
             try
             {
@@ -88,13 +74,25 @@ namespace SagicorNow.Controllers
                     client.Endpoint.Address = newAddress;
 
                     var user1228Str = Create1228(vm);
+                    string accessToken;
 
-                    var token = GetFirelightTokenAsync(user1228Str).Result;
-                    var tokenReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightTokenReturn>(token);
+                    if (FirelightTokeIsNoneExistentOrExpired())
+                    {
+                        var token = await GetFirelightTokenAsync(user1228Str);
+                        var tokenReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightTokenReturn>(token);
+                        accessToken = tokenReturn.access_token;
+                    }
+                    else
+                    {
+                        accessToken = FirelightAccessToken;
+                    }
+                    
+                   
 
                     var evm = new EmbeddedViewModel {
-                        AccessToken = tokenReturn.access_token,
-                        FirelightBaseUrl = _firelightBaseUrl,
+                        AccessToken = accessToken,
+                        //AccessToken = FirelightAccessToken,
+                        FirelightBaseUrl = FireLightSession.BaseUrl,
                         IsNew = vm.IsNewProposal
                     }; 
 
@@ -102,7 +100,7 @@ namespace SagicorNow.Controllers
 
                     if (vm.IsNewProposal)
                     {
-                        var activityRequestApiString = this.CreateEAppActivity(tokenReturn.access_token, "26", vm); // 26 = Sage Term 
+                        var activityRequestApiString = this.CreateEAppActivity(accessToken, "26", vm); // 26 = Sage Term 
                         var activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(activityRequestApiString);
                         
                         if (proposalHistory == null)
@@ -158,151 +156,7 @@ namespace SagicorNow.Controllers
             return PartialView("_QuoteModal", model);
         }
 
-        //accepts the view model and returns a TX Request object 
-        private NewBusinessService.TXLife Create103(QuoteViewModel vm)
-        {
-            var txLife = new NewBusinessService.TXLife {TXLifeRequest = new NewBusinessService.TXLifeRequest[1]};
-
-            var req = new NewBusinessService.TXLifeRequest();
-
-            var holdingId = Guid.NewGuid().ToString();
-            var fileControlId = Guid.NewGuid().ToString();
-            var clientPartyId = Guid.NewGuid().ToString();
-
-            //set properties 
-            req.TransRefGUID = Guid.NewGuid().ToString();
-            req.TransType = new NewBusinessService.TransType { tc = "103", Value = "OLI_TRANS_NBSUB" };
-            req.TransExeDate = DateTime.Today;
-            req.TransExeTime = DateTime.Now;
-            req.TestIndicator = new NewBusinessService.TestIndicator { Value = "false" };
-
-            req.OLifE = new NewBusinessService.OLifE
-            {
-                SourceInfo = new NewBusinessService.SourceInfo
-                {
-                    SourceInfoName = _sagOrgId, //Sagicor Life Insurance USA
-                    SourceInfoDescription = "Version: 1.0",
-                    FileControlID = fileControlId
-                },
-                //ability to add multiple holdings
-                Holding = new[] {
-                    new NewBusinessService.Holding
-                    {
-                        id = holdingId,
-                        HoldingTypeCode =  new NewBusinessService.HoldingTypeCode { tc="2", Value = "OLI_HOLDTYPE_POLICY" },
-                        HoldingName = "Consumer Portal 3/17",
-                        Policy = new NewBusinessService.Policy
-                        {
-                            ProductCode = "26",
-                            CarrierCode = _sagCarrierCode,
-                            Jurisdiction = new NewBusinessService.Jurisdiction { tc = vm.stateInfo.TC.ToString(), Value = vm.stateInfo.Value}, //need to get the OLIFE state code based on the state entered. Should the state be an autocomplete dropdown?
-                            Life = new NewBusinessService.Life
-                            {
-                                Coverage = new[] {
-                                    //ability to add multiple coverages 
-                                    new NewBusinessService.Coverage
-                                    {
-                                        IndicatorCode = new NewBusinessService.IndicatorCode { tc = "1", Value = "OLI_COVIND_BASE"}, // from UI? 
-                                        CurrentAmt = vm.CoverageAmount == default(decimal) ? 250000.00M : vm.CoverageAmount, //if value coming from needs then use else default
-                                        CurrentAmtSpecified = true,
-                                        LifeParticipant = new[] {
-                                            //add multiple participants ??
-                                            new NewBusinessService.LifeParticipant
-                                            {
-                                                PartyID = clientPartyId,
-                                                SmokerStat = new NewBusinessService.SmokerStat { tc= vm.smoketStatusInfo.TC.ToString(), Value = vm.smoketStatusInfo.Value}, // from UI
-                                                PermTableRating = new NewBusinessService.PermTableRating { tc = "1", Value = "OLI_TBLRATE_NONE"},
-                                                UnderwritingClass = new NewBusinessService.UnderwritingClass { tc = vm.riskClass.TC.ToString() },
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            ApplicationInfo = new NewBusinessService.ApplicationInfo
-                            {
-                                RequestedIssueDate = DateTime.Now,
-                                RequestedIssueDateSpecified = true,
-                                QuotedPremiumMode = new NewBusinessService.QuotedPremiumMode { tc = "4", Value = "OLI_PAYMODE_MONTHLY"}
-                            }
-                        },
-                        KeyedValue = new[]
-                        {
-                            //new NewBusinessService.KeyedValue(){ KeyName = "FLI_CONS_PORTAL_START_VIEW", KeyValue = new NewBusinessService.KeyValue[] { new NewBusinessService.KeyValue() { Value = "Quote" } } },
-                            new NewBusinessService.KeyedValue { KeyName = "Needs", KeyValue = new[] { new NewBusinessService.KeyValue { Value = "False" } } },
-                            new NewBusinessService.KeyedValue { KeyName = "INSURED_STATE_NAME", KeyValue = new[] { new NewBusinessService.KeyValue { Value = vm.stateInfo.Name } } },
-
-                            new NewBusinessService.KeyedValue { KeyName = "replReplacement", KeyValue = new[] { new NewBusinessService.KeyValue { Value = (vm.ReplacementPolicy == null || !QuoteModel.GetReplacementPolicyStates().Contains(vm.stateInfo.Code) ? "" : vm.ReplacementPolicy.Value == true ? "Y" : "N") } } },
-
-                            new NewBusinessService.KeyedValue { KeyName = "FLI_CONS_PORTAL_START_VIEW", KeyValue = new[] { new NewBusinessService.KeyValue { Value = "Quote" } } }
-                        }
-                    }
-                },
-                Party = new[] {
-                    new NewBusinessService.Party
-                    {
-                        id = _agentPartyId,
-                        PartyTypeCode = new NewBusinessService.PartyTypeCode { tc = "1", Value = "OLI_PT_PERSON"},
-                        Person = new NewBusinessService.Person(),
-                        Producer = new NewBusinessService.Producer
-                        {
-                            CarrierAppointment = new[] {
-                                new NewBusinessService.CarrierAppointment
-                                {
-                                    PartyID = _agentPartyId,
-                                    CompanyProducerID = _producerId,
-                                    CarrierCode = _sagCarrierCode,
-                                }
-                            }
-                        }
-                    },
-                    new NewBusinessService.Party
-                    {
-                        id = clientPartyId,
-                        PartyTypeCode = new NewBusinessService.PartyTypeCode { tc = "1", Value = "OLI_PT_PERSON"},
-                        Address = new[] {
-                            new NewBusinessService.Address
-                            {
-                                AddressTypeCode = new NewBusinessService.AddressTypeCode { tc = "1", Value = "Residence" },
-                                //City = "Tampa",
-                                AddressState = vm.stateInfo.Code,
-                                AddressStateTC = new NewBusinessService.AddressStateTC { tc = vm.stateInfo.TC.ToString(), Value = vm.stateInfo.Value },
-                                //Zip = "33605",
-                                AddressCountryTC = new NewBusinessService.AddressCountryTC { tc= "1", Value = "United States of America"}
-                            }
-                        },
-                        Person = new NewBusinessService.Person
-                        {
-                            Gender = new NewBusinessService.Gender { tc = vm.genderInfo.TC.ToString(), Value = vm.genderInfo.Value}, //change TC values 
-                            BirthDate = vm.birthday.Value,
-                            BirthDateSpecified = true,
-                            DOBEstimated = new NewBusinessService.DOBEstimated { tc = "0", Value = "False"},
-                            Age = vm.Age.ToString()
-                        }
-                    }
-                },
-                Relation = new[]
-                {
-                    new NewBusinessService.Relation
-                    {
-                        OriginatingObjectID = holdingId,
-                        RelatedObjectID = _agentPartyId,
-                        OriginatingObjectType = new NewBusinessService.OriginatingObjectType { tc="4", Value ="OLI_HOLDING"},
-                        RelatedObjectType = new NewBusinessService.RelatedObjectType { tc="6", Value = "OLI_PARTY" },
-                        RelationRoleCode = new NewBusinessService.RelationRoleCode { tc = "37", Value="OLI_REL_PRIMAGENT" }
-                    },
-                    new NewBusinessService.Relation
-                    {
-                        OriginatingObjectID = holdingId,
-                        RelatedObjectID = clientPartyId,
-                        RelationRoleCode = new NewBusinessService.RelationRoleCode {tc="32", Value = "OLI_REL_INSURED"}
-                    }
-                }
-            };
-
-            txLife.TXLifeRequest[0] = req;
-
-            return txLife;
-        }
+        
 
         /// <summary>
         /// creates a 1228 request XML
@@ -320,25 +174,25 @@ namespace SagicorNow.Controllers
             builder.Append("<SourceInfo>");
             builder.Append("<CreationDate>"+DateTime.Today.ToString("yyyy-MM-dd")+"</CreationDate>");
             builder.Append("<CreationTime>"+DateTime.Now.ToString("hh:mm:ss.fffffffzzz")+"</CreationTime>");
-            builder.Append("<SourceInfoName>"+_sagOrgId+"</SourceInfoName>");
+            builder.Append("<SourceInfoName>"+FireLightSession.SagOrgId+"</SourceInfoName>");
             builder.Append("</SourceInfo>");
-            builder.Append("<Party id=\""+ _agentPartyId + "\">");
+            builder.Append("<Party id=\""+ FireLightSession.AgentPartyId+ "\">");
             builder.Append("<PartyTypeCode tc=\"1\">OLI_PT_Person</PartyTypeCode>");
             builder.Append("<FullName>Sagicor D2C</FullName>");
             builder.Append("<EmailAddress>");
             builder.Append("<AddrLine>sagicornow@sagicorlifeusa.com</AddrLine>");
             builder.Append("</EmailAddress>");
             builder.Append("<Producer>");
-            builder.Append("<CarrierAppointment PartyID=\""+_agentPartyId + "\">");
-            builder.Append("<CompanyProducerID>"+ _producerId +"</CompanyProducerID>");
-            builder.Append("<CarrierCode>"+_sagCarrierCode+"</CarrierCode>");
+            builder.Append("<CarrierAppointment PartyID=\""+ FireLightSession.AgentPartyId + "\">");
+            builder.Append("<CompanyProducerID>"+ FireLightSession.ProducerId +"</CompanyProducerID>");
+            builder.Append("<CarrierCode>"+ FireLightSession.SagCarrierCode + "</CarrierCode>");
             builder.Append("</CarrierAppointment>");
             builder.Append("</Producer>");
             builder.Append("</Party>");
             builder.Append("<OLifEExtension VendorCode=\"25\">");
             builder.Append("<UserRoleCode tc=\"InsTech\">InsTech</UserRoleCode>");
             builder.Append("</OLifEExtension>");
-            builder.Append("<Relation OriginatingObjectID=\""+_agentPartyId+"\">");
+            builder.Append("<Relation OriginatingObjectID=\""+ FireLightSession.AgentPartyId + "\">");
             builder.Append("<RelationRoleCode tc=\"11\">OLI_REL_AGENT</RelationRoleCode>");
             builder.Append("</Relation>");
             builder.Append("</OLifE>");
@@ -346,67 +200,6 @@ namespace SagicorNow.Controllers
             builder.Append("</TXLife>");
 
             return builder.ToString();
-        }
-
-        /// <summary>
-        /// request Firelight token
-        /// </summary>
-        /// <returns></returns>
-        private async Task<string> GetFirelightTokenAsync(string user1228)
-        {
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create($"{_firelightBaseUrl}api/Security/GetToken");
-            req.Method = "POST";
-            req.ContentType = "text/plain";
-            byte[] secretBinary = Encoding.UTF8.GetBytes(_sagApiSecret);
-            byte[] hashBinary = new SHA256Managed().ComputeHash(secretBinary);
-            //convert to hex string
-            var builder = new StringBuilder();
-
-            foreach (var hash in hashBinary)
-            {
-                builder.Append(hash.ToString("X2"));
-            }
-
-            string hashValue = builder.ToString();
-            DateTime reqDate = DateTime.UtcNow;
-
-            string xml1228 = String.Empty; //get 1228 XML
-            if (!string.IsNullOrWhiteSpace(user1228))
-                xml1228 = Convert.ToBase64String(Encoding.UTF8.GetBytes(user1228));
-            //remember, the user 1228 is optional
-            String textToSign = _sagApiSecret + reqDate.ToString("MMddyyyyHHmmss") + _sagCarrierCode + xml1228;
-            byte[] nonSignedBinary = Encoding.UTF8.GetBytes(textToSign);
-
-            //load up the test cert - in this example, it comes from a pfx file in a local directory - you
-            // may need to get it from your machine's certificate store
-            X509Certificate2 cert = this.FindClientCertificate(_certSerialNum);
-            RSA rsa = cert.GetRSAPrivateKey();
-            byte[] signedBinary = rsa.SignData(nonSignedBinary, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
-
-            //base64-encoded, then url-encoded
-            String signed64 = HttpUtility.UrlEncode(Convert.ToBase64String(signedBinary));
-            //optionally place the user's 1228 on the request if it has value (url-encode it)
-            String body = $"grant_type=hashsig&id={_sagCarrierCode}&secret={hashValue}&sig={signed64}"
-            + (string.IsNullOrWhiteSpace(xml1228) ? "" : $"&xml={HttpUtility.UrlEncode(xml1228)}");
-
-            byte[] bodyBinary = Encoding.UTF8.GetBytes(body);
-            req.Date = reqDate;
-            req.ContentLength = bodyBinary.LongLength;
-
-            using (Stream post = req.GetRequestStream())
-            {
-                post.Write(bodyBinary, 0, bodyBinary.Length);
-            }
-
-            // Get response
-            string result;
-            using (HttpWebResponse response = (HttpWebResponse)req.GetResponse())
-            {
-                var reader = new StreamReader(response.GetResponseStream() ?? throw new InvalidOperationException());
-                result = reader.ReadToEnd();
-            }
-
-            return result;
         }
 
         private string CreateEAppActivity(string token, string cusip, QuoteViewModel vm)
@@ -418,8 +211,8 @@ namespace SagicorNow.Controllers
                 Id = reqId,
                 CUSIP = cusip,
                 Jurisdiction = vm.stateInfo.TC,
-                CarrierCode = _sagCarrierCode,
-                TransactionType = 1,// create activity "
+                CarrierCode = FireLightSession.SagCarrierCode,
+                TransactionType = 1,
                 DataItems = new List<FirelightActivityDataItem>
                 {
                     new FirelightActivityDataItem { DataItemId = "Owner_NonNaturalName", Value = $"" },
@@ -427,7 +220,7 @@ namespace SagicorNow.Controllers
                     new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_GENDER", Value = (vm.genderInfo.TC == 1 ? "M" : vm.genderInfo.TC == 2 ? "F" : "") },
                     new FirelightActivityDataItem { DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(vm.riskClass.TC) },
                     new FirelightActivityDataItem { DataItemId = "PREMIUM_TOBACCO_USER", Value = vm.smoketStatusInfo.TC == 1 ? "N" : "Y"},
-                    new FirelightActivityDataItem { DataItemId = "APP_FACE_AMOUNT", Value = vm.CoverageAmount > 0? vm.CoverageAmount.ToString() : _defaultCoverage}
+                    new FirelightActivityDataItem { DataItemId = "APP_FACE_AMOUNT", Value = vm.CoverageAmount > 0? vm.CoverageAmount.ToString(CultureInfo.InvariantCulture) : FireLightSession.DefaultCoverage}
                 }
             };
 
@@ -465,7 +258,7 @@ namespace SagicorNow.Controllers
         /// <returns></returns>
         private string CreateActivity(string token, string requestBody)
         {
-            string url = $"{_firelightBaseUrl}/api/Activity/CreateActivity";          
+            string url = $"{FireLightSession.BaseUrl}/api/Activity/CreateActivity";          
 
             try
             {
@@ -503,26 +296,6 @@ namespace SagicorNow.Controllers
 
                 return String.Empty;
             }
-        }
-
-        /// <summary>
-        /// find cert on machine
-        /// </summary>
-        /// <param name="serialNumber"></param>
-        /// <returns></returns>
-        public X509Certificate2 FindClientCertificate(string serialNumber)
-        {
-            return
-                FindCertificate(StoreLocation.CurrentUser) ??
-                FindCertificate(StoreLocation.LocalMachine);
-
-            X509Certificate2 FindCertificate(StoreLocation location)
-            {
-                X509Store store = new X509Store(location);
-                store.Open(OpenFlags.OpenExistingOnly);
-                IEnumerable certs = store.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true);
-                return certs.OfType<X509Certificate2>().FirstOrDefault();
-            };
         }
 
         /// <summary>

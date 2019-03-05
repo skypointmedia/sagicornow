@@ -10,6 +10,7 @@ using MailKit.Net.Smtp;
 using MailKit.Security;
 using System.Threading.Tasks;
 using System.Globalization;
+using SagicorNow.Common.Utils;
 
 namespace SagicorNow.Controllers
 {
@@ -100,8 +101,8 @@ namespace SagicorNow.Controllers
                         DateTime.Today.ToString("D", CultureInfo.CreateSpecificCulture("en-US")), DateTime.Now.ToString("hh:mm tt", CultureInfo.InvariantCulture)); 
                 }
 				
-				Utils.EmailManager mgr = new Utils.EmailManager();
-				mgr.SendEmail(new Utils.SmtpOptions(), //options, use defaults
+				EmailManager mgr = new EmailManager();
+				mgr.SendEmail(new SmtpOptions(), //options, use defaults
                               new List<string>() { "sagicornow@sagicorlifeusa.com" }, //recipients
                               "sagicornow@sagicor.com", //from address
 							  String.Format(subject, m.firstName), //subject
