@@ -128,8 +128,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="Controllers\FirelightAwareControllerBase.cs" />
     <Compile Include="Controllers\GeoAwareControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Common\FireLightSession.cs" />
     <Compile Include="Data\Entities\ProposalHistory.cs" />
     <Compile Include="Data\SageNowContext.cs" />
     <Compile Include="ForeSightQuoting\QuotingService.cs" />
@@ -160,7 +162,7 @@
     <Compile Include="ViewModels\NeedsViewModel.cs" />
     <Compile Include="Controllers\StaticController.cs" />
     <Compile Include="Models\ContactModel.cs" />
-    <Compile Include="Utils\EmailManager.cs" />
+    <Compile Include="Common\Utils\EmailManager.cs" />
     <Compile Include="Models\NeedsModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -312,6 +314,7 @@
     <None Include="Content\bootstrap-theme.css.map" />
     <Content Include="Views\Quote\EmbeddedApp.cshtml" />
     <Content Include="Views\Shared\_QuoteModal.cshtml" />
+    <Content Include="Views\Quote\Page1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
