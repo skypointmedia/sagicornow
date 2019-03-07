@@ -15,7 +15,7 @@ namespace SagicorNow.Common
 #else
         internal const string BaseUrl = "https://www.firelighteapp.com/EGApp/";                       
 #endif
-        //internal const string SagApiSecret = "b2c7c178f0294d89948f9b7616debd9d"; //UAT
+        //internal const string SagApiSecret = "38c4df2a99f8490a8ad962eb4b12402dJa"; //UAT
         internal const string SagApiSecret = "43983160a16d4f0996f98d04fe5ea36d"; //QE
         internal const string SagOrgId = "D2C";
         internal const string SagCarrierCode = "SAG";
