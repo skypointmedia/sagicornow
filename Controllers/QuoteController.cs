@@ -217,6 +217,7 @@ namespace SagicorNow.Controllers
                 {
                     new FirelightActivityDataItem { DataItemId = "Owner_NonNaturalName", Value = $"" },
                     new FirelightActivityDataItem { DataItemId = "HiddenField_DOB", Value = vm.birthday.Value.ToString("yyyy/MM/dd") },
+                    new FirelightActivityDataItem { DataItemId = "INSURED_STATE_NAME", Value = vm.stateInfo.Name },
                     new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_GENDER", Value = (vm.genderInfo.TC == 1 ? "M" : vm.genderInfo.TC == 2 ? "F" : "") },
                     new FirelightActivityDataItem { DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(vm.riskClass.TC) },
                     new FirelightActivityDataItem { DataItemId = "PREMIUM_TOBACCO_USER", Value = vm.smoketStatusInfo.TC == 1 ? "N" : "Y"},
