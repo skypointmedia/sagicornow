@@ -166,6 +166,10 @@
     <Compile Include="Models\NeedsModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SagicorNow.mdf" />
+    <Content Include="App_Data\SagicorNow_log.ldf">
+      <DependentUpon>SagicorNow.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\SAG.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
