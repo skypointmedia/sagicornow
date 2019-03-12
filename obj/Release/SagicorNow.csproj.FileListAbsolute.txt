@@ -51,7 +51,6 @@
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.WebPages.Deployment.xml
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.WebPages.xml
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.WebPages.Razor.xml
-/Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.csprojAssemblyReference.cache
 /Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.csproj.CoreCompileInputs.cache
 /Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.csproj.CopyComplete
 /Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.dll

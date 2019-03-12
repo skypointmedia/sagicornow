@@ -23,23 +23,16 @@ $(document).ready(function () {
         return age;
     }
 
-// Window resize 
-function resize() {
-    $('#resize').css('height', window.innerHeight - '360');
-        }
-resize();
-
-window.onresize = function () {
+    // Window resize 
+    function resize() {
+        $('#resize').css('height', window.innerHeight - '360');
+            }
     resize();
-};
 
-
-
-
-
-
-
-
+    window.onresize = function () {
+        resize();
+    };
+    
 
     // Tool tips
     $('[data-toggle="tooltip"]').tooltip();
@@ -341,9 +334,6 @@ window.onresize = function () {
 
 
 
-
-
-
 (function ($) {
     FormValidation.Validator.email = {
         validate: function (validator, $field, options) {
@@ -411,3 +401,13 @@ $(function () {
 
     function errorFunc() { }
 });
+
+
+// Enter key to show modal
+$(function(){
+  $('#disclosures').keypress(function(e){
+    if(e.which == 13) {
+    $('#disclosuresModal').modal('show');
+    }
+  })
+})
