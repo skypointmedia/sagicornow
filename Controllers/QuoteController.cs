@@ -1,19 +1,14 @@
 ﻿using SagicorNow.Models;
 using SagicorNow.ViewModels;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using SagicorNow.Common;
 using SagicorNow.Data;
 using SagicorNow.Data.Entities;
@@ -156,6 +151,8 @@ namespace SagicorNow.Controllers
             return PartialView("_QuoteModal", model);
         }
 
+        
+
         /// <summary>
         /// creates a 1228 request XML
         /// </summary>
@@ -214,10 +211,8 @@ namespace SagicorNow.Controllers
                 DataItems = new List<FirelightActivityDataItem>
                 {
                     new FirelightActivityDataItem { DataItemId = "Owner_NonNaturalName", Value = $"" },
-                    new FirelightActivityDataItem { DataItemId = "SourceInfoName", Value = "D2C" },
-                    new FirelightActivityDataItem { DataItemId = "HiddenField_DOB", Value = vm.birthday.Value.ToString("MM/dd/yyyy") },
+                    new FirelightActivityDataItem { DataItemId = "HiddenField_DOB", Value = vm.birthday.Value.ToString("yyyy/MM/dd") },
                     new FirelightActivityDataItem { DataItemId = "INSURED_STATE_NAME", Value = vm.stateInfo.Name },
-                    new FirelightActivityDataItem { DataItemId = "PROPOSED_OWNER_SIGNED_STATE", Value = vm.stateInfo.TC.ToString() },
                     new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_GENDER", Value = (vm.genderInfo.TC == 1 ? "M" : vm.genderInfo.TC == 2 ? "F" : "") },
                     new FirelightActivityDataItem { DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(vm.riskClass.TC) },
                     new FirelightActivityDataItem { DataItemId = "PREMIUM_TOBACCO_USER", Value = vm.smoketStatusInfo.TC == 1 ? "N" : "Y"},
@@ -251,6 +246,34 @@ namespace SagicorNow.Controllers
                 default:
                     return "";
             }
+        }
+
+        /// <summary>
+        /// set the Google analytics code from client side
+        /// </summary>
+        /// <param name="gcid"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult SetGoogleCid(string gcid)
+        {
+            Session["GCId"] = gcid; //store value in session
+            return Content("SUCCESS");
+        }
+
+        public ViewResult ProductSlider()
+        {
+            var model = new EmbeddedViewModel {
+                FirelightBaseUrl = FireLightSession.BaseUrl
+            };
+            return View(model);
+        }
+
+        public ViewResult FraudWarning()
+        {
+            var model = new EmbeddedViewModel {
+                FirelightBaseUrl = FireLightSession.BaseUrl
+            };
+            return View(model);
         }
 
         /// <summary>
@@ -297,18 +320,6 @@ namespace SagicorNow.Controllers
 
                 return String.Empty;
             }
-        }
-
-        /// <summary>
-        /// set the Google analytics code from client side
-        /// </summary>
-        /// <param name="gcid"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult SetGoogleCid(string gcid)
-        {
-            Session["GCId"] = gcid; //store value in session
-            return Content("SUCCESS");
         }
     }
 }

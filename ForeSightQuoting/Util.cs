@@ -6,8 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using NewBusinessService;
-using SagicorNow.ForeSightQuoting;
+using SagicorNow.ForeSightService;
+
 
 namespace InsTech.EverGreen.Integration.ForeSightQuoting
 {
@@ -454,12 +454,4 @@ namespace InsTech.EverGreen.Integration.ForeSightQuoting
 
     }
 
-}
-
-namespace SagicorNow.ForeSightQuoting
-{
-    enum OLI_LU_SMOKERSTAT_Enum
-    {
-        OLI_LU_RATINGS_Enum
-    }
 }

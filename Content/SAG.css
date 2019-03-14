@@ -175,13 +175,11 @@ body, html {
     display: none;
 }
 
-.mobileMenuBars
-{
+.mobileMenuBars {
     font-size: 36px;
 }
 
-.subHeader
-{
+.subHeader {
     font-size: 12px !important;
 }
 
@@ -248,8 +246,7 @@ select::-ms-expand {
         border: 1px solid #00aeef;
     }
 
-    .ITTextFieldInput:disabled
-    {
+    .ITTextFieldInput:disabled {
         font-weight: bold;
     }
 
@@ -259,7 +256,7 @@ select::-ms-expand {
 
 .ITIconActive {
     color: #00aeef;
-/*    margin-top: 3px; */
+    /*    margin-top: 3px; */
 }
 
 .ITIconLabel {
@@ -342,7 +339,7 @@ select::-ms-expand {
     background-color: #BABABA;
 }
 
-.baselineAlign{
+.baselineAlign {
     align-items: baseline;
     -ms-flex-align: baseline;
 }
@@ -376,12 +373,14 @@ select::-ms-expand {
     width: 67px;
     background: #BABABA;
 }
+
 .activeLine {
     position: absolute;
     height: 2px;
     background: #00aeef;
     width: 60px;
 }
+
 .ITButtonDisabled {
     background-color: #a6a7a5;
     font-family: Roboto, sans-serif;
@@ -400,7 +399,7 @@ select::-ms-expand {
     font-family: Arial;
 }
 
-.ITNavLinkText{
+.ITNavLinkText {
     line-height: 45px;
     margin: 0 auto;
     text-align: center;
@@ -795,6 +794,7 @@ select::-ms-expand {
 .CharityHeaderText {
     color: #00aeef;
 }
+
 .CharitySubHeader {
     color: #00aeef;
     padding-top: 0px;
@@ -802,21 +802,26 @@ select::-ms-expand {
     font-size: 28px;
     padding-bottom: 15px;
 }
+
 .CharityDescription {
     font-size: 16px;
     color: #474747;
     padding: 10px;
 }
+
 .CharityLogo {
     padding: 0px 20px;
 }
+
 .LearnMoreText {
     color: #00aeef;
     padding: 0px 0px 30px 60px;
 }
+
 .CharityGroup1 {
     padding-top: 32px !important;
 }
+
 .CharityGroup2 {
     padding-top: 16px !important;
 }
@@ -1298,39 +1303,32 @@ select::-ms-expand {
         font-weight: normal;
     }
 
-.CharityTitle 
-{
+.CharityTitle {
     color: #00aeef;
     margin: 20px;
 }
 
-.CharityDetails
-{
+.CharityDetails {
     padding-left: 25px;
 }
 
-.CharityDetails_Text 
-{
+.CharityDetails_Text {
     padding-top: 15px;
 }
 
-.CharityDetails_Bullet 
-{
+.CharityDetails_Bullet {
     padding-bottom: 20px;
 }
 
-.CharitySelection 
-{
+.CharitySelection {
     margin: 0px 40px -10px -8px;
 }
 
-.CharityImageGroup
-{
+.CharityImageGroup {
     padding: 10px;
 }
 
-.CharityLink 
-{
+.CharityLink {
     color: #00aeef;
     margin: 0px 0px 40px 45px;
     font-weight: 600;
@@ -1949,7 +1947,8 @@ select::-ms-expand {
         padding: 0px 30px;
         width: 80%;
     }
-    .LearnMoreText{
+
+    .LearnMoreText {
         padding: 0px 0px 30px 100px;
     }
 
