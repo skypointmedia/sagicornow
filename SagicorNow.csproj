@@ -165,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\SAG.css" />
+    <Content Include="Content\signature-iframe.css" />
     <Content Include="Scripts\firelight\eapp.js" />
     <Content Include="Scripts\firelight\vendor.js" />
     <Content Include="Views\Web.config" />

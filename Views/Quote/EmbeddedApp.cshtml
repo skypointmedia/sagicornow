@@ -52,6 +52,7 @@
             FireLightAPI.statusEvent.subscribe(statusChange);
             FireLightAPI.signatureStatusEvent.subscribe(signatureStatusChange);
             FireLightAPI.errorEvent.subscribe(handleErrorEvent);
+            FireLightAPI.ruleMessagesEvent.subscribe(ruleMessageChange);
         });
         var statusChange = function (status) {
             console.log('statusEvent - status = ' + JSON.stringify(status));
@@ -64,13 +65,24 @@
             }
             activityStatus.innerText = status.percentComplete + '% Complete';
         }
-        function signatureStatusChange(sig) {
+        function signatureStatusChange(sig) {            
             if (sig.succeeded) {
-                window.location.href = sig.redirectUrl;
+                //window.location.href = sig.redirectUrl;
+                var url = sig.redirectUrl;
+                document.getElementById("sigFrame").src = url;
             }
             else {
                 console.log('Signature status message = ' + sig.message);
             }
+        }
+        function ruleMessageChange(x) {
+            var msgs = FireLightAPI.getRuleMessages();
+            $.each(msgs, function (item, value) {
+                console.log("Errors: ")
+                $.each(value.Errors, function (key, value2) {
+                    console.log(" Field: " + value2.DataItemid + "\r\n Message: " + value2.Message + "\r\n Page: " + value.PageNumber);
+                });
+            });
         }
         function handleErrorEvent(err) {
             var msg = err.error.ApiSource + ' - ' + err.error.ErrorMessage;
@@ -79,6 +91,7 @@
         }
 
         btnProceedToSignatures.addEventListener('click', () => {
+            $("#fireLightMainDiv").html("<iframe id=\"sigFrame\" src=\"\"  width=\"100%\" height=\"800px\" ></iframe>");
             FireLightAPI.proceedToSignatures();
         });
 
