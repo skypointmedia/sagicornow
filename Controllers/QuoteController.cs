@@ -69,14 +69,15 @@ namespace SagicorNow.Controllers
                     var code = response.TXLifeResponse[0].TransResult.ResultCode.Value; //response code??
                     if (code == "RESULT_SUCCESS")
                     {
-                        //redirect to url 
+                        //redirect to url
 #if DEBUG
-                        string url = String.Format("https://uat.firelighteapp.com/EGApp/PassiveCall.aspx?O=3138&C=D2C&refid={0}&GAT=UA-97044577-1&GAC={1}", response.TXLifeResponse[0].TransRefGUID ?? String.Empty, Session["GCId"] ?? String.Empty);
+                        string url = String.Format("https://uat.firelighteapp.com/egappnext/PassiveCall.aspx?O=3138&C=D2C&refid={0}", response.TXLifeResponse[0].TransRefGUID ?? String.Empty, Session["GCId"] ?? String.Empty);
 #else
                         string url = String.Format("https://www.firelighteapp.com/EGApp/PassiveCall.aspx?O=3138&C=D2C&refid={0}&GAT=UA-97044577-1&GAC={1}", response.TXLifeResponse[0].TransRefGUID ?? String.Empty, Session["GCId"] ?? String.Empty);
 #endif
                         return Redirect(url);
                     }
+
                     else
                     {
                         //failed 
