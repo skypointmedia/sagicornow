@@ -213,6 +213,7 @@
     <Content Include="Content\flexboxgrid.6.3.0.min.css" />
     <Content Include="Content\SAG.css" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Content\signature-iframe.css" />
     <Content Include="Scripts\firelight\eapp.js" />
     <Content Include="Scripts\firelight\vendor.js" />
     <Content Include="Scripts\knockout-3.5.0.debug.js" />

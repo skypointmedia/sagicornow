@@ -382,7 +382,9 @@ namespace SagicorNow.Controllers
                 DataItems = new List<FirelightActivityDataItem>
                 {
                     new FirelightActivityDataItem { DataItemId = "Owner_NonNaturalName", Value = $"" },
-                    new FirelightActivityDataItem { DataItemId = "HiddenField_DOB", Value = vm.birthday.Value.ToString("yyyy/MM/dd") },
+                    new FirelightActivityDataItem { DataItemId = "SourceInfoName", Value = "D2C" },
+                    new FirelightActivityDataItem { DataItemId = "HiddenField_DOB", Value = vm.birthday.Value.ToString("MM/dd/yyyy") },
+                    new FirelightActivityDataItem { DataItemId = "PROPOSED_OWNER_SIGNED_STATE", Value = vm.stateInfo.TC.ToString() },
                     new FirelightActivityDataItem { DataItemId = "INSURED_STATE_NAME", Value = vm.stateInfo.Name },
                     new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_GENDER", Value = (vm.genderInfo.TC == 1 ? "M" : vm.genderInfo.TC == 2 ? "F" : "") },
                     new FirelightActivityDataItem { DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(vm.riskClass.TC) },
