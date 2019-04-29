@@ -1,10 +1,8 @@
 ﻿<Properties StartupConfiguration="{A8F41264-346E-45F0-B6E7-735768311F26}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Web.Debug.config">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Static/contact-us.cshtml">
     <Files>
-      <File FileName="Views/Static/homepage.cshtml" Line="58" Column="208" />
-      <File FileName="Views/Static/larger-than-life.cshtml" Line="56" Column="127" />
-      <File FileName="Controllers/QuoteController.cs" Line="74" Column="92" />
-      <File FileName="Web.Debug.config" Line="33" Column="65" />
+      <File FileName="Views/Static/contact-us.cshtml" Line="42" Column="57" />
+      <File FileName="Controllers/ContactController.cs" Line="109" Column="82" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
