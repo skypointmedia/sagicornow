@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>SagicorNow</RootNamespace>
     <AssemblyName>SagicorNow</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -62,11 +62,18 @@
       <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
@@ -116,62 +123,114 @@
     <Reference Include="System.Web.WebPages.Razor">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WebActivator.1.0.0.0\lib\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Controllers\FirelightAwareControllerBase.cs" />
-    <Compile Include="Controllers\GeoAwareControllerBase.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Business\ForesightServiceHelpers.cs" />
+    <Compile Include="Business\Models\ForesightTxLifeReturn.cs" />
+    <Compile Include="Client\Bootstrapper\MEFLoader.cs" />
+    <Compile Include="Client\Contracts\IProcessTXLifeRequestClient.cs" />
+    <Compile Include="Client\Proxies\ProcessTxLifeRequestClient.cs" />
+    <Compile Include="Client\Proxies\ServiceFactory.cs" />
+    <Compile Include="Connected Services\Foresight\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\API\QuoteApiController.cs" />
+    <Compile Include="Controllers\MVC\FirelightAwareControllerBase.cs" />
+    <Compile Include="Controllers\MVC\GeoAwareControllerBase.cs" />
+    <Compile Include="Controllers\MVC\HomeController.cs" />
     <Compile Include="Common\FireLightSession.cs" />
+    <Compile Include="Core\ApiControllerBase.cs" />
+    <Compile Include="Core\IServiceAwareController.cs" />
+    <Compile Include="Core\MefApiDependencyResolver.cs" />
+    <Compile Include="Core\MefDependencyResolver.cs" />
+    <Compile Include="Core\UsesDisposableServiceAttribute.cs" />
+    <Compile Include="Core\ViewControllerBase.cs" />
     <Compile Include="Data\Entities\ProposalHistory.cs" />
     <Compile Include="Data\SageNowContext.cs" />
-    <Compile Include="ForeSightQuoting\QuotingService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\QuoteController.cs" />
-    <Compile Include="Models\BusinessRulesClass.cs" />
-    <Compile Include="Models\FirelightActivityBody.cs" />
-    <Compile Include="Models\FirelightActivityDataItem.cs" />
-    <Compile Include="Models\FirelightActivityReturn.cs" />
-    <Compile Include="Models\FirelightTokenReturn.cs" />
-    <Compile Include="Models\Form1.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Controllers\MVC\QuoteController.cs" />
+    <Compile Include="Business\BusinessRules.cs" />
+    <Compile Include="Business\Models\FirelightActivityBody.cs" />
+    <Compile Include="Business\Models\FirelightActivityDataItem.cs" />
+    <Compile Include="Business\Models\FirelightActivityReturn.cs" />
+    <Compile Include="Business\Models\FirelightTokenReturn.cs" />
+    <Compile Include="Business\Models\NewBusinessServiceClass.cs" />
+    <Compile Include="Business\Models\AltNewBusinessService.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Models\NewBusinessServiceClass.cs" />
-    <Compile Include="Models\AltNewBusinessService.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Business\Models\AccordOlifeValue.cs" />
     <Compile Include="ViewModels\EmbeddedViewModel.cs" />
+    <Compile Include="ViewModels\ProductSliderViewModel.cs" />
     <Compile Include="ViewModels\QuoteViewModel.cs" />
-    <Compile Include="Extensions\DateTimeExtensions.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Common\Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Controllers\MVC\ContactController.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
-    <Compile Include="Models\EligibilityInfo.cs" />
-    <Compile Include="Models\QuoteModel.cs" />
-    <Compile Include="Controllers\NeedsController.cs" />
+    <Compile Include="Business\Models\EligibilityInfo.cs" />
+    <Compile Include="Business\Models\QuoteModel.cs" />
+    <Compile Include="Controllers\MVC\NeedsController.cs" />
     <Compile Include="ViewModels\NeedsViewModel.cs" />
-    <Compile Include="Controllers\StaticController.cs" />
-    <Compile Include="Models\ContactModel.cs" />
+    <Compile Include="Controllers\MVC\StaticController.cs" />
+    <Compile Include="Business\Models\ContactModel.cs" />
     <Compile Include="Common\Utils\EmailManager.cs" />
-    <Compile Include="Models\NeedsModel.cs" />
+    <Compile Include="Business\Models\NeedsModel.cs" />
+    <Compile Include="Business\Models\StateInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Binding\Models\ProductSliderModel.js" />
+    <Content Include="Binding\ViewModels\ProductSliderViewModel.js" />
+    <Content Include="Connected Services\Foresight\SagicorNow.Foresight.AcordTXLifeResponseMessageContract.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Foresight\SagicorNow.Foresight.TXLife.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\Foresight\TXLifeService.disco" />
+    <None Include="Connected Services\Foresight\configuration91.svcinfo" />
+    <None Include="Connected Services\Foresight\configuration.svcinfo" />
+    <None Include="Connected Services\Foresight\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\consumer-portal.css" />
+    <Content Include="Content\flexboxgrid.6.3.0.min.css" />
     <Content Include="Content\SAG.css" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\firelight\eapp.js" />
     <Content Include="Scripts\firelight\vendor.js" />
+    <Content Include="Scripts\knockout-3.5.0.debug.js" />
+    <Content Include="Scripts\knockout-3.5.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\knockout.validation.min.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <None Include="Connected Services\Foresight\TXLifeService.wsdl" />
+    <None Include="Connected Services\Foresight\TXLifeService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Foresight\TXLifeService1.wsdl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -320,12 +379,35 @@
     <Content Include="Views\Shared\_QuoteModal.cshtml" />
     <Content Include="Views\Quote\ProductSlider.cshtml" />
     <Content Include="Views\Quote\FraudWarning.cshtml" />
+    <Content Include="Scripts\knockout.validation.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sagicor Framework\Sagicor.Core.Common\Sagicor.Core.Common.csproj">
+      <Project>{b70ab8ee-279b-4007-8fb0-30596dc1d730}</Project>
+      <Name>Sagicor.Core.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sagicor Framework\Sagicor.Core\Sagicor.Core.csproj">
+      <Project>{f47c432d-6dcd-4c4a-b07d-bf9b0ac2bb7e}</Project>
+      <Name>Sagicor.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\Foresight\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

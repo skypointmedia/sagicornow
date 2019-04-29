@@ -25,7 +25,7 @@ ViewBag.Title = "Get A Free Life Insurance Quote | Sagicor Life Insurance ";
 {
     <script>
         $(function() {
-            $("#quote-form").submit(function(e) {
+            @*$("#quote-form").submit(function(e) {
                 e.preventDefault();
                 $("#quote-form").off("submit");
                 var ssn = $("#txt-ssn").val();
@@ -40,7 +40,7 @@ ViewBag.Title = "Get A Free Life Insurance Quote | Sagicor Life Insurance ";
                         });
                     }
                 });
-            });
+            });*@
 
             $("body").on("click", "#btn-continue-proposal", function () {
                 $('#quoteModal').modal('hide');

@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagicorNow", "SagicorNow.csproj", "{A8F41264-346E-45F0-B6E7-735768311F26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagicor.Core", "..\Sagicor Framework\Sagicor.Core\Sagicor.Core.csproj", "{F47C432D-6DCD-4C4A-B07D-BF9B0AC2BB7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagicor.Core.Common", "..\Sagicor Framework\Sagicor.Core.Common\Sagicor.Core.Common.csproj", "{B70AB8EE-279B-4007-8FB0-30596DC1D730}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +19,19 @@ Global
 		{A8F41264-346E-45F0-B6E7-735768311F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8F41264-346E-45F0-B6E7-735768311F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8F41264-346E-45F0-B6E7-735768311F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F47C432D-6DCD-4C4A-B07D-BF9B0AC2BB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F47C432D-6DCD-4C4A-B07D-BF9B0AC2BB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F47C432D-6DCD-4C4A-B07D-BF9B0AC2BB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F47C432D-6DCD-4C4A-B07D-BF9B0AC2BB7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B70AB8EE-279B-4007-8FB0-30596DC1D730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B70AB8EE-279B-4007-8FB0-30596DC1D730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B70AB8EE-279B-4007-8FB0-30596DC1D730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B70AB8EE-279B-4007-8FB0-30596DC1D730}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {675A12E8-9A3D-4001-A26D-2EA9AD799886}
 	EndGlobalSection
 EndGlobal

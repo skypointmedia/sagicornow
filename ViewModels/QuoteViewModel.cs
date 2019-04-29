@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using SagicorNow.Extensions;
 using SagicorNow.Models;
 using System.Linq;
+using SagicorNow.Business.Models;
 
 namespace SagicorNow.ViewModels
 {
@@ -26,20 +26,11 @@ namespace SagicorNow.ViewModels
         private string _gender;
         private string _tobacco;
 
-        public int Age
-        {
-            get
-            {
-                return birthday == null ? 0 : birthday.Value.GetAge();
-            }
-        }
+        public int Age => birthday?.GetAge() ?? 0;
 
-        public String state
+        public string state
         {
-            get
-            {
-                return _state;
-            }
+            get => _state;
             set
             {
                 _state = value;
@@ -47,12 +38,9 @@ namespace SagicorNow.ViewModels
             }
         }
 
-        public String gender
+        public string gender
         {
-            get
-            {
-                return _gender;
-            }
+            get => _gender;
             set
             {
                 _gender = value;
@@ -60,25 +48,19 @@ namespace SagicorNow.ViewModels
             }
         }
 
-        public String tobacco
+        public string tobacco
         {
-            get
-            {
-                return _tobacco;
-            }
+            get => _tobacco;
             set
             {
                 _tobacco = value;
-                this.smoketStatusInfo = GetSmokerStatInfoFromCode(_tobacco);
+                this.smokerStatusInfo = GetSmokerStatInfoFromCode(_tobacco);
             }
         }
 
-        public String health
+        public string health
         {
-            get
-            {
-                return _health;
-            }
+            get => _health;
             set
             {
                 _health = value;
@@ -94,19 +76,18 @@ namespace SagicorNow.ViewModels
 
         public DisplayInfo DisplayFormat { get; set; }
 
-        public Decimal CoverageAmount { get; set; }
+        public decimal CoverageAmount { get; set; }
         public DateTime? birthday { get; set; }
         public StateInfo stateInfo { get; set; }
         public AccordOlifeValue genderInfo { get; set; }
         public AccordOlifeValue riskClass { get; set; }
-        public AccordOlifeValue smoketStatusInfo { get; set; }
+        public AccordOlifeValue smokerStatusInfo { get; set; }
 
         public bool? ReplacementPolicy { get; set; }
         public bool CheckReplacementPolicy { get; set; }
         public bool replacementPolicyVisible { get; set; }
 
-        private List<string> _viewMessages = new List<string>();
-        public List<string> ViewMessages { get { return _viewMessages; } set { _viewMessages = value; } }
+        public List<string> ViewMessages { get; set; } = new List<string>();
 
         public string SocialSecurityNumber { get; set; }
         public bool IsNewProposal { get; set; } = true;
@@ -122,13 +103,8 @@ namespace SagicorNow.ViewModels
         {
             var states = QuoteModel.States();
 
-            var state = states.Where(s => s.Value == stateCode).FirstOrDefault();
-            if (null != state)
-            {
-                return new StateInfo() { Code = state.Value, Name = state.Text, TC = state.TC, Value = state.TCValue };
-            }
-            else
-                return null;
+            var state1 = states.FirstOrDefault(s => s.Value == stateCode);
+            return null != state1 ? new StateInfo { Code = state1.Value, Name = state1.Text, TC = state1.TC, Value = state1.TCValue } : null;
         }
 
         //get the state info from the given tc value
@@ -136,10 +112,10 @@ namespace SagicorNow.ViewModels
         {
             var states = QuoteModel.States();
 
-            var state = states.Where(s => s.TC == tc).FirstOrDefault();
+            var state = states.FirstOrDefault(s => s.TC == tc);
             if (null != state)
             {
-                return new StateInfo() { Code = state.Value, Name = state.Text, TC = state.TC, Value = state.TCValue };
+                return new StateInfo { Code = state.Value, Name = state.Text, TC = state.TC, Value = state.TCValue };
             }
             else
                 return null;
@@ -245,7 +221,7 @@ namespace SagicorNow.ViewModels
                 case "OLI_TOBACCO_NEVER":
                     return new AccordOlifeValue() { TC = 1, Value = h };
                 case "OLI_TOBACCO_CURRENT":
-                    return new AccordOlifeValue() { TC = 2, Value = h };
+                    return new AccordOlifeValue() { TC = 3, Value = h };
                 default:
                     return null;
             }
@@ -254,19 +230,4 @@ namespace SagicorNow.ViewModels
 
 
     }
-
-    public class StateInfo
-    {
-        public string Name { get; set; }
-        public string Code { get; set; }
-        public int TC { get; set; }
-        public string Value { get; set; }
-    }
-
-    public class AccordOlifeValue
-    {
-        public int TC { get; set; }
-        public string Value { get; set; }
-    }
-
 }

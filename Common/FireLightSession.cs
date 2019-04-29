@@ -12,6 +12,7 @@ namespace SagicorNow.Common
 #if DEBUG
         //private const string BaseUrl = "https://uat.firelighteapp.com/EGApp/"; //UAT
         internal const string BaseUrl = "https://firelight.insurancetechnologies.com/EGApp/"; //QE
+        internal const string ForeSightUrl = "https://illustration.test.sagicorlifeusa.com/sli6/Core/Acord/TXLifeService.svc";
 #else
         internal const string BaseUrl = "https://www.firelighteapp.com/EGApp/";                       
 #endif

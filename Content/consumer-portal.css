@@ -1,0 +1,3128 @@
+﻿.ITAvatar {
+    padding: 10px
+}
+
+.ITAvatarIcon {
+    margin-top: 15px;
+    margin-left: 15px;
+    font-size: 48px
+}
+
+.ITComponentWrapper {
+    position: relative
+}
+
+.ITComponent {
+    margin: 0 .55rem
+}
+
+.ITComponent__help, .ITComponentLabel {
+    display: inline-block
+}
+
+.ITComponent__help {
+    position: absolute;
+    margin-left: -20px;
+    margin-top: -2px
+}
+
+.ITButtonDisabled, .ITButtonInput {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-weight: inherit;
+    display: inline-block;
+    border: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+    outline: none;
+    font-size: inherit;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform: translate(0);
+    -ms-transform: translate(0);
+    transform: translate(0);
+    position: relative;
+    width: 100%;
+    border-radius: 0;
+    -webkit-transition: all .45s cubic-bezier(.23,1,.32,1) 0ms;
+    -o-transition: all .45s cubic-bezier(.23,1,.32,1) 0ms;
+    transition: all .45s cubic-bezier(.23,1,.32,1) 0ms;
+    background-color: #00bcd4;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjMDM1NEE3Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzAyMzQ2NyIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDF2MUgweiIvPjwvc3ZnPg==);
+    text-align: center;
+    background-color: #00bef1;
+    margin: 15px 0;
+    height: 50px
+}
+
+.ITButtonDisabled {
+    cursor: not-allowed;
+    border: none;
+    background-color: #e8e8e8;
+    background-image: none
+}
+
+.ITButtonWide {
+    width: 80%
+}
+
+.ITButtonText {
+    color: #fff;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.ITButtonZoomClose {
+    position: fixed;
+    left: 30px;
+    top: 30px;
+    height: 36px;
+    width: auto;
+    z-index: 9999;
+    background-color: hsla(0,0%,100%,.4) !important;
+    border: 1px solid grey
+}
+
+    .ITButtonZoomClose .ITButtonText {
+        color: grey
+    }
+
+.ITCheckBox {
+    margin-bottom: 35px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    float: left
+}
+
+.ITCheckBox, .ITCheckBoxContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.ITCheckBoxContainer {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 0 auto
+}
+
+.ITCheckBoxDisabled {
+    background-color: #d3d3d3 !important;
+    border: 1px solid silver !important;
+    -webkit-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+    outline: none !important;
+    cursor: default !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important
+}
+
+.ITCheckBoxButton {
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    border-radius: 0;
+    -webkit-box-shadow: 0 0 0 1px #a9a9a9 inset;
+    box-shadow: inset 0 0 0 1px #a9a9a9;
+    -webkit-transition: all .2s cubic-bezier(0,1.05,.72,1.07);
+    -o-transition: all .2s cubic-bezier(0,1.05,.72,1.07);
+    transition: all .2s cubic-bezier(0,1.05,.72,1.07)
+}
+
+    .ITCheckBoxButton:focus {
+        outline: 1px solid #00bcd4
+    }
+
+.ITCheckBoxCheck {
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition-delay: .05s;
+    -o-transition-delay: .05s;
+    transition-delay: .05s
+}
+
+.checkStyle {
+    color: #000 !important;
+    font-size: 28px !important
+}
+
+.scaleNormal {
+    -webkit-transform: scale(1) !important;
+    -ms-transform: scale(1) !important;
+    transform: scale(1) !important
+}
+
+.fillColor {
+    -webkit-box-shadow: 0 0 0 24px #f8f8f8 inset !important;
+    box-shadow: inset 0 0 0 24px #f8f8f8 !important
+}
+
+.fillColorError, .fillColorErrorOptionalAccountOpening, .fillColorErrorOptionalApplication, .fillColorErrorOptionaleDelivery, .fillColorErrorOptionalFeeInquiry, .fillColorErrorOptionalGuidedIllustration, .fillColorErrorOptionalIllustration, .fillColorErrorOptionalNeedsDetermination, .fillColorErrorOptionalPostIssue, .fillColorErrorOptionalSubPay {
+    -webkit-box-shadow: 0 0 0 24px #ffe5e5 inset !important;
+    box-shadow: inset 0 0 0 24px #ffe5e5 !important
+}
+
+.ITCheckBoxError .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITCheckBoxError .ITCheckBoxButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+.ITCheckBoxOfficeError .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #c8f8a3
+}
+
+.ITCheckBoxErrorOptionalIllustration .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITCheckBoxErrorOptionalIllustration .ITCheckBoxButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+.ITCheckBoxErrorOptionalApplication .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITCheckBoxErrorOptionalApplication .ITCheckBoxButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+.ITCheckBoxErrorOptionalSubPay .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITCheckBoxErrorOptionalSubPay .ITCheckBoxButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+.ITCheckBoxErrorOptionalNeedsDetermination .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITCheckBoxErrorOptionalNeedsDetermination .ITCheckBoxButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+.ITCheckBoxErrorOptionalPostIssue .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITCheckBoxErrorOptionalPostIssue .ITCheckBoxButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+.ITCheckBoxErrorOptionalFeeInquiry .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITCheckBoxErrorOptionalFeeInquiry .ITCheckBoxButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+.ITCheckBoxErrorOptionalGuidedIllustration .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITCheckBoxErrorOptionalGuidedIllustration .ITCheckBoxButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+.ITCheckBoxErrorOptionalAccountOpening .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITCheckBoxErrorOptionalAccountOpening .ITCheckBoxButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+.ITCheckBoxErrorOptionaleDelivery .ITCheckBoxButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITCheckBoxErrorOptionaleDelivery .ITCheckBoxButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle, .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle, .react-datepicker__month-read-view--down-arrow, .react-datepicker__month-year-read-view--down-arrow, .react-datepicker__year-read-view--down-arrow {
+    margin-left: -8px;
+    position: absolute
+}
+
+    .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle, .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle:before, .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle, .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle:before, .react-datepicker__month-read-view--down-arrow, .react-datepicker__month-read-view--down-arrow:before, .react-datepicker__month-year-read-view--down-arrow, .react-datepicker__month-year-read-view--down-arrow:before, .react-datepicker__year-read-view--down-arrow, .react-datepicker__year-read-view--down-arrow:before {
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        position: absolute;
+        border: 8px solid rgba(0,0,0,0);
+        height: 0;
+        width: 1px
+    }
+
+        .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle:before, .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle:before, .react-datepicker__month-read-view--down-arrow:before, .react-datepicker__month-year-read-view--down-arrow:before, .react-datepicker__year-read-view--down-arrow:before {
+            content: "";
+            z-index: -1;
+            border-width: 8px;
+            left: -8px;
+            border-bottom-color: #aeaeae
+        }
+
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle {
+    top: 0;
+    margin-top: -8px
+}
+
+    .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle, .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle:before {
+        border-top: none;
+        border-bottom-color: #f0f0f0
+    }
+
+        .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle:before {
+            top: -1px;
+            border-bottom-color: #aeaeae
+        }
+
+.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle, .react-datepicker__month-read-view--down-arrow, .react-datepicker__month-year-read-view--down-arrow, .react-datepicker__year-read-view--down-arrow {
+    bottom: 0;
+    margin-bottom: -8px
+}
+
+    .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle, .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle:before, .react-datepicker__month-read-view--down-arrow, .react-datepicker__month-read-view--down-arrow:before, .react-datepicker__month-year-read-view--down-arrow, .react-datepicker__month-year-read-view--down-arrow:before, .react-datepicker__year-read-view--down-arrow, .react-datepicker__year-read-view--down-arrow:before {
+        border-bottom: none;
+        border-top-color: #fff
+    }
+
+        .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle:before, .react-datepicker__month-read-view--down-arrow:before, .react-datepicker__month-year-read-view--down-arrow:before, .react-datepicker__year-read-view--down-arrow:before {
+            bottom: -1px;
+            border-top-color: #aeaeae
+        }
+
+.react-datepicker, .react-datepicker-wrapper {
+    display: inline-block
+}
+
+.react-datepicker {
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: .8rem;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #aeaeae;
+    border-radius: .3rem;
+    position: relative
+}
+
+.react-datepicker--time-only .react-datepicker__triangle {
+    left: 35px
+}
+
+.react-datepicker--time-only .react-datepicker__time-container {
+    border-left: 0
+}
+
+.react-datepicker--time-only .react-datepicker__time, .react-datepicker--time-only .react-datepicker__time-box {
+    border-radius: .3rem
+}
+
+.react-datepicker__triangle {
+    position: absolute;
+    left: 50px
+}
+
+.react-datepicker-popper {
+    z-index: 1
+}
+
+    .react-datepicker-popper[data-placement^=bottom] {
+        margin-top: 10px
+    }
+
+    .react-datepicker-popper[data-placement^=top] {
+        margin-bottom: 10px
+    }
+
+    .react-datepicker-popper[data-placement^=right] {
+        margin-left: 8px
+    }
+
+        .react-datepicker-popper[data-placement^=right] .react-datepicker__triangle {
+            left: auto;
+            right: 42px
+        }
+
+    .react-datepicker-popper[data-placement^=left] {
+        margin-right: 8px
+    }
+
+        .react-datepicker-popper[data-placement^=left] .react-datepicker__triangle {
+            left: 42px;
+            right: auto
+        }
+
+.react-datepicker__header {
+    text-align: center;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #aeaeae;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    padding-top: 8px;
+    position: relative
+}
+
+.react-datepicker__header--time {
+    padding-bottom: 8px;
+    padding-left: 5px;
+    padding-right: 5px
+}
+
+.react-datepicker__month-dropdown-container--scroll, .react-datepicker__month-dropdown-container--select, .react-datepicker__month-year-dropdown-container--scroll, .react-datepicker__month-year-dropdown-container--select, .react-datepicker__year-dropdown-container--scroll, .react-datepicker__year-dropdown-container--select {
+    display: inline-block;
+    margin: 0 2px
+}
+
+.react-datepicker-time__header, .react-datepicker__current-month {
+    margin-top: 0;
+    color: #000;
+    font-weight: 700;
+    font-size: .944rem
+}
+
+.react-datepicker-time__header {
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.react-datepicker__navigation {
+    background: none;
+    line-height: 1.7rem;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    width: 0;
+    padding: 0;
+    border: .45rem solid rgba(0,0,0,0);
+    z-index: 1;
+    height: 10px;
+    width: 10px;
+    text-indent: -999em;
+    overflow: hidden
+}
+
+.react-datepicker__navigation--previous {
+    left: 10px;
+    border-right-color: #ccc
+}
+
+    .react-datepicker__navigation--previous:hover {
+        border-right-color: #b3b3b3
+    }
+
+.react-datepicker__navigation--previous--disabled, .react-datepicker__navigation--previous--disabled:hover {
+    border-right-color: #e6e6e6;
+    cursor: default
+}
+
+.react-datepicker__navigation--next {
+    right: 10px;
+    border-left-color: #ccc
+}
+
+.react-datepicker__navigation--next--with-time:not(.react-datepicker__navigation--next--with-today-button) {
+    right: 80px
+}
+
+.react-datepicker__navigation--next:hover {
+    border-left-color: #b3b3b3
+}
+
+.react-datepicker__navigation--next--disabled, .react-datepicker__navigation--next--disabled:hover {
+    border-left-color: #e6e6e6;
+    cursor: default
+}
+
+.react-datepicker__navigation--years {
+    position: relative;
+    top: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.react-datepicker__navigation--years-previous {
+    top: 4px;
+    border-top-color: #ccc
+}
+
+    .react-datepicker__navigation--years-previous:hover {
+        border-top-color: #b3b3b3
+    }
+
+.react-datepicker__navigation--years-upcoming {
+    top: -4px;
+    border-bottom-color: #ccc
+}
+
+    .react-datepicker__navigation--years-upcoming:hover {
+        border-bottom-color: #b3b3b3
+    }
+
+.react-datepicker__month-container {
+    float: left
+}
+
+.react-datepicker__month {
+    margin: .4rem;
+    text-align: center
+}
+
+.react-datepicker__time-container {
+    float: right;
+    border-left: 1px solid #aeaeae;
+    width: 70px
+}
+
+.react-datepicker__time-container--with-today-button {
+    display: inline;
+    border: 1px solid #aeaeae;
+    border-radius: .3rem;
+    position: absolute;
+    right: -72px;
+    top: 0
+}
+
+.react-datepicker__time-container .react-datepicker__time {
+    position: relative;
+    background: #fff
+}
+
+    .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
+        width: 70px;
+        overflow-x: hidden;
+        margin: 0 auto;
+        text-align: center
+    }
+
+        .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+            list-style: none;
+            margin: 0;
+            height: calc(195px + .85rem);
+            overflow-y: scroll;
+            padding-right: 30px;
+            width: 100%;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box
+        }
+
+            .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+                padding: 5px 10px
+            }
+
+                .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover {
+                    cursor: pointer;
+                    background-color: #f0f0f0
+                }
+
+            .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+                background-color: #216ba5;
+                color: #fff;
+                font-weight: 700
+            }
+
+                .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected:hover {
+                    background-color: #216ba5
+                }
+
+            .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled {
+                color: #ccc
+            }
+
+                .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled:hover {
+                    cursor: default;
+                    background-color: rgba(0,0,0,0)
+                }
+
+.react-datepicker__week-number {
+    color: #ccc;
+    display: inline-block;
+    width: 1.7rem;
+    line-height: 1.7rem;
+    text-align: center;
+    margin: .166rem
+}
+
+    .react-datepicker__week-number.react-datepicker__week-number--clickable {
+        cursor: pointer
+    }
+
+        .react-datepicker__week-number.react-datepicker__week-number--clickable:hover {
+            border-radius: .3rem;
+            background-color: #f0f0f0
+        }
+
+.react-datepicker__day-names, .react-datepicker__week {
+    white-space: nowrap
+}
+
+.react-datepicker__day, .react-datepicker__day-name, .react-datepicker__time-name {
+    color: #000;
+    display: inline-block;
+    width: 1.7rem;
+    line-height: 1.7rem;
+    text-align: center;
+    margin: .166rem
+}
+
+.react-datepicker__day {
+    cursor: pointer
+}
+
+    .react-datepicker__day:hover {
+        border-radius: .3rem;
+        background-color: #f0f0f0
+    }
+
+.react-datepicker__day--today {
+    font-weight: 700
+}
+
+.react-datepicker__day--highlighted {
+    border-radius: .3rem;
+    background-color: #3dcc4a;
+    color: #fff
+}
+
+    .react-datepicker__day--highlighted:hover {
+        background-color: #32be3f
+    }
+
+.react-datepicker__day--highlighted-custom-1 {
+    color: #f0f
+}
+
+.react-datepicker__day--highlighted-custom-2 {
+    color: green
+}
+
+.react-datepicker__day--in-range, .react-datepicker__day--in-selecting-range, .react-datepicker__day--selected {
+    border-radius: .3rem;
+    background-color: #216ba5;
+    color: #fff
+}
+
+    .react-datepicker__day--in-range:hover, .react-datepicker__day--in-selecting-range:hover, .react-datepicker__day--selected:hover {
+        background-color: #1d5d90
+    }
+
+.react-datepicker__day--keyboard-selected {
+    border-radius: .3rem;
+    background-color: #2a87d0;
+    color: #fff
+}
+
+    .react-datepicker__day--keyboard-selected:hover {
+        background-color: #1d5d90
+    }
+
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range) {
+    background-color: rgba(33,107,165,.5)
+}
+
+.react-datepicker__month--selecting-range .react-datepicker__day--in-range:not(.react-datepicker__day--in-selecting-range) {
+    background-color: #f0f0f0;
+    color: #000
+}
+
+.react-datepicker__day--disabled {
+    cursor: default;
+    color: #ccc
+}
+
+    .react-datepicker__day--disabled:hover {
+        background-color: rgba(0,0,0,0)
+    }
+
+.react-datepicker__input-container {
+    position: relative;
+    display: inline-block
+}
+
+.react-datepicker__month-read-view, .react-datepicker__month-year-read-view, .react-datepicker__year-read-view {
+    border: 1px solid rgba(0,0,0,0);
+    border-radius: .3rem
+}
+
+    .react-datepicker__month-read-view:hover, .react-datepicker__month-year-read-view:hover, .react-datepicker__year-read-view:hover {
+        cursor: pointer
+    }
+
+        .react-datepicker__month-read-view:hover .react-datepicker__month-read-view--down-arrow, .react-datepicker__month-read-view:hover .react-datepicker__year-read-view--down-arrow, .react-datepicker__month-year-read-view:hover .react-datepicker__month-read-view--down-arrow, .react-datepicker__month-year-read-view:hover .react-datepicker__year-read-view--down-arrow, .react-datepicker__year-read-view:hover .react-datepicker__month-read-view--down-arrow, .react-datepicker__year-read-view:hover .react-datepicker__year-read-view--down-arrow {
+            border-top-color: #b3b3b3
+        }
+
+.react-datepicker__month-read-view--down-arrow, .react-datepicker__month-year-read-view--down-arrow, .react-datepicker__year-read-view--down-arrow {
+    border-top-color: #ccc;
+    float: right;
+    margin-left: 20px;
+    top: 8px;
+    position: relative;
+    border-width: .45rem
+}
+
+.react-datepicker__month-dropdown, .react-datepicker__month-year-dropdown, .react-datepicker__year-dropdown {
+    background-color: #f0f0f0;
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    top: 30px;
+    z-index: 1;
+    text-align: center;
+    border-radius: .3rem;
+    border: 1px solid #aeaeae
+}
+
+    .react-datepicker__month-dropdown:hover, .react-datepicker__month-year-dropdown:hover, .react-datepicker__year-dropdown:hover {
+        cursor: pointer
+    }
+
+.react-datepicker__month-dropdown--scrollable, .react-datepicker__month-year-dropdown--scrollable, .react-datepicker__year-dropdown--scrollable {
+    height: 150px;
+    overflow-y: scroll
+}
+
+.react-datepicker__month-option, .react-datepicker__month-year-option, .react-datepicker__year-option {
+    line-height: 20px;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+    .react-datepicker__month-option:first-of-type, .react-datepicker__month-year-option:first-of-type, .react-datepicker__year-option:first-of-type {
+        border-top-left-radius: .3rem;
+        border-top-right-radius: .3rem
+    }
+
+    .react-datepicker__month-option:last-of-type, .react-datepicker__month-year-option:last-of-type, .react-datepicker__year-option:last-of-type {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border-bottom-left-radius: .3rem;
+        border-bottom-right-radius: .3rem
+    }
+
+    .react-datepicker__month-option:hover, .react-datepicker__month-year-option:hover, .react-datepicker__year-option:hover {
+        background-color: #ccc
+    }
+
+        .react-datepicker__month-option:hover .react-datepicker__navigation--years-upcoming, .react-datepicker__month-year-option:hover .react-datepicker__navigation--years-upcoming, .react-datepicker__year-option:hover .react-datepicker__navigation--years-upcoming {
+            border-bottom-color: #b3b3b3
+        }
+
+        .react-datepicker__month-option:hover .react-datepicker__navigation--years-previous, .react-datepicker__month-year-option:hover .react-datepicker__navigation--years-previous, .react-datepicker__year-option:hover .react-datepicker__navigation--years-previous {
+            border-top-color: #b3b3b3
+        }
+
+.react-datepicker__month-option--selected, .react-datepicker__month-year-option--selected, .react-datepicker__year-option--selected {
+    position: absolute;
+    left: 15px
+}
+
+.react-datepicker__close-icon {
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    padding: 0;
+    vertical-align: middle;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    top: 25%;
+    right: 7px
+}
+
+    .react-datepicker__close-icon:after {
+        background-color: #216ba5;
+        border-radius: 50%;
+        bottom: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        color: #fff;
+        content: "\00d7";
+        cursor: pointer;
+        font-size: 12px;
+        height: 16px;
+        width: 16px;
+        line-height: 1;
+        margin: -8px auto 0;
+        padding: 2px;
+        position: absolute;
+        right: 0;
+        text-align: center
+    }
+
+.react-datepicker__today-button {
+    background: #f0f0f0;
+    border-top: 1px solid #aeaeae;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 700;
+    padding: 5px 0;
+    clear: left
+}
+
+.react-datepicker__portal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.8);
+    left: 0;
+    top: 0;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    z-index: 2147483647
+}
+
+    .react-datepicker__portal .react-datepicker__day, .react-datepicker__portal .react-datepicker__day-name, .react-datepicker__portal .react-datepicker__time-name {
+        width: 3rem;
+        line-height: 3rem
+    }
+
+@media (max-height:550px),(max-width:400px) {
+    .react-datepicker__portal .react-datepicker__day, .react-datepicker__portal .react-datepicker__day-name, .react-datepicker__portal .react-datepicker__time-name {
+        width: 2rem;
+        line-height: 2rem
+    }
+}
+
+.react-datepicker__portal .react-datepicker-time__header, .react-datepicker__portal .react-datepicker__current-month {
+    font-size: 1.44rem
+}
+
+.react-datepicker__portal .react-datepicker__navigation {
+    border: .81rem solid rgba(0,0,0,0)
+}
+
+.react-datepicker__portal .react-datepicker__navigation--previous {
+    border-right-color: #ccc
+}
+
+    .react-datepicker__portal .react-datepicker__navigation--previous:hover {
+        border-right-color: #b3b3b3
+    }
+
+.react-datepicker__portal .react-datepicker__navigation--previous--disabled, .react-datepicker__portal .react-datepicker__navigation--previous--disabled:hover {
+    border-right-color: #e6e6e6;
+    cursor: default
+}
+
+.react-datepicker__portal .react-datepicker__navigation--next {
+    border-left-color: #ccc
+}
+
+    .react-datepicker__portal .react-datepicker__navigation--next:hover {
+        border-left-color: #b3b3b3
+    }
+
+.react-datepicker__portal .react-datepicker__navigation--next--disabled, .react-datepicker__portal .react-datepicker__navigation--next--disabled:hover {
+    border-left-color: #e6e6e6;
+    cursor: default
+}
+
+.react-datepicker-popper {
+    z-index: 10
+}
+
+.react-datepicker-wrapper {
+    width: 100%
+}
+
+.react-datepicker__input-container {
+    width: inherit
+}
+
+    .react-datepicker__input-container input {
+        border-radius: 0;
+        border: 1px solid #7c7a7a;
+        height: 25px;
+        font-size: 16px;
+        font-weight: inherit;
+        width: inherit;
+        padding: 6px 2px
+    }
+
+        .react-datepicker__input-container input:focus {
+            border: 1px solid #00bcd4
+        }
+
+.ITDatePickerError input {
+    background-color: #ffe5e5
+}
+
+    .ITDatePickerError input, .ITDatePickerError input:focus {
+        border: 1px solid red !important
+    }
+
+.ITDatePickerErrorOptionalIllustration input {
+    border: 1px solid red !important;
+    background-color: #ffe5e5
+}
+
+    .ITDatePickerErrorOptionalIllustration input:focus {
+        border: 1px solid red !important
+    }
+
+.ITDatePickerErrorOptionalApplication input {
+    border: 1px solid red !important;
+    background-color: #ffe5e5
+}
+
+    .ITDatePickerErrorOptionalApplication input:focus {
+        border: 1px solid red !important
+    }
+
+.ITDatePickerErrorOptionalSubPay input {
+    border: 1px solid red !important;
+    background-color: #ffe5e5
+}
+
+    .ITDatePickerErrorOptionalSubPay input:focus {
+        border: 1px solid red !important
+    }
+
+.ITDatePickerErrorOptionalNeedsDetermination input {
+    border: 1px solid red !important;
+    background-color: #ffe5e5
+}
+
+    .ITDatePickerErrorOptionalNeedsDetermination input:focus {
+        border: 1px solid red !important
+    }
+
+.ITDatePickerErrorOptionalPostIssue input {
+    border: 1px solid red !important;
+    background-color: #ffe5e5
+}
+
+    .ITDatePickerErrorOptionalPostIssue input:focus {
+        border: 1px solid red !important
+    }
+
+.ITDatePickerErrorOptionalFeeInquiry input {
+    border: 1px solid red !important;
+    background-color: #ffe5e5
+}
+
+    .ITDatePickerErrorOptionalFeeInquiry input:focus {
+        border: 1px solid red !important
+    }
+
+.ITDatePickerErrorOptionalGuidedIllustration input {
+    border: 1px solid red !important;
+    background-color: #ffe5e5
+}
+
+    .ITDatePickerErrorOptionalGuidedIllustration input:focus {
+        border: 1px solid red !important
+    }
+
+.ITDatePickerErrorOptionalAccountOpening input {
+    border: 1px solid red !important;
+    background-color: #ffe5e5
+}
+
+    .ITDatePickerErrorOptionalAccountOpening input:focus {
+        border: 1px solid red !important
+    }
+
+.ITDatePickerErrorOptionaleDelivery input {
+    border: 1px solid red !important;
+    background-color: #ffe5e5
+}
+
+    .ITDatePickerErrorOptionaleDelivery input:focus {
+        border: 1px solid red !important
+    }
+
+.ITDialog {
+    position: fixed;
+    text-align: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 0;
+    border: none;
+    background-color: rgba(0,0,0,.54);
+    z-index: 999
+}
+
+.ITDialog__box {
+    margin: 25px auto;
+    -webkit-box-shadow: 0 19px 38px rgba(0,0,0,.3),0 15px 12px rgba(0,0,0,.22);
+    box-shadow: 0 19px 38px rgba(0,0,0,.3),0 15px 12px rgba(0,0,0,.22);
+    z-index: 1000;
+    border-radius: 2px;
+    position: relative;
+    width: 500px;
+    min-width: 25%;
+    max-width: calc(100% - 50px);
+    min-height: 150px;
+    max-height: calc(100% - 50px);
+    background: #fff
+}
+
+.ITDialog__box--fullWidth {
+    width: calc(100% - 50px)
+}
+
+.ITDialog__header {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #0354a7;
+    padding: 11px 22px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom: 1px solid rgba(0,0,0,.12)
+}
+
+.ITDialog__content {
+    position: relative;
+    padding: 20px 22px 22px;
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+    min-height: 12px
+}
+
+.ITDialog__footer {
+    text-align: right;
+    padding: 10px 10px 10px 18px;
+    background-color: #f5f5f5;
+    border-top: 1px solid rgba(0,0,0,.12);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px
+}
+
+    .ITDialog__footer > .ITComponentRoot {
+        display: inline-block
+    }
+
+    .ITDialog__footer .ITButtonDisabled, .ITDialog__footer .ITButtonInput {
+        height: 40px;
+        width: inherit;
+        min-width: 150px;
+        margin: 0
+    }
+
+body.body--dialogOpen {
+    overflow-y: hidden
+}
+
+.ITSelect {
+    display: inline-block;
+    height: 35px;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 2;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #7c7a7a;
+    border-radius: 0;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out
+}
+
+    .ITSelect:disabled {
+        background-color: #fafafa;
+        border: 1px solid silver;
+        font-weight: 700
+    }
+
+    .ITSelect:focus {
+        outline: none !important;
+        border: 1px solid #00bcd4
+    }
+
+select.ITSelect option.ITSelectOption:hover {
+    -webkit-box-shadow: 0 0 10px 100px green inset;
+    box-shadow: inset 0 0 10px 100px green
+}
+
+.ITSelectOption {
+    background: #fff
+}
+
+.ITSelectOfficeUseError select {
+    background-color: #c8f8a3
+}
+
+.ITSelectError select {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITSelectError select:focus {
+        border: 1px solid red
+    }
+
+.ITSelectErrorOptionalIllustration select {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITSelectErrorOptionalIllustration select:focus {
+        border: 1px solid red
+    }
+
+.ITSelectErrorOptionalApplication select {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITSelectErrorOptionalApplication select:focus {
+        border: 1px solid red
+    }
+
+.ITSelectErrorOptionalSubPay select {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITSelectErrorOptionalSubPay select:focus {
+        border: 1px solid red
+    }
+
+.ITSelectErrorOptionalNeedsDetermination select {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITSelectErrorOptionalNeedsDetermination select:focus {
+        border: 1px solid red
+    }
+
+.ITSelectErrorOptionalPostIssue select {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITSelectErrorOptionalPostIssue select:focus {
+        border: 1px solid red
+    }
+
+.ITSelectErrorOptionalFeeInquiry select {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITSelectErrorOptionalFeeInquiry select:focus {
+        border: 1px solid red
+    }
+
+.ITSelectErrorOptionalGuidedIllustration select {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITSelectErrorOptionalGuidedIllustration select:focus {
+        border: 1px solid red
+    }
+
+.ITSelectErrorOptionalAccountOpening select {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITSelectErrorOptionalAccountOpening select:focus {
+        border: 1px solid red
+    }
+
+.ITSelectErrorOptionaleDelivery select {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITSelectErrorOptionaleDelivery select:focus {
+        border: 1px solid red
+    }
+
+.groupField {
+    margin: 0;
+    padding: 0
+}
+
+    .groupField.padTop {
+        padding-top: 1em
+    }
+
+    .groupField.padBottom {
+        padding-bottom: 1em
+    }
+
+    .groupField.padLeft {
+        padding-left: 1em
+    }
+
+    .groupField.padRight {
+        padding-right: 1em
+    }
+
+.ITIcon {
+    color: #cdcdcd
+}
+
+.ITIcon, .ITIconActive {
+    display: block;
+    margin: auto;
+    width: 1em;
+    height: 1.3em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    cursor: default
+}
+
+.ITIconActive {
+    color: #00bef1
+}
+
+.ITIconLabel {
+    word-wrap: break-word;
+    width: 80px;
+    text-align: center;
+    font-size: 12px
+}
+
+.ITIconWrapper {
+    display: inline-block;
+    position: absolute
+}
+
+.ITIcon--size18 {
+    font-size: 18px
+}
+
+.ITIcon--size24 {
+    font-size: 24px
+}
+
+.ITIcon--size36 {
+    font-size: 36px
+}
+
+.ITIcon--size48 {
+    font-size: 48px
+}
+
+.ITLink__icon {
+    display: inline-block;
+    width: 20px;
+    margin-left: 10px;
+    margin-top: 10px
+}
+
+.ITNavLink {
+    background: rgba(0,0,0,0);
+    border: none;
+    cursor: pointer;
+    color: #7e7e7e;
+    margin: 20px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none
+}
+
+    .ITNavLink:focus {
+        outline: none
+    }
+
+.ITNavLinkText {
+    line-height: 45px;
+    display: inline-block
+}
+
+.ITNavLinkDisabled {
+    background-color: #a6a7a5 !important;
+    cursor: not-allowed;
+    border: none
+}
+
+.ITListItem {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+    .ITListItem:hover {
+        background-color: #bababa;
+        cursor: default
+    }
+
+.ITListIcon {
+    padding: 10px
+}
+
+.ITListLabel {
+    padding: 10px;
+    margin: 0 auto;
+    width: 70%
+}
+
+.ITPanel {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-transition: all .45s cubic-bezier(.23,1,.32,1) 0ms;
+    -o-transition: all .45s cubic-bezier(.23,1,.32,1) 0ms;
+    transition: all .45s cubic-bezier(.23,1,.32,1) 0ms;
+    color: rgba(0,0,0,.870588);
+    background-color: #fff;
+    border-radius: 0;
+    z-index: 1;
+    margin: 1rem 3rem
+}
+
+.ITPanel, .ITPanelTitle {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.ITPanelTitle {
+    padding: 16px;
+    font-weight: 500;
+    position: relative;
+    white-space: nowrap;
+    background: #0354a7;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjMDM1NEE3Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzAyMzQ2NyIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDF2MUgweiIvPjwvc3ZnPg==)
+}
+
+.ITPanelTitleText {
+    display: inline-block;
+    white-space: normal;
+    color: #3b3a3a;
+    font-size: 20px
+}
+
+.ITPanelTitleImage {
+    color: #000
+}
+
+.ITPanelTitleIcon {
+    display: inline-block;
+    position: absolute;
+    margin-left: -20px
+}
+
+.ITPanelChecked {
+    -webkit-box-shadow: rgba(0,0,0,.247059) 0 14px 45px,rgba(0,0,0,.219608) 0 10px 18px;
+    box-shadow: 0 14px 45px rgba(0,0,0,.247059),0 10px 18px rgba(0,0,0,.219608)
+}
+
+.ITPanelUnChecked {
+    -webkit-box-shadow: rgba(0,0,0,.117647) 0 1px 6px,rgba(0,0,0,.117647) 0 1px 4px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.117647),0 1px 4px rgba(0,0,0,.117647)
+}
+
+.panelDivider {
+    display: none
+}
+
+.quickView {
+    font-size: 15px;
+    line-height: 24px
+}
+
+.quickView__fatalError {
+    color: #d00;
+    line-height: 16px
+}
+
+.quickView__viewOptionSelector .ITComponentRoot {
+    text-align: left
+}
+
+.quickView__messages, .reports__messages {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid #bbb
+}
+
+    .quickView__messages .reports__messages tr, .quickView__messages tr, .reports__messages .reports__messages tr, .reports__messages tr {
+        background-color: #fff
+    }
+
+    .quickView__messages .reports__messages thead tr, .quickView__messages thead tr, .reports__messages .reports__messages thead tr, .reports__messages thead tr {
+        font-weight: 700;
+        background-color: #023467;
+        color: #fff
+    }
+
+    .quickView__messages .reports__messages tbody tr:nth-child(odd), .quickView__messages tbody tr:nth-child(odd), .reports__messages .reports__messages tbody tr:nth-child(odd), .reports__messages tbody tr:nth-child(odd) {
+        background-color: #f0f0f0
+    }
+
+.quickView__tableSection {
+    padding: 10px 0;
+    position: relative
+}
+
+.quickView__tableCaption {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #fff
+}
+
+.quickView__table {
+    width: 100%
+}
+
+    .quickView__table td, .quickView__table th {
+        padding: 5px
+    }
+
+    .quickView__table tr {
+        background-color: #fff
+    }
+
+    .quickView__table thead tr {
+        font-weight: 700;
+        background-color: #023467;
+        color: #fff;
+        border-left: 1px solid #023467;
+        border-right: 1px solid #023467
+    }
+
+    .quickView__table tbody tr:nth-child(odd) {
+        background-color: #f0f0f0
+    }
+
+    .quickView__table tbody {
+        border: 1px solid #bbb;
+        border-top: none
+    }
+
+.quickView__stickyHeader {
+    position: fixed
+}
+
+.ITRadioButton {
+    position: relative;
+    text-align: center;
+    border: 1px solid #a9a9a9;
+    border-radius: 50%;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    cursor: pointer
+}
+
+    .ITRadioButton:focus {
+        border: 1px solid #00bcd4
+    }
+
+.ITRadioContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-bottom: 17px;
+    margin-top: 17px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    float: left
+}
+
+.ITRadioLabel {
+    cursor: pointer;
+    padding: 5px
+}
+
+.ITRadioDisabled:hover {
+    cursor: default
+}
+
+.ITRadioDisabled:focus {
+    border: 1px solid #a9a9a9
+}
+
+.radioStyle {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: #000;
+    border-radius: 50%
+}
+
+.ITRadioOfficeError .ITRadioButton {
+    background-color: #c8f8a3;
+    border: 1px solid red
+}
+
+.ITRadioError .ITRadioButton, .ITRadioErrorOptionalAccountOpening .ITRadioButton, .ITRadioErrorOptionalApplication .ITRadioButton, .ITRadioErrorOptionaleDelivery .ITRadioButton, .ITRadioErrorOptionalFeeInquiry .ITRadioButton, .ITRadioErrorOptionalGuidedIllustration .ITRadioButton, .ITRadioErrorOptionalIllustration .ITRadioButton, .ITRadioErrorOptionalNeedsDetermination .ITRadioButton, .ITRadioErrorOptionalPostIssue .ITRadioButton, .ITRadioErrorOptionalSubPay .ITRadioButton {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITRadioError .ITRadioButton:focus, .ITRadioErrorOptionalAccountOpening .ITRadioButton:focus, .ITRadioErrorOptionalApplication .ITRadioButton:focus, .ITRadioErrorOptionaleDelivery .ITRadioButton:focus, .ITRadioErrorOptionalFeeInquiry .ITRadioButton:focus, .ITRadioErrorOptionalGuidedIllustration .ITRadioButton:focus, .ITRadioErrorOptionalIllustration .ITRadioButton:focus, .ITRadioErrorOptionalNeedsDetermination .ITRadioButton:focus, .ITRadioErrorOptionalPostIssue .ITRadioButton:focus, .ITRadioErrorOptionalSubPay .ITRadioButton:focus {
+        border: 1px solid red;
+        outline-color: red
+    }
+
+    .ITRadioDisabled, .ITRadioError .ITRadioButton.ITRadioDisabled, .ITRadioErrorOptionalAccountOpening .ITRadioButton.ITRadioDisabled, .ITRadioErrorOptionalApplication .ITRadioButton.ITRadioDisabled, .ITRadioErrorOptionaleDelivery .ITRadioButton.ITRadioDisabled, .ITRadioErrorOptionalFeeInquiry .ITRadioButton.ITRadioDisabled, .ITRadioErrorOptionalGuidedIllustration .ITRadioButton.ITRadioDisabled, .ITRadioErrorOptionalIllustration .ITRadioButton.ITRadioDisabled, .ITRadioErrorOptionalNeedsDetermination .ITRadioButton.ITRadioDisabled, .ITRadioErrorOptionalPostIssue .ITRadioButton.ITRadioDisabled, .ITRadioErrorOptionalSubPay .ITRadioButton.ITRadioDisabled {
+        background-color: #d3d3d3;
+        cursor: default;
+        border: 1px solid #a9a9a9
+    }
+
+.sliderContainer {
+    -ms-touch-action: none;
+    touch-action: none;
+    width: 95%;
+    cursor: pointer
+}
+
+    .sliderContainer .outerSliderTrack {
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid grey;
+        border-radius: 10px;
+        margin: 20px
+    }
+
+    .sliderContainer .innerSliderTrack {
+        background-color: #00bef1;
+        border-radius: 10px;
+        width: 50%;
+        height: 10px;
+        min-width: 2%
+    }
+
+    .sliderContainer .sliderThumb {
+        width: 30px;
+        background-color: #fff;
+        float: right;
+        height: 30px;
+        border: 1px solid grey;
+        border-radius: 20px;
+        margin-top: -10px
+    }
+
+.sliderAlt {
+    width: 95%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+    .sliderAlt .outerSliderTrack {
+        width: 100%;
+        background-color: #d3d3d3;
+        border: 1px solid #d3d3d3;
+        margin: 20px
+    }
+
+    .sliderAlt .innerSliderTrack {
+        height: 5px
+    }
+
+    .sliderAlt .sliderThumb {
+        width: 50px;
+        background-color: grey;
+        float: right;
+        height: 9px;
+        border-radius: 2px;
+        margin-top: -2px
+    }
+
+.ITSliderLabels {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-size: 16px
+}
+
+.ITSpinner {
+    animation: rotate 1s linear infinite;
+    -webkit-animation: rotate 1s linear infinite;
+    border: .5em solid #9de8f1;
+    border-top-color: #00bcd4;
+    border-radius: 50%;
+    display: inline-block;
+    height: 4em;
+    width: 4em;
+    vertical-align: middle;
+    *zoom: 1;
+    position: fixed;
+    z-index: 999;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0
+}
+
+@-webkit-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+
+@keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+
+.semiTransparentDark {
+    background-color: rgba(0,0,0,.5)
+}
+
+.semiTransparentLight {
+    background-color: hsla(0,0%,100%,.5)
+}
+
+.overlay {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9998
+}
+
+.ITText {
+    margin: 0 .5em
+}
+
+.ITText__bulletIcon {
+    display: inline-block;
+    width: 30px;
+    margin-left: -30px
+}
+
+.ITTextFieldInput {
+    display: block;
+    width: 100%;
+    height: 25px;
+    padding: 6px 2px;
+    font-size: 18px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #7c7a7a;
+    border-radius: 0
+}
+
+    .ITTextFieldInput:focus {
+        outline: none !important;
+        border: 1px solid #00bcd4
+    }
+
+    .ITTextFieldInput:disabled {
+        background-color: #fafafa;
+        border: 1px solid silver
+    }
+
+.ITTextFieldInput__textarea {
+    resize: none;
+    white-space: pre-wrap;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: auto;
+    height: inherit;
+    min-height: 38px
+}
+
+.ITTextFieldOfficeError input {
+    background-color: #c8f8a3
+}
+
+.ITTextFieldError input {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITTextFieldError input:focus {
+        border: 1px solid red
+    }
+
+.ITTextFieldErrorOptionalIllustration input {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITTextFieldErrorOptionalIllustration input:focus {
+        border: 1px solid red
+    }
+
+.ITTextFieldErrorOptionalApplication input {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITTextFieldErrorOptionalApplication input:focus {
+        border: 1px solid red
+    }
+
+.ITTextFieldErrorOptionalSubPay input {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITTextFieldErrorOptionalSubPay input:focus {
+        border: 1px solid red
+    }
+
+.ITTextFieldErrorOptionalNeedsDetermination input {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITTextFieldErrorOptionalNeedsDetermination input:focus {
+        border: 1px solid red
+    }
+
+.ITTextFieldErrorOptionalPostIssue input {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITTextFieldErrorOptionalPostIssue input:focus {
+        border: 1px solid red
+    }
+
+.ITTextFieldErrorOptionalFeeInquiry input {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITTextFieldErrorOptionalFeeInquiry input:focus {
+        border: 1px solid red
+    }
+
+.ITTextFieldErrorOptionalGuidedIllustration input {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITTextFieldErrorOptionalGuidedIllustration input:focus {
+        border: 1px solid red
+    }
+
+.ITTextFieldErrorOptionalAccountOpening input {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITTextFieldErrorOptionalAccountOpening input:focus {
+        border: 1px solid red
+    }
+
+.ITTextFieldErrorOptionaleDelivery input {
+    border: 1px solid red;
+    background-color: #ffe5e5
+}
+
+    .ITTextFieldErrorOptionaleDelivery input:focus {
+        border: 1px solid red
+    }
+
+.ITTooltipContainer {
+    text-align: center
+}
+
+.ITtooltip {
+    position: relative
+}
+
+    .ITtooltip .ITtooltiptext {
+        width: 120px;
+        background-color: #f8f8f8;
+        color: #ed4e4e;
+        text-align: center;
+        border-radius: 6px;
+        border: 1px solid #dfdfdf;
+        padding: 5px 0;
+        font-size: 15px;
+        position: absolute;
+        z-index: 1;
+        width: 220px;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -90px;
+        font-weight: 700
+    }
+
+        .ITtooltip .ITtooltiptext:after {
+            content: " ";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border: 5px solid rgba(0,0,0,0);
+            border-top-color: #dfdfdf
+        }
+
+.ITTooltip {
+    background: #f8f8f8;
+    -webkit-box-shadow: 2px 2px 2px #d3d3d3;
+    box-shadow: 2px 2px 2px #d3d3d3;
+    border: 1px solid #d3d3d3;
+    color: #555;
+    font-size: 12px;
+    padding: 0 15px;
+    border-radius: 3px;
+    white-space: normal;
+    width: 300px;
+    z-index: 1000;
+    text-decoration: none;
+    position: absolute;
+    bottom: 50px;
+    right: -130px
+}
+
+.ITTooltipArrow {
+    border-top: 15px solid #f8f8f8;
+    bottom: 52px;
+    z-index: 10000
+}
+
+.ITTooltipArrow, .ITTooltipArrowBorder {
+    border-left: 15px solid rgba(0,0,0,0);
+    border-right: 15px solid rgba(0,0,0,0);
+    position: absolute;
+    margin-bottom: -15px;
+    left: 25px
+}
+
+.ITTooltipArrowBorder {
+    border-top: 15px solid #d3d3d3;
+    bottom: 50px
+}
+
+.scheduleTable {
+    width: 100%;
+    border: 1px solid #0354a7;
+    table-layout: fixed
+}
+
+    .scheduleTable .ITText {
+        font-size: 16px;
+        margin: 0
+    }
+
+.scheduleRow {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%
+}
+
+.scheduleHeaderRow {
+    padding: 10px 0;
+    margin-bottom: 5px;
+    background-color: #0354a7;
+    color: #fff;
+    font-weight: 700
+}
+
+    .scheduleHeaderRow > .scheduleColumn {
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis
+    }
+
+.scheduleTable .ITComponent {
+    margin: 0 4px
+}
+
+.scheduleTable .ITComponentLabelContainer {
+    display: none
+}
+
+.scheduleColumn {
+    padding: 0 5px;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    text-align: center
+}
+
+.scheduleButtonsColumn > .ITComponentRoot {
+    display: inline-block;
+    padding-bottom: 10px
+}
+
+.scheduleRowButton {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    margin: 5px 0
+}
+
+.scheduleTable.columns5 .scheduleOptColumn {
+    width: calc(100% - 340px)
+}
+
+.scheduleTable.columns6 .scheduleOptColumn {
+    width: calc(50% - 175px)
+}
+
+.scheduleTable.columns7 .scheduleOptColumn {
+    width: calc(33.33333% - 120px)
+}
+
+.scheduleTable.columns8 .scheduleOptColumn {
+    width: calc(25% - 92.5px)
+}
+
+.scheduleAlertColumn {
+    width: 15px
+}
+
+.scheduleFromColumn {
+    width: 75px
+}
+
+.scheduleButtonsColumn, .scheduleDurationColumn {
+    width: 100px
+}
+
+.scheduleValidation {
+    position: relative
+}
+
+    .scheduleValidation .scheduleValidationText {
+        visibility: hidden
+    }
+
+    .scheduleValidation:active .scheduleValidationText, .scheduleValidation:hover .scheduleValidationText {
+        visibility: visible
+    }
+
+.scheduleValidationText {
+    position: absolute;
+    background-color: #fff;
+    opacity: 1;
+    z-index: 99;
+    border: 2px solid #0354a7;
+    border-radius: 5px;
+    padding: 4px
+}
+
+.dataGrid {
+    padding: 20px 0;
+    width: 100%
+}
+
+.dataGrid__table {
+    position: relative;
+    border: 1px solid #0354a7;
+    text-align: center
+}
+
+.dataGrid__row {
+    display: block;
+    background-color: #fff
+}
+
+    .dataGrid__row:nth-child(2n) {
+        background-color: #f2f2f2
+    }
+
+.dataGrid__headerRow {
+    padding: 10px 0;
+    margin-bottom: 5px;
+    background-color: #0354a7;
+    color: #fff;
+    font-weight: 700
+}
+
+    .dataGrid__headerRow > div {
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis
+    }
+
+.dataGrid__table .ITComponent {
+    margin: 0 4px
+}
+
+.dataGrid__table .ITComponentRoot .errorText {
+    display: none
+}
+
+.dataGrid__table .ITTextField {
+    padding: 5px
+}
+
+.dataGrid__table .ITComponentLabelContainer {
+    display: none
+}
+
+.dataGrid__table .ITCheckBox, .dataGrid__table .ITRadioContainer {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.dataGrid__table .ITCheckBoxWrapper, .dataGrid__table .ITRadioWrapper {
+    width: 25px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.dataGrid__row > div {
+    padding: 0 5px;
+    display: inline-block;
+    vertical-align: middle
+}
+
+.dataGrid__table--columns1 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(100% - 10px)
+}
+
+.dataGrid__table--validated.dataGrid__table--columns1 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(100% - 45px)
+}
+
+.dataGrid__table--columns2 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(50% - 10px)
+}
+
+.dataGrid__table--validated.dataGrid__table--columns2 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(50% - 27.5px)
+}
+
+.dataGrid__table--columns3 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(33.33333% - 10px)
+}
+
+.dataGrid__table--validated.dataGrid__table--columns3 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(33.33333% - 21.66667px)
+}
+
+.dataGrid__table--columns4 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(25% - 10px)
+}
+
+.dataGrid__table--validated.dataGrid__table--columns4 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(25% - 18.75px)
+}
+
+.dataGrid__table--columns5 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(20% - 10px)
+}
+
+.dataGrid__table--validated.dataGrid__table--columns5 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(20% - 17px)
+}
+
+.dataGrid__table--columns6 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(16.66667% - 10px)
+}
+
+.dataGrid__table--validated.dataGrid__table--columns6 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(16.66667% - 15.83333px)
+}
+
+.dataGrid__table--columns7 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(14.28571% - 10px)
+}
+
+.dataGrid__table--validated.dataGrid__table--columns7 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(14.28571% - 15px)
+}
+
+.dataGrid__table--columns8 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(12.5% - 10px)
+}
+
+.dataGrid__table--validated.dataGrid__table--columns8 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(12.5% - 14.375px)
+}
+
+.dataGrid__table--columns9 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(11.11111% - 10px)
+}
+
+.dataGrid__table--validated.dataGrid__table--columns9 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(11.11111% - 13.88889px)
+}
+
+.dataGrid__table--columns10 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(10% - 10px)
+}
+
+.dataGrid__table--validated.dataGrid__table--columns10 .dataGrid__row > div:not(.dataGrid__validatorCell) {
+    width: calc(10% - 13.5px)
+}
+
+.dataGrid__validatorCell {
+    position: relative;
+    width: 25px
+}
+
+    .dataGrid__validatorCell .dataGrid__errorMessage {
+        visibility: hidden
+    }
+
+    .dataGrid__validatorCell:active .dataGrid__errorMessage, .dataGrid__validatorCell:hover .dataGrid__errorMessage {
+        visibility: visible
+    }
+
+.dataGrid__errorMessage {
+    position: absolute;
+    background-color: #fff;
+    opacity: 1;
+    z-index: 99;
+    border: 2px solid #0354a7;
+    border-radius: 5px;
+    padding: 4px
+}
+
+.centerAlign {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    text-align: center
+}
+
+.centerAlign, .centerMainRow {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.rightAlign {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    text-align: right
+}
+
+.leftAlign, .rightAlign {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.leftAlign {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    text-align: left
+}
+
+.baselineAlign, .row {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.indent1 {
+    margin-left: 10%
+}
+
+.indent2 {
+    margin-left: 20%
+}
+
+.indent3 {
+    margin-left: 30%
+}
+
+.indent4 {
+    margin-left: 40%
+}
+
+.indent5 {
+    margin-left: 50%
+}
+
+.indent6 {
+    margin-left: 60%
+}
+
+.indent7 {
+    margin-left: 70%
+}
+
+.indent8 {
+    margin-left: 80%
+}
+
+.indent9 {
+    margin-left: 90%
+}
+
+.indent10 {
+    margin-left: 100%
+}
+
+#divPercent {
+    position: absolute;
+    margin-top: -22px;
+    margin-left: 42px;
+    z-index: 10;
+    vertical-align: top
+}
+
+.small {
+    font-size: 12px
+}
+
+.medium {
+    font-size: 18px
+}
+
+.large {
+    font-size: 24px
+}
+
+.xlarge {
+    font-size: 36px
+}
+
+.xxlarge {
+    font-size: 48px
+}
+
+.errorText {
+    position: relative;
+    bottom: 2px;
+    font-size: 12px;
+    line-height: 12px;
+    color: #f44336;
+    -webkit-transition: all .45s cubic-bezier(.23,1,.32,1) 0ms;
+    -o-transition: all .45s cubic-bezier(.23,1,.32,1) 0ms;
+    transition: all .45s cubic-bezier(.23,1,.32,1) 0ms;
+    left: 22px;
+    min-height: 10px;
+    width: 200px;
+    font-weight: 700
+}
+
+.OfficeUseOnly {
+    color: green
+}
+
+.warningText {
+    color: #ff9800
+}
+
+.errorText-Checkbox {
+    top: -12px
+}
+
+.errorText-ITCheckBox, .errorText-ITRadioButton {
+    top: 34px
+}
+
+.errorText-DatePicker {
+    top: -.75rem;
+    left: 1.5rem
+}
+
+.errorText-DropDown {
+    left: 12px;
+    top: -15px
+}
+
+.errorText-ITSelect {
+    left: 7px;
+    top: 4px
+}
+
+.errorText-RadioButton {
+    top: 30px;
+    left: -63px
+}
+
+.errorText-RadioButtonCenter {
+    top: 40px;
+    left: -55px
+}
+
+.errorText-TextField {
+    left: 12px;
+    top: -15px
+}
+
+.errorText-ITTextField {
+    left: 7px;
+    top: 4px
+}
+
+.errorText-RadioButtonComplex, .errorText-RadioButtonComplexOptionalIllustration {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    bottom: 20px
+}
+
+.errorText-Group {
+    width: 300px;
+    margin: 0 auto
+}
+
+.ITValidationImage {
+    display: inline-block;
+    content: "";
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1AAAAiklEQVQ4T6WNAQ4CIRDE+P+nce7mVoYCRmPTiGzZXOtbWqM7lil24EzcP7w7pPqHLBMk6bEPNpkgSY/vn6XJBMn+vYzR2wSp5H2YIJW8DxOkkvdhglTyPkyQSt5/8v7CPPpW7R2XEyT7LF/npg2QpMc+2GSCJD32cbHLD4c0PxJ4B2eWZYMdudL7C8dGpXdPqQW4AAAAAElFTkSuQmCC");
+    background-size: contain;
+    width: 10px;
+    height: 10px;
+    margin-right: 2px
+}
+
+.ErrorTextNoError, .HasErrorOptional, .HasErrorOptionalApplication, .HasErrorOptionaleDelivery, .HasErrorOptionalFeeInquiry, .HasErrorOptionalGuidedAccountOpening, .HasErrorOptionalGuidedIllustration, .HasErrorOptionalIllustration, .HasErrorOptionalNeedsDetermination, .HasErrorOptionalnull, .HasErrorOptionalPostIssue, .HasErrorOptionalSubPay {
+    display: none
+}
+
+.ITNavBar {
+    position: relative;
+    display: block;
+    margin-bottom: 5px
+}
+
+    .ITNavBar #ITNavBar__Right {
+        float: right
+    }
+
+        .ITNavBar #ITNavBar__Right > #imgNext, .ITNavBar #ITNavBar__Right > #reqChangeBtn {
+            position: relative
+        }
+
+    .ITNavBar #ITNavBar__Left, .navAction {
+        display: inline-block
+    }
+
+.navAction {
+    margin-left: 20px
+}
+
+.navAction_NoLeft, .navActionBtn {
+    display: inline-block
+}
+
+.navActionBtn {
+    background-color: rgba(0,0,0,0);
+    font-size: 20px;
+    padding: 5px 10px;
+    border: 0;
+    color: #fff;
+    height: 40px
+}
+
+.navActionIconAdditional {
+    color: #fff;
+    margin-right: 5px
+}
+
+.navActionBtn_Continue {
+    display: inline-block;
+    background-color: #fff;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #000;
+    height: 40px;
+    border: rgba(0,0,0,0)
+}
+
+.navActionIconAdditional_Continue {
+    color: #000;
+    margin-right: 5px
+}
+
+.navAlertIcon {
+    color: #f13e1d;
+    margin-right: 5px
+}
+
+.navAlertIcon_NoAlert {
+    color: #20c11b;
+    margin-right: 5px;
+    border-radius: 2px
+}
+
+.navActionBtnDisabled {
+    display: inline-block;
+    background-color: rgba(0,0,0,0);
+    font-size: 20px;
+    padding: 5px 10px;
+    border: 0;
+    color: grey;
+    height: 40px;
+    cursor: auto
+}
+
+.navActionIconDisabledAdditional {
+    margin-right: 5px
+}
+
+.navDisplay_WithPercentBar_SpanText {
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    vertical-align: super;
+    text-shadow: 1px 1px 2px #000
+}
+
+.navDisplay_SpanText {
+    margin-left: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    vertical-align: baseline;
+    text-shadow: 1px 1px 2px #000
+}
+
+.navDisplay_LeftIcon_Outer, .navDisplay_LeftIcon_Outer_Current, .navDisplay_LeftIcon_Outer_Declined, .navDisplay_LeftIcon_Outer_Past {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    font-weight: 700;
+    border-radius: 15px;
+    text-align: center;
+    margin-left: 5px;
+    margin-top: 4px;
+    background-color: grey
+}
+
+.navDisplay_LeftIcon_Outer_Current {
+    background-color: #fff
+}
+
+.navDisplay_LeftIcon_Inner, .navDisplay_LeftIcon_Inner_Current, .navDisplay_LeftIcon_Inner_Declined, .navDisplay_LeftIcon_Inner_Past {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    margin: 2px;
+    background-color: #fff
+}
+
+.navDisplay_LeftIcon_Inner_Current {
+    background-color: #333
+}
+
+.navDisplay_LeftIcon_TextSpan, .navDisplay_LeftIcon_TextSpan_Current, .navDisplay_LeftIcon_TextSpan_Declined, .navDisplay_LeftIcon_TextSpan_Past {
+    color: #000;
+    font-size: 20px
+}
+
+.navDisplay_LeftIcon_TextSpan_Current {
+    color: #fff
+}
+
+.navPointer, .navPointer_Left, .navPointer_Left_Current, .navPointer_Left_Declined, .navPointer_Left_Past, .navPointer_Right {
+    height: 38px;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    border-bottom: 1px solid #fff;
+    border-color: #fff currentcolor;
+    border-top: 1px solid #fff;
+    background-color: #fff
+}
+
+.navPointer_WidthOuter4 {
+    width: 170px
+}
+
+.navPointer_WidthInner4 {
+    width: 168px
+}
+
+.navPointer_WidthOuter3 {
+    width: 226px
+}
+
+.navPointer_WidthInner3 {
+    width: 224px
+}
+
+.navPointer_WidthOuter2 {
+    width: 340px
+}
+
+.navPointer_WidthInner2 {
+    width: 338px
+}
+
+.navPointer {
+    margin-left: 20px
+}
+
+.navPointer_Left, .navPointer_Left_Current, .navPointer_Left_Declined, .navPointer_Left_Past {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    border-left: 1px solid;
+    border-color: #fff
+}
+
+.navPointer_Right, .navPointer_Right_Current, .navPointer_Right_Declined, .navPointer_Right_Past {
+    margin-left: 20px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    border-right: 1px solid;
+    border-color: #fff
+}
+
+.navPointer_Left_Inner, .navPointer_Left_Inner_Current, .navPointer_Left_Inner_Declined, .navPointer_Left_Inner_Past {
+    height: 38px;
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    background-image: -webkit-gradient(linear,left top,right top,from(#fff),to(#789));
+    background-image: -o-linear-gradient(left,#fff,#789);
+    background-image: linear-gradient(90deg,#fff,#789);
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px
+}
+
+.navPointer_Left_Inner_Current {
+    background-image: -webkit-gradient(linear,left top,right top,from(#fff),to(orange));
+    background-image: -o-linear-gradient(left,#fff,orange);
+    background-image: linear-gradient(90deg,#fff,orange)
+}
+
+.navPointer_Inner, .navPointer_Inner_Current {
+    height: 38px;
+    position: relative;
+    margin-left: 2px;
+    z-index: 2;
+    display: inline-block;
+    background-image: -webkit-gradient(linear,left top,right top,from(#fff),to(#789));
+    background-image: -o-linear-gradient(left,#fff,#789);
+    background-image: linear-gradient(90deg,#fff,#789);
+    border-bottom-left-radius: 1px;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px
+}
+
+.navPointer_Inner_Current {
+    background-image: -webkit-gradient(linear,left top,right top,from(#fff),to(orange));
+    background-image: -o-linear-gradient(left,#fff,orange);
+    background-image: linear-gradient(90deg,#fff,orange)
+}
+
+.navPointer_Right_Inner, .navPointer_Right_Inner_Current {
+    height: 38px;
+    position: relative;
+    margin-left: 2px;
+    z-index: 2;
+    display: inline-block;
+    background-image: -webkit-gradient(linear,left top,right top,from(#fff),to(#789));
+    background-image: -o-linear-gradient(left,#fff,#789);
+    background-image: linear-gradient(90deg,#fff,#789);
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px
+}
+
+.navPointer_Right_Inner_Current {
+    background-image: -webkit-gradient(linear,left top,right top,from(#fff),to(orange));
+    background-image: -o-linear-gradient(left,#fff,orange);
+    background-image: linear-gradient(90deg,#fff,orange)
+}
+
+.navPointer:after, .navPointer_Right:after {
+    content: "";
+    position: absolute;
+    left: -15px;
+    bottom: -1px;
+    width: 5px;
+    height: 0;
+    border-left: 15px solid rgba(0,0,0,0);
+    border-top: 20px solid #fff;
+    border-bottom: 20px solid #fff
+}
+
+.navPointer:before, .navPointer_Left:before, .navPointer_Left_Current:before, .navPointer_Left_Declined:before, .navPointer_Left_Past:before {
+    content: "";
+    position: absolute;
+    right: -16px;
+    bottom: -1px;
+    width: 0;
+    height: 0;
+    border-left: 16px solid #fff;
+    border-top: 20px solid rgba(0,0,0,0);
+    border-bottom: 20px solid rgba(0,0,0,0)
+}
+
+.navPointer_Inner:before, .navPointer_Left_Inner:before, .navPointer_Left_Inner_Declined:before, .navPointer_Left_Inner_Past:before {
+    content: "";
+    position: absolute;
+    right: -14px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 15px solid #789;
+    border-top: 19px solid rgba(0,0,0,0);
+    border-bottom: 19px solid rgba(0,0,0,0);
+    z-index: 2
+}
+
+.navPointer_Left_Inner_Current:before {
+    content: "";
+    position: absolute;
+    right: -14px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 15px solid orange;
+    border-top: 19px solid rgba(0,0,0,0);
+    border-bottom: 19px solid rgba(0,0,0,0);
+    z-index: 2
+}
+
+.navPointer_Inner:after, .navPointer_Right_Inner:after {
+    content: "";
+    position: absolute;
+    left: -15px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 15px solid rgba(0,0,0,0);
+    border-top: 19px solid #fff;
+    border-bottom: 19px solid #fff
+}
+
+.menuLocation {
+    content: "Top"
+}
+
+.activeLine {
+    background: #00bef1;
+    width: 60px
+}
+
+.activeLine, .line {
+    position: absolute;
+    height: 2px;
+    margin-top: 18px;
+    margin-left: -25px
+}
+
+.line {
+    width: 55px;
+    background: #cdcdcd
+}
+
+.TopMenuStyle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: #eaebef
+}
+
+.mainTitle {
+    text-align: center;
+    font-size: x-large;
+    font-weight: 600
+}
+
+.mainBody {
+    width: 100%;
+    padding-bottom: 40px
+}
+
+.mainContent {
+    width: 1000px;
+    float: left;
+    background-color: #fff
+}
+
+.mainFooter {
+    min-height: 63px;
+    width: 100%;
+    z-index: 10;
+    padding-top: 20px
+}
+
+.mainHeader {
+    height: 63px;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    z-index: 3
+}
+
+.mainRow {
+    width: inherit
+}
+
+.PageHeaderTextStyle {
+    font-weight: 500;
+    font-size: xx-large;
+    color: #474749;
+    padding: 10px
+}
+
+.signConfirmConsentText {
+    content: "I Consent"
+}
+
+.signaturePadHeader {
+    margin: 2.5rem auto 0
+}
+
+.signCaptureTitle {
+    content: "Sign Your Application."
+}
+
+.signCaptureSubTitle {
+    content: ""
+}
+
+.signCaptureConsentText {
+    content: "I Consent"
+}
+
+.signaturePadHeader_ClickWrap {
+    content: "The name printed below will be your E-Signature."
+}
+
+.signaturePadHeader_Draw {
+    content: "Use your mouse or touch screen to sign below."
+}
+
+.signaturePad {
+    -ms-touch-action: none;
+    touch-action: none;
+    border: 1px solid #a9a9a9;
+    margin: 1rem 1rem 0
+}
+
+.signaturePadCanvas {
+    width: 100%;
+    height: 15rem
+}
+
+.submitMessage2:before {
+    content: "You have completed the application. Click below to submit."
+}
+
+.submitCompleteMessage1:before {
+    font-weight: 800;
+    content: "Congratulations!"
+}
+
+.submitCompleteMessage2:before {
+    content: "The application has been submitted to the carrier."
+}
+
+.zoomArea {
+    background-color: #fff;
+    overflow: scroll
+}
+
+.pdfImageReviewZoomTip {
+    font-size: .9em
+}
+
+.pdfImageReviewZoom {
+    overflow: hidden;
+    height: auto;
+    width: auto;
+    margin: auto;
+    display: block
+}
+
+.loader {
+    border-radius: 50%;
+    border: 16px solid #f3f3f3;
+    border-top-color: #3498db;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(1turn)
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+
+.hidden {
+    display: none
+}
+
+.mainMenu {
+    float: none !important;
+    background-color: #fff;
+    margin: 0 !important;
+    border-radius: 0 !important
+}
+
+#mainMenuWrapper {
+    padding-top: 15px
+}
+
+    #mainMenuWrapper ul {
+        list-style: none;
+        position: relative;
+        float: left;
+        margin: 0;
+        padding: 0
+    }
+
+        #mainMenuWrapper ul a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            line-height: 32px;
+            padding: 0 15px
+        }
+
+        #mainMenuWrapper ul li {
+            position: relative;
+            float: left;
+            margin: 0;
+            padding: 0
+        }
+
+            #mainMenuWrapper ul li:hover, #mainMenuWrapper ul ul {
+                background: rgba(0,0,0,.5)
+            }
+
+        #mainMenuWrapper ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            padding: 0;
+            z-index: 100
+        }
+
+            #mainMenuWrapper ul ul li {
+                float: none;
+                width: 200px
+            }
+
+            #mainMenuWrapper ul ul a {
+                line-height: 120%;
+                padding: 10px 15px
+            }
+
+            #mainMenuWrapper ul ul ul {
+                top: 0;
+                left: 100%
+            }
+
+        #mainMenuWrapper ul li:hover > ul {
+            display: block
+        }
+
+    #mainMenuWrapper i.fa {
+        padding-left: 5px
+    }
+
+.mobileMenuContainer {
+    display: none
+}
+
+.headerHtml {
+    content: "&lt;div class=&quot;centerMainRow noMargin headerWrapper&quot;&gt; &lt;div class=&quot;mainHeader noMargin row&quot; &gt; &lt;div class=&quot;headerImageWrapper col-md-9&quot;&gt; &lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; target=&quot;_blank&quot;&gt; &lt;img class=&quot;logo&quot; src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGMAAAAfCAYAAADz23MvAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjUxMjVFNDNCQUY3MTExRTdCRDY1ODgwMThEODFFMzBDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjUxMjVFNDNDQUY3MTExRTdCRDY1ODgwMThEODFFMzBDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTEyNUU0MzlBRjcxMTFFN0JENjU4ODAxOEQ4MUUzMEMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTEyNUU0M0FBRjcxMTFFN0JENjU4ODAxOEQ4MUUzMEMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5JucvOAAAGTklEQVR42uxaa0xbVRw/9/bJY7jykKFhQhl+mG66dDNxKpGkZGYmThNhfjDxEdJqTEyWGEsy/aDMpHVqgjMmhRm+6QLJ1A8mUwjIcEoyurGNxG2MfnBTZGILBVpoe+/1XDiH/jn03rZQHon3nxxu77nnnHvO//d/XzhJkhCk8l9ndlXmcK5gTHoiLKICPYdCHELnb4TFL6TagmGk0boRB8F4/lq4rX9KeD0Qk3h2oJlHQrmJPz0SEd/CoAga67JPevrjxeHIue8n4oeUBs6JSIeBcO7K4cvw7RGNddmnBQ1oGp1/59uJ2BIQ2CyhukJ9/M37jcEXSvSSGejJrYj4XNXAzBsa69YJjIvTwvsisVbbdBw6XmFq++mR3NwvHzQXnn04t/jr3bnnyozc0qSYiD7kekOlGvuyD8buy9NCAe2wF+p6mitNDpnnpCuAtePwsXLT73TMn1GxBF8OauzLCkm0yWDsCQkJJz42LzUnm3CggG/JIeZK1qJ7jdzeNF5kxc2FW5cMKnhxgPTJz2waHgkHngc7rswIcwoOPMBzHOElnsRzxhRry4x2KzyzyEpIWhC3Qg2KRTDuWHAyMRFbZHKFmT+GL0fZgUPTwuOzQINmBGlEZV0vbg5w78OtmzCeaoydXDs1GBJg/FJr0Qudd2M6uWN0TqzfcWF6YDwqteHbCM0puoLCK3TSDiMX/zsqDSisaQdAyMx3qjDcDgDSHDhu4ZdLDWeMxB9ERcRhID578h5d78kqc5Hcd+RauKsnGF8yJfu26a5ikK4rrAk1oimF5HcTrdEIZOD57WOxK7+FhNIKM3e7Oof/EfsI7ye3ow9gC+a9NC3spBOKDZz0UqnhsVPV5kGFNQPEJ9CURaPU0VQiA8c5gxzG1uC2/dF83YECPXoGm6G+kbBYAitXJqw9zvuMJ09YTYMqi1s0/q4h6WupNp/gOXQH/xwemhHaz08KR28yQJRjJJorzZ/ejIifP3159imVNf0KJmtVsXeWxtNnLiAwXhBu2xX8mTxmFMwfJH3WNPfFrgFDektSMHD+UCwqHAObJdRYZrh7dk9Obd9k/JuLIeHGvIgOqWwA+gj3FswjLIQhDhUtdoMxkPE20jeaQtDoO9g1aEjvJsDa2GgKLeYPCXooj8dNN7c3nx/CZqvl2SL9mcNXw94LU0JjKC7xO826iMpGPOCgFvLSVtLv3wJgdKQQEBiW+8je/UykSDUrmCRAoUDYQETZCUJ7ub+eXLuW6y924Kf/irajnilJbjk/T4nv3orUyf209QXjBwv7QxIdU3Np5jh8nqTZcAtIK6kDt/oUcxEzB2VhPKUucg0o7MMFxnrTOJt8tTDP3WCNQdysCuu4WOas+G7BYS35+I/osoQO6w2Xr8soMJIlan8Sqaknkjm6Bn+yFqJ5TZ2CRLuA33OqnM0D5tQnKf9QjWhQsQYedg+8mmNfI/nJZvYTVQ8ym/YSNd3o6MujkNtAH+JJsUYnAzAUNjjGn8Zessr0dLRElrIqcvUzB+nYYDC6FfptCsxOFTHaFIDpTJM3GwoGAmrbSkBpUiifoA0SjmRkZRJXKUVLNs+eBujqecYmkIdR0fotEGVtegiu38R3twJnZ99iuUjd/w0M/xYDoBsIhQ+trprsAxpmQxkWQflNPLxVBRi/gh1eT/Piz4LZ9GWw7xV7VwJDhDdmPu0aUSbkUHF2vgwY487SfmD041plyJ3pGq50wFj40MT1hhYyvVlRykSDUtV96CZcSvE2A45DIdqykLA4W/6mG7zXSs5hXcUaPqYsYlEpuywTtIXvGV+Nxdobr0deXaxTIVRi4P4xcFwcke8R+I9hPCYWRYm+1GzXvde3L+8jBbUbVDggfW5nNugkzpylUYYZPiB5NnAQat/tiYLBCpKWFxRSFvjYupIPmDErKPgly9RtDAg0pPeB2hQtHi7b+woHLldvx6NSCVqdZbKQxS3AbtpV8g61T7INRPKt4JC2JGbBSQ6XDQ2hpZIOIDSODIMQH1jDypRZWC1qIM8SYEQzM0MoLiGDippWgaoky0AqYd0K2pCsvuUA69F+H6iErkdyWgcEyUaYagVnDDKammzvVSjxr0h0DT+wFp3gfQkz1T8pfPDDv/G3+TRqgbLmYB/y2qlq83dIo6zSfwIMAAGzSdvYPWsMAAAAAElFTkSuQmCC&quot;&gt; &lt;/a&gt; &lt;/div&gt; &lt;nav id=&quot;mainMenuWrapper&quot; class=&quot;col-md-3&quot;&gt; &lt;ul&gt; &lt;li&gt; &lt;a href=&quot;#&quot; tabindex=&quot;-1&quot;&gt;Menu Item&lt;i class=&quot;fa fa-caret-down&quot; style=&quot;position: relative;&quot;&gt;&lt;/i&gt; &lt;/a&gt; &lt;ul&gt; &lt;li&gt; &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;Contact&lt;/a&gt; &lt;/li&gt; &lt;li&gt; &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;Support&lt;/a&gt; &lt;/li&gt; &lt;li&gt; &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;FAQ&lt;/a&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;li&gt; &lt;a href=&quot;#&quot; tabindex=&quot;-1&quot;&gt;Menu Item&lt;i class=&quot;fa fa-caret-down&quot; style=&quot;position: relative;&quot;&gt;&lt;/i&gt; &lt;/a&gt; &lt;ul&gt; &lt;li&gt; &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;Contact&lt;/a&gt; &lt;/li&gt; &lt;li&gt; &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;Support&lt;/a&gt; &lt;/li&gt; &lt;li&gt; &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;FAQ&lt;/a&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;li&gt; &lt;a href=&quot;#&quot; tabindex=&quot;-1&quot;&gt;Menu Item&lt;i class=&quot;fa fa-caret-down&quot; style=&quot;position: relative;&quot;&gt;&lt;/i&gt; &lt;/a&gt; &lt;ul&gt; &lt;li&gt; &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;Contact&lt;/a&gt; &lt;/li&gt; &lt;li&gt; &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;Support&lt;/a&gt; &lt;/li&gt; &lt;li&gt; &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;FAQ&lt;/a&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/nav&gt; &lt;/div&gt; &lt;/div&gt;"
+}
+
+.footerHtml {
+    content: "&lt;div style=&quot;margin: 0 auto;&quot;&gt; &lt;div class=&quot;row&quot; style=&quot;max-width: 1000px; margin: 0 auto;&quot;&gt; &lt;table class=&quot;col-md-4 col-sm-3 col-xs-12 col-md-offset-1&quot; style=&quot;font-family: Arial; display: inline-block;&quot;&gt; &lt;tr style=&quot;color: white&quot;&gt; &lt;td style=&quot;width: 55%&quot;&gt; &lt;span style=&quot;font-size: 17px&quot;&gt;Resources:&lt;/span&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr style=&quot;color: white&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a tabindex=&quot;-1&quot; style=&quot;color: white;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Life Insurance 101&lt;/a&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr style=&quot;color: white&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a tabindex=&quot;-1&quot; style=&quot;color: white;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Why Buy Life Insurance&lt;/a&gt; &lt;/td&gt; &lt;tr style=&quot;color: white&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a tabindex=&quot;-1&quot; style=&quot;color: white;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Term vs Whole Life&lt;/a&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr style=&quot;color: white&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a tabindex=&quot;-1&quot; style=&quot;color: white;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Term Life&lt;/a&gt; &lt;tr style=&quot;color: white&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a tabindex=&quot;-1&quot; style=&quot;color: white;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Whole Life&lt;/a&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;table class=&quot;col-md-2 col-sm-2 col-xs-9 col-md-offset-1&quot; style=&quot;font-family: Arial; display: inline-block;&quot;&gt; &lt;tr style=&quot;color: white&quot;&gt; &lt;td&gt; &lt;span style=&quot;font-size: 17px&quot;&gt;About:&lt;/span&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr style=&quot;color: white&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a tabindex=&quot;-1&quot; style=&quot;color: white;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;About Us&lt;/a&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr style=&quot;color: white&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a tabindex=&quot;-1&quot; style=&quot;color: white;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Contact Us&lt;/a&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr style=&quot;color: white&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a tabindex=&quot;-1&quot; style=&quot;color: white;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;FAQ&lt;/a&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;div class=&quot;col-md-3 col-sm-1 col-xs-3 end-md end-sm&quot; style=&quot;text-align: right;&quot;&gt; &lt;a tabindex=&quot;-1&quot; target=&quot;_blank&quot; style=&quot;text-decoration: none; color: #b9d6f0;&quot;&gt; &lt;svg viewbox=&quot;0 0 60 55&quot; width=&quot;30&quot; height=&quot;35&quot;&gt; &lt;path xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;fill:white;&quot; d=&quot;M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029 c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77 L40.43,21.739z&quot;/&gt; &lt;/svg&gt; &lt;/a&gt; &lt;br/&gt; &lt;a target=&quot;_blank&quot; tabindex=&quot;-1&quot; style=&quot;text-decoration: none; color: #00BEF1&quot;&gt; &lt;svg viewbox=&quot;0 0 60 55&quot; width=&quot;25&quot; height=&quot;35&quot;&gt; &lt;path xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;fill:white;&quot; d=&quot;M52.837,15.065c-1.811,0.805-3.76,1.348-5.805,1.591c2.088-1.25,3.689-3.23,4.444-5.592c-1.953,1.159-4.115,2-6.418,2.454 c-1.843-1.964-4.47-3.192-7.377-3.192c-5.581,0-10.106,4.525-10.106,10.107c0,0.791,0.089,1.562,0.262,2.303 c-8.4-0.422-15.848-4.445-20.833-10.56c-0.87,1.492-1.368,3.228-1.368,5.082c0,3.506,1.784,6.6,4.496,8.412 c-1.656-0.053-3.215-0.508-4.578-1.265c-0.001,0.042-0.001,0.085-0.001,0.128c0,4.896,3.484,8.98,8.108,9.91 c-0.848,0.23-1.741,0.354-2.663,0.354c-0.652,0-1.285-0.063-1.902-0.182c1.287,4.015,5.019,6.938,9.441,7.019 c-3.459,2.711-7.816,4.327-12.552,4.327c-0.815,0-1.62-0.048-2.411-0.142c4.474,2.869,9.786,4.541,15.493,4.541 c18.591,0,28.756-15.4,28.756-28.756c0-0.438-0.009-0.875-0.028-1.309C49.769,18.873,51.483,17.092,52.837,15.065z&quot;/&gt; &lt;/svg&gt; &lt;/a&gt; &lt;br/&gt; &lt;a tabindex=&quot;-1&quot; target=&quot;_blank&quot; style=&quot;text-decoration: none; color: #00BEF1;&quot;&gt; &lt;svg viewbox=&quot;0 0 30 55&quot; width=&quot;55&quot; height=&quot;55&quot;&gt; &lt;g xmlns=&quot;http://www.w3.org/2000/svg&quot; id=&quot;Icons&quot;&gt; &lt;g&gt; &lt;path style=&quot;fill:white;&quot; d=&quot;M34.95037,32.31248c-0.0083-2.14649-0.01611-4.29199-0.03125-6.43848 c-0.00684-0.89355-0.12988-1.76855-0.36572-2.59863c-0.42969-1.51074-1.23242-2.50391-2.45557-3.03418 c-1.34912-0.58496-2.77149-0.7002-4.22363-0.34277c-0.9248,0.22656-1.72021,0.6748-2.375,1.33789 c0.00049-0.17285,0.00195-0.34473,0.00635-0.51758c0.00195-0.0791,0.0083-0.32227-0.1626-0.49707 c-0.17236-0.1748-0.41699-0.17969-0.49316-0.17285c-1.22803,0.00684-2.45361,0.00684-3.67969,0.00098 c-0.13379-0.0127-0.34131,0.01367-0.49316,0.16504c-0.15137,0.15039-0.16846,0.34863-0.16846,0.48535 c0.00635,4.52441,0.00586,9.04883,0,13.57422c0,0.1377,0.01758,0.33789,0.16895,0.48828 c0.15039,0.15137,0.3374,0.16699,0.48828,0.16602c1.2832-0.00781,2.56592-0.00781,3.84912,0c0.00439,0,0.0083,0,0.0127,0 c0.13623,0,0.32764-0.01855,0.47266-0.16309c0.1499-0.14941,0.1665-0.35156,0.16602-0.49023 c-0.0083-2.14844-0.01074-4.29688-0.00049-6.44531c0.00293-0.52246,0.03516-1.04492,0.0957-1.55176 c0.06885-0.57812,0.25439-1.02344,0.56689-1.3623c0.37793-0.41016,0.88184-0.56641,1.65723-0.56445 c0.86768,0.0166,1.36475,0.39062,1.61035,1.21484c0.17285,0.58008,0.1875,1.19043,0.18799,1.81738l0.00049,6.86035 c0,0.51465,0.16406,0.67969,0.67432,0.67969l3.75879,0.00098c0.25537,0,0.43994-0.00098,0.59082-0.15234 c0.15088-0.15234,0.15039-0.34277,0.14941-0.58398L34.95037,32.31248z&quot; style=&quot;fill:#303030;&quot;/&gt; &lt;path style=&quot;fill:white;&quot; d=&quot;M18.53337,27.50193l-0.00049-1.60742c-0.00098-1.72656-0.00146-3.45215,0.00586-5.17871 c0.00049-0.15527-0.01807-0.35352-0.16846-0.50293c-0.15088-0.15137-0.37354-0.17773-0.49414-0.16504 c-1.27588,0.00977-2.55029,0.00879-3.82422,0.00098c-0.15625,0.00488-0.34863,0.01465-0.50146,0.16699 c-0.15381,0.15234-0.1709,0.35742-0.1709,0.49805c0.00684,4.51562,0.00684,9.03223,0,13.54883 c0,0.1416,0.01807,0.34766,0.17139,0.5c0.15332,0.15137,0.36377,0.15332,0.49854,0.16602 c1.27539-0.00977,2.55029-0.00977,3.82471,0c0.00488,0,0.00928,0,0.01416,0c0.15039,0,0.33789-0.02051,0.48291-0.16504 c0.1499-0.14941,0.16846-0.3457,0.16797-0.50098c-0.00781-1.73242-0.00732-3.4668-0.00635-5.2002L18.53337,27.50193z&quot; style=&quot;fill:#303030;&quot;/&gt; &lt;path style=&quot;fill:white;&quot; d=&quot;M15.97527,13.07127c-0.00684,0-0.01318,0-0.01953,0 c-1.63086,0.00879-2.91064,1.29395-2.91357,2.9248c0,0.00098,0,0.00098,0,0.00098c0,0.77734,0.31934,1.53906,0.87646,2.08984 c0.54639,0.54102,1.26123,0.83789,2.01562,0.83789c0.00977,0,0.02002-0.00098,0.02979-0.00098 c1.67529-0.0166,2.93604-1.27637,2.93262-2.93066c-0.00146-0.80273-0.30273-1.54395-0.84863-2.08594 C17.50359,13.36717,16.76824,13.07127,15.97527,13.07127z&quot; style=&quot;fill:#303030;&quot;/&gt; &lt;/g&gt; &lt;/g&gt; &lt;/svg&gt; &lt;/a&gt; &lt;/div&gt; &lt;/div&gt;"
+}
+
+.navErrorsText {
+    content: "Errors exist on the page."
+}
+
+.initialLoadMsg {
+    content: "Please wait while we prepare everything..."
+}
+
+@media (max-width:1180px) {
+    .mainMenu {
+        display: none
+    }
+}
+
+@media (max-width:1045px) {
+    .mainBody {
+        margin-top: 0;
+        padding-bottom: 0 !important
+    }
+
+    .mainTitle {
+        text-align: left;
+        margin-left: 1rem
+    }
+
+    .mainContent, .mainRow {
+        width: 100%
+    }
+
+    .mainMenuItems {
+        display: none
+    }
+
+    .infoHeader {
+        padding: 15px
+    }
+
+    .mainHeader {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+
+    .MainITPanel {
+        margin: 1em !important
+    }
+}
+
+.ITTextFieldErrorOptionalApplication input {
+    border: 1px solid #bdbdbd;
+    background-color: #f8f8f8
+}
+
+    .ITTextFieldErrorOptionalApplication input:focus {
+        border: 1px solid #00bcd4
+    }
+
+.ITSelectErrorOptionalApplication select {
+    border: 1px solid #bdbdbd;
+    background-color: #f8f8f8
+}
+
+    .ITSelectErrorOptionalApplication select:focus {
+        border: 1px solid #00bcd4
+    }
+
+.ITDatePickerErrorOptionalApplication input {
+    border: 1px solid #bdbdbd;
+    background-color: #f8f8f8
+}
+
+    .ITDatePickerErrorOptionalApplication input:focus {
+        border: 1px solid #00bcd4
+    }
+
+.ITCheckBoxErrorOptionalApplication .ITCheckBoxButton {
+    border: 1px solid #bdbdbd;
+    background-color: #f8f8f8
+}
+
+    .ITCheckBoxErrorOptionalApplication .ITCheckBoxButton:focus {
+        border: 1px solid #00bcd4;
+        outline-color: #00bcd4
+    }
+
+.autocompleteClearIcon {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 28px;
+    right: 10px;
+    cursor: pointer
+}
+
+.autocompleteLogoImage {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 5px;
+    text-align: right
+}
+
+.autocompleteResultItem {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid grey
+}
+
+.autocompleteResults {
+    color: #000 !important
+}
+
+.autocompleteResultsContainer {
+    max-height: 250px;
+    z-index: 2;
+    background-color: #fff;
+    border: 1px solid #000;
+    margin-top: -28px
+}
+
+.autocompleteResultsPadding {
+    padding-left: 9px
+}
+
+.autofill-result-item {
+    cursor: pointer;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    border-bottom: 1px solid grey;
+    text-align: left
+}
+
+    .autofill-result-item:hover {
+        background-color: #d3d3d3
+    }
+
+.autocompleteResultBox {
+    background-color: #fff;
+    position: absolute;
+    margin-left: 16px;
+    z-index: 1
+}
+
+.autocompleteSpinnerContainer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: -28px;
+    background-color: hsla(0,0%,75.3%,.6)
+}
+
+.autocomplete-spinner {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    display: block;
+    margin: -25px auto auto -25px
+}
+
+.menuIcon {
+    font-size: 24px
+}

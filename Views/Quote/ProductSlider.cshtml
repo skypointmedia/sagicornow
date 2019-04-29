@@ -1,72 +1,72 @@
-﻿@model SagicorNow.ViewModels.EmbeddedViewModel
+﻿@using Newtonsoft.Json
+@model SagicorNow.Business.Models.ForesightTxLifeResponse[]
 
 @{
     ViewBag.Title = "Product Slider";
 }
 
 @section header{
-    <link type="text/css" rel="stylesheet" href="@Url.Content(Model.FirelightBaseUrl+"Resource/CSS/eApp")" />
-    <link href="~/Content/SAG.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content(ViewBag.FirelightBaseUrl + "Resource/CSS/eApp")"/>
+    <link href="~/Content/consumer-portal.css" rel="stylesheet"/>
+    <link href="~/Content/SAG.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
+    <style>
+        .ITCheckBox {
+            border: none;
+        }
+
+        .ITTooltipContainer {
+           display: block;
+        }
+
+        .InnerGroup2_10Yr .ITCheckBox {
+            margin-bottom: 20px;
+        }
+
+        .InnerGroup2_20Yr .ITCheckBox {
+            margin-bottom: 20px;
+        }
+
+        .InnerGroup2_15Yr .ITCheckBox {
+            margin-bottom: 20px;
+        }
+
+        .InnerGroup2_WL .ITCheckBox {
+            margin-bottom: 20px;
+        }
+    </style>
 }
 
 @section scripts{
-    @*<script type="text/javascript">
-            !function (window, document) {
-                window.FireLightAPI = {};
-                window.FireLightAPI.renderDestination = 'fireLightMainDiv';
-                window.FireLightAPI.applicationPath = 'https://firelight.insurancetechnologies.com/EGApp/';
-                //var scripts = ['https://firelight.insurancetechnologies.com/EGApp/app/build/vendor.ad5289c17bcc97316ae7.js', 'https://firelight.insurancetechnologies.com/EGApp/app/build/eApp.d7a8d8bbe9510b9dfdc6.js'];
-                var scripts = ['@Url.Content("~\\Scripts\\firelight\\vendor.js")', '@Url.Content("~\\Scripts\\firelight\\eapp.js")'];
-                var /*src,*/ script, pendingScripts = [], firstScript = document.scripts[0];
-
-                function readyStateChange() {
-                    var pendingScript;
-                    while (pendingScripts[0] && pendingScripts[0].readyState == 'loaded') {
-                        pendingScript = pendingScripts.shift();
-                        pendingScript.onreadystatechange = null;
-                        firstScript.parentNode.insertBefore(pendingScript, firstScript);
-                    }
-                    finalScriptLoaded();
-                }
-
-                function finalScriptLoaded() {
-                    var event, eventName = 'fireLightLoaded', element = document.getElementById(window.FireLightAPI.renderDestination);
-                    if (typeof window.CustomEvent === 'function') {
-                        event = new CustomEvent(eventName);
-                    }
-                    else {
-                        event = document.createEvent('CustomEvent');
-                        event.initCustomEvent(eventName, true, true, undefined);
-                    }
-                    element.dispatchEvent(event);
-                }
-
-                for (var i = 0; i < scripts.length; i++) {
-                    if ('async' in firstScript) {
-                        script = document.createElement('script');
-                        script.async = false;
-                        script.src = scripts[i];
-                        if (i == scripts.length - 1) {
-                            script.onload = finalScriptLoaded;
-                        }
-                        document.head.appendChild(script);
-                    }
-                    else {
-                        script = document.createElement('script');
-                        pendingScripts.push(script);
-                        script.onreadystatechange = readyStateChange;
-                        script.src = scripts[i];
-                    }
-                }
-            }(window, document);
-        </script>*@
-
-    @*<script src="~/Scripts/firelight/vendor.js"></script>
-    <script src="~/Scripts/firelight/eapp.js"></script>*@
+    <script src="~/Binding/Models/ProductSliderModel.js"></script>
+    <script src="~/Binding/ViewModels/ProductSliderViewModel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
+    <script>
+        $(function () {
+            
+        })
+    </script>
+}
+@section ko_apply{
+    var data = @Html.Raw(JsonConvert.SerializeObject(this.Model));
+    var qvm = @Html.Raw(JsonConvert.SerializeObject(this.ViewBag.QuoteViewModel));
+    var viewModel = new SagicorNow.ProductSliderViewModel(data,qvm);
+    ko.applyBindingsWithValidation(viewModel,$("#fireLightMainDiv")[0], { insertMessages: false, messagesOnModified: false, grouping: { deep: true }})
+    $(".sliderThumb").ionRangeSlider({
+        skin: "big",
+        min: 0,
+        max: 1000000,
+        from: 250000,
+        step: 50000,
+        grid: true,
+        onFinish: function (data) {
+        viewModel.getRevisedIllustrationAsync(data.from);
+        }
+    });
 }
 <div id="fireLightMainDiv">
     <div class="ITWizardRoot">
-        <div>
+        <div data-bind="with: productSliderModel">
             <section class="MainITPanel">
                 <div class="row baselineAlign">
                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -88,7 +88,7 @@
                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                         <div>
                                                             <div class="rightAlign ITtooltip ITLink  ">
-                                                                <a data-dataitemid="NeedsCalc_Link" class=" indent0 ITNavLink" target="_self">
+                                                                <a data-dataitemid="NeedsCalc_Link" class=" indent0 ITNavLink" target="_self" href="@Url.Action("Index","Needs")">
                                                                     <div class="ITNavLinkText">Calculate Needs</div>
                                                                     <div class="ITLink__icon">
                                                                         <div class="ITTooltipContainer">
@@ -141,31 +141,32 @@
                                             <div>
                                                 <div id="sliderContainerOuter">
                                                     <div data-dataitemid="APP_FACE_AMOUNT" class="sliderContainer">
-                                                        <div class="outerSliderTrack">
-                                                            <div class="innerSliderTrack" style="width: 25%;">
-                                                                <div class="sliderThumb"></div>
-                                                            </div>
+                                                        <div class="outerSliderTrack" style="border: none">
+                                                            <input type="text" class="sliderThumb" name="my_range" />
+                                                            @*<div class="innerSliderTrack" style="width: 25%;">
+                                                                    <div class="sliderThumb"></div>
+                                                                </div>*@
                                                         </div>
                                                     </div>
-                                                    <div class="ITSliderLabels">
-                                                        <div>$0</div>
-                                                        <div>|</div>
-                                                        <div>|</div>
-                                                        <div>|</div>
-                                                        <div>$250k</div>
-                                                        <div>|</div>
-                                                        <div>|</div>
-                                                        <div>|</div>
-                                                        <div>$500k</div>
-                                                        <div>|</div>
-                                                        <div>|</div>
-                                                        <div>|</div>
-                                                        <div>$750k</div>
-                                                        <div>|</div>
-                                                        <div>|</div>
-                                                        <div>|</div>
-                                                        <div>$1mil</div>
-                                                    </div>
+                                                    @*<div class="ITSliderLabels">
+                                                            <div>$0</div>
+                                                            <div>|</div>
+                                                            <div>|</div>
+                                                            <div>|</div>
+                                                            <div>$250k</div>
+                                                            <div>|</div>
+                                                            <div>|</div>
+                                                            <div>|</div>
+                                                            <div>$500k</div>
+                                                            <div>|</div>
+                                                            <div>|</div>
+                                                            <div>|</div>
+                                                            <div>$750k</div>
+                                                            <div>|</div>
+                                                            <div>|</div>
+                                                            <div>|</div>
+                                                            <div>$1mil</div>
+                                                        </div>*@
                                                 </div>
                                             </div>
                                         </div>
@@ -231,7 +232,7 @@
                                                                             <div>
                                                                                 <div>
                                                                                     <div>
-                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px"> <sup style="font-size: 28px; font-weight: bold">$</sup>15</p>
+                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.TenYearTermPerMonthCostText"></p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -320,7 +321,7 @@
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBox" style="display: block; width: 100%; text-align: center;">
                                                                                                                 <div class="ITCheckBoxContainer">
                                                                                                                     <div class="ITCheckBoxButton  " tabindex="0">
-                                                                                                                        <div class="ITCheckBoxCheck scaleNormal"><i></i></div>
+                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck10Yr" ><i data-bind="class: $parent.TenYearTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="ITComponentLabelContainer">
@@ -381,7 +382,7 @@
                                                                             <div>
                                                                                 <div>
                                                                                     <div>
-                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px"> <sup style="font-size: 28px; font-weight: bold">$</sup>15</p>
+                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.FifteenYearTermPerMonthCostText"></p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -470,7 +471,7 @@
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBox" style="display: block; width: 100%; text-align: center;">
                                                                                                                 <div class="ITCheckBoxContainer">
                                                                                                                     <div class="ITCheckBoxButton  fillColor" tabindex="0">
-                                                                                                                        <div class="ITCheckBoxCheck scaleNormal"><i class="fa fa-check checkStyle"></i></div>
+                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck15Yr"><i data-bind="class: $parent.FifteenYearTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="ITComponentLabelContainer">
@@ -531,7 +532,7 @@
                                                                             <div>
                                                                                 <div>
                                                                                     <div>
-                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px"> <sup style="font-size: 28px; font-weight: bold">$</sup>19</p>
+                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.TwentyYearTermPerMonthCostText"></p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -620,7 +621,7 @@
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBox" style="display: block; width: 100%; text-align: center;">
                                                                                                                 <div class="ITCheckBoxContainer">
                                                                                                                     <div class="ITCheckBoxButton  " tabindex="0">
-                                                                                                                        <div class="ITCheckBoxCheck scaleNormal"><i></i></div>
+                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck20Yr"><i data-bind="class: $parent.TwentyYearTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="ITComponentLabelContainer">
@@ -770,7 +771,7 @@
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBox" style="display: block; width: 100%; text-align: center;">
                                                                                                                 <div class="ITCheckBoxContainer">
                                                                                                                     <div class="ITCheckBoxButton  " tabindex="0">
-                                                                                                                        <div class="ITCheckBoxCheck scaleNormal"><i></i></div>
+                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheckWL"><i data-bind="class: $parent.WholeLifeTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="ITComponentLabelContainer">
@@ -1510,7 +1511,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div>
                             <div class="centerAlign ITtooltip ITLink  singleButton ">
-                                <a data-dataitemid="ApplyNowBtn" class=" indent0 ITNavLink" target="_self"><div class="ITNavLinkText">Apply Now</div></a>
+                                <button data-dataitemid="ApplyNowBtn" class=" indent0 ITNavLink" data-bind="click: $parent.applyNow"><div class="ITNavLinkText">Apply Now</div></button>
 
                             </div>
                         </div>
