@@ -69,13 +69,13 @@
             <div class="col-lg-12 text-right">
 
 
-                <div class="g-recaptcha" data-sitekey="6LdkmaAUAAAAACTnLRZBQVreocf83sLpENXK4PuO"></div>
+                <div class="g-recaptcha" data-sitekey="6LdkmaAUAAAAACTnLRZBQVreocf83sLpENXK4PuO" data-callback="enableSndBtn">></div>
 
                 @ViewBag.ErrorMessage
 
                 <!-- 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI -->
 
-                <span style="margin-right: 50px; color: red;">@TempData["ContactSendEmailMessage"]</span><button type="submit" class="btn contact-btn btn-lg">SEND</button>
+                <span style="margin-right: 50px; color: red;">@TempData["ContactSendEmailMessage"]</span><button type="submit" id="sendit" class="btn contact-btn btn-lg">SEND</button>
             </div>
             @*<div class="col-lg-12 text-right"><a href="#" class="contact-btn" role="button">SEND</a> </div>*@
         </div>
@@ -84,7 +84,18 @@
 
 <!--END MAIN CONTENT-->
 @section scripts{
-    <script type="text/javascript">
+<script type="text/javascript">
+
+
+
+
+        document.getElementById("sendit").disabled = true;
+
+        function enableSndBtn(){
+            document.getElementById("sendit").disabled = false;
+         }
+
+
         $(function () {
             @if(TempData["ContactSendEmailMessage"] != null)
             {
@@ -92,7 +103,7 @@
                 @:$('html, body').scrollTop(divPosition.top);
             }
         });
-    </script>
+</script>
 }
 
 <!--HERO-->

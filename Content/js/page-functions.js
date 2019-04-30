@@ -6,6 +6,7 @@ $(function() { $('#final-expenses, #mortgages, #other-debts, #total-annual-incom
 */
 // Validate the form inputs before submiting to the server
 $(document).ready(function () {
+   
 
     //Calculate and display age based on birthday
     var d = new Date();
@@ -270,6 +271,9 @@ $(document).ready(function () {
         .find('.money').each(function () { // function to apply mask on load!
             $(this).maskMoney('mask', $(this).val());
         });
+
+
+    
 
     $('#contactform').formValidation({
         framework: 'Bootstrap4',
