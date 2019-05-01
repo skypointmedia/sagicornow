@@ -32,19 +32,19 @@ namespace SagicorNow.Controllers
     {
         
        [ImportingConstructor]
-        public QuoteController(IProcessTXLifeRequestClient processTxLifeRequestClient)
+        public QuoteController(/*IProcessTXLifeRequestClient processTxLifeRequestClient*/)
         {
             //_serviceFactory= serviceFactory;
-            _processTxLifeRequestClient = processTxLifeRequestClient;
+            //_processTxLifeRequestClient = processTxLifeRequestClient;
         }
 
         private readonly SageNowContext _db = new SageNowContext();
         //private readonly IServiceFactory _serviceFactory;
-        private readonly IProcessTXLifeRequestClient _processTxLifeRequestClient;
+        //private readonly IProcessTXLifeRequestClient _processTxLifeRequestClient;
 
         protected override void RegisterServices(List<IServiceContract> disposableServices)
         {
-            disposableServices.Add(_processTxLifeRequestClient);
+            //disposableServices.Add(_processTxLifeRequestClient);
         }
 
         /// <summary>
@@ -161,34 +161,27 @@ namespace SagicorNow.Controllers
             }
         }
 
+
+        public ViewResult ProductSlider(QuoteViewModel quoteViewModel)
+        {
+            ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
+           
+            return View("FraudWarning");
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult> ForesightQuoteRequest(QuoteViewModel model)
+        public ActionResult ForesightQuoteRequest(QuoteViewModel model)
         {
             ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
             ViewBag.QuoteViewModel = model;
 
-            StringBuilder sb = new StringBuilder(Resources.FS_Quote_Request_Template4);
-
-            sb.Replace("<<transaction-guid>>", Guid.NewGuid().ToString());
-            sb.Replace("<<transaction-guid1>>", Guid.NewGuid().ToString());
-            sb.Replace("<<transaction-guid2>>", Guid.NewGuid().ToString());
-            sb.Replace("<<transaction-guid3>>", Guid.NewGuid().ToString());
-            sb.Replace("<<default-coverage>>", FireLightSession.DefaultCoverage);
-            sb.Replace("<<coverage>>", FireLightSession.DefaultCoverage);
-            sb.Replace("<<smoker-status-tc>>", model.smokerStatusInfo.TC.ToString());
-            sb.Replace("<<smoker-status>>", model.smokerStatusInfo.Value);
-            sb.Replace("<<gender-tc>>", model.genderInfo.TC.ToString());
-            sb.Replace("<<gender>>", model.genderInfo.Value);
-            if (model.birthday != null) sb.Replace("<<dob>>", model.birthday.Value.ToString("yyyy-MM-dd")); else sb.Replace("<<dob>>",DateTime.Today.ToString("yyyy-MM-dd"));
-            sb.Replace("<<uuid>>", Guid.NewGuid().ToString());
-
-            XmlDocument soapDocument = new XmlDocument();
-            soapDocument.LoadXml(sb.ToString());
+            var soapDocument = ForesightServiceHelpers.GenerateRequestXml(model.smokerStatusInfo, model.genderInfo,
+                model.birthday, model.CoverageAmount);
          
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(FireLightSession.ForeSightUrl);
             webRequest.Headers.Add(@"SOAP:Action");
@@ -211,42 +204,16 @@ namespace SagicorNow.Controllers
                     return View("ProductSlider", txLife.TxLifeResponse);
                 }
             }
-
-           
-
-           
-            //var foresightResponse = SoapToObject<TXLife>(soapResult);
-
-
-
-
-            //var client = new ProcessTXLifeRequestClient("WSHttpBinding_ProcessTXLifeRequest");
-            //var client = _serviceFactory.CreateClient<IProcessTXLifeRequestClient>();
-            //var client = _processTxLifeRequestClient;
-
-            //var smokerStatus = model.smokerStatusInfo;
-            //var gender = model.genderInfo;
-            //var birthday = model.birthday;
-            //var coverage = decimal.Parse(FireLightSession.DefaultCoverage);
-
-            //var txLife = new TXLife
-            //{
-            //    TXLifeRequest = new[]
-            //    {
-            //        ForesightServiceHelpers.GenerateST10NRequest(smokerStatus, gender, birthday, coverage),
-            //        ForesightServiceHelpers.GenerateST15NQRequest(smokerStatus, gender, birthday, coverage),
-            //        ForesightServiceHelpers.GenerateST20NIRequest(smokerStatus, gender, birthday, coverage)
-            //    }
-            //};
-
-            //var result = await client.ProcessTXLifeRequestAsync(new AcordTXLifeRequestMessageContract(txLife));
-            
-
-            //return View("ProductSlider", result.TXLife.TXLifeResponse);
-
-            
         }
 
+        [HttpPost]
+        public JsonResult GetFraudWarningUrlData(ProductSliderModel productSliderModel, QuoteViewModel quoteViewModel)
+        {
+            var redirectUrl = new UrlHelper(Request.RequestContext).Action("ProductSlider",new{productSliderModel, quoteViewModel });
+            return Json(new {Url = redirectUrl});
+        }
+
+       
 
         /// <summary>
         /// 
@@ -483,22 +450,10 @@ namespace SagicorNow.Controllers
             return Content("SUCCESS");
         }
 
-        //public ViewResult ProductSlider()
-        //{
-        //    var model = new EmbeddedViewModel {
-        //        FirelightBaseUrl = FireLightSession.BaseUrl
-        //    };
-        //    return View(new ProductSliderViewModel());
-        //}
+        
 
-        public ViewResult FraudWarning()
-        {
-            var model = new EmbeddedViewModel {
-                FirelightBaseUrl = FireLightSession.BaseUrl
-            };
-            return View(model);
-        }
 
-       
+
+
     }
 }

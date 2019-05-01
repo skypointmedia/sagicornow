@@ -34,16 +34,16 @@ namespace SagicorNow.Controllers.API
     {
 
         [ImportingConstructor]
-        public QuoteApiController(IProcessTXLifeRequestClient processTxLifeRequestClient)
+        public QuoteApiController(/*IProcessTXLifeRequestClient processTxLifeRequestClient*/)
         {
-            _processTxLifeRequestClient = processTxLifeRequestClient;
+            //_processTxLifeRequestClient = processTxLifeRequestClient;
         }
 
-        private readonly IProcessTXLifeRequestClient _processTxLifeRequestClient;
+        //private readonly IProcessTXLifeRequestClient _processTxLifeRequestClient;
 
         protected override void RegisterServices(List<IServiceContract> disposableServices)
         {
-            disposableServices.Add(_processTxLifeRequestClient);
+            //disposableServices.Add(_processTxLifeRequestClient);
         }
 
         [HttpPost]
@@ -69,26 +69,8 @@ namespace SagicorNow.Controllers.API
                 //var result = await _processTxLifeRequestClient.ProcessTXLifeRequestAsync(new AcordTXLifeRequestMessageContract(txLife));
                 //
 
-                var sb = new StringBuilder(Resources.FS_Quote_Request_Template4);
-
-                sb.Replace("<<transaction-guid>>", Guid.NewGuid().ToString());
-                sb.Replace("<<transaction-guid1>>", Guid.NewGuid().ToString());
-                sb.Replace("<<transaction-guid2>>", Guid.NewGuid().ToString());
-                sb.Replace("<<transaction-guid3>>", Guid.NewGuid().ToString());
-                sb.Replace("<<default-coverage>>", model.CoverageAmount.ToString(CultureInfo.InvariantCulture));
-                sb.Replace("<<coverage>>", model.CoverageAmount.ToString(CultureInfo.InvariantCulture));
-                sb.Replace("<<smoker-status-tc>>", model.smokerStatusInfo.TC.ToString());
-                sb.Replace("<<smoker-status>>", model.smokerStatusInfo.Value);
-                sb.Replace("<<gender-tc>>", model.genderInfo.TC.ToString());
-                sb.Replace("<<gender>>", model.genderInfo.Value);
-                sb.Replace("<<dob>>",
-                    model.birthday != null
-                        ? model.birthday.Value.ToString("yyyy-MM-dd")
-                        : DateTime.Today.ToString("yyyy-MM-dd"));
-                sb.Replace("<<uuid>>", Guid.NewGuid().ToString());
-
-                var soapDocument = new XmlDocument();
-                soapDocument.LoadXml(sb.ToString());
+                var soapDocument = ForesightServiceHelpers.GenerateRequestXml(model.smokerStatusInfo, model.genderInfo,
+                    model.birthday, model.CoverageAmount);
 
                 var webRequest = (HttpWebRequest)WebRequest.Create(FireLightSession.ForeSightUrl);
                 webRequest.Headers.Add(@"SOAP:Action");

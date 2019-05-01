@@ -20,8 +20,16 @@
         };
 
         self.applyNow = function (model) {
-            ko.utils.postJson("/quote/FraudWarning", {productSliderModel: self.productSliderModel });
+            
+            var unmappedModel;
+            var productSliderModel = ko.mapping.toJS(model);
+           
+            unmappedModel = $.extend(unmappedModel, self.quoteViewModel);
+            unmappedModel = $.extend(unmappedModel, productSliderModel);
+
+            ko.utils.postJson("ProductSlider", unmappedModel);
         };
+
         self.calculateNeeds = function(model) {
            
         };
@@ -33,6 +41,7 @@
                     self.productSliderModel.TenYearTermPerMonthCost(result[0].IllustrationResult.ResultBasis.Vector.V[0]);
                     self.productSliderModel.FifteenYearTermPerMonthCost(result[1].IllustrationResult.ResultBasis.Vector.V[0]);
                     self.productSliderModel.TwentyYearTermPerMonthCost(result[2].IllustrationResult.ResultBasis.Vector.V[0]);
+                    self.productSliderModel.CoverageAmount(coverage);
                 });
         };
 
@@ -65,7 +74,7 @@
         };
 
         self.checkUncheckWL = function () {
-            self.productSliderModel.Wholelife(!self.productSliderModel.Wholelife());
+            self.productSliderModel.WholeLife(!self.productSliderModel.WholeLife());
         };
 
         self.TenYearTermCheckStatus = ko.pureComputed(function () {
@@ -81,7 +90,7 @@
         });
 
         self.WholeLifeTermCheckStatus = ko.pureComputed(function () {
-            return self.productSliderModel.Wholelife() ? "fa fa-check checkStyle" : "";
+            return self.productSliderModel.WholeLife() ? "fa fa-check checkStyle" : "";
         });
 
         self.initialize();

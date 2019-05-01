@@ -4,22 +4,28 @@ namespace SagicorNow.ViewModels
 {
     public class ProductSliderModel
     {
-        //public ProductSliderViewModel()
-        //{
-        //    var val = Response[0].IllustrationResult.ResultBasis[0].Vector[0].V[0].Value;
-        //}
-        //public TXLifeResponse[] Response { get; set; }
         public decimal CoverageAmount { get; set; }
+        public decimal TenYearTermPerMonthCost { get; set; }
         public bool TenYearTerm { get; set; }
+
+        public decimal FifteenYearTermPerMonthCost { get; set; }
         public bool FifteenYearTerm { get; set; }
+
+        public decimal TwentyYearTermPerMonthCost { get; set; }
         public bool TwentyYearTerm { get; set; }
-        public bool WholeLife { get; set; }
+
         public decimal WholeLifePerMonthCost { get; set; }
-        public decimal TenYearPerMonthCost { get; set; }
-        public decimal FifteenYearPerMonthCost { get; set; }
-        public decimal TwentyYearPerMonthCost { get; set; }
+        public bool WholeLife { get; set; }
+
         public bool WavierPremium { get; set; }
         public bool AccidentalDeath { get; set; }
         public bool ChildrenCoverage { get; set; }
+    }
+
+    public class FraudWaringViewModel
+    {
+        public string FirstName { get; set; }
+        public string EmailAddress { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

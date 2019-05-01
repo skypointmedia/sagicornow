@@ -135,11 +135,6 @@
     <Compile Include="Client\Contracts\IProcessTXLifeRequestClient.cs" />
     <Compile Include="Client\Proxies\ProcessTxLifeRequestClient.cs" />
     <Compile Include="Client\Proxies\ServiceFactory.cs" />
-    <Compile Include="Connected Services\Foresight\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\API\QuoteApiController.cs" />
     <Compile Include="Controllers\MVC\FirelightAwareControllerBase.cs" />
     <Compile Include="Controllers\MVC\GeoAwareControllerBase.cs" />
@@ -196,19 +191,6 @@
   <ItemGroup>
     <Content Include="Binding\Models\ProductSliderModel.js" />
     <Content Include="Binding\ViewModels\ProductSliderViewModel.js" />
-    <Content Include="Connected Services\Foresight\SagicorNow.Foresight.AcordTXLifeResponseMessageContract.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\Foresight\SagicorNow.Foresight.TXLife.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Connected Services\Foresight\TXLifeService.disco" />
-    <None Include="Connected Services\Foresight\configuration91.svcinfo" />
-    <None Include="Connected Services\Foresight\configuration.svcinfo" />
-    <None Include="Connected Services\Foresight\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Content\consumer-portal.css" />
     <Content Include="Content\flexboxgrid.6.3.0.min.css" />
     <Content Include="Content\SAG.css" />
@@ -227,11 +209,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <None Include="Connected Services\Foresight\TXLifeService.wsdl" />
-    <None Include="Connected Services\Foresight\TXLifeService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\Foresight\TXLifeService1.wsdl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -406,9 +383,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\Foresight\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

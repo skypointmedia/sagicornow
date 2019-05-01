@@ -6,17 +6,18 @@
 }
 
 @section header{
-    <link type="text/css" rel="stylesheet" href="@Url.Content(ViewBag.FirelightBaseUrl + "Resource/CSS/eApp")"/>
+    <link type="text/css" rel="stylesheet" href="@Url.Content(ViewBag.FirelightBaseUrl + "Resource/CSS/eApp")" />
+    <link href="~/Content/SAG.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/consumer-portal.css" rel="stylesheet"/>
-    <link href="~/Content/SAG.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css" />
+
     <style>
         .ITCheckBox {
             border: none;
         }
 
         .ITTooltipContainer {
-           display: block;
+            display: block;
         }
 
         .InnerGroup2_10Yr .ITCheckBox {
@@ -43,7 +44,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
     <script>
         $(function () {
-            
+
         })
     </script>
 }
@@ -53,15 +54,15 @@
     var viewModel = new SagicorNow.ProductSliderViewModel(data,qvm);
     ko.applyBindingsWithValidation(viewModel,$("#fireLightMainDiv")[0], { insertMessages: false, messagesOnModified: false, grouping: { deep: true }})
     $(".sliderThumb").ionRangeSlider({
-        skin: "big",
-        min: 0,
-        max: 1000000,
-        from: 250000,
-        step: 50000,
-        grid: true,
-        onFinish: function (data) {
-        viewModel.getRevisedIllustrationAsync(data.from);
-        }
+    skin: "big",
+    min: 0,
+    max: 1000000,
+    from: 250000,
+    step: 50000,
+    grid: true,
+    onFinish: function (data) {
+    viewModel.getRevisedIllustrationAsync(data.from);
+    }
     });
 }
 <div id="fireLightMainDiv">
@@ -321,7 +322,7 @@
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBox" style="display: block; width: 100%; text-align: center;">
                                                                                                                 <div class="ITCheckBoxContainer">
                                                                                                                     <div class="ITCheckBoxButton  " tabindex="0">
-                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck10Yr" ><i data-bind="class: $parent.TenYearTermCheckStatus"></i></div>
+                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck10Yr"><i data-bind="class: $parent.TenYearTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="ITComponentLabelContainer">
@@ -1512,7 +1513,6 @@
                         <div>
                             <div class="centerAlign ITtooltip ITLink  singleButton ">
                                 <button data-dataitemid="ApplyNowBtn" class=" indent0 ITNavLink" data-bind="click: $parent.applyNow"><div class="ITNavLinkText">Apply Now</div></button>
-
                             </div>
                         </div>
                     </div>
