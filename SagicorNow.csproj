@@ -176,7 +176,6 @@
     <Content Include="Scripts\typeahead.bundle.js" />
     <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bloodhound.js" />
-    <Content Include="Content\js\formValidation.min.js" />
     <Content Include="Content\js\language\ar_MA.js" />
     <Content Include="Content\js\language\bg_BG.js" />
     <Content Include="Content\js\language\ca_ES.js" />
@@ -284,6 +283,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Views\Static\privacy-statement.cshtml" />
+    <Content Include="Views\Contact\ContactUs.cshtml" />
+    <Content Include="Content\js\formValidation\FormValidation.min.js" />
+    <Content Include="Content\js\formValidation\plugins\Recaptcha.js" />
+    <Content Include="Content\js\formValidation\plugins\Bootstrap.js" />
+    <Content Include="Content\js\contact-page-functions.js" />
+    <Content Include="Content\formValidation.min.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\GeoLite2-Country.mmdb" />
@@ -302,6 +307,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <None Include="Content\js\formValidation\.DS_Store" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

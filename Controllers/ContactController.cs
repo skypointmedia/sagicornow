@@ -11,15 +11,14 @@ using MailKit.Security;
 using System.Threading.Tasks;
 using System.Globalization;
 
-
 namespace SagicorNow.Controllers
 {
     public class ContactController : Controller
     {
-        public ActionResult Index(string fn, string email, string ph, int j, object rc)
+        public ActionResult Index(string fn, string email, string ph, int j)
         {
 
-            if (fn != null && email != null && ph != null && j != 0 && rc != null)
+            if (fn != null && email != null && ph != null && j != 0)
             {
                 ContactModel cmodl = new ContactModel()
                 {
@@ -36,7 +35,6 @@ namespace SagicorNow.Controllers
             }
             else
             {
-
                 return View("Contact");
             }
         }
@@ -57,16 +55,6 @@ namespace SagicorNow.Controllers
         [HttpPost]
         public ActionResult SendEmail(ContactModel m)
         {
-
-            string data = Request.Form["g-Recaptcha-Response"];
-
-            if (string.IsNullOrEmpty(data))
-            {
-                TempData["ContactSendEmailMessage"] = "Please confirm you are not a robot!";
-                return RedirectPermanent("~/pages/contact-us");
-            }
-
-
             if (this.SendContactEmail(m) == "SUCCESS")
             {
                 return RedirectPermanent("~/pages/thankyou");
