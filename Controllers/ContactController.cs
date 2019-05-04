@@ -60,6 +60,7 @@ namespace SagicorNow.Controllers
                 return RedirectPermanent("~/pages/thankyou");
             }
             else
+
             {
                 TempData["ContactSendEmailMessage"] = "Error sending email.";
                 TempData["ContactViewModel"] = m;
@@ -70,7 +71,7 @@ namespace SagicorNow.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Contact"); //send back to contact view
+                    return RedirectToAction("~/pages/contact-us"); //send back to contact view
                 }
             }
         }

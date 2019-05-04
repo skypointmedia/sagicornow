@@ -289,6 +289,7 @@
     <Content Include="Content\js\formValidation\plugins\Bootstrap.js" />
     <Content Include="Content\js\contact-page-functions.js" />
     <Content Include="Content\formValidation.min.css" />
+    <Content Include="Content\js\formValidation.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\GeoLite2-Country.mmdb" />

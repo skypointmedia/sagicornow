@@ -1,10 +1,5 @@
 ﻿<Properties StartupConfiguration="{A8F41264-346E-45F0-B6E7-735768311F26}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Contact/ContactUs.cshtml">
-    <Files>
-      <File FileName="Views/Contact/ContactUs.cshtml" Line="57" Column="58" />
-      <File FileName="Views/Static/contact-us.cshtml" Line="91" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.SagicorNow PreferredExecutionTarget="MonoDevelop.Default" />

@@ -4,7 +4,6 @@
 @{ Layout = "~/Views/Contact/ContactUs.cshtml";
     ViewBag.Title = "Contact Us | Sagicor Life Insurance";
 }
-
 <!--HERO-->
 <div class="container-fluid push60">
     <div class="row hero hero_contact_us">
@@ -17,7 +16,6 @@
         </div>
     </div>
 </div>
-
 <!--MAIN PAGE CONTENT-->
 <div class="container push60" role="main">
     <div class="row">
@@ -38,7 +36,6 @@
             </p>
         </div>
     </div>
-
     @using (Html.BeginForm("SendEmail", "Contact", FormMethod.Post, new { id = "contactform", name = "contactform" }))
     {
         <div class="row pad60">
@@ -56,7 +53,6 @@
                     <div class="form-control-feedback"></div>
                 </div>
             </div>
-
             <div class="col-lg-6 text-center">
                 <div class="form-group">
                     @Html.TextArea("comment", (Model != null ? Model.comment : ""), new { @class = "form-control", maxlength = "500", form = "contactform", cols = "50", rows = "7", placeholder = "Comment" })
@@ -71,21 +67,38 @@
                 <div class="form-group">
                     <div id="captchaContainer"></div>
                 </div>
-             </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-12 text-right">
-            
+
                 @ViewBag.ErrorMessage
 
-                <!-- 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI -->
 
-                <span style="margin-right: 50px; color: red;">@TempData["ContactSendEmailMessage"]</span><button type="submit" id="sendit" class="btn contact-btn btn-lg">SEND</button>
+                <div class="form-group">
+                    <span style="margin-right: 50px; color: red;">@TempData["ContactSendEmailMessage"]</span>
+                    <!-- Send button -->
+                    <button type="submit" class="btn contact-btn" role="button">SEND</button>
+                    @*<button type="submit" id="sendit" class="btn contact-btn btn-lg" >SEND</button>*@
+                </div>
             </div>
+
             @*<div class="col-lg-12 text-right"><a href="#" class="contact-btn" role="button">SEND</a> </div>*@
         </div>
     }
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            @if(TempData["ContactSendEmailMessage"] != null)
+            {
+                @:var divPosition = $('#contactform').offset();
+                @:$('html, body').scrollTop(divPosition.top);
+            }
+        });
+    </script>
+}
 
 <!--HERO-->
 <div class="container-fluid">
@@ -95,7 +108,6 @@
         </div>
     </div>
 </div>
-
 <!--  2 COL 50/50    -->
 <div class="container pad60">
     <div class="row">
@@ -121,78 +133,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function(e) {
-    FormValidation.formValidation(
-        document.getElementById('contactform'),
-        {
-            fields: {
-            firstName: {
-                    validators: {
-                        notEmpty: {
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> The First Name is required."
-                        }
-                    }
-                },
-                comment: {
-                    validators: {
-                        notEmpty: {
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Please enter a comment."
-                        },
-                        stringLength: {
-                            max: 500,
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> You have exceeded the maximum number of characters allowed."
-                        }
-                    }
-                },
-                phone: {
-                    validators: {
-                        notEmpty: {
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Please enter a valid phone number (###-###-####)."
-                        },
-                        stringLength: {
-                            min: 10,
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Please enter a valid phone number (###-###-####)",
-                            transformer: function($field, validatorName, validator) {
-                                var value = $field.val();
-                                return value.split('-').join('');
-                            }
-                        }
-                    }
-                },
-                email: {
-                    validators: {
-                        emailAddress: {
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> The email address provided appears to be an invalid address."
-                        },
-                        notEmpty: {
-                            message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> The email address is required."
-                        }
-                    }
-                }
-
-
-            },
-
-            plugins: {
-                bootstrap: new FormValidation.plugins.Bootstrap(),
-                recaptcha: new FormValidation.plugins.Recaptcha({
-                    element: 'captchaContainer',
-                    language: 'en',
-                    message: 'Dont be a robot',
-                    siteKey: '6LdkmaAUAAAAACTnLRZBQVreocf83sLpENXK4PuO',
-                    theme: 'dark',
-                }),
-                trigger: new FormValidation.plugins.Trigger(),
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                icon: new FormValidation.plugins.Icon({
-                    valid: 'fa fa-check',
-                    invalid: 'fa fa-times',
-                    validating: 'fa fa-refresh'
-                }),
-
-            },
-        }
-    );
-});</script>
