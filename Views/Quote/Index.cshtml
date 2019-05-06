@@ -1,18 +1,19 @@
 ﻿@using System.Collections.Generic
+@using Newtonsoft.Json
 @using SagicorNow.Models
 
 @model SagicorNow.ViewModels.QuoteViewModel
 
 @{
-ViewBag.Title = "Get A Free Life Insurance Quote | Sagicor Life Insurance ";
+    ViewBag.Title = "Get A Free Life Insurance Quote | Sagicor Life Insurance ";
 
 }
 
 <div class="container">
-   <section class="heading text-center">
-      <h1>Protect The Ones You Love Today.</h1>
-      <h2>Get your FREE quote in seconds.</h2>
-   </section>
+    <section class="heading text-center">
+        <h1>Protect The Ones You Love Today.</h1>
+        <h2>Get your FREE quote in seconds.</h2>
+    </section>
 </div>
 
 @Html.Partial("_QuoteFormPartial", Model)
@@ -29,7 +30,7 @@ ViewBag.Title = "Get A Free Life Insurance Quote | Sagicor Life Insurance ";
                 e.preventDefault();
                 $("#quote-form").off("submit");
                 var ssn = $("#txt-ssn").val();
-                
+
                 $.ajax({ url: "@Url.Content("~/Quote/ProposalExist")", method: "get", data: { socialSecurityNumber: ssn } }).done(function (exist) {
                     if (!exist)
                         $("#quote-form").submit();
@@ -64,7 +65,7 @@ ViewBag.Title = "Get A Free Life Insurance Quote | Sagicor Life Insurance ";
 
             });
 
-            
+
         });
     </script>
 }

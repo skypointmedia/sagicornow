@@ -1,0 +1,35 @@
+﻿@using System.Collections.Generic
+@using Newtonsoft.Json
+@using SagicorNow.Models
+
+@model SagicorNow.ViewModels.RetrievePreviousQuoteViewModel
+
+@{
+    ViewBag.Title = "Get A Free Life Insurance Quote | Sagicor Life Insurance ";
+
+}
+
+
+@section ko_apply{
+
+}
+
+<div class="container">
+    <section class="heading text-center">
+        <h1>Protect The Ones You Love Today.</h1>
+        <h2>Retrieve your previous FREE quote and apply for you new policy in seconds.</h2>
+    </section>
+</div>
+
+@Html.Partial("_PreviousQuoteFormPartial", Model)
+
+
+
+@*@ViewBag.Result*@
+
+@section scripts
+{
+    <script>
+       
+    </script>
+}

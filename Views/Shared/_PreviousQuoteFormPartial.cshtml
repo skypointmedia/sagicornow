@@ -1,0 +1,74 @@
+﻿@model SagicorNow.ViewModels.RetrievePreviousQuoteViewModel
+
+@{ 
+    var fpDisplay = Model.DisplayFormat == SagicorNow.ViewModels.QuoteViewModel.DisplayInfo.FULLPAGE;
+    var colSize = fpDisplay ? 8 : 12;
+    var colSize2 = fpDisplay ? 2 : 12;
+}
+    <div class="@(fpDisplay?"container":"slim-container")">
+        <form id="previous-quote-form" method="POST" action="/Quote/RetrievePrevious">
+            <section class="input-section" style="@(!fpDisplay ? "background-color:transparent;padding-bottom:0px;" : "")" id="step-one@(fpDisplay?"":"-slim")">
+                <div class="row main-inputs">
+                    <div class="col-md-@colSize2"></div>
+                    <div class="col-md-@colSize">
+                        <div class="form-group">
+                            <label for="email" class="col-lg-12 col-form-label">
+                                Email Address
+                                <i class="tip sagicor-tooltip" data-toggle="tooltip" data-placement="top" title="Enter the email address used to save the previous quote." tabindex="1">?</i>
+                            </label>
+                            <div class="col-lg-12">
+                                @Html.TextBoxFor(x => x.Email,new{@class="form-control", id="email"})
+                                <div id="email_message"></div>
+                            </div>
+                            <div class="form-control-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-@colSize2"></div>
+                </div>
+                <div class="row main-inputs">
+                    <div class="col-md-@colSize2"></div>
+                    <div class="col-md-@colSize">
+                        <div class="form-group">
+                            <label class="col-lg-12 col-form-label" for="tobacco">Password</label>
+                            <div class="col-lg-12">
+                                @Html.PasswordFor(x => x.Password, new {@class="form-control", id="password"})
+                                <div id="password_message"></div>
+                            </div>
+                            <div class="form-control-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-@colSize2"></div>
+                </div>
+                <div class="row submitrow" style="@(!fpDisplay ? "margin-top:0px;padding:0 15px 0  15px;" : "")">
+                    @if (fpDisplay)
+                    {
+                        <div class="col arrow_left"></div>
+                    }
+
+                    <div class="col text-center">
+                        @if (fpDisplay)
+                        {
+                            <button type="submit" id="sbmt" class="btn calculate-btn">Retrieve Quote</button>
+                        }
+                        else
+                        {
+                            <button type="submit" id="sbmt" class="btn lp-form-btn">RETRIEVE QUOTE</button>
+                        }
+                    </div>
+
+                    @if (fpDisplay)
+                    {<div class="col arrow_right"></div>}
+                </div>
+                @foreach (var m in Model.ViewMessages)
+                {
+                    <span style="color:red;font-size:10pt;padding:0 20px;text-align:0 auto;">@m</span>
+                    <br />
+                }
+
+            </section>
+		
+        @if (fpDisplay)
+        {<section class="input-section text-center push60" id="submit-section"></section> }
+    </form>
+</div>
+

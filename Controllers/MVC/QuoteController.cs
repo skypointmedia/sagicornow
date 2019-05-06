@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ using SagicorNow.Business.Models;
 using SagicorNow.Client.Contracts;
 using SagicorNow.Common;
 using SagicorNow.Data;
+using SagicorNow.Data.Entities;
 using SagicorNow.Foresight;
 using SagicorNow.Properties;
 
@@ -86,29 +88,7 @@ namespace SagicorNow.Controllers
                 // If eligible build XML and send to firelight
                 if (eligibility.IsEligible)
                 {
-                    // Build XMLs
-                    var client = new NewBusinessService.NewBusinessClient("CustomBinding_NewBusiness");
-                    var addrUri = client.Endpoint.Address.Uri;
-                    var newUri = string.Format(addrUri.ToString(), Session["GCId"] ?? "");
-
-                    var newAddress = new System.ServiceModel.EndpointAddress(newUri);
-                    client.Endpoint.Address = newAddress;
-
-                    var user1228Str = Create1228(vm);
-                    string accessToken;
-
-                    if (FirelightTokeIsNoneExistentOrExpired())
-                    {
-                        var token = await GetFirelightTokenAsync(user1228Str);
-                        var tokenReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightTokenReturn>(token);
-                        accessToken = tokenReturn.access_token;
-                    }
-                    else
-                    {
-                        accessToken = FirelightAccessToken;
-                    }
-
-
+                    var accessToken = await GetAccessToken();
 
                     var evm = new EmbeddedViewModel {
                         AccessToken = accessToken,
@@ -166,8 +146,49 @@ namespace SagicorNow.Controllers
         {
             ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
            
-            return View("FraudWarning");
+            return View("FraudWarning", quoteViewModel);
         }
+
+        [HttpGet]
+        public ViewResult RetrievePrevious()
+        {
+            return View(new RetrievePreviousQuoteViewModel());
+        }
+
+        [HttpPost]
+        public async Task<ViewResult> RetrievePrevious(RetrievePreviousQuoteViewModel model)
+        {
+            try
+            {
+                var proposalHistory = _db.ProposalHistories.Find(model.Email);
+                var isVerified = SecurityHelpers.VerifyHashedPassword(proposalHistory.HashedPassword, model.Password);
+                if (!isVerified)
+                {
+                    var msg = "Incorrect email address or password.";
+                    model.ViewMessages.Add(msg);
+                    return View(model);
+                }
+
+                var accessToken = await GetAccessToken();
+
+                var evm = new EmbeddedViewModel {
+                    AccessToken = accessToken,
+                    FirelightBaseUrl = FireLightSession.BaseUrl,
+                    IsNew = false
+                };
+
+                return View("EmbeddedApp", evm);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                var msg = "There was an error connecting to the application portal.";
+                model.ViewMessages.Add(msg);
+                return View(model);
+            }
+        }
+
+        
 
         /// <summary>
         /// 
@@ -180,40 +201,13 @@ namespace SagicorNow.Controllers
             ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
             ViewBag.QuoteViewModel = model;
 
-            var soapDocument = ForesightServiceHelpers.GenerateRequestXml(model.smokerStatusInfo, model.genderInfo,
+            var soapRequest = ForesightServiceHelpers.GenerateRequestXml(model.smokerStatusInfo, model.genderInfo,
                 model.birthday, model.CoverageAmount);
          
-            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(FireLightSession.ForeSightUrl);
-            webRequest.Headers.Add(@"SOAP:Action");
-            webRequest.ContentType = "application/soap+xml; charset=utf-8";
-            webRequest.Accept = "text/xml";
-            webRequest.Method = "POST";
+            var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
 
-            using (Stream stream = webRequest.GetRequestStream()){
-                soapDocument.Save(stream);
-            }
-            
-            using (WebResponse response = webRequest.GetResponse()){
-                using (StreamReader rd = new StreamReader(response.GetResponseStream() ?? throw new InvalidOperationException("The response object is null.")))
-                {
-                    //var xmlDocument = XDocument.Load(XmlReader.Create(rd));
-                    //var soapResult = rd.ReadToEnd();
-
-                    var txLife = ForesightServiceHelpers.ExtractTxLife(rd);
-
-                    return View("ProductSlider", txLife.TxLifeResponse);
-                }
-            }
+            return View("ProductSlider", txLife.TxLifeResponse);
         }
-
-        [HttpPost]
-        public JsonResult GetFraudWarningUrlData(ProductSliderModel productSliderModel, QuoteViewModel quoteViewModel)
-        {
-            var redirectUrl = new UrlHelper(Request.RequestContext).Action("ProductSlider",new{productSliderModel, quoteViewModel });
-            return Json(new {Url = redirectUrl});
-        }
-
-       
 
         /// <summary>
         /// 
@@ -233,13 +227,13 @@ namespace SagicorNow.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="socialSecurityNumber"></param>
+        /// <param name="email"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonResult ProposalExist(string socialSecurityNumber)
+        public JsonResult ProposalExist(string email)
         {
-            var ssn = socialSecurityNumber.Replace("-", string.Empty);
-            var exist = _db.ProposalHistories.Any(record => record.SSN == ssn);
+            var ssn = email.Replace("-", string.Empty);
+            var exist = _db.ProposalHistories.Any(record => record.Email == ssn);
             return Json(exist,JsonRequestBehavior.AllowGet);
         }
 
@@ -256,43 +250,77 @@ namespace SagicorNow.Controllers
             return PartialView("_QuoteModal", model);
         }
 
-        
-
         /// <summary>
-        /// creates a 1228 request XML
+        /// set the Google analytic code from client side
         /// </summary>
-        /// <param name="vm"></param>
+        /// <param name="gcid"></param>
         /// <returns></returns>
-        public string Create1228(QuoteViewModel vm)
+        [HttpPost]
+        public ActionResult SetGoogleCid(string gcid)
+        {
+            Session["GCId"] = gcid; //store value in session
+            return Content("SUCCESS");
+        }
+
+        #region Helpers
+
+        private async Task<string> GetAccessToken()
+        {
+            // Build XMLs
+            var client = new NewBusinessService.NewBusinessClient("CustomBinding_NewBusiness");
+            var addUri = client.Endpoint.Address.Uri;
+            var newUri = string.Format(addUri.ToString(), Session["GCId"] ?? "");
+
+            var newAddress = new System.ServiceModel.EndpointAddress(newUri);
+            client.Endpoint.Address = newAddress;
+
+            var user1228Str = Create1228();
+            string accessToken;
+
+            if (FirelightTokeIsNoneExistentOrExpired())
+            {
+                var token = await GetFirelightTokenAsync(user1228Str);
+                var tokenReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightTokenReturn>(token);
+                accessToken = tokenReturn.access_token;
+            }
+            else
+            {
+                accessToken = FirelightAccessToken;
+            }
+
+            return accessToken;
+        }
+
+        private string Create1228()
         {
             var builder = new StringBuilder();
             builder.Append("<TXLife xmlns=\"http://ACORD.org/Standards/Life/2\">");
             builder.Append("<TXLifeRequest>");
-            builder.Append("<TransRefGUID>"+Guid.NewGuid()+"</TransRefGUID>");
+            builder.Append("<TransRefGUID>" + Guid.NewGuid() + "</TransRefGUID>");
             builder.Append("<TransType tc=\"1228\">OLI_TRANS_TRNPRODINQ</TransType>");
             builder.Append("<OLifE>");
             builder.Append("<SourceInfo>");
-            builder.Append("<CreationDate>"+DateTime.Today.ToString("yyyy-MM-dd")+"</CreationDate>");
-            builder.Append("<CreationTime>"+DateTime.Now.ToString("hh:mm:ss.fffffffzzz")+"</CreationTime>");
-            builder.Append("<SourceInfoName>"+FireLightSession.SagOrgId+"</SourceInfoName>");
+            builder.Append("<CreationDate>" + DateTime.Today.ToString("yyyy-MM-dd") + "</CreationDate>");
+            builder.Append("<CreationTime>" + DateTime.Now.ToString("hh:mm:ss.fffffffzzz") + "</CreationTime>");
+            builder.Append("<SourceInfoName>" + FireLightSession.SagOrgId + "</SourceInfoName>");
             builder.Append("</SourceInfo>");
-            builder.Append("<Party id=\""+ FireLightSession.AgentPartyId+ "\">");
+            builder.Append("<Party id=\"" + FireLightSession.AgentPartyId + "\">");
             builder.Append("<PartyTypeCode tc=\"1\">OLI_PT_Person</PartyTypeCode>");
             builder.Append("<FullName>Sagicor D2C</FullName>");
             builder.Append("<EmailAddress>");
             builder.Append("<AddrLine>sagicornow@sagicorlifeusa.com</AddrLine>");
             builder.Append("</EmailAddress>");
             builder.Append("<Producer>");
-            builder.Append("<CarrierAppointment PartyID=\""+ FireLightSession.AgentPartyId + "\">");
-            builder.Append("<CompanyProducerID>"+ FireLightSession.ProducerId +"</CompanyProducerID>");
-            builder.Append("<CarrierCode>"+ FireLightSession.SagCarrierCode + "</CarrierCode>");
+            builder.Append("<CarrierAppointment PartyID=\"" + FireLightSession.AgentPartyId + "\">");
+            builder.Append("<CompanyProducerID>" + FireLightSession.ProducerId + "</CompanyProducerID>");
+            builder.Append("<CarrierCode>" + FireLightSession.SagCarrierCode + "</CarrierCode>");
             builder.Append("</CarrierAppointment>");
             builder.Append("</Producer>");
             builder.Append("</Party>");
             builder.Append("<OLifEExtension VendorCode=\"25\">");
             builder.Append("<UserRoleCode tc=\"InsTech\">InsTech</UserRoleCode>");
             builder.Append("</OLifEExtension>");
-            builder.Append("<Relation OriginatingObjectID=\""+ FireLightSession.AgentPartyId + "\">");
+            builder.Append("<Relation OriginatingObjectID=\"" + FireLightSession.AgentPartyId + "\">");
             builder.Append("<RelationRoleCode tc=\"11\">OLI_REL_AGENT</RelationRoleCode>");
             builder.Append("</Relation>");
             builder.Append("</OLifE>");
@@ -300,26 +328,6 @@ namespace SagicorNow.Controllers
             builder.Append("</TXLife>");
 
             return builder.ToString();
-        }
-
-        #region Helpers
-
-        /// <summary>
-        /// Converts a SOAP string to an object
-        /// </summary>
-        /// <typeparam name="T">Object type</typeparam>
-        /// <param name="soap">SOAP string</param>
-        /// <returns>The object of the specified type</returns>
-        public static T SoapToObject<T>(string soap)
-        {
-            if (string.IsNullOrEmpty(soap)){
-                throw new ArgumentException("SOAP can not be null/empty");
-            }
-
-            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(soap))){
-                var formatter = new SoapFormatter();
-                return (T) formatter.Deserialize(stream);
-            }
         }
 
         private static HttpWebRequest CreateWebRequest(string url)
@@ -410,11 +418,8 @@ namespace SagicorNow.Controllers
                 return String.Empty;
             }
         }
-        #endregion
 
-
-
-        public string GetRickClassFromTC(int tc)
+        private string GetRickClassFromTC(int tc)
         {
             switch (tc)
             {
@@ -438,22 +443,8 @@ namespace SagicorNow.Controllers
             }
         }
 
-        /// <summary>
-        /// set the Google analytics code from client side
-        /// </summary>
-        /// <param name="gcid"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult SetGoogleCid(string gcid)
-        {
-            Session["GCId"] = gcid; //store value in session
-            return Content("SUCCESS");
-        }
 
-        
-
-
-
+        #endregion
 
     }
 }

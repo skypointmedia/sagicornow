@@ -1,0 +1,26 @@
+﻿(function(sn) {
+    var FraudWarningModel = function() {
+        var self = this;
+
+        self.FirstName = ko.observable("").extend({
+            required: { message: "First name is required" }
+        });
+        self.EmailAddress = ko.observable("").extend({
+            required: { message: "Login email is required" },
+            email: { message: "Login is not a valid email" }
+        });
+
+        self.PhoneNumber = ko.observable("").extend({
+            required: { message: "A contact number is required" }
+        });
+        self.Password = ko.observable("").extend({
+            required: { message: "Password is required" },
+            minLength: { message: "Password must be at least 6 characters", params: 6 }
+        });
+        self.PasswordConfirm = ko.observable("").extend({
+            validation: { validator: CarRental.mustEqual, message: "Password do not match", params: self.Password }
+        });
+
+    };
+    sn.FraudWarningModel = FraudWarningModel;
+}(window.SagicorNow));

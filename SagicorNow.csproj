@@ -61,6 +61,14 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Sagicor.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Third Party\Sagicor.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sagicor.Core.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Third Party\Sagicor.Core.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -131,6 +139,7 @@
   <ItemGroup>
     <Compile Include="Business\ForesightServiceHelpers.cs" />
     <Compile Include="Business\Models\ForesightTxLifeReturn.cs" />
+    <Compile Include="Business\SecurityHelpers.cs" />
     <Compile Include="Client\Bootstrapper\MEFLoader.cs" />
     <Compile Include="Client\Contracts\IProcessTXLifeRequestClient.cs" />
     <Compile Include="Client\Proxies\ProcessTxLifeRequestClient.cs" />
@@ -187,10 +196,17 @@
     <Compile Include="Common\Utils\EmailManager.cs" />
     <Compile Include="Business\Models\NeedsModel.cs" />
     <Compile Include="Business\Models\StateInfo.cs" />
+    <Compile Include="ViewModels\RetrievePreviousQuoteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SagicorNow.mdf" />
+    <Content Include="App_Data\SagicorNow_log.ldf">
+      <DependentUpon>SagicorNow.mdf</DependentUpon>
+    </Content>
+    <Content Include="Binding\Models\FraudWarningModel.js" />
     <Content Include="Binding\Models\ProductSliderModel.js" />
     <Content Include="Binding\ViewModels\ProductSliderViewModel.js" />
+    <Content Include="Binding\ViewModels\QuoteViewModel.js" />
     <Content Include="Content\consumer-portal.css" />
     <Content Include="Content\flexboxgrid.6.3.0.min.css" />
     <Content Include="Content\SAG.css" />
@@ -358,6 +374,8 @@
     <Content Include="Views\Quote\ProductSlider.cshtml" />
     <Content Include="Views\Quote\FraudWarning.cshtml" />
     <Content Include="Scripts\knockout.validation.min.js.map" />
+    <Content Include="Views\Shared\_PreviousQuoteFormPartial.cshtml" />
+    <Content Include="Views\Quote\RetrievePrevious.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -370,16 +388,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sagicor Framework\Sagicor.Core.Common\Sagicor.Core.Common.csproj">
-      <Project>{b70ab8ee-279b-4007-8fb0-30596dc1d730}</Project>
-      <Name>Sagicor.Core.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sagicor Framework\Sagicor.Core\Sagicor.Core.csproj">
-      <Project>{f47c432d-6dcd-4c4a-b07d-bf9b0ac2bb7e}</Project>
-      <Name>Sagicor.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

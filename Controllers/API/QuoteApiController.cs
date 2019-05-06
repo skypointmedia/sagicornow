@@ -53,46 +53,13 @@ namespace SagicorNow.Controllers.API
         {
             return GetHttpResponse(request,  () =>
             {
-                //var smokerStatus = model.smokerStatusInfo;
-                //var gender = model.genderInfo;
-                //var birthday = model.birthday;
-                //var coverage = model.CoverageAmount;
-                //var txLife = new TXLife {
-                //    TXLifeRequest = new[]
-                //    {
-                //        ForesightServiceHelpers.GenerateST10NRequest(smokerStatus, gender, birthday, coverage),
-                //        ForesightServiceHelpers.GenerateST15NQRequest(smokerStatus, gender, birthday, coverage),
-                //        ForesightServiceHelpers.GenerateST20NIRequest(smokerStatus, gender, birthday, coverage)
-                //    }
-                //};
-
-                //var result = await _processTxLifeRequestClient.ProcessTXLifeRequestAsync(new AcordTXLifeRequestMessageContract(txLife));
-                //
-
-                var soapDocument = ForesightServiceHelpers.GenerateRequestXml(model.smokerStatusInfo, model.genderInfo,
+               var soapRequest = ForesightServiceHelpers.GenerateRequestXml(model.smokerStatusInfo, model.genderInfo,
                     model.birthday, model.CoverageAmount);
 
-                var webRequest = (HttpWebRequest)WebRequest.Create(FireLightSession.ForeSightUrl);
-                webRequest.Headers.Add(@"SOAP:Action");
-                webRequest.ContentType = "application/soap+xml; charset=utf-8";
-                webRequest.Accept = "text/xml";
-                webRequest.Method = "POST";
+                var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
 
-                using (var stream = webRequest.GetRequestStream())
-                {
-                    soapDocument.Save(stream);
-                }
-
-                using (var webResponse = webRequest.GetResponse())
-                {
-                    using (var rd = new StreamReader(webResponse.GetResponseStream() ?? throw new InvalidOperationException("The response object is null.")))
-                    {
-                        var txLife = ForesightServiceHelpers.ExtractTxLife(rd);
-
-                        var response = request.CreateResponse(HttpStatusCode.OK, txLife.TxLifeResponse);
-                        return response;
-                    }
-                }
+                var response = request.CreateResponse(HttpStatusCode.OK, txLife.TxLifeResponse);
+                return response;
             });
         }
     }

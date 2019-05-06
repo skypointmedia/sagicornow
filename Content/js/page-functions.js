@@ -136,6 +136,31 @@ $(document).ready(function () {
     };
 
     //initialize the form validation
+    $('#previous-quote-form').formValidation({
+        framework: 'Bootstrap4',
+        fields: {
+            Email: {
+                validators: {
+                    notEmpty: {
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Email is required"
+                    }
+                }
+            },
+            Password: {
+                validators: {
+                    notEmpty: {
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Password is required"
+                    },
+                    stringLength: {
+                        min: 8,
+                        message: 'The password must have at least 8 characters',
+                    },
+                }
+            }
+        }
+    });
+
+
     $('#quote-form').formValidation({
         framework: 'Bootstrap4',
         // Feedback icons
@@ -355,10 +380,6 @@ $(document).ready(function () {
             //}
         });
 });
-
-
-
-
 
 
 (function ($) {

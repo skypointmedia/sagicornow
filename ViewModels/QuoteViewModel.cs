@@ -246,5 +246,6 @@ namespace SagicorNow.ViewModels
         public string FirstName { get; set; }
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
+        public bool EnableSaving { get; set; }
     }
 }

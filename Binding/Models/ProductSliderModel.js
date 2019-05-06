@@ -26,12 +26,6 @@
         self.AccidentalDeath = ko.observable(false);
 
         self.ChildrenCoverage = ko.observable(false);
-
-        //self.FirstName = ko.observable("");
-
-        //self.EmailAddress = ko.observable("");
-
-        //self.PhoneNumber = ko.observable("");
     }
     sn.ProductSliderModel = ProductSliderModel;
 }(window.SagicorNow))

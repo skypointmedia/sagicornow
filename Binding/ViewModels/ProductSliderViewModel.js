@@ -45,19 +45,19 @@
                 });
         };
 
-        self.TenYearTermPerMonthCostText = ko.pureComputed(function () {
+        self.tenYearTermPerMonthCostText = ko.pureComputed(function () {
             return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.TenYearTermPerMonthCost());
         });
 
-        self.FifteenYearTermPerMonthCostText = ko.pureComputed(function () {
+        self.fifteenYearTermPerMonthCostText = ko.pureComputed(function () {
             return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.FifteenYearTermPerMonthCost());
         });
 
-        self.TwentyYearTermPerMonthCostText = ko.pureComputed(function () {
+        self.twentyYearTermPerMonthCostText = ko.pureComputed(function () {
             return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.TwentyYearTermPerMonthCost());
         });
 
-        self.WholeLifePerMonthCostText = ko.pureComputed(function () {
+        self.wholeLifePerMonthCostText = ko.pureComputed(function () {
             return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.WholeLifePerMonthCost());
         });
 
@@ -77,19 +77,19 @@
             self.productSliderModel.WholeLife(!self.productSliderModel.WholeLife());
         };
 
-        self.TenYearTermCheckStatus = ko.pureComputed(function () {
+        self.tenYearTermCheckStatus = ko.pureComputed(function () {
             return self.productSliderModel.TenYearTerm() ? "fa fa-check checkStyle" : "";
         });
 
-        self.FifteenYearTermCheckStatus = ko.pureComputed(function () {
+        self.fifteenYearTermCheckStatus = ko.pureComputed(function () {
             return self.productSliderModel.FifteenYearTerm() ? "fa fa-check checkStyle" : "";
         });
 
-        self.TwentyYearTermCheckStatus = ko.pureComputed(function () {
+        self.twentyYearTermCheckStatus = ko.pureComputed(function () {
             return self.productSliderModel.TwentyYearTerm() ? "fa fa-check checkStyle" : "";
         });
 
-        self.WholeLifeTermCheckStatus = ko.pureComputed(function () {
+        self.wholeLifeTermCheckStatus = ko.pureComputed(function () {
             return self.productSliderModel.WholeLife() ? "fa fa-check checkStyle" : "";
         });
 

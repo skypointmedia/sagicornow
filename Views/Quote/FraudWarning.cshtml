@@ -1,4 +1,4 @@
-﻿@model SagicorNow.ViewModels.EmbeddedViewModel
+﻿@model SagicorNow.ViewModels.QuoteViewModel
 
 @{
     ViewBag.Title = "Fraud Warning";
@@ -11,10 +11,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
 }
 
+@section scripts
+{
+    <script>
+        $(function() {
+           
+        });
+    </script>
+}
+
+@section ko_apply
+{
+    
+}
 
 
 
-<div id="fireLightMainDiv">
+<div id="fireLightMainDiv" class="reactContent">
     <div class="ITWizardRoot">
         <div>
             <section class="MainITPanel">
@@ -34,7 +47,7 @@
                                                         <div class="ITComponentLabelContainer">
                                                             <div class="indent0 ITComponentLabel">First Name</div>
                                                         </div>
-                                                        <div class="ITTextField undefined"><input maxlength="20" class="ITTextFieldInput " data-dataitemid="PROPOSED_INSURED_FNAME" value="Curtis"></div>
+                                                        <div class="ITTextField undefined">@Html.TextBoxFor(x => x.FirstName, new {@class= "ITTextFieldInput", maxlength = "20", @data_dataitemid = "PROPOSED_INSURED_FNAME" })</div>
                                                         <div class="errorText errorText-ITTextField">&nbsp; </div>
                                                     </div>
                                                 </div>
@@ -52,7 +65,7 @@
                                                         <div class="ITComponentLabelContainer">
                                                             <div class="indent0 ITComponentLabel">Email Address</div>
                                                         </div>
-                                                        <div class="ITTextField undefined"><input maxlength="50" class="ITTextFieldInput " data-dataitemid="PROPOSED_INSURED_EMAIL" value="email@email.com"></div>
+                                                        <div class="ITTextField undefined">@Html.TextBoxFor(x => x.EmailAddress, new{maxlength = 50, @class="ITTextFieldInput", data_dataitemid = "PROPOSED_INSURED_EMAIL" })</div>
                                                         <div class="errorText errorText-ITTextField">&nbsp; </div>
                                                     </div>
                                                 </div>
@@ -70,7 +83,7 @@
                                                         <div class="ITComponentLabelContainer">
                                                             <div class="indent0 ITComponentLabel">Phone Number</div>
                                                         </div>
-                                                        <div class="ITTextField undefined"><input class="ITTextFieldInput" data-dataitemid="PROPOSED_INSURED_HOME_PHONE" value="949-585-0950"></div>
+                                                        <div class="ITTextField undefined">@Html.TextBoxFor(x => x.PhoneNumber, new{@class= "ITTextFieldInput", data_dataitemid = "PROPOSED_INSURED_HOME_PHONE" })</div>
                                                         <div class="errorText errorText-ITTextField">&nbsp; </div>
                                                     </div>
                                                 </div>
@@ -111,6 +124,33 @@
                                                     <p style="font-size: 12px; text-align: start; line-height: 15px">I have read and agree to Sagicor Life Insurance Company's <a href="https://sagicornow.com/pages/terms" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none">Terms of Use</a>, <a href="https://sagicornow.com/pages/privacy-policy" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none"> Privacy Policy</a> and <a href="https://sagicornow.com/pages/electronic-consent-and-disclosure" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none"> Customer Electronic Consent and Disclosure</a>. I also understand that: </p><ul style="padding-left: 20px; text-align: start; font-size: 11px; line-height: 12px"> <li>If I do not agree and consent to these documents, I will be unable to obtain a quote or to complete an application;</li> <li>Any person who knowingly presents a false statement in an application for insurance may be guilty of a criminal offense and subject to penalties under state law;</li> <li>By providing a telephone number, I consent to Sagicor's authorized agents, including Sagicor's sales and servicing partner Life Quotes, Inc. (sm), calling or texting me as necessary to assist me with my application and to service any products I obtain; </li> <li>All calls will be recorded;</li> <li> By applying for life insurance electronically and providing my email address, I consent to receive electronic mail from Sagicor and the Company's authorized agents; and</li> <li>I may withdraw my consent to receiving telephone calls, texts, and emails at any time by communicating my withdrawal to Sagicor or its authorized agents, either by telephone or email. </li> </ul>
                                                     <p></p>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row baselineAlign">
+                                    <div class="col-xs-2 col-sm-2 col-md-2">
+                                        <div>
+                                            <div style="position: relative;">
+                                                <div class="ITComponentRoot ITCheckBoxWrapper ">
+                                                    <div class="ITComponent">
+                                                        <div class="indent0">
+                                                            <label data-dataitemid="CONSENT_NOT_CONSENT" class="ITCheckBox">
+                                                                <div class="ITCheckBoxContainer">
+                                                                    <div class=" tabindex="0">
+                                                                        @*<div class="ITCheckBoxCheck scaleNormal"><i class="fa fa-check checkStyle" id="chk-enable-saving"></i></div>*@
+                                                                        @Html.CheckBoxFor(x => x.EnableSaving, new{@class= "ITCheckBoxButton  fillColor ITCheckBoxCheck scaleNormal" })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="ITComponentLabelContainer">
+                                                                    <div class="ITComponentLabel" style="padding-left: 10px;"></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="errorText errorText-ITCheckBox">&nbsp; </div>
+                                                    </div>
+                                                </div>
+                                                <div class="errorText warningText ErrorTextNoError errorText-RadioButton">&nbsp; </div>
                                             </div>
                                         </div>
                                     </div>

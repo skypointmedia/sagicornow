@@ -42,11 +42,6 @@
     <script src="~/Binding/Models/ProductSliderModel.js"></script>
     <script src="~/Binding/ViewModels/ProductSliderViewModel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
-    <script>
-        $(function () {
-
-        })
-    </script>
 }
 @section ko_apply{
     var data = @Html.Raw(JsonConvert.SerializeObject(this.Model));
@@ -233,7 +228,7 @@
                                                                             <div>
                                                                                 <div>
                                                                                     <div>
-                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.TenYearTermPerMonthCostText"></p>
+                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.tenYearTermPerMonthCostText"></p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -322,7 +317,7 @@
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBox" style="display: block; width: 100%; text-align: center;">
                                                                                                                 <div class="ITCheckBoxContainer">
                                                                                                                     <div class="ITCheckBoxButton  " tabindex="0">
-                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck10Yr"><i data-bind="class: $parent.TenYearTermCheckStatus"></i></div>
+                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck10Yr"><i data-bind="class: $parent.tenYearTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="ITComponentLabelContainer">
@@ -383,7 +378,7 @@
                                                                             <div>
                                                                                 <div>
                                                                                     <div>
-                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.FifteenYearTermPerMonthCostText"></p>
+                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.fifteenYearTermPerMonthCostText"></p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -472,7 +467,7 @@
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBox" style="display: block; width: 100%; text-align: center;">
                                                                                                                 <div class="ITCheckBoxContainer">
                                                                                                                     <div class="ITCheckBoxButton  fillColor" tabindex="0">
-                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck15Yr"><i data-bind="class: $parent.FifteenYearTermCheckStatus"></i></div>
+                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck15Yr"><i data-bind="class: $parent.fifteenYearTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="ITComponentLabelContainer">
@@ -533,7 +528,7 @@
                                                                             <div>
                                                                                 <div>
                                                                                     <div>
-                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.TwentyYearTermPerMonthCostText"></p>
+                                                                                        <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.twentyYearTermPerMonthCostText"></p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -622,7 +617,7 @@
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBox" style="display: block; width: 100%; text-align: center;">
                                                                                                                 <div class="ITCheckBoxContainer">
                                                                                                                     <div class="ITCheckBoxButton  " tabindex="0">
-                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck20Yr"><i data-bind="class: $parent.TwentyYearTermCheckStatus"></i></div>
+                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheck20Yr"><i data-bind="class: $parent.twentyYearTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="ITComponentLabelContainer">
@@ -772,7 +767,7 @@
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBox" style="display: block; width: 100%; text-align: center;">
                                                                                                                 <div class="ITCheckBoxContainer">
                                                                                                                     <div class="ITCheckBoxButton  " tabindex="0">
-                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheckWL"><i data-bind="class: $parent.WholeLifeTermCheckStatus"></i></div>
+                                                                                                                        <div class="ITCheckBoxCheck scaleNormal" data-bind="click: $parent.checkUncheckWL"><i data-bind="class: $parent.wholeLifeTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="ITComponentLabelContainer">
