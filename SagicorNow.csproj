@@ -205,9 +205,16 @@
     </Content>
     <Content Include="Binding\Models\FraudWarningModel.js" />
     <Content Include="Binding\Models\ProductSliderModel.js" />
+    <Content Include="Binding\ViewModels\FraudWarningViewModel.js" />
     <Content Include="Binding\ViewModels\ProductSliderViewModel.js" />
     <Content Include="Binding\ViewModels\QuoteViewModel.js" />
     <Content Include="Content\consumer-portal.css" />
+    <Content Include="Content\firelight-css\consumerPortal.e203702198117be6fe06.css" />
+    <Content Include="Content\firelight-css\flexboxgrid.6.3.0.min.css" />
+    <Content Include="Content\firelight-css\font-awesome.min.css" />
+    <Content Include="Content\firelight-css\SAG.css" />
+    <Content Include="Content\firelight-css\slick-theme.1.6.0.min.css" />
+    <Content Include="Content\firelight-css\slick.1.6.0.min.css" />
     <Content Include="Content\flexboxgrid.6.3.0.min.css" />
     <Content Include="Content\SAG.css" />
     <Content Include="Scripts\app.js" />

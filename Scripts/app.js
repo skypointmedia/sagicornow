@@ -1,13 +1,13 @@
 ﻿window.SagicorNow = {};
 
-    (function (sn) {
-        var rootPath;
-        sn.rootPath = rootPath;
-    }(window.SagicorNow));
+(function(sn) {
+    var rootPath;
+    sn.rootPath = rootPath;
+}(window.SagicorNow));
 
 (function (sn) {
     var mustEqual = function (val, other) {
-        return val === other();
+        return val === other;
     }
     sn.mustEqual = mustEqual;
 }(window.SagicorNow));

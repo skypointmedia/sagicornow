@@ -1,0 +1,2285 @@
+﻿/*#region Client Specific Classes*/
+.menuLocation {
+    content: "Top";
+}
+
+.calculator {
+    content: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMC8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvVFIvMjAwMS9SRUMtU1ZHLTIwMDEwOTA0L0RURC9zdmcxMC5kdGQnPjxzdmcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjQgMjQiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHBhdGggZD0iTTE4LDJINkM0LjksMiw0LDIuOSw0LDR2MTZjMCwxLjEsMC45LDIsMiwyaDEyYzEuMSwwLDItMC45LDItMlY0QzIwLDIuOSwxOS4xLDIsMTgsMnogTTE4LDhINlY0aDEyVjh6IE05LDEySDd2LTJoMlYxMnogICBNMTMsMTJoLTJ2LTJoMlYxMnogTTksMTZIN3YtMmgyVjE2eiBNMTMsMTZoLTJ2LTJoMlYxNnogTTksMjBIN3YtMmgyVjIweiBNMTMsMjBoLTJ2LTJoMlYyMHogTTE3LDEyaC0ydi0yaDJWMTJ6IE0xNywxNmgtMnYtMmgyICBWMTZ6IE0xNywyMGgtMnYtMmgyVjIweiIvPjxyZWN0IGhlaWdodD0iMiIgd2lkdGg9IjIiIHg9IjE1IiB5PSI1Ii8+PC9zdmc+";
+}
+
+.calcIconStyle {
+    margin: -3px 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.headerHtml {
+    content: "&lt;div class=&quot;centerMainRow noMargin headerWrapper&quot;&gt; &lt;div class=&quot;mainHeader noMargin row&quot;&gt; &lt;div class=&quot;headerImageWrapper&quot;&gt;&lt;a href=&quot;https://sagicornow.com&quot; tabindex=&quot;-1&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;logo&quot; src=&quot;https://sagicornow.com/Content/Images/sagicor_logo.png&quot;/&gt;&lt;/a&gt;&lt;/div&gt;&lt;nav id=&quot;mainMenuWrapper&quot;&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot;&gt;Products&lt;i class=&quot;fa fa-caret-down&quot; style=&quot;position: relative;&quot;&gt;&lt;/i&gt;&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/sage-term-life&quot; target=&quot;_blank&quot;&gt;Sage Term Life&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/sage-whole-life&quot; target=&quot;_blank&quot;&gt;Sage Whole Life&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt; &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot;&gt;Resources&lt;i class=&quot;fa fa-caret-down&quot; style=&quot;position: relative;&quot;&gt;&lt;/i&gt;&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/life-insurance-101&quot; target=&quot;_blank&quot;&gt;Life Insurance 101&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/why-buy-life-insurance&quot; target=&quot;_blank&quot;&gt;Why Buy Life Insurance&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/term-vs-whole-life&quot; target=&quot;_blank&quot;&gt;Term vs Whole Life&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt; &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot;&gt;About&lt;i class=&quot;fa fa-caret-down&quot; style=&quot;position: relative;&quot;&gt;&lt;/i&gt;&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/about-us&quot; target=&quot;_blank&quot;&gt;About Us&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.sagicornow.com/pages/testimonials&quot; target=&quot;_blank&quot;&gt;Testimonials&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/contact-us&quot; target=&quot;_blank&quot;&gt;Contact Us&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/larger-than-life&quot; target=&quot;_blank&quot;&gt;Larger Than Life&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/faq&quot; target=&quot;_blank&quot;&gt;FAQ&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt; &lt;/li&gt;&lt;/ul&gt; &lt;/nav&gt; &lt;div id=&quot;mobileMenuContainer&quot;&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-bars hamburgerMenu&quot;&gt;&lt;/i&gt;&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Products&lt;i class=&quot;fa fa-caret-down&quot; style=&quot;position: relative;&quot;&gt;&lt;/i&gt;&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/sage-term-life&quot; target=&quot;_blank&quot;&gt;Sage Term Life&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/sage-whole-life&quot; target=&quot;_blank&quot;&gt;Sage Whole Life&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt; &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Resources&lt;i class=&quot;fa fa-caret-down&quot; style=&quot;position: relative;&quot;&gt;&lt;/i&gt;&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/life-insurance-101&quot; target=&quot;_blank&quot;&gt;Life Insurance 101&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/why-buy-life-insurance&quot; target=&quot;_blank&quot;&gt;Why Buy Life Insurance&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/term-vs-whole-life&quot; target=&quot;_blank&quot;&gt;Term vs Whole Life&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt; &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;#&quot;&gt;About&lt;i class=&quot;fa fa-caret-down&quot; style=&quot;position: relative;&quot;&gt;&lt;/i&gt;&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/about-us&quot; target=&quot;_blank&quot;&gt;About Us&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.sagicornow.com/pages/testimonials&quot; target=&quot;_blank&quot;&gt;Testimonials&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/contact-us&quot; target=&quot;_blank&quot;&gt;Contact Us&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/larger-than-life&quot; target=&quot;_blank&quot;&gt;Larger Than Life&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://sagicornow.com/pages/faq&quot; target=&quot;_blank&quot;&gt;FAQ&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt; &lt;/li&gt;&lt;/li&gt;&lt;/ul&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;";
+}
+
+.mobileHtml {
+    content: "&lt;nav style=&apos;background-color: #474747&apos;&gt;&lt;input type=&apos;checkbox&apos;id=&apos;drop&apos;style=&apos;display:none&apos;/&gt;&lt;ul class=&apos;mobileMenu&apos;&gt;&lt;li class=&apos;mobileMenuItems&apos;&gt;&lt;!--First Tier Drop Down--&gt;&lt;a class=&apos;mobileMenuLink&apos;href=&apos;#&apos;&gt;&lt;i class='fa fa-bars mobileMenuBars'&gt;&lt;/i&gt;&lt;/a&gt;&lt;input type=&apos;checkbox&apos;id=&apos;drop-2&apos;style=&apos;display:none&apos;/&gt;&lt;ul class=&apos;mobileMenuChildren&apos;&gt;&lt;li&gt;&lt;a class=&apos;mobileMenuLink&apos;href=&apos;#&apos;&gt;Get Coverage&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a class=&apos;mobileMenuLink&apos;href=&apos;#&apos;&gt;Resources&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a class=&apos;mobileMenuLink&apos;href=&apos;#&apos;&gt;About&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a class=&apos;mobileMenuLink&apos;href=&apos;#&apos;&gt;My Account&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/nav&gt;";
+}
+
+.footerHtml {
+    content: "&lt;div style=&quot;margin: 0 auto;&quot;&gt; &lt;div class=&quot;row top-xs baselineAlign&quot; style=&quot;max-width: 1000px; margin: 0 auto;&quot;&gt; &lt;table class=&quot;col-md-2 col-sm-2 col-xs-12&quot; style=&quot;display: inline-block; margin-top: 15px;&quot;&gt; &lt;tr&gt; &lt;td&gt; &lt;a href=&quot;https://www.sagicorlifeusa.com/&quot; tabindex=&quot;-1&quot;&gt; &lt;img width=&quot;110&quot; style=&quot;border: 0px&quot; src=&quot;https://sagicornow.com/Content/Images/sagicor-footer-logo.png&quot;/&gt; &lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt; &lt;td&gt; &lt;br/&gt; &lt;br/&gt; &lt;img width=&quot;100&quot; src=&quot;https://sagicornow.com/Content/Images/bbb-logo.png&quot;/&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;table class=&quot;col-md-2 col-sm-2 col-xs-12 col-md-offset-2&quot; style=&quot;font-family: Arial; display: inline-block; margin-top: 22px;&quot;&gt; &lt;tr style=&quot;color: #ddd&quot;&gt; &lt;td style=&quot;width: 55%&quot;&gt; &lt;span style=&quot;font-size: 17px&quot;&gt;Products:&lt;/span&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;color: #8c8c8c&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a href=&quot;https://sagicornow.com/pages/sage-term-life&quot; tabindex=&quot;-1&quot; style=&quot;color: #8c8c8c;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Sage Term Life&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;color: #8c8c8c&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a href=&quot;https://sagicornow.com/pages/sage-whole-life&quot; tabindex=&quot;-1&quot; style=&quot;color: #8c8c8c;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Sage Whole Life&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;table class=&quot;col-md-2 col-sm-2 col-xs-12&quot; style=&quot;font-family: Arial; display: inline-block; margin-top: 22px;&quot;&gt; &lt;tr style=&quot;color: #ddd&quot;&gt; &lt;td style=&quot;width: 55%&quot;&gt; &lt;span style=&quot;font-size: 17px&quot;&gt;Resources:&lt;/span&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;color: #8c8c8c&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a href=&quot;https://sagicornow.com/pages/life-insurance-101&quot; tabindex=&quot;-1&quot; style=&quot;color: #8c8c8c;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Life Insurance 101&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;color: #8c8c8c&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a href=&quot;https://sagicornow.com/pages/why-buy-life-insurance&quot; tabindex=&quot;-1&quot; style=&quot;color: #8c8c8c;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Why Buy Life Insurance&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;color: #8c8c8c&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a href=&quot;https://sagicornow.com/pages/term-vs-whole-life&quot; tabindex=&quot;-1&quot; style=&quot;color: #8c8c8c;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Term vs Whole Life&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;table class=&quot;col-md-2 col-sm-2 col-xs-9&quot; style=&quot;font-family: Arial; display: inline-block; margin-top: 22px;&quot;&gt; &lt;tr style=&quot;color: #ddd&quot;&gt; &lt;td&gt; &lt;span style=&quot;font-size: 17px&quot;&gt;About:&lt;/span&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;color: #8c8c8c&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a href=&quot;https://sagicornow.com/pages/about-us&quot; tabindex=&quot;-1&quot; style=&quot;color: #8c8c8c;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;About Us&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;color: #8c8c8c&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a href=&quot;https://www.sagicornow.com/pages/testimonials&quot; tabindex=&quot;-1&quot; style=&quot;color: #8c8c8c;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Testimonials&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;color: #8c8c8c&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a href=&quot;https://sagicornow.com/pages/contact-us&quot; tabindex=&quot;-1&quot; style=&quot;color: #8c8c8c;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Contact Us&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;color: #8c8c8c&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a href=&quot;https://sagicornow.com/pages/larger-than-life&quot; tabindex=&quot;-1&quot; style=&quot;color: #8c8c8c;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;Larger Than Life&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;color: #8c8c8c&quot;&gt; &lt;td style=&quot;font-size: 14px; padding: 5px 0px 0px 0px;&quot;&gt; &lt;a href=&quot;https://sagicornow.com/pages/faq&quot; tabindex=&quot;-1&quot; style=&quot;color: #8c8c8c;&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot;&gt;FAQ&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;div class=&quot;col-md-1 col-sm-1 col-xs-3 end-md end-sm&quot; style=&quot;text-align: right; margin-top: 30px;&quot;&gt; &lt;a href=&quot;https://www.facebook.com/Sagicor-Life-Insurance-Company-319221641536486/&quot; tabindex=&quot;-1&quot; target=&quot;_blank&quot; style=&quot;text-decoration: none; color: #b9d6f0;&quot;&gt; &lt;svg viewbox=&quot;0 0 60 55&quot; width=&quot;30&quot; height=&quot;35&quot;&gt; &lt;path xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;fill:#b9d6f0;&quot; d=&quot;M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029 c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77 L40.43,21.739z&quot;/&gt; &lt;/svg&gt; &lt;/a&gt; &lt;br/&gt; &lt;a href=&quot;https://twitter.com/SagicorLife&quot; target=&quot;_blank&quot; tabindex=&quot;-1&quot; style=&quot;text-decoration: none; color: #b9d6f0&quot;&gt; &lt;svg viewbox=&quot;0 0 60 55&quot; width=&quot;25&quot; height=&quot;35&quot;&gt; &lt;path xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;fill:#b9d6f0;&quot; d=&quot;M52.837,15.065c-1.811,0.805-3.76,1.348-5.805,1.591c2.088-1.25,3.689-3.23,4.444-5.592c-1.953,1.159-4.115,2-6.418,2.454 c-1.843-1.964-4.47-3.192-7.377-3.192c-5.581,0-10.106,4.525-10.106,10.107c0,0.791,0.089,1.562,0.262,2.303 c-8.4-0.422-15.848-4.445-20.833-10.56c-0.87,1.492-1.368,3.228-1.368,5.082c0,3.506,1.784,6.6,4.496,8.412 c-1.656-0.053-3.215-0.508-4.578-1.265c-0.001,0.042-0.001,0.085-0.001,0.128c0,4.896,3.484,8.98,8.108,9.91 c-0.848,0.23-1.741,0.354-2.663,0.354c-0.652,0-1.285-0.063-1.902-0.182c1.287,4.015,5.019,6.938,9.441,7.019 c-3.459,2.711-7.816,4.327-12.552,4.327c-0.815,0-1.62-0.048-2.411-0.142c4.474,2.869,9.786,4.541,15.493,4.541 c18.591,0,28.756-15.4,28.756-28.756c0-0.438-0.009-0.875-0.028-1.309C49.769,18.873,51.483,17.092,52.837,15.065z&quot;/&gt; &lt;/svg&gt; &lt;/a&gt; &lt;br/&gt; &lt;a href=&quot;https://www.linkedin.com/company-beta/94509/?pathWildcard=94509&quot; tabindex=&quot;-1&quot; target=&quot;_blank&quot; style=&quot;text-decoration: none; color: #b9d6f0;&quot;&gt; &lt;svg viewbox=&quot;0 0 30 55&quot; width=&quot;55&quot; height=&quot;55&quot;&gt; &lt;g xmlns=&quot;http://www.w3.org/2000/svg&quot; id=&quot;Icons&quot;&gt; &lt;g&gt; &lt;path style=&quot;fill:#b9d6f0;&quot; d=&quot;M34.95037,32.31248c-0.0083-2.14649-0.01611-4.29199-0.03125-6.43848 c-0.00684-0.89355-0.12988-1.76855-0.36572-2.59863c-0.42969-1.51074-1.23242-2.50391-2.45557-3.03418 c-1.34912-0.58496-2.77149-0.7002-4.22363-0.34277c-0.9248,0.22656-1.72021,0.6748-2.375,1.33789 c0.00049-0.17285,0.00195-0.34473,0.00635-0.51758c0.00195-0.0791,0.0083-0.32227-0.1626-0.49707 c-0.17236-0.1748-0.41699-0.17969-0.49316-0.17285c-1.22803,0.00684-2.45361,0.00684-3.67969,0.00098 c-0.13379-0.0127-0.34131,0.01367-0.49316,0.16504c-0.15137,0.15039-0.16846,0.34863-0.16846,0.48535 c0.00635,4.52441,0.00586,9.04883,0,13.57422c0,0.1377,0.01758,0.33789,0.16895,0.48828 c0.15039,0.15137,0.3374,0.16699,0.48828,0.16602c1.2832-0.00781,2.56592-0.00781,3.84912,0c0.00439,0,0.0083,0,0.0127,0 c0.13623,0,0.32764-0.01855,0.47266-0.16309c0.1499-0.14941,0.1665-0.35156,0.16602-0.49023 c-0.0083-2.14844-0.01074-4.29688-0.00049-6.44531c0.00293-0.52246,0.03516-1.04492,0.0957-1.55176 c0.06885-0.57812,0.25439-1.02344,0.56689-1.3623c0.37793-0.41016,0.88184-0.56641,1.65723-0.56445 c0.86768,0.0166,1.36475,0.39062,1.61035,1.21484c0.17285,0.58008,0.1875,1.19043,0.18799,1.81738l0.00049,6.86035 c0,0.51465,0.16406,0.67969,0.67432,0.67969l3.75879,0.00098c0.25537,0,0.43994-0.00098,0.59082-0.15234 c0.15088-0.15234,0.15039-0.34277,0.14941-0.58398L34.95037,32.31248z&quot; style=&quot;fill:#303030;&quot;/&gt; &lt;path style=&quot;fill:#b9d6f0;&quot; d=&quot;M18.53337,27.50193l-0.00049-1.60742c-0.00098-1.72656-0.00146-3.45215,0.00586-5.17871 c0.00049-0.15527-0.01807-0.35352-0.16846-0.50293c-0.15088-0.15137-0.37354-0.17773-0.49414-0.16504 c-1.27588,0.00977-2.55029,0.00879-3.82422,0.00098c-0.15625,0.00488-0.34863,0.01465-0.50146,0.16699 c-0.15381,0.15234-0.1709,0.35742-0.1709,0.49805c0.00684,4.51562,0.00684,9.03223,0,13.54883 c0,0.1416,0.01807,0.34766,0.17139,0.5c0.15332,0.15137,0.36377,0.15332,0.49854,0.16602 c1.27539-0.00977,2.55029-0.00977,3.82471,0c0.00488,0,0.00928,0,0.01416,0c0.15039,0,0.33789-0.02051,0.48291-0.16504 c0.1499-0.14941,0.16846-0.3457,0.16797-0.50098c-0.00781-1.73242-0.00732-3.4668-0.00635-5.2002L18.53337,27.50193z&quot; style=&quot;fill:#303030;&quot;/&gt; &lt;path style=&quot;fill:#b9d6f0;&quot; d=&quot;M15.97527,13.07127c-0.00684,0-0.01318,0-0.01953,0 c-1.63086,0.00879-2.91064,1.29395-2.91357,2.9248c0,0.00098,0,0.00098,0,0.00098c0,0.77734,0.31934,1.53906,0.87646,2.08984 c0.54639,0.54102,1.26123,0.83789,2.01562,0.83789c0.00977,0,0.02002-0.00098,0.02979-0.00098 c1.67529-0.0166,2.93604-1.27637,2.93262-2.93066c-0.00146-0.80273-0.30273-1.54395-0.84863-2.08594 C17.50359,13.36717,16.76824,13.07127,15.97527,13.07127z&quot; style=&quot;fill:#303030;&quot;/&gt; &lt;/g&gt; &lt;/g&gt; &lt;/svg&gt; &lt;/a&gt; &lt;/div&gt;&lt;div style=&quot;color: #b5b5b5; font-family: Arial; font-size: 14px; margin-top: -10px;&quot;&gt; &lt;br/&gt; &lt;p class=&quot;col-xs-12 col-sm-12 col-md-12&quot;&gt;2019 &#9400; Sagicor Life Insurance Company. All Rights Reserved. &lt;a href=&quot;https://sagicornow.com/pages/terms&quot; tabindex=&quot;-1&quot; target=&quot;_blank&quot; class=&quot;footerLinks&quot; style=&quot;color: #b5b5b5;&quot;&gt;&lt;br/&gt;Terms and Conditions&lt;/a&gt; &nbsp;|&nbsp; &lt;a href=&quot;https://www.sagicornow.com/pages/privacy-statement&quot; tabindex=&quot;-1&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot; style=&quot;color: #b5b5b5;&quot;&gt;Privacy Statement&lt;/a&gt; &nbsp;|&nbsp; &lt;a href=&quot;https://sagicornow.com/pages/privacy-policy&quot; tabindex=&quot;-1&quot; class=&quot;footerLinks&quot; target=&quot;_blank&quot; style=&quot;color: #b5b5b5;&quot;&gt;Privacy Policy&lt;/a&gt; &nbsp;|&nbsp; &lt;a href=&quot;https://sagicornow.com/pages/electronic-consent-and-disclosure&quot; tabindex=&quot;-1&quot; target=&quot;_blank&quot; class=&quot;footerLinks&quot; style=&quot;color: #b5b5b5;&quot;&gt;Customer Electronic Consent and Disclosure&lt;/a&gt; &lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;"
+}
+
+.toolTipText {
+    content: "&lt;div&gt;&lt;h3&gt;Additional riders may be added to your policy for an additional fee.&lt;/h3&gt;&lt;div&gt;&lt;b&gt;Waiver of premium:&lt;/b&gt;&lt;br/&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat ac ipsum eu bibendum. In auctor, eros id ultricies sodales.&lt;/p&gt; &lt;b&gt;Accidental Death:&lt;/b&gt;&lt;br/&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat ac ipsum eu bibendum. In auctor, eros id ultricies sodales.&lt;/p&gt; &lt;b&gt;Childrens Term:&lt;/b&gt;&lt;br/&gt; &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat ac ipsum eu bibendum. In auctor, eros id ultricies sodales.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;";
+}
+
+.errorText {
+    white-space: normal;
+    height: auto;
+}
+
+.validationContainer {
+    width: calc(100% - 1rem); /* Account for negative margins in rows*/
+}
+
+    .validationContainer .validationText {
+        display: inline;
+        visibility: visible;
+    }
+
+    .validationContainer .ITTooltipContainer:hover .ITTooltip {
+        display: none;
+    }
+
+/*Green info bar when entering into application*/
+.infoHeader {
+    font-size: 20px;
+    color: white;
+    font-family: Arial;
+    margin-top: 6px;
+}
+
+.infoBarBackground {
+    background-color: #88C348;
+    margin-bottom: 55px;
+    padding: 10px;
+    margin-top: -80px;
+}
+/*#endregion*/
+
+/*#region SiteLayout.css Overrides*/
+.mainContent {
+    margin: 0 auto;
+    background-color: #EAEBEF !important;
+    border-radius: 0px !important;
+    float: none !important;
+    padding-top: 60px;
+}
+
+body, html {
+    background-color: #EAEBEF;
+    font-family: Arial;
+    margin: 0px;
+}
+
+.mainDiv {
+    font-family: Arial !important;
+}
+
+.mainRow {
+    background-color: #EAEBEF;
+    width: 100%;
+}
+
+.mainBody {
+    padding-bottom: 155px; /* This is to accomodate the heigh of the Sticky Footer */
+}
+
+.mainFooter {
+    z-index: 10;
+    background-color: #474747;
+    height: 275px;
+    padding-top: 20px;
+}
+
+.TopMenuStyle .ITIcon {
+    font-size: 36px;
+    padding-bottom: 10px;
+}
+
+.TopMenuStyle .ITIconActive {
+    font-size: 36px;
+}
+
+.mainHeader {
+    background-color: white;
+    z-index: 3;
+    height: 60px;
+    display: flex;
+    display: -ms-flexbox;
+    justify-content: center;
+}
+
+.row.mainHeader {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.headerWrapper {
+    padding-bottom: 80px;
+}
+
+.mainMenu {
+    width: 1000px !important;
+    max-width: 1000px !important;
+    float: none !important;
+    background-color: white;
+    margin: 0px !important;
+    border-radius: 0px !important;
+}
+
+#mainMenuWrapper {
+    padding-top: 15px;
+}
+
+    #mainMenuWrapper ul {
+        list-style: none;
+        position: relative;
+        float: left;
+        margin: 0;
+        padding: 0;
+    }
+
+        #mainMenuWrapper ul a {
+            display: block;
+            color: rgba(0,0,0,.5);
+            text-decoration: none;
+            font-size: 15px;
+            line-height: 32px;
+            padding: 0 15px;
+        }
+
+        #mainMenuWrapper ul li {
+            position: relative;
+            float: left;
+            margin: 0;
+            padding: 0;
+        }
+
+
+            #mainMenuWrapper ul li:hover {
+                background: #f6f6f6;
+            }
+
+        #mainMenuWrapper ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            padding: 0;
+            z-index: 100;
+        }
+
+            #mainMenuWrapper ul ul li {
+                float: none;
+                width: 200px;
+            }
+
+            #mainMenuWrapper ul ul a {
+                line-height: 120%;
+                padding: 10px 15px;
+            }
+
+            #mainMenuWrapper ul ul ul {
+                top: 0;
+                left: 100%;
+            }
+
+        #mainMenuWrapper ul li:hover > ul {
+            display: block;
+        }
+
+#mobileMenuContainer {
+    display: none;
+}
+
+.mobileMenuBars {
+    font-size: 36px;
+}
+
+.subHeader {
+    font-size: 12px !important;
+}
+
+.logo {
+    position: relative !important;
+    padding: 5px 15px;
+    border: 0px;
+}
+/*#endregion*/
+
+/*#region ITComponentLib.css Overrides*/
+.ITSelect {
+    height: 40px;
+    background-color: #F8F8F8;
+    border: 1px solid #bdbdbd;
+}
+
+select::-ms-expand {
+    background-color: #F8F8F8;
+}
+
+.ITSelect:focus {
+    border: 1px solid #00aeef;
+}
+
+.ITSliderOffset {
+    content: "2";
+}
+
+.row .ITComponent {
+    margin: .5em 1em .25em 1em;
+    width: calc(100% - 2em);
+}
+
+.ITPanelContents .ITComponent {
+    padding-left: 5px;
+}
+
+.ITComponentLabelContainer {
+    height: auto;
+}
+
+    .ITComponentLabelContainer > div {
+        vertical-align: baseline;
+    }
+
+.ITComponentLabel {
+    color: #474747;
+    font-weight: bolder;
+    font-size: 14px;
+    font-family: Arial;
+    white-space: normal;
+    overflow: auto;
+    text-overflow: inherit;
+}
+
+.ITTooltipContents {
+    padding: 10px;
+    font-weight: 400;
+}
+
+.ITTooltipContainer {
+    text-align: center;
+}
+
+.ITText {
+    color: inherit;
+    font-family: Arial;
+}
+
+    .ITText > ul {
+        margin: 0em;
+        line-height: 32px;
+        font-size: 16px;
+        color: #474747;
+    }
+
+.ITTextFieldInput {
+    background-color: #F8F8F8;
+    border: 1px solid #bdbdbd;
+}
+
+    .ITTextFieldInput:focus {
+        border: 1px solid #00aeef;
+    }
+
+    .ITTextFieldInput:disabled, .ITSelect:disabled {
+        background-color: #F8F8F8;
+        font-weight: bold;
+    }
+
+.ITIcon {
+    color: #bababa;
+}
+
+.ITIconActive {
+    color: #00aeef;
+    /*    margin-top: 3px; */
+}
+
+.ITIconLabel {
+    word-wrap: break-word;
+    width: 80px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.ITIconMargin {
+    display: inline-block;
+    position: absolute;
+    margin-left: -20px;
+}
+
+.MainITPanel {
+    border-radius: 4px;
+    margin: 0 auto;
+    border: 1px solid #BABABA;
+    background-color: white;
+}
+
+.ITPanel {
+    border-radius: 4px;
+    margin: 0;
+}
+
+.ITPanelTitle {
+    padding: 0px 0px 30px 0px;
+    margin: 0px 3px;
+    background: white;
+    background-image: none;
+    display: flex;
+    display: -ms-flexbox;
+}
+
+.ITPanelTitleText {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    color: #00aeef;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.ITPanelTitleImage {
+    color: #00aeef;
+    padding: 0px 15px;
+    width: 35px;
+    height: 44px;
+}
+
+.panelDivider {
+    display: block;
+    height: 1px;
+    margin: 0px 15px;
+    border: none;
+    background-color: #BABABA;
+}
+
+.fullDivider {
+    margin: 0px;
+    height: 1px;
+    border: none;
+    background-color: #BABABA;
+}
+
+.ITPanelContents .ITText {
+    padding-left: 12px;
+}
+
+.ITDivider {
+    height: 1px;
+    margin: 0px 20px;
+    border: none;
+    background-color: #BABABA;
+}
+
+.ITCheckBoxWrapper {
+    padding-top: 10px;
+}
+
+    .ITCheckBoxWrapper:not(.ITCheckBoxWrapper--bottomLabel) .ITComponentLabel {
+        padding-left: 10px;
+        max-width: calc(100% - 10px);
+    }
+
+    .ITCheckBoxWrapper:not(.ITCheckBoxWrapper--bottomLabel) .ITComponentLabel--withHelp {
+        /* We need to account for our label's additional 10px of width, along with the total width of ITComponent__help */
+        max-width: calc(100% - 1em - 20px);
+    }
+
+.ITCheckBoxContainer {
+    margin-bottom: 10px;
+}
+
+.baselineAlign {
+    align-items: baseline;
+    -ms-flex-align: baseline;
+}
+
+.row.centerMainRow {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*ITCheckBox fill color override*/
+.fillColor {
+    border: 1px solid darkgray;
+}
+
+.ITCheckBoxDisabled {
+    cursor: not-allowed;
+    background: lightgray;
+}
+
+.ITButtonInput {
+    background-image: none;
+    background-color: #88C348;
+    width: 50px;
+    height: 50px;
+    min-width: 150px;
+}
+
+.ITButtonWide {
+    width: 80%;
+}
+
+.line {
+    position: absolute;
+    height: 2px;
+    width: 67px;
+    background: #BABABA;
+}
+
+.activeLine {
+    position: absolute;
+    height: 2px;
+    background: #00aeef;
+    width: 60px;
+}
+
+.ITButtonDisabled {
+    background-color: #a6a7a5;
+    font-family: Roboto, sans-serif;
+    cursor: not-allowed;
+    border: none;
+    width: 50px;
+    height: 50px;
+    min-width: 150px;
+}
+
+.ITButtonText {
+    color: white;
+    font-weight: 600;
+    font-size: 24px;
+    font-family: Arial;
+}
+
+.ITNavLinkText {
+    line-height: 45px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.PageHeaderTextStyle {
+    font-family: Arial;
+    font-weight: normal;
+    font-size: 32px;
+    color: #474747;
+    margin: 0 auto;
+    line-height: 27px;
+}
+
+.SubHeaderTextStyle {
+    font-family: Arial;
+    font-weight: normal;
+    font-size: 22px;
+    max-width: 850px;
+    color: #474747;
+    margin: 0 auto;
+    padding: 10px 20vw;
+}
+
+.headerPadding {
+    padding-top: 80px;
+}
+/*#endregion*/
+
+/*#region Panel Banner Images*/
+.bannerBlank {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjk4RDFGRDhDMjUyNzExRTdBQUE2OTY4Q0YwRkMzOTYzIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjk4RDFGRDhEMjUyNzExRTdBQUE2OTY4Q0YwRkMzOTYzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OThEMUZEOEEyNTI3MTFFN0FBQTY5NjhDRjBGQzM5NjMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OThEMUZEOEIyNTI3MTFFN0FBQTY5NjhDRjBGQzM5NjMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5JbUpsAAABKUlEQVR42uzcwUoCYRRA4V+tyKQWhRAhLQpsWUS1iQqC6G19CN/CnasoKqyGMhCq88ddSDvBwGHOhbNQRplvHK87a6k3+k4VmjoVFfIW9VSxESxYsGDBggULFixYsGDBggULFixYsGDBggULFixYsGDBggULFixYsGDBggULFixYsGDBggULFixYsGDBggULFixYsGDBZQKvVwm8RH0a0oAe6JUmtExrtEXbtEt7tB/PlRZ8NeNr8kXo0iGd0hkdU6MM4FrqjebxPh06pxu6jceLOMW8wNOTP+kLuqZLOqHWgoAn/wH+O5t0FOWvwUHsgnaZb+lZZzWWYCfaicXYjgu0Eb8ezTh2JZZo4/ecU8p/p/MVyzX3SWP6oHd6oxd6pid6pHu6+xFgANl+Jvc7ppqEAAAAAElFTkSuQmCC";
+}
+
+.banner1 {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjlGMDk1QTUyMjUyNzExRTc5RUREQzBBREYyOUJBNEUxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjlGMDk1QTUzMjUyNzExRTc5RUREQzBBREYyOUJBNEUxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OUYwOTVBNTAyNTI3MTFFNzlFRERDMEFERjI5QkE0RTEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OUYwOTVBNTEyNTI3MTFFNzlFRERDMEFERjI5QkE0RTEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6dYFRdAAAB8UlEQVR42uzczy/CcRzH8XchFXVAfrTmIPNjs8JwYNga8xdwcvMn+BMcnMzFkbs5dLdx4ejWhnWw2WyGIolqlXi/2+dgfhza1Le+n9dne24y0uP7453aFwuFEx+k0bJyKY28KStptgAGGGCAAQYYYIABBhhggAEGWEdwo5E/PNRqpeNFd+njh3SRug5fzL2HN0Yc+hzSu0N2mu5p0gO85bfR2rBdj3NY9qxR2KqDDwIOWvY3m39KyzTeHnNSoMPQJ4XqgI0+hKsGlsG02m+nTufPuRiJF+gsVjBkQ1RsSi94bb9i9y6zFDx9pWS+aO6hJXt18zxD+0/v5j6H5VfGnYsMbdzkzX0OR5PvdHSbo/WrnB4vHlYiGbw8BBhggAEGGGCAAQYYYIABBhhggAEGGGCAy18WCifkOgOXJl78kQfAAAMMMMAAAwwwwAADDPCfYJdOYLmK54S75qLcPZfk5KIquXrbybVz3Vwv18f51efqFjxf5vfIRhjggtwkN8WNcw31AJZ3PP7jfnzcDLfILanbtbhS/wX+umRPz3Ihbo6b4FpqBJyvBPj7auNGVXIaDKpZ4KnnQ7rcZVdD0KfyqsHoURvIrZ49HOprbWqINpQeM5H8O52iGq5SlpNrHdPcGydvTD5zj1yci3F33O2nAAMAe8Nhbc7NnyYAAAAASUVORK5CYII=";
+}
+
+.banner2 {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFCQjdEOEYzMjUyNzExRTdBMjcyOEY0MDM0QURDQjlFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFCQjdEOEY0MjUyNzExRTdBMjcyOEY0MDM0QURDQjlFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUJCN0Q4RjEyNTI3MTFFN0EyNzI4RjQwMzRBRENCOUUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUJCN0Q4RjIyNTI3MTFFN0EyNzI4RjQwMzRBRENCOUUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5kFBZVAAADlElEQVR42uybTUhUURTHz3w244wZ5ldiBlqaQRplX04WWWEQLYv2GQS1KshVLWoX1CJqZ+skw02LkKBFgUXUQgnsS7EPyspS58OcGXU6R57le28mGnv3vfucc+CP+Jx57/7ePefce8+9OqB7LAU5ZE5UJId4I07IMWNgBmZgBmZgBmZgBmZgBmZgBmZgBs5FYLcZDzlW6IL9JR7YW+6BqgKX7u9dg3EIJ1LQ9nJKeFsc0D0Wxp/5Im5+qswNZzb400JmspsDUyLBxZV4Otb74PrOYFawZMfrfNDXHIQar8M+MUyw1PDFWn2RG+7tCtojhile08F+nZyFu+8ScHkoDq8TfyrDV6q9sKPYA02rPKrPk2fcrvfD0f6fcscwuSP10ELr/ZyE0JPYX793frUHLjYGdNf33Q/Dg+isnDFMvbsYWLJLH5Jw4Zn+cyerlskbwzT06Hruxb+7JEH3j06rrm0pcssLXLfCpevdbN3xznBcF8vSAq/VNG5gfCbre7yJ6V9QS9C4ZhrqL6U94bkhiezwGi9MJI1JNh8TKTmByX7PkhY5W1oXUPdmLJlSDWNLbvEQ0iS+Pk0SW1LAFKutld7/zgO2AT5X69O5M83MliQwzbS0vdv5Nm5o/EoDTDO09oY81bWhiRkhy0SnDHHb0RSEgMehcuUTT2NCnue0GvZWSA1L1o5zagMXDHIAkxsTbEmeuglX+yfhxsi0sOe6rYLVuvE87NnBhNBnm97DVOeyCtb0Hs60yKd1MC0NzTDTgKlcc6Rav5g//TgqNGZNB6bqY9f2gK4SQkNPW28UOn/MmBpSQoHnhx1tJqZJBY2zooYeS4AzwVIJp+FR1LKx32kmbM/7hKWwQoApZtPB0hbKweeTls/bDQe+ttGfFtaMjTLTgWlSoV3iUeVSFlgyQ3ce0u06GGEG7j4Yt/NAiUoErLQufahUflhDgQs89jg9IfQEgITG/+TBwAzMwAzMwAzMwAzMwAzMwAycETg/l4CpTPEQNYx6hfqCmkDRzhadH6JzCCtRZahKVBWqWrlmW+A9WX6HXkINqgG1FbUNtRnlsgMwVTyMuE8FKoQ6gGpVfpfRIkYBLzTq6WZUC2o3qhEVkAQ4KQJYa4WoTYooDGqVXFBsZ5fO1nxKEqxQVK4kxmLlBS1XRg+/8lmvkkRdc20GoNNqs0pyJdHWBp1Ep80rOu9Ehclx1HfUKOobagT16ZcAAwCahRR7CJXYUwAAAABJRU5ErkJggg==";
+}
+
+.banner3 {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkIxOTg0MTYxMjUyNzExRTdCM0ZDRTA1Njk4MThDRkY3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkIxOTg0MTYyMjUyNzExRTdCM0ZDRTA1Njk4MThDRkY3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QjE5ODQxNUYyNTI3MTFFN0IzRkNFMDU2OTgxOENGRjciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjE5ODQxNjAyNTI3MTFFN0IzRkNFMDU2OTgxOENGRjciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6z3gLQAAAEEklEQVR42uybS0wTURSGT59AH4AIiAQwoYiSKEUEE0EkogQ1unChonGniQtNXLpiI3Fj4g43BreCmuDChW+MSqIJcSELBREjSpCXAn0AtqX1nHHAzrQ0Lc6Umfae5A/hMnfab+7jPO6gga7pACSRaVHOJOJ1aiHJjAEzYAbMgBkwA2bADJgBM2AGzIAZMANORmB9PD7kQp4edmTqobkkBcwGjeBv94Z+g8MTgHP9C3EB1kDXtAN/WuW4eXOWDq5WmKA4QxfV9bc+LsgNLl+Jp6XQAB311qhhyc6WpcL7OguUGjXqWsMEe6XKvKq+5dl6eLjHoh5gGp3LdlNI+8Scn5uymvszy9r/1MG1iY1mRfvWVHWs4bvlaXDcliJo65vygf21a8U+DRYtdNRaINf07/m7vQGofOKAT56Actcwje7hImPIyEaCJet2+eFSr1vQRrv5eVwaip7SJzfoQ9xO24f5qPp2/lqEL7OLgrZCs07ZwNvXCd06TcvW796o+w+KgNMN0u/WkgYeJ/rmoWXaB5twZKpz9ODyKu/YSvJI6++Iovpj77tZ5LNH3P7EjaXJd4uDlNsjnsQEDheoUIxNu7cqk4eVjIKLffmhI0t+m/YD1WZLwQHG88b0iNc8/uaBg+/mEiMfLrNo1xQ27sDF5sgf14RRWuBYJheeqroAsGQZBi23Pnsnfctt4dYwxeJDmDUd6nFJHUvLWwCIZW23bkuDmo3C2JlCTVu3pK+gKOMdD3I/tW/dnCuSO01UVBGPXBFNeUGZqCQlcYHJbg4uhKSJVBtLWOAbYz4uywq2A7mGxAUmGxKliYp2S0ubzNFNRngw7IlbvXlNgF1HMgQVj7LM1a29PJN8E08r51S0Z8f+PMkn54qAh92LygQOjqCWdtjrNmNM9zhdILyeNrA74z5lAodL2M+URB84kPuh04dg6/nhlTS8lBSYIibKeIKNpicdn0QD215jCRndawMLyl3DZPQFxX6Ujk+GGqxhw0SqdjzaaeLOocQl3s7P0lc9ZEke6Hi0bff/nQ9RXC1D1UOe5IGipYtvXKvuT+dNcpV4ZHN4BE2HZeJkIJLRtadeOmUNVuKSD9OGRPFwuGSfct4Xo154NuHljltkNqciCgBxNPZPHgyYATNgBsyAGTADZsAMmAEzYAa8IrA1mYCpUv4K9RU1gBpHzQL3ZhnQCRa9B7welYcqQhWjbHybaoHrY+xDD6EUZUdVo3ahKlE6NQBTxUOK+xSgalGNqCb+dyWaUyrgYKORrkM1oPaiqlBmhQB75QAWWxaqghctgy38XpCj5ikdq6Xym2ABr3x+Y8zhH1A67z3S+GuN/Caq474zAB1t+PnNlUR1XSpk01tt9Go9FSZnUD9RU6hJ1Bhq9I8AAwCYckvsqblg5wAAAABJRU5ErkJggg==";
+}
+
+.banner4 {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkJGNUIzNUM4MjUyNzExRTc4NEQ3OUZGRkUxNEYyNzM4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkJGNUIzNUM5MjUyNzExRTc4NEQ3OUZGRkUxNEYyNzM4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QkY1QjM1QzYyNTI3MTFFNzg0RDc5RkZGRTE0RjI3MzgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QkY1QjM1QzcyNTI3MTFFNzg0RDc5RkZGRTE0RjI3MzgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6gUQn3AAACsUlEQVR42uycz2sTQRTHX36aTYyVav1F7aGRakWbUmwPiooF6aEnD0qvouKlNw89lJ7UowcFD6LitSj0T/BgQcGDSBFiwYonrVhta9KmNU3jezrEHcVDZdfdzHwffElmyS772f3uvH0zQyI0MV8jiyLKKlrEW4ySZQFgAAMYwAAGMIABDGAAAxjAAAawjcDxMJxERzJCk6eytCP98/pPza1RfrJk7h2+diBVhzXe0mN7E3Q2t8mOZ1isPHzQsafTetCT/m9WDhxYrHx0d8KOtNS/OUoj+bQ9efjqIYcyiUi9/fRDxVzge5yC3FZ+NLNKhYWqmcBi5aF9v1LQ28UqnZsqm2vpu30ZzcqjL5fNfYbFyu1NsXr7fmGFxr9UzQQeao7Rhc6UZuWLr1fM7aWvd+sp6NLzJXPLw4ddzh9WflxaNxNYrOwuDIK0su/AUhjc7M3U20uVWqBW9h341mFHKwzG36wGamVfgaUwGGhLaq+OQVvZN2CxsrswECuPvSpTWMJzYKlx3W9TdwrlUFjZF+AbuaRWGIiVr8x8ozCFZ8BSGFzudDQrn3+xTGELz4ZpB3fGNSvL9+nBpn86Vtf2ONXObNW2DT8r0e3ZtcYcADAyDwM4JBGhifmv/JkN8iSkVnaXjz5OtWBxKYABDGAAAxh5OLhAHgYwgAEMYAADGMAABjCAAQzgvwJnbQKWuaUnrHesadZH1iJLFj/KNKBM9G5j7WK1sdpZObWtYYFPbnAfuQgdrDyrl9XH6mHFGgFYRjy8OE4r6xjrNGtAtcMYRa+A3SF3+jirn3WCdYSVCQlwxQ/g36OZ1a0kj8F+1Re0NLKlNxop1Qm2Ku1RHWOLukBbVPZw1G+TqhON/ThnIvk7nXXVuYpkiZCsnJElB7IYTAYmF1ifWXOsT6xZ1vvvAgwA7qiftNj8834AAAAASUVORK5CYII=";
+}
+
+.banner5 {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkM1MEY4Mjk3MjUyNzExRTdBNUE3Qzg2OEEwOUYxM0ZEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkM1MEY4Mjk4MjUyNzExRTdBNUE3Qzg2OEEwOUYxM0ZEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QzUwRjgyOTUyNTI3MTFFN0E1QTdDODY4QTA5RjEzRkQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QzUwRjgyOTYyNTI3MTFFN0E1QTdDODY4QTA5RjEzRkQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6zcgyTAAAD1UlEQVR42uyaTWgTURDHJ0k3TZs0qdWatkaFSlt7sVqspcYPrEpBvWrVq6IHxYsgiujFmzdBb4pXpVC8iBSLokJVFJFWqBFSP1r6XfuRph/5dCauNbtbMUnfwkv2DfwJWbrb/Pa9mTcz75mgfTIOBjIzKmAg3oAZDGYCWAALYAEsgAWwABbAAlgAC2ABLIAFsBGB8/T+B7NHXGCXTBnfPzoXA3fHTHaMcLPDvCLYrJvS3lUWY/nwRrvFWD5cW6wEvte7AKc/L+TuCNetUb7PztFw7k7paqtJEbCC4Tg8+BnNXeBWt3J0/dNRLnxYN2B1wPLlOrA6YPVMRnIbuKxQ+eiHI3wA67IsUcCqdP0d4T6czl9Cvzcp7262gcduhpYNVsU9XUNh6J2K6r5smaB9khLVIpYPPVeWB7ebHEvf2/yL0B+MwtnagpRSTR3X64AuI7ytWPnYQzia6eTUp2pt0FCaB0ffBpdmBtc+TFM22TIpILZg0vJklyPhHtz7cJVr+Ry6ezwCnYMhuOgPaVyAZgWNbLJRHLhfXwjeN0F+fZhGxHfYpblOfnyse/6/97Y12hOjm2znX8/CnWEmUZ79CYB6hzkjWDLyV/JbKvqT7UyVjdnvs0Dr5Sv4mc/qgZ/m4+DDImEaPxcicci3mKCxK/UpOYEJWTnEocktLV1z45r+aiAEX1cewEK6LEssTN0aYrRU8XuoRV1sOBlFa26Bh1R+7JRyHHggGMu+jsdKzGk1GQt4naramgmzSTGZZ1r+5iJFpZRpdFWXl1R8cDnCw6pgo24EpGLUwK9UpaePGdXTzIGppk22neVSAiAdO+lR1spUTz+bjfEJfLNvUXPtUk3qqeHxEoumiHj0fZHfoEX5cMcPZTVE3Q3qdKQCe6vBrhlddXXFXXl4oWcePuBUTk4N/xT178YimiB2bb0E3rWSpu1DdvXjHP8tnuXaPJnY9fdBuNHPdLdCv1ya6leqYzmC1T/xIOj9T2cSHclUjboiJ14EdIHVdUovF5AOoJ/uq5A0aywFpueD4cRmm877TwFu62G9gMUpHgEsgAWwABbAAlgAC2ABLIAFsAD+F3CRkYCpifcS9Q3lQ42gplHUbqAd6ULUalQZagOqErVJvpa1wHvTvIdeQjWqDtWA2oGqBzpNkAVGHQ8Wz/GgvKiDqBb5O48WYAWcbDTSu1HNqD2o7Sg7J8BhPYDVVoLaKovcoEaOBaXZPKXTNZscBD2yKuTAWCq/IKe8ehTIf2uVg6gl8ZsBaLM4JgdXEm1l0Lko2qagI0PUmJxCTaDGUWOoYdTgLwEGAGoxMevm3iQjAAAAAElFTkSuQmCC";
+}
+
+.banner6 {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkNFRkFGQ0I0MjUyNzExRTdBOTZGODZCOTI1MzgwQkEzIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkNFRkFGQ0I1MjUyNzExRTdBOTZGODZCOTI1MzgwQkEzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Q0VGQUZDQjIyNTI3MTFFN0E5NkY4NkI5MjUzODBCQTMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Q0VGQUZDQjMyNTI3MTFFN0E5NkY4NkI5MjUzODBCQTMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5vHl2dAAAESklEQVR42uybSUwUURCGi2HYZgARZTNIFBTkoLiAUQExKOLZuMWTiZqY6M2Ek3rQkx40Gj2Y4M0YogkHPYiCmpiIxi2Bg7gAUUFEUJClWaaZwapJY+a9HmCadONr51Xyh/Skp7u/9+rVq6oeIqC2fxLCyByooTDiHXJAmJkElsASWAJLYAksgSWwBJbAElgCS2AJHI7Azvm8WW50BFRlx0BRihPWLGZv3T7ghSddKtzq9MDjYZ9lzxABtf2D+DfBatArq+OgMis6pPMffPXArjcjVjyK9S2eA8mR8HZnYsiwZHRuW3mCf6BstYYJtnpLPLijjD949oJIuF8Sb581TLNzucitg23+OQGveifgyPsxZmB2Z0bD3pwYHXT1qljmXGHXcN0Gl86NLzaPwMk2jyGPUNRJWP9wED56JsVdw+XxDh3snbbxGWHJavq8cL6JDVYEvz/NKfYaPpbNumbPiA9OheiW5zpU/xYVaKsXCg5clhHFHN9sHTPkkrQfB9qGxU5xgxatw1SXg1mD1ztUQ9egIGVmoLJ0hneksrPbhFHZpIAjJnCmm71ky2/v/51Lr8S9M9C+KCzw8XQnrEtywoEVMcz2M5VLX2gft9QjTAdOc7Ez/Enx/d2qLq1z6YqGwCSDdDg/Fm602GgN85lVD84WzerdbQnTwvJG0E2l8eLn0jSLvOXjZ1c3G8+naXBslUtP2ZkCF3Pc+F2Fum8ef4IROFAHMZemmeXd/PaaONjXPGqfjsfUnkz78Ynnw1D8QmFgyajgpzW7vX5Ql2VRQRHMc4Rv8RxpHIZr3RMznkPgR18q/sEJtKq8WHsBU9SlwiAUI+ia1nHmsxIuVRUemPZWI9bQo+oiP6WswgF3BkkYaE0aTSTIG3i3Xul2iAccDKx7ZG4dyB/c95JM2pNNd+ke7kGH1LmlicOqNeml6cCt3LaS4ZrbLdJdDnsA89VRzoK5BRs+M2tXfGICB4uwp5ca21YoIvPA9X1eMYEpwvLreM+yGEPXOLScPb/ZxCaCJQvl3hePrhCg/nKos8t3PBu6PGInHpRo8PsoFQazuTblzNS856P+bO3dfw5M7sf3l8nOFrrh2Sa3DpxAyQMeVSQyDUCyq+9GTX02S98eEgRf8hkxat6bWRqC1W8PqeSjwkEQ2PkpHgia6mC+zp0pUzvzWrEE1nKX5m26juXUjHYoXlMDVDCXnldgAUz+k4cElsASWAJLYAksgSWwBJbAElgCTwucEE7A9JOHp6jPqA+oH6gBFHXTqdNGv1dYhEpHZaGyUTnaZ7YFLjP4HRqEXFQBqgi1EbUeFWkHYOp4mHGdTFQxqgJVqR2LaENmAQcazXQpqhy1FVWIcgsCrFoBzFsyaq0mWgZ5WixIsbNLG7VYLQhmalqiBcYUbYAStd0jTjs3Wguikf5nBqD3OD4tuJKo+U19XXrdoaCoMfkb9Qv1E9WL6kZ1/RFgAB7JgS/yzlyyAAAAAElFTkSuQmCC";
+}
+
+.banner7 {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkQzRDA2QkU4MjUyNzExRTc4Q0ZCQTU2MURGQzVFNThEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkQzRDA2QkU5MjUyNzExRTc4Q0ZCQTU2MURGQzVFNThEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RDNEMDZCRTYyNTI3MTFFNzhDRkJBNTYxREZDNUU1OEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RDNEMDZCRTcyNTI3MTFFNzhDRkJBNTYxREZDNUU1OEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7YqfpvAAAC1UlEQVR42uyaTWgTQRSAX3aTrenGqtX+aWwhkUovTZHaS61CUfTSo9irIHjwULzoRS+KF8GbN/EuKr14KoiCghdBqQdrBaVVrLVW+5MmTbMm8Y0M4uzqobi7M5l9D75DhmYnX968t5npxmB8qQYRCgPJR8g3b0DEgoRJmIRJmIRJmIRJmIRJmIRJmIRJOIrCcb8vODmUgt5dvl8Wbk+V4MybEmWYhHURni1U1Kzh3NO1/3r/5b0JuNJve+r36kdHvwwPpwy4mGsUxp59dnxpVkoK3xqwwU7Efr9eKFbh9IuinjV8tzcJmW2mMDb2vABvyzX9hEebTTiZbRDG7r3bgDvfK77PpYTwtT6xbtlSvuRj3SolfCNreZbyzdfrvi9lJYS7rRic7UkKY68Wf/h2C1JO+EKmQejKLM6/LAY6pyEzu6P7xEY18aEMj9aqegr/LbvXp0uBz2tEKbvShGVlV5rwSJfl6cxhZFeK8Ln2OLQ2itPen9nQdz88ssfy/KoK8r4rVZg1q0MdCWHswWxZ3xOPU21xT7N6uODoK3zCtZzfr1QC2REpI5xzHd8+nnPCbiHhCbM9r+zlHKrw0VaxWRWcWujLOVThnu3inncSf2zICENW/U4tV/QVZsevKtRvaMKDO0zPmIz6DU24yzY9919ZEYpw2hanmS9W9RbucO2OPukunHI1rNVyLVrCK468DMfDmKRtYhVUCXoCgIRJmIRJmIRJmIRJmIRJmIRJ+F/CW6MkzPbDT5AZZBr5wvbnCDtDZf8qYI/I7UTakU4kg2T5WN0KH9nke9iX0I3kkIPIAHIAMetBOAbjS35cJ40MIseQ4/y1ipH3S/jPYJkeQoaRw0g/Yisi7AQh7I5mpI/DymA/7wUt9bykNxtbeBNMc3bzxtjCv6AmfvdI8r+1eBM1f31mAHbOW+XNlcEe8lpH2IOaBYSdGi4j35BF5Csyj8z9FGAAlOK5zvb2QKMAAAAASUVORK5CYII=";
+}
+
+.banner8 {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRBQTEwMjk4MjUyNzExRTc4RUI2Rjc4MjhENzk1NjIyIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRBQTEwMjk5MjUyNzExRTc4RUI2Rjc4MjhENzk1NjIyIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REFBMTAyOTYyNTI3MTFFNzhFQjZGNzgyOEQ3OTU2MjIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REFBMTAyOTcyNTI3MTFFNzhFQjZGNzgyOEQ3OTU2MjIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4fiQeiAAAEYElEQVR42uybXWxLYRjHn61rN2trjDEzxOrzgsmYhGE2xFdcSsaVBFckEhIuhAtcSUgkXJnbsRsREgxxYb7iO1ww2RZfwxjbura2tcrzb47oOafsnHpPnabvk/yztGl7zu887/t8nbMsOtv9gzLIsll9GcTbl00ZZhJYAktgCSyBJbAElsASWAJLYAksgSVwJgLnpOpA01xZtLsslyqLcmj2aPVhg+EfdKZ1gB73ROjEx4il55FFZ7v9/Ndr5UEuz82nlRNdhj7b3vud9j4J0Zmv3604FWtHPLWebGqr9RqGhZUVOOh0tZf2TXCm1x7GEj453x0DSMYOzHNbAm3ZHj40I08H+ykUpQuvB+lw+wC9HPw9HQbYqvEuWjhODbinPJ8aO/2qz9pyD8O7LWsLdHtz9c3AX0/+iM9FO2fnq9479byftrzot/ceRjTW2tZ7wSE9tattkG5/CKveqylx2n8Pl7rVP/u0K0LXA1FjEb1jUBfEsGJsDex1qk/wQyhq+LuNnfo8XOHJtjdwxpWWHRqPTjWRmhJ581Egam/gZ90R3T6sNbgsN03O1UV3kWnJEuCDb8OxnBtvKEKGCj7Ix9qq7NzrgfSotHbcD+q83FzjpXouSLS2rTgnVm+juoo3pCikqrRpHuoKHXSs0k1j8s1fV8BW3Q2mV/OAjmdskz9WLaEFNGLI2fsfBK2ATU1aQrm4bpKL3E5jxQN65Vkjc4QWGylZ0ojK/9ItYUXsYU8LHgj0WdItwTunqzy6vYvlev9zRNcMIGhVj3HSet/vlIQVcXyBh+hOQCi0JR5ONOE4+jQ0ZMTFqtBeKHi64oqwFlF80MJJa2ERtIykFzQYG24FVAEOnj6UIJXZJmhtLHXp9qKZfhbQGOjF2xoTI6KUA88coQ5SF9+YLxwa3qm/Ay8jp9sSeIomKvuT2HvwsjZvV460KbDWesPJdTpGCxXbARc4kzuE0ULlvwO39qoH6MOTqJiQx7XA7cGoPYGf96iBq8eZH8IlGgJeFXQnQjjwtU/qqSOKiHoTeRTerZuSq+ucRA0BhAOjQ0IJGW+bZ+YZggbspUUe3XJueCVuCGBJaYlq6/xSr+7Ef915QJ6NH9sixy7nWhoXRmtNnMdXPQwJax4s65YwrtFOMMwa5lm+60KfX7duAIC51nbudJI1bAvcmkmrPIy2btlVv+72yVAFBzqr8uaA0Gml5QOARPsajUWiJwB+dVSoykQP7VK2h21q8p88JLAElsASWAJLYAksgSWwBJbAEviPwN5MAkYnfoP1itXC6mT1sjCiwEAZj7aOYhWzJrLKWD7lvbQFrjb5HVyEaaxyViVrPquC5UgHYEw8RPxOKauKtYK1UnltR+sTBRxv8PRiVi1rCWsey20T4LAVwForZM1RhG0wXYkFRem8pM1anhIESxWVKIGxSLlAw5XsMUz5rEsJoo7YORNhfhtVgiuEZyq+sXCLAk+0YTDZw/rC6mJ9Zn1kvf8pwAA+YYvjhX5ZhgAAAABJRU5ErkJggg==";
+}
+
+.banner9 {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkU2QTZCNzNBMjUyNzExRTdBQTIwRTRCNThCQzJGMTBDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkU2QTZCNzNCMjUyNzExRTdBQTIwRTRCNThCQzJGMTBDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTZBNkI3MzgyNTI3MTFFN0FBMjBFNEI1OEJDMkYxMEMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTZBNkI3MzkyNTI3MTFFN0FBMjBFNEI1OEJDMkYxMEMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6zZ7ZlAAAETUlEQVR42uybTUwTQRTHh37x0QKK8iEWNRRBDoAhaAiIBhKF6FXUGG+aeNCLmnjDA3rRRA8m3DDeDGrCRQ9+hUSNX4lKwAOCQFRQARFoy1boF75XFrMfpezibp1N5yX/kG7b3fnNvHnz5k1JIp3TCySBzATyJhCv10QSzBgwA2bADJgBM2AGzIAZMANmwAyYATPgRAS2xOtBDQ4TOeq0kfp8KynMNIvee/jVT0a5MDnxcU73diSRzmkP/E3X6wHFtiRyszKN1GywKvr8jb45PcH1LfEcyTKT9/syFMOiHS9NIUMN6ZGOMtQcRtj2GgexW9U3HF3+eb0+0Lq4NDYUG5yTJu5PLrBAOgbnya1RP+maDf+93lJgJU0bbTJPGHaHiKvLS79LX9qWIoPtnQySykeeyPwUwqJdHAmQ2tccudbrk410O9yLapfG0d2/ySa6NuELk+Y3HBnwx675nxvyR4KWaGoUJWvq2poDny9Mls3b1h7firBLhh6AHbRkeK+TBVZ6gUvXmGWj2zYWVHWPpz8CotfV2RQD50nmrrTxSuzDtLiDKtZb6AXOlQCPcCHV9/jEiYMaujUuc1QCr2bdldpElPm+1W6iE1gLy4kSlTfbKR1hYYRFy7Sqf4RWoxkX4EF3KGbUVmJlay3GAe6bCckirJrEIVriguakdQ4/mQjIgtj1slRVaakWgS9uwB1ToUjeLLRGGDElOfGd8lTS7Eo2XonnTLdv2X1uNHC8hu8JYXFnJTRPQJvf3ugSHXA3hDufs+Vpst0PCuFj2d2heVICnysXZFge/wK9I7y085Fu95QY1rcO9f42lksLoU+/mpWtzdEMXfjCW440vVvsJIckcLkDYXpdWmi4U2ob85CrLhspgGxJGpRewuYClzJp4U6akw9zBgEWjvZi6WNld8W1WLo0PZ4K0e/Sq7XDuRZZujpAe9D6F6vNscZMV6lyaaxAtlbZRcHIcd+t6h67JNXLB9/89EbpaJv3FhU1KQxuwvmLHXZ7PEgvMKaW0mXo4Bbl6eKxInFSgnVsreavbnP43hexC2LGtFIujZG5p84hqmfj6F4Znqc/8cBGSnNhTCdfVNtl7n0qzxLZNPQfyBSlkmiXVZR3lZpup4fS4KXWdDpF1O/0EI9PpKcI/xlW/3UYG435Madwa4eHZ5h763kwrvuBuHDPi2WaxijnThjkumeCqk8oVuPScQOmxNg/eTBgBsyAGTADZsAMmAEzYAbMgBnwssDpiQSMVbNnoM+gftA4CKvm+LsFrLbhAe86UB5oE6gQ5OKvGRZ4j8rvYCcUgypAO0A7QZUgsxGAseKhxX2coFrQXlAj/5pG82oFLDQc6TpQA2g3qApkpwQ4oAew1LJA23nhNCjhY0G2kV1araXwQdDJK58PjNl8B2Xwq0cq/1kbH0TNkTYTgnXfMB9cUVjXxZN2/L0EB8LC5AzoF2gS9BM0Bvr+R4ABAC18cj36LpTdAAAAAElFTkSuQmCC";
+}
+
+.banner10 {
+    content: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABMCAYAAAAx3tSzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYwMzNGQ0EzMjUyNzExRTc4NEMxQUJENjEyRTk5QjY5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYwMzNGQ0E0MjUyNzExRTc4NEMxQUJENjEyRTk5QjY5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjAzM0ZDQTEyNTI3MTFFNzg0QzFBQkQ2MTJFOTlCNjkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjAzM0ZDQTIyNTI3MTFFNzg0QzFBQkQ2MTJFOTlCNjkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6USjD6AAAEaUlEQVR42uybTUwTQRTHX0tboC0fgnxXTKhB0QgKooggCQHxwhEFr5p48CQmGs8ePHnDgwmeQTF48KAY1Kgh0UQkYBRBMahI+BIKbflosTivWQg7W2FnWdqtnZf8E2g6y/z2vXlv5u2ig/aZFYgg0xM5I4jXqYcIMw7MgTkwB+bAHJgDc2AOzIE5MAfmwBw4EoENal6s0qqHZ9Xx/p8n5n2Q1jEne2yuSQdXc6KhOMUA+TvF08JrPfrugc4JL7RO/9nSHHXQPoOzilMDuKvEAqUZRmbgJ0VmqMk2yfpu39Qy3Py4oBRcvRZP876YNVgWrw5VxsmGRUPvt1TEwaV0Q+jW8C27Cc7nxTCPe1xmhZyEKEV/s+m4FeqTooIPjJ5tzDcrGhcItm1oCRpeOkH30LGmu/2L4PZKu8nXD8QGF/h+fqwiz2Io1++JliQmBD3TJ12fFz4vQuHTOf/6pcObNbQVAWM27i23Qp09WtGNurjLCBajTvRZQ5drw0Q06FmBurdu/41Zb7VZpu0FxlDE0kOXDhYrSREnt44fHnju8m06DqGbPi2IPisjiRIjRnVgTEzjNfEBQxhDDdeZ3HCms3kXqa9y7cZPr2g9Y6ScTTOoD1yVaYJUs/TrCFrw2gWzXp+s6xRa9QEhWKyXWssHdxi2P2mhVzHJYEJhsapUsXe/zbJvIPod4jFFDMuLeSFi0sB1xOqVVYun1tsXBcA9DrGH08x69YEHyMQ6Rz1wZcizpbqdRU1uxO1j9zCV4HAdY27ApKYaMNZHNSzdvPXN3UgAMMwNgzL210E/Hlqp+is32dHlibZkmaUp5Odhhye4LyAEHZgubdNeZcD0jot3PDhwiIDpUEwy6lRZGmHj4UST7v/2sMu79awc6HTU7/JpE3iMCukEI/sUbAGAR2SWt6AD/6KAbRb2KeRRJy48Lg5qFXiOmliGguRzOFG8Ix5nqMlBB+6kDvt2BV1L+sTVTZ2PNQWMfSu6Y8HaiKugOiYfZjQMHKhjwdKIw5tD1+B74xoHfjMpDmt88iCnqY7lqHF/rKTzMshwAAkJ8B2qEYfWXGrdMLQRtu2YRdK8fzC8pP2dFnqk9euSpGuBj0/wwRrtbWwNvz8lbQ2jd1lbTQYIkWHzr3a3tBOK4Y1q2WQ8Rsjlnvnw2kvj0wal59pr79yymveaAsYJl79w+p88yLXV9vDtsWVFf9MAITZcz6e756FyYBHO2UwbvgGA7VmloKum6hsAYWD8nzw4MAfmwByYA3NgDsyBOTAH5sAc+J/AcZEEjCftV0TDRANE40SzRNgZw243vhecTJROlE2UQ2QXPgtb4ArGMXgTcokKiIqJjhIVEkWFAzB2PNS4jo3oBFE1UY3wuxbNqRbwekNPlxNVEp0kOkJk0QiwdzuAaUsiOiQIl8FeIRekhHNIs1qMkARtgjKFxJgi3KB4oXrECt81CUk0yj9nAHxO4xOSKwpf6cV3I7Ez7ybCxqSD6DfRFNEk0RjR6F8BBgCYSITfsudZVAAAAABJRU5ErkJggg==";
+}
+/*#endregion*/
+
+/*#region Specific Groups*/
+.splitGroup > .row {
+    align-items: baseline;
+}
+
+.FraudGroupLeft {
+    border-right: 1px solid lightgray;
+    margin: 10px !important;
+    padding-right: 40px !important;
+}
+
+.FraudGroupRight {
+    margin: 10px 10px 10px 0px !important;
+}
+
+.FraudGroupLeft > .row:last-child {
+    align-items: flex-start;
+}
+
+    .FraudGroupLeft > .row:last-child .ITCheckBoxWrapper {
+        padding-top: 5px;
+    }
+
+.headerImageWrapper {
+    padding-right: 375px;
+    padding-top: 5px;
+}
+
+.footerLinks {
+    text-decoration: none;
+}
+
+    .footerLinks:hover {
+        text-decoration: underline;
+    }
+
+.xxlarge {
+    color: #474747 !important;
+    line-height: 40px !important;
+}
+
+.hrPadding {
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.moneyLabel {
+    float: right;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.monthLabel {
+    float: left;
+    font-size: 14px;
+    margin-top: 10px !important;
+    margin-left: -42px !important;
+}
+
+.smsText {
+    font-size: 13px;
+    padding-top: 12px;
+    margin-left: -15px;
+}
+
+.checkImage {
+    width: 420px;
+    height: 210px;
+}
+
+.healthQuestions {
+    font-size: 14px;
+    line-height: 22px;
+    font-family: Arial;
+    padding: 10px 15px 0px 15px;
+}
+
+.healthSubQuestions {
+    font-size: 14px;
+    line-height: 22px;
+    font-family: Arial;
+    padding: 10px 15px 0px 15px;
+    margin-left: 35px;
+}
+
+.knockoutPage {
+    padding: 40px 60px 160px 60px;
+    font-size: 18px;
+}
+
+.knockoutText {
+    padding: 20px 20px !important;
+}
+
+.knockoutBtn .ITNavLink {
+    background: #88C348;
+    color: white;
+    width: 150px;
+    font-weight: 600;
+    height: 50px;
+    font-size: 24px;
+    margin: 10px;
+}
+
+.optionalCoverageHeader {
+    font-size: 18px;
+    padding-bottom: 30px;
+}
+
+.optionalCoverage .ITCheckBoxWrapper .errorText {
+    display: none;
+}
+
+.optionalCoverage .ITRadioWrapper .errorText {
+    display: none;
+}
+
+.headerText {
+    font-size: 16px;
+    color: black;
+    padding: 15px 0px 15px 20px;
+}
+
+.travelLabel {
+    font-weight: bolder;
+    font-size: 14px;
+    color: #474747;
+    margin-bottom: -40px;
+}
+
+.secondAddressGroup .ITIconActive {
+    margin-left: 10px;
+}
+
+.secondAddressGroup .ITTooltipArrow {
+    left: 7px;
+}
+
+.secondAddressGroup .ITTooltipArrowBorder {
+    left: 7px;
+}
+
+.quoteFrequency {
+    font-size: 14px;
+    padding-top: 7px;
+    padding-left: 17px;
+}
+
+.coverageExternalLink {
+    margin: 0 auto !important;
+    width: 575px;
+}
+
+.paymentFrequency {
+    font-size: 18px;
+    padding-top: 25px;
+}
+
+.paymentLabel {
+    padding: 30px 0px;
+}
+
+.paymentAuthorize {
+    font-size: 12px;
+    max-width: 980px;
+    text-align: center;
+}
+
+.paymentGroup {
+    padding: 0px 15px 0px 10px !important;
+}
+
+.productAmount {
+    font-size: 29px !important;
+}
+
+.productMoney {
+    font-size: 22px !important;
+}
+
+.productGroup .ITCheckBox .ITComponentLabel {
+    padding-top: 5px;
+}
+
+.dropdownLabel {
+    font-weight: bolder;
+    color: #474747;
+    font-size: 14px;
+    font-family: Arial;
+    padding-left: 10px;
+    margin-bottom: -40px;
+}
+
+.heightLabel {
+    margin-bottom: -15px !important;
+}
+
+.singleButton {
+    margin-top: 25px;
+}
+
+    .singleButton button, .singleButton .ITNavLink {
+        background: #88C348;
+        color: white;
+        width: 250px;
+        font-weight: 600;
+        height: 50px;
+        font-size: 26px;
+    }
+
+    .singleButton .ITtooltiptext {
+        left: 48% !important;
+    }
+
+.needsCalcLinkGroup .ITtooltiptext {
+    display: none;
+}
+
+.needsCalcLinkGroup .ITNavLinkText {
+    color: black;
+}
+
+
+.PersonalInfoGroup {
+    background-color: #EAEBEF;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 25px 20px 10px 20px !important;
+    padding-top: 10px !important;
+}
+
+    .PersonalInfoGroup .ITDivider {
+        margin: 10px 0px !important;
+    }
+
+.healthSubSection {
+    background-color: #EAEBEF;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 25px 20px 10px 20px !important;
+    padding-top: 10px !important;
+}
+
+    .healthSubSection .ITDivider {
+        margin: 10px 0px !important;
+    }
+
+    .healthSubSection .ITComponentLabel {
+        font-weight: normal;
+        font-size: 15px;
+    }
+
+    .healthSubSection .ITCheckBox .ITComponentLabel {
+        font-weight: bolder;
+        font-size: 14px;
+    }
+
+/*Used to add padding to certain groups and align outer edge of group with panel title*/
+.groupPadding {
+    padding: 10px 10px !important;
+}
+
+.childTermHeader {
+    margin-left: 55px;
+    padding-bottom: 15px;
+}
+
+.QuoteValueStyle {
+    margin-right: -70px !important;
+}
+
+.QuoteLabelStyle {
+    margin-top: 10px !important;
+}
+
+.PaymentNote {
+    background-color: #D8F3FD;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 30px !important;
+    font-weight: bold;
+    margin: 15px !important;
+}
+
+.mobileMenuContainer {
+    display: none;
+}
+
+.mobileCoverageLabel {
+    display: none;
+}
+
+.policyDescription {
+    display: none;
+}
+
+.noShowMobile {
+    display: block;
+}
+/*#endregion*/
+
+/*#region Charity Page*/
+.CharityPageGroup {
+    padding: 25px !important;
+}
+
+.CharityHeaderText {
+    color: #00aeef;
+}
+
+.CharitySubHeader {
+    color: #00aeef;
+    padding-top: 0px;
+    font-weight: 100;
+    font-size: 28px;
+    padding-bottom: 15px;
+}
+
+.CharityDescription {
+    font-size: 16px;
+    color: #474747;
+    padding: 10px;
+}
+
+.CharityLogo {
+    padding: 0px 20px;
+}
+
+.LearnMoreText {
+    color: #00aeef;
+    padding: 0px 0px 30px 60px;
+}
+
+.CharityGroup1 {
+    padding-top: 32px !important;
+}
+
+.CharityGroup2 {
+    padding-top: 16px !important;
+}
+/*#endregion*/
+
+/*#region Product Boxes*/
+
+.OuterGroup_10Yr {
+    background-color: #5C9311;
+    border-radius: 5px;
+    margin: 20px 0px 20px 20px !important;
+    padding: 10px 0px 0px 0px !important;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+
+.OuterGroup_15Yr {
+    background-color: #35887E;
+    border-radius: 5px;
+    margin: 20px 10px 20px 10px !important;
+    padding: 10px 0px 0px 0px !important;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+
+.OuterGroup_20Yr {
+    background-color: #007CAB;
+    border-radius: 5px;
+    margin: 20px 15px 20px 0px !important;
+    padding: 10px 0px 0px 0px !important;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+
+.OuterGroup_WL {
+    background-color: #0E5490;
+    border-radius: 5px;
+    margin: 20px 20px 20px -5px !important;
+    padding: 10px 0px 0px 0px !important;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+
+.OuterGroup_WL_Disabled {
+    background-color: #EAEBEF;
+    border-radius: 5px;
+    margin: 20px 20px 20px -5px !important;
+    padding: 10px 0px 0px 0px !important;
+    color: #CCCCCE;
+    text-align: center;
+    font-size: 15px;
+    cursor: not-allowed;
+}
+
+.OuterGroup_10Yr_Disabled {
+    background-color: #EAEBEF;
+    border-radius: 5px;
+    margin: 20px 0px 20px 20px !important;
+    padding: 12px 0px 0px 0px !important;
+    color: #CCCCCE;
+    text-align: center;
+    font-size: 15px;
+    cursor: not-allowed;
+}
+
+.OuterGroup_15Yr_Disabled {
+    background-color: #EAEBEF;
+    border-radius: 5px;
+    margin: 20px 10px 20px 10px !important;
+    padding: 12px 0px 0px 0px !important;
+    color: #CCCCCE;
+    text-align: center;
+    font-size: 15px;
+    cursor: not-allowed;
+}
+
+.OuterGroup_20Yr_Disabled {
+    background-color: #EAEBEF;
+    border-radius: 5px;
+    margin: 20px 15px 20px 0px !important;
+    padding: 12px 0px 0px 0px !important;
+    color: #CCCCCE;
+    text-align: center;
+    font-size: 15px;
+    cursor: not-allowed;
+}
+
+.InnerGroup_10Yr {
+    background-color: #8DC641;
+    font-size: 26px;
+    margin: 5px 0px -15px 0px !important;
+    padding: 15px 5px 5px 5px !important;
+    border-radius: 0px 0px 5px 5px;
+}
+
+    .InnerGroup_10Yr .ITIcon {
+        color: #8DC641;
+    }
+
+.InnerGroup_10Yr_Hidden {
+    display: none;
+}
+
+.InnerGroup_15Yr_Hidden {
+    display: none;
+}
+
+.InnerGroup_20Yr_Hidden {
+    display: none;
+}
+
+.InnerGroup_WL_Hidden {
+    display: none;
+}
+
+.InnerGroup_15Yr {
+    background-color: #5FA89F;
+    font-size: 26px;
+    margin: 5px 0px -15px 0px !important;
+    padding: 15px 5px 5px 5px !important;
+    border-radius: 0px 0px 5px 5px;
+}
+
+    .InnerGroup_15Yr .ITIcon {
+        color: #5FA89F;
+    }
+
+.InnerGroup_20Yr {
+    background-color: #00AEEF;
+    font-size: 26px;
+    margin: 5px 0px -15px 0px !important;
+    padding: 15px 5px 5px 5px !important;
+    border-radius: 0px 0px 5px 5px;
+}
+
+    .InnerGroup_20Yr .ITIcon {
+        color: #00AEEF;
+    }
+
+.InnerGroup_WL {
+    background-color: #277DBA;
+    font-size: 26px;
+    margin: 5px 0px -15px 0px !important;
+    padding: 15px 5px 5px 5px !important;
+    border-radius: 0px 0px 5px 5px;
+}
+
+    .InnerGroup_WL .ITIcon {
+        color: #277DBA;
+    }
+
+.InnerGroup_WL_Disabled {
+    background-color: #CCCCCE;
+    color: white;
+    font-size: 26px;
+    padding: 35px 5px 5px 5px !important;
+    margin: 5px 0px -15px 0px !important;
+    border-radius: 0px 0px 5px 5px;
+}
+
+    .InnerGroup_WL_Disabled .medium {
+        line-height: 2.5em;
+        padding-bottom: 0px;
+        font-size: 20px;
+    }
+
+.InnerGroup_10Yr_Disabled {
+    background-color: #CCCCCE;
+    color: white;
+    font-size: 26px;
+    padding: 35px 5px 5px 5px !important;
+    margin: 5px 0px -15px 0px !important;
+    border-radius: 0px 0px 5px 5px;
+}
+
+    .InnerGroup_10Yr_Disabled .medium {
+        line-height: 2.5em;
+        padding-bottom: 0px;
+        font-size: 20px;
+    }
+
+.InnerGroup_15Yr_Disabled {
+    background-color: #CCCCCE;
+    color: white;
+    font-size: 26px;
+    padding: 35px 5px 5px 5px !important;
+    margin: 5px 0px -15px 0px !important;
+    border-radius: 0px 0px 5px 5px;
+}
+
+    .InnerGroup_15Yr_Disabled .medium {
+        line-height: 2.5em;
+        padding-bottom: 0px;
+        font-size: 20px;
+    }
+
+.InnerGroup_20Yr_Disabled {
+    background-color: #CCCCCE;
+    color: white;
+    font-size: 26px;
+    padding: 35px 5px 5px 5px !important;
+    margin: 5px 0px -15px 0px !important;
+    border-radius: 0px 0px 5px 5px;
+}
+
+    .InnerGroup_20Yr_Disabled .medium {
+        line-height: 2.5em;
+        padding-bottom: 0px;
+        font-size: 20px;
+    }
+
+.InnerGroup2_10Yr {
+    background-color: white;
+    color: black;
+    font-size: 13px;
+    padding: 18px 0px 20px 0px !important;
+    margin: 15px 0px 0px 0px !important;
+    text-align: left;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.InnerGroup2_15Yr {
+    background-color: white;
+    color: black;
+    font-size: 13px;
+    padding: 18px 0px 20px 0px !important;
+    margin: 15px 0px 0px 0px !important;
+    text-align: left;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.InnerGroup2_20Yr {
+    background-color: white;
+    color: black;
+    font-size: 13px;
+    padding: 18px 0px 20px 0px !important;
+    margin: 15px 0px 0px 0px !important;
+    text-align: left;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.InnerGroup2_WL {
+    background-color: white;
+    color: black;
+    font-size: 13px;
+    padding: 18px 0px 20px 0px !important;
+    margin: 15px 0px 0px 0px !important;
+    text-align: left;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.InnerGroup2_10Yr .errorText-RadioButtonComplex {
+    display: none;
+}
+
+.InnerGroup2_10Yr .ITCheckBox {
+    margin-bottom: 0;
+}
+
+.InnerGroup2_15Yr .errorText-RadioButtonComplex {
+    display: none;
+}
+
+.InnerGroup2_15Yr .ITCheckBox {
+    margin-bottom: 0;
+}
+
+.InnerGroup2_20Yr .errorText-RadioButtonComplex {
+    display: none;
+}
+
+.InnerGroup2_20Yr .ITCheckBox {
+    margin-bottom: 0;
+}
+
+.InnerGroup2_WL .errorText-RadioButtonComplex {
+    display: none;
+}
+
+.InnerGroup2_WL .ITCheckBox {
+    margin-bottom: 0;
+}
+
+.InnerGroup3_10Yr {
+    padding-left: 32px !important;
+}
+
+    .InnerGroup3_10Yr .ITIcon {
+        position: relative;
+        top: 4px;
+    }
+
+.InnerGroup3_15Yr {
+    padding-left: 32px !important;
+}
+
+    .InnerGroup3_15Yr .ITIcon {
+        position: relative;
+        top: 4px;
+    }
+
+.InnerGroup3_20Yr {
+    padding-left: 32px !important;
+}
+
+    .InnerGroup3_20Yr .ITIcon {
+        position: relative;
+        top: 4px;
+    }
+
+.InnerGroup3_WL {
+    padding-left: 32px !important;
+}
+
+    .InnerGroup3_WL .ITIcon {
+        position: relative;
+        top: 4px;
+    }
+
+.OuterGroup_10Yr_Mobile {
+    display: none;
+}
+
+.OuterGroup_15Yr_Mobile {
+    display: none;
+}
+
+.OuterGroup_20Yr_Mobile {
+    display: none;
+}
+
+.OuterGroup_WL_Mobile {
+    display: none;
+}
+
+.OuterGroup_10Yr_Mobile_Disabled {
+    display: none;
+}
+
+.OuterGroup_15Yr_Mobile_Disabled {
+    display: none;
+}
+
+.OuterGroup_20Yr_Mobile_Disabled {
+    display: none;
+}
+
+.OuterGroup_WL_Mobile_Disabled {
+    display: none;
+}
+/*#endregion*/
+
+/*#region Payment Boxes*/
+
+.PaymentOuter {
+    background-color: #88C348;
+    border-radius: 5px;
+    margin: 20px 5px 20px 10px !important;
+    padding: 0 5px 30px 5px !important;
+    color: black;
+    text-align: center;
+    font-size: 15px;
+}
+
+.PaymentInner {
+    background-color: white;
+    font-size: 26px;
+    margin: 5px 0px -10px 0px !important;
+    padding: 0 5px !important;
+    border-radius: 0px 0px 5px 5px;
+}
+
+    .PaymentInner .panelDivider {
+        display: none;
+    }
+
+    .PaymentInner .ITCheckBox {
+        margin-bottom: 0;
+    }
+
+    .PaymentInner .ITPanelTitleText {
+        text-align: left;
+    }
+
+.PaymentOuterAnnual {
+    background-color: #88C348;
+    border-radius: 5px;
+    margin: 20px 20px 20px 5px !important;
+    padding: 0 5px 30px 5px !important;
+    color: black;
+    text-align: center;
+    font-size: 15px;
+}
+
+.PaymentOuterMonthly {
+    background-color: #88C348;
+    border-radius: 5px;
+    margin: 20px 0px 20px 20px !important;
+    padding: 0 5px 51px 5px !important;
+    color: black;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+
+.PaymentOuterMobile {
+    display: none;
+}
+
+.saBanner .ITPanelTitle {
+    padding: 0 0 22px 0;
+}
+
+.savingsText {
+    color: white;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 15px !important;
+    margin-bottom: -15px !important;
+}
+/*#endregion*/
+
+/*#region Signing*/
+
+.pdfImageReviewZoomTip {
+    font-family: Arial;
+    color: #474747;
+}
+
+.signConfirmConsentText {
+    content: "I Agree";
+}
+
+.signCaptureConsentText {
+    content: "I Agree";
+}
+
+.signCaptureSubTitle {
+    content: "You're almost done! The only step left is to e-sign your application.";
+}
+
+.ITButtonBack {
+    background: white !important;
+}
+
+    .ITButtonBack .ITButtonText {
+        color: #474747;
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+.ITButtonSignBack {
+    background: white;
+    min-width: 170px;
+}
+
+    .ITButtonSignBack .ITButtonText {
+        color: #474747;
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+.ITButtonSignCaptureClear {
+    background: white;
+}
+
+    .ITButtonSignCaptureClear .ITButtonText {
+        color: #474747;
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+.CharityTitle {
+    color: #00aeef;
+    margin: 20px;
+}
+
+.CharityDetails {
+    padding-left: 25px;
+}
+
+.CharityDetails_Text {
+    padding-top: 15px;
+}
+
+.CharityDetails_Bullet {
+    padding-bottom: 20px;
+}
+
+.CharitySelection {
+    margin: 0px 40px -10px -8px;
+}
+
+.CharityImageGroup {
+    padding: 10px;
+}
+
+.CharityLink {
+    color: #00aeef;
+    margin: 0px 0px 40px 45px;
+    font-weight: 600;
+}
+
+/*#endregion*/
+
+/*#region Mobile/Tablet*/
+/******************************************************************************************
+    Media rule to size mainContent to fill window under header. 
+    Used when display is very small (i.e. phone). 
+    max-width must be mainContent width 
+******************************************************************************************/
+@media all and (max-width: 1045px) and (min-width: 768px) {
+    .InnerGroup_WL_Disabled .ITText {
+        line-height: 2em;
+        padding-bottom: 0px;
+        font-size: 16px;
+    }
+
+    .InnerGroup_10Yr_Disabled .ITText {
+        line-height: 2em;
+        padding-bottom: 0px;
+        font-size: 16px;
+    }
+
+    .InnerGroup_15Yr_Disabled .ITText {
+        line-height: 2em;
+        padding-bottom: 0px;
+        font-size: 16px;
+    }
+
+    .InnerGroup_20Yr_Disabled .ITText {
+        line-height: 2em;
+        padding-bottom: 0px;
+        font-size: 16px;
+    }
+
+    .OuterGroup_WL .ITText {
+        font-size: 12px;
+    }
+
+    .errorText-Group {
+        width: 100px;
+    }
+
+    .InnerGroup2_10Yr .ITText {
+        font-size: 10px;
+    }
+
+    .InnerGroup2_15Yr .ITText {
+        font-size: 10px;
+    }
+
+    .InnerGroup2_20Yr .ITText {
+        font-size: 10px;
+    }
+
+    .InnerGroup2_WL .ITText {
+        font-size: 10px;
+    }
+
+    .errorText-RadioButtonComplex {
+        display: none;
+    }
+
+    .ITCheckBoxWrapper .errorText {
+        display: none;
+    }
+
+    .optionalCoverage .ITIconActive {
+        display: none;
+    }
+
+    .PaymentInner .ITPanelTitleText {
+        font-size: 12px;
+    }
+
+    .productAmount {
+        font-size: 22px !important;
+    }
+
+    .productMoney {
+        font-size: 22px !important;
+    }
+
+    .mainBody {
+        padding-bottom: 355px !important;
+    }
+
+    .checkImage img {
+        width: 350px;
+        height: 175px;
+    }
+    /*#region Mobile Menu*/
+    .headerImageWrapper {
+        padding-right: 375px;
+    }
+
+    #mainMenuWrapper {
+        display: none;
+    }
+
+    #mobileMenuContainer {
+        display: block;
+        color: rgba(0,0,0,.5);
+        padding-top: 15px;
+    }
+
+    #mobileMenuContainer {
+        padding-top: 15px;
+    }
+
+        #mobileMenuContainer ul {
+            list-style: none;
+            position: relative;
+            float: left;
+            margin: 0;
+            padding: 0;
+        }
+
+            #mobileMenuContainer ul a {
+                display: block;
+                color: rgba(0,0,0,.5);
+                text-decoration: none;
+                font-size: 15px;
+                line-height: 32px;
+                padding: 0 15px;
+            }
+
+            #mobileMenuContainer ul li {
+                position: relative;
+                float: left;
+                margin: 0;
+                padding: 0;
+            }
+
+
+                #mobileMenuContainer ul li:hover {
+                    background: #f6f6f6;
+                }
+
+            #mobileMenuContainer ul ul {
+                display: none;
+                position: absolute;
+                top: 90%;
+                right: 0;
+                background: #fff;
+                padding: 0;
+            }
+
+                #mobileMenuContainer ul ul li {
+                    float: none;
+                    width: 300px;
+                }
+
+                #mobileMenuContainer ul ul a {
+                    line-height: 120%;
+                    padding: 10px 15px;
+                }
+
+                #mobileMenuContainer ul ul ul {
+                    top: 0;
+                    right: 100%;
+                    z-index: 1001;
+                }
+
+
+            #mobileMenuContainer ul li:hover > ul {
+                display: block;
+            }
+    /*#endregion*/
+}
+
+@media all and (max-width: 767px) {
+    /*#region Mobile Product Box Styling*/
+    .OuterGroup_10Yr_Mobile {
+        background-color: #5C9311;
+        border-radius: 5px;
+        margin: 10px !important;
+        padding: 3px 0px 0px 0px !important;
+        color: white;
+        text-align: center;
+        font-size: 13px;
+        display: block;
+    }
+
+    .OuterGroup_10Yr_Mobile_Disabled {
+        background-color: #EAEBEF;
+        border-radius: 5px;
+        margin: 10px !important;
+        padding: 12px 0px 0px 0px !important;
+        color: #CCCCCE;
+        text-align: center;
+        font-size: 15px;
+        cursor: not-allowed;
+        display: block;
+    }
+
+        .OuterGroup_10Yr_Mobile_Disabled .ITCheckBox {
+            margin-left: 70px !important;
+        }
+
+    .InnerGroup_10Yr {
+        margin: 0px 0px -10px 0px !important;
+        padding: 5px !important;
+    }
+
+    .InnerGroup2_10Yr {
+        padding: 0px !important;
+        margin: 0px 0px -10px 0px !important;
+    }
+
+        .InnerGroup2_10Yr .ITCheckBox {
+            margin-left: -10px;
+        }
+
+        .InnerGroup2_10Yr .ITComponentLabel {
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+    .InnerGroup3_10Yr {
+        padding: 0px 0px 0px 15px !important;
+        font-size: 11px;
+        margin-left: 20px !important;
+        margin-right: -20px !important;
+        margin-top: 7px !important;
+    }
+
+        .InnerGroup3_10Yr .ITText {
+            line-height: 10px;
+        }
+
+    .InnerGroup_10Yr_Disabled {
+        padding: 5px !important;
+    }
+
+    .OuterGroup_15Yr_Mobile {
+        background-color: #35887E;
+        border-radius: 5px;
+        margin: 10px !important;
+        padding: 3px 0px 0px 0px !important;
+        color: white;
+        text-align: center;
+        font-size: 13px;
+        display: block;
+    }
+
+    .OuterGroup_15Yr_Mobile_Disabled {
+        background-color: #EAEBEF;
+        border-radius: 5px;
+        margin: 10px !important;
+        padding: 12px 0px 0px 0px !important;
+        color: #CCCCCE;
+        text-align: center;
+        font-size: 15px;
+        cursor: not-allowed;
+        display: block;
+    }
+
+        .OuterGroup_15Yr_Mobile_Disabled .ITCheckBox {
+            margin-left: 70px !important;
+        }
+
+    .InnerGroup_15Yr {
+        margin: 0px 0px -10px 0px !important;
+        padding: 5px !important;
+    }
+
+    .InnerGroup2_15Yr {
+        padding: 0px !important;
+        margin: 0px 0px -10px 0px !important;
+    }
+
+        .InnerGroup2_15Yr .ITCheckBox {
+            margin-left: -10px;
+        }
+
+        .InnerGroup2_15Yr .ITComponentLabel {
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+    .InnerGroup3_15Yr {
+        padding: 0px 0px 0px 15px !important;
+        font-size: 11px;
+        margin-left: 20px !important;
+        margin-right: -20px !important;
+        margin-top: 7px !important;
+    }
+
+        .InnerGroup3_15Yr .ITText {
+            line-height: 10px;
+        }
+
+    .InnerGroup_15Yr_Disabled {
+        padding: 5px !important;
+    }
+
+    .OuterGroup_20Yr_Mobile {
+        background-color: #007CAB;
+        border-radius: 5px;
+        margin: 10px !important;
+        padding: 3px 0px 0px 0px !important;
+        color: white;
+        text-align: center;
+        font-size: 13px;
+        display: block;
+    }
+
+    .OuterGroup_20Yr_Mobile_Disabled {
+        background-color: #EAEBEF;
+        border-radius: 5px;
+        margin: 10px !important;
+        padding: 12px 0px 0px 0px !important;
+        color: #CCCCCE;
+        text-align: center;
+        font-size: 15px;
+        cursor: not-allowed;
+        display: block;
+    }
+
+        .OuterGroup_20Yr_Mobile_Disabled .ITCheckBox {
+            margin-left: 70px !important;
+        }
+
+    .InnerGroup_20Yr {
+        margin: 0px 0px -10px 0px !important;
+        padding: 5px !important;
+    }
+
+    .InnerGroup2_20Yr {
+        padding: 0px !important;
+        margin: 0px 0px -10px 0px !important;
+    }
+
+        .InnerGroup2_20Yr .ITCheckBox {
+            margin-left: -10px;
+        }
+
+        .InnerGroup2_20Yr .ITComponentLabel {
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+    .InnerGroup3_20Yr {
+        padding: 0px 0px 0px 15px !important;
+        font-size: 11px;
+        margin-left: 20px !important;
+        margin-right: -20px !important;
+        margin-top: 7px !important;
+    }
+
+        .InnerGroup3_20Yr .ITText {
+            line-height: 10px;
+        }
+
+    .InnerGroup_20Yr_Disabled {
+        padding: 5px !important;
+    }
+
+    .OuterGroup_WL_Mobile {
+        background-color: #0E5490;
+        border-radius: 5px;
+        margin: 10px !important;
+        padding: 3px 0px 0px 0px !important;
+        color: white;
+        text-align: center;
+        font-size: 13px;
+        display: block;
+    }
+
+    .OuterGroup_WL_Mobile_Disabled {
+        background-color: #EAEBEF;
+        border-radius: 5px;
+        margin: 10px !important;
+        padding: 12px 0px 0px 0px !important;
+        color: #CCCCCE;
+        text-align: center;
+        font-size: 15px;
+        cursor: not-allowed;
+        display: block;
+    }
+
+        .OuterGroup_WL_Mobile_Disabled .ITCheckBox {
+            margin-left: 70px !important;
+        }
+
+    .InnerGroup_WL {
+        margin: 0px 0px -10px 0px !important;
+        padding: 5px !important;
+    }
+
+    .InnerGroup2_WL {
+        padding: 0px !important;
+        margin: 0px 0px -10px 0px !important;
+    }
+
+        .InnerGroup2_WL .ITCheckBox {
+            margin-left: -10px;
+        }
+
+        .InnerGroup2_WL .ITComponentLabel {
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+    .InnerGroup3_WL {
+        padding: 0px 0px 0px 15px !important;
+        font-size: 11px;
+        margin-left: 20px !important;
+        margin-right: -20px !important;
+        margin-top: 7px !important;
+    }
+
+        .InnerGroup3_WL .ITText {
+            line-height: 10px;
+        }
+
+    .InnerGroup_WL_Disabled {
+        padding: 5px !important;
+    }
+
+    .OuterGroup_10Yr {
+        display: none;
+    }
+
+    .OuterGroup_15Yr {
+        display: none;
+    }
+
+    .OuterGroup_20Yr {
+        display: none;
+    }
+
+    .OuterGroup_WL {
+        display: none;
+    }
+
+    .OuterGroup_WL_Disabled {
+        display: none;
+    }
+
+    .OuterGroup_10Yr_Disabled {
+        display: none;
+    }
+
+    .OuterGroup_15Yr_Disabled {
+        display: none;
+    }
+
+    .OuterGroup_20Yr_Disabled {
+        display: none;
+    }
+
+    .InnerGroup2_10Yr .ITCheckBox .ITCheckBoxContainer {
+        margin: 0px 0px 0px 12px;
+    }
+
+    .InnerGroup2_15Yr .ITCheckBox .ITCheckBoxContainer {
+        margin: 0px 0px 0px 12px;
+    }
+
+    .InnerGroup2_20Yr .ITCheckBox .ITCheckBoxContainer {
+        margin: 0px 0px 0px 12px;
+    }
+
+    .InnerGroup2_WL .ITCheckBox .ITCheckBoxContainer {
+        margin: 0px 0px 0px 12px;
+    }
+
+    .OuterGroup_10Yr_Mobile .ITCheckBoxWrapper .errorText {
+        display: none;
+    }
+
+    .OuterGroup_10Yr_Mobile_Disabled .ITCheckBoxWrapper .errorText {
+        display: none;
+    }
+
+    .OuterGroup_15Yr_Mobile .ITCheckBoxWrapper .errorText {
+        display: none;
+    }
+
+    .OuterGroup_15Yr_Mobile_Disabled .ITCheckBoxWrapper .errorText {
+        display: none;
+    }
+
+    .OuterGroup_20Yr_Mobile .ITCheckBoxWrapper .errorText {
+        display: none;
+    }
+
+    .OuterGroup_20Yr_Mobile_Disabled .ITCheckBoxWrapper .errorText {
+        display: none;
+    }
+
+    .OuterGroup_WL_Mobile .ITCheckBoxWrapper .errorText {
+        display: none;
+    }
+
+    .OuterGroup_WL_Mobile_Disabled .ITCheckBoxWrapper .errorText {
+        display: none;
+    }
+    /*#endregion*/
+
+    /*#region Mobile Payment Groups Styling*/
+    .PaymentOuterMobile {
+        display: block;
+        background-color: #88C348;
+        border-radius: 5px;
+        margin: 20px 10px 20px 10px !important;
+        padding: 5px 5px 5px 5px !important;
+        color: black;
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .PaymentInnerMobile {
+        background-color: white;
+        font-size: 26px;
+        margin: 5px 0px -10px 0px !important;
+        padding: 0 5px !important;
+        border-radius: 0px 0px 5px 5px;
+    }
+
+        .PaymentInnerMobile .ITComponentLabel {
+            margin-left: -15px;
+        }
+
+        .PaymentInnerMobile .ITCheckBoxWrapper .errorText {
+            display: none;
+        }
+
+    .bannerImage {
+        align-items: flex-start;
+        display: flex;
+        position: absolute;
+        margin: -34px 0px 0px 10px;
+    }
+    /*#endregion*/
+
+    /*#region Mobile Specific Groups*/
+    .noShowMobile {
+        display: none;
+    }
+
+    .mainFooter {
+        height: 650px;
+    }
+
+    .mainBody {
+        padding-bottom: 700px !important;
+    }
+
+    .headerImageWrapper {
+        padding-right: 0;
+    }
+
+    .headerText {
+        padding: 0px;
+        font-size: 14px;
+    }
+
+    .PaymentOuterMonthly {
+        display: none;
+    }
+
+    .PaymentOuter {
+        display: none;
+    }
+
+    .PaymentOuterAnnual {
+        display: none;
+    }
+
+    .FraudGroupLeft {
+        border-right: none;
+    }
+
+    #mobileProduct {
+        padding-top: 15px;
+        padding-left: 5px;
+    }
+
+    .mobileProduct {
+        padding-top: 15px;
+        padding-left: 5px;
+    }
+
+    .mobilePayLabel {
+        font-size: 12px;
+        margin-top: -30px;
+    }
+
+    .savingsLabel {
+        color: white;
+        margin-left: 60px;
+        align-items: flex-start;
+        display: flex;
+    }
+
+    .needsCalcLinkGroup {
+        display: none;
+    }
+
+    .heightLabel {
+        padding-top: 30px !important;
+    }
+
+
+    .CharityPageGroup {
+        padding: 0px !important;
+    }
+
+    .CharityLogo {
+        padding: 0px 30px;
+        width: 80%;
+    }
+
+    .LearnMoreText {
+        padding: 0px 0px 30px 100px;
+    }
+
+    .mobileCoverageLabel {
+        display: block;
+        font-size: 12px;
+        padding-top: 10px;
+    }
+
+    .coverageExternalLink {
+        display: none;
+    }
+
+    .policyDescription {
+        display: block;
+        font-size: 12px;
+        padding-top: 20px;
+        margin-bottom: -10px;
+    }
+
+    .healthSubSection .ITCheckBox {
+        margin-bottom: 35px !important;
+    }
+
+    .infoBarBackground {
+        padding: 0px;
+        margin-bottom: 25px;
+    }
+
+    .infoHeader {
+        font-size: 16px;
+        margin-top: 0px;
+    }
+
+    .mobileNoMargin {
+        margin: 0 !important;
+    }
+
+    .optionalCoverage .indent1 {
+        margin-left: 0;
+    }
+
+    .optionalCoverage .indent2 {
+        margin-left: 0;
+    }
+
+    .optionalCoverage + .ITText {
+        text-transform: uppercase;
+    }
+
+    .optionalCoverageHeader {
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+
+    .depthDD .ITSelect {
+        max-width: 200px;
+        min-width: 200px;
+    }
+
+    .additionalChildQuestions .ITCheckBoxWrapper .errorText {
+        display: none;
+    }
+
+    .errorText-RadioButtonComplex {
+        position: fixed;
+    }
+
+    .ITRadioWrapper .errorText {
+        left: -40px;
+    }
+
+    .errorText-Group {
+        width: 180px;
+        left: 0px;
+    }
+    /*#endregion*/
+
+    /*#region Mobile ITComponentLib.css Overrides*/
+    .ITText > ul {
+        line-height: 28px;
+        font-size: 12px;
+    }
+
+    .SubHeaderTextStyle {
+        padding: 20px 5px;
+        text-transform: none;
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    .PageHeaderTextStyle {
+        font-size: 23px;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 15px 20px;
+        line-height: 20px;
+    }
+    /*Nav Buttons*/
+    .navigationButton {
+        justify-content: center;
+        text-align: center;
+    }
+
+    /*Slider*/
+    .sliderContainer {
+        width: 90%;
+        cursor: pointer;
+    }
+
+    .sliderThumb {
+        width: 40px;
+        height: 40px;
+        margin-top: -15px;
+    }
+
+    .ITSliderLabels {
+        padding: 0px 20px;
+    }
+
+    /*ITTextField*/
+    .ITTextField {
+        padding-right: 5px;
+    }
+    /*Icons*/
+    .ITIconLabel {
+        width: 63px;
+        font-size: 11px;
+    }
+
+    .line {
+        margin-left: -20px;
+        width: 60px;
+    }
+    /*Tooltip*/
+    .ITTooltipContents {
+        width: 150px;
+        right: -10px;
+    }
+
+    .ITTooltipArrow {
+        left: 15px;
+    }
+
+    .ITTooltipArrowBorder {
+        left: 15px;
+    }
+
+    /*Dropdown*/
+    .ITSelect {
+        max-width: 100%;
+        min-width: 100%;
+    }
+    /*Buttons*/
+    .ITButtonText {
+        font-size: 20px;
+    }
+
+    /*Checkbox*/
+    .ITCheckBox {
+        margin-bottom: 0;
+    }
+
+    .ITPanelContents .ITCheckBox {
+        margin-bottom: 35px;
+    }
+
+    /*Panel*/
+    .ITPanel .ITComponent {
+        padding-left: 0px;
+    }
+    /*#endregion*/
+
+    /*#region Mobile Menu*/
+    .logo {
+        width: 200px;
+    }
+
+    .hamburgerMenu {
+        padding-top: 5px;
+        font-size: 36px;
+    }
+
+    #mainMenuWrapper {
+        display: none;
+    }
+
+    #mobileMenuContainer {
+        display: block;
+        color: rgba(0,0,0,.5);
+        padding-top: 15px;
+    }
+
+    #mobileMenuContainer {
+        padding-top: 5px;
+    }
+
+        #mobileMenuContainer ul {
+            list-style: none;
+            position: relative;
+            float: left;
+            margin: 0;
+            padding: 0;
+        }
+
+            #mobileMenuContainer ul a {
+                display: block;
+                color: rgba(0,0,0,.5);
+                text-decoration: none;
+                font-size: 14px;
+                line-height: 32px;
+                padding: 0 15px;
+            }
+
+            #mobileMenuContainer ul li {
+                position: relative;
+                float: left;
+                margin: 0;
+                padding: 0;
+            }
+
+
+                #mobileMenuContainer ul li:hover {
+                    background: #f6f6f6;
+                }
+
+            #mobileMenuContainer ul ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0px;
+                background: #fff;
+                padding: 0;
+            }
+
+                #mobileMenuContainer ul ul li {
+                    float: none;
+                    width: 150px;
+                }
+
+                #mobileMenuContainer ul ul a {
+                    line-height: 100%;
+                    padding: 10px 15px;
+                }
+
+                #mobileMenuContainer ul ul ul {
+                    top: 0;
+                    right: 100%;
+                    z-index: 1001;
+                }
+
+            #mobileMenuContainer ul li:hover > ul {
+                display: block;
+            }
+    /*#endregion*/
+}
+/*#endregion*/
+
+.ITComponentLabel.ITComponentLabel--withHelp {
+    max-width: calc(100% - 1em - 12px);
+}
+
+.groupField > .validationContainer {
+    text-align: center;
+}
+
+.navigationButtons .row {
+    align-items: flex-end;
+}
+
+.navigationButtons .ITTooltip {
+    display: block;
+    top: 15px;
+}
+
+.navigationButtons .ITTooltipContents {
+    color: #ed4e4e;
+    font-weight: 700;
+    width: 220px;
+    right: -110px;
+}
+
+.ITValidationImage {
+    font-size: 14px;
+}

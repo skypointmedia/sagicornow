@@ -1,306 +1,381 @@
-﻿@model SagicorNow.ViewModels.QuoteViewModel
+﻿@using Newtonsoft.Json
+@model SagicorNow.ViewModels.QuoteViewModel
 
 @{
     ViewBag.Title = "Fraud Warning";
 }
 
 @section header{
-    <link type="text/css" rel="stylesheet" href="@Url.Content(ViewBag.FirelightBaseUrl + "Resource/CSS/eApp")"/>
-    
-    <link href="~/Content/SAG.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
+    @*<link type="text/css" rel="stylesheet" href="@Url.Content(ViewBag.FirelightBaseUrl + "Resource/CSS/eApp")" />
+
+        <link href="~/Content/SAG.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css" />*@
+
+    <link href="~/Content/firelight-css/consumerPortal.e203702198117be6fe06.css" rel="stylesheet" />
+    <!-- ORGANIZATION'S BASE CSS  -->
+    <link href="~/Content/firelight-css/SAG.css" rel="stylesheet" />
+    <!-- Flex box Grid - Used for Responsive Grid Layout -->
+    <link href="~/Content/firelight-css/flexboxgrid.6.3.0.min.css" rel="stylesheet" />
+    <!-- React-Slick Carousel styles -->
+    <link href="~/Content/firelight-css/slick.1.6.0.min.css" rel="stylesheet" />
+    <link href="~/Content/firelight-css/slick-theme.1.6.0.min.css" rel="stylesheet" />
 }
 
 @section scripts
 {
-    <script>
-        $(function() {
-           
-        });
-    </script>
+    <script src="~/Binding/Models/FraudWarningModel.js"></script>
+    <script src="~/Binding/ViewModels/FraudWarningViewModel.js"></script>
 }
 
 @section ko_apply
 {
-    
+    var qvm = @Html.Raw(JsonConvert.SerializeObject(this.Model));
+    var viewModel = new SagicorNow.FraudWarningViewModel(qvm);
+    ko.applyBindingsWithValidation(viewModel,$("#fireLightMainDiv")[0], { insertMessages: false, messagesOnModified: false, grouping: { deep: true }})
+
 }
 
+<div class="modal" tabindex="-1" role="dialog" id="create-password-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div id="fireLightMainDiv" class="reactContent">
-    <div class="ITWizardRoot">
-        <div>
-            <section class="MainITPanel">
-                <div class="row ">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div>
-                            <div data-dataitemid="FraudGroup" class="groupField FraudGroupLeft">
-                                <div>
-                                    <div class="indent0 ITText"></div>
-                                </div>
-                                <div class="row baselineAlign">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div style="position: relative;">
-                                                <div class="ITComponentRoot  ">
-                                                    <div class="ITComponent">
-                                                        <div class="ITComponentLabelContainer">
-                                                            <div class="indent0 ITComponentLabel">First Name</div>
-                                                        </div>
-                                                        <div class="ITTextField undefined">@Html.TextBoxFor(x => x.FirstName, new {@class= "ITTextFieldInput", maxlength = "20", @data_dataitemid = "PROPOSED_INSURED_FNAME" })</div>
-                                                        <div class="errorText errorText-ITTextField">&nbsp; </div>
-                                                    </div>
-                                                </div>
-                                                <div class="errorText col-md-12 warningText ErrorTextNoError errorText-TextField">&nbsp; </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row baselineAlign">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div style="position: relative;">
-                                                <div class="ITComponentRoot  ">
-                                                    <div class="ITComponent">
-                                                        <div class="ITComponentLabelContainer">
-                                                            <div class="indent0 ITComponentLabel">Email Address</div>
-                                                        </div>
-                                                        <div class="ITTextField undefined">@Html.TextBoxFor(x => x.EmailAddress, new{maxlength = 50, @class="ITTextFieldInput", data_dataitemid = "PROPOSED_INSURED_EMAIL" })</div>
-                                                        <div class="errorText errorText-ITTextField">&nbsp; </div>
-                                                    </div>
-                                                </div>
-                                                <div class="errorText col-md-12 warningText ErrorTextNoError errorText-TextField">&nbsp; </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row baselineAlign">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div style="position: relative;">
-                                                <div class="ITComponentRoot  ">
-                                                    <div class="ITComponent">
-                                                        <div class="ITComponentLabelContainer">
-                                                            <div class="indent0 ITComponentLabel">Phone Number</div>
-                                                        </div>
-                                                        <div class="ITTextField undefined">@Html.TextBoxFor(x => x.PhoneNumber, new{@class= "ITTextFieldInput", data_dataitemid = "PROPOSED_INSURED_HOME_PHONE" })</div>
-                                                        <div class="errorText errorText-ITTextField">&nbsp; </div>
-                                                    </div>
-                                                </div>
-                                                <div class="errorText col-md-12 warningText ErrorTextNoError errorText-TextField">&nbsp; </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row baselineAlign">
-                                    <div class="col-xs-2 col-sm-2 col-md-2">
-                                        <div>
-                                            <div style="position: relative;">
-                                                <div class="ITComponentRoot ITCheckBoxWrapper ">
-                                                    <div class="ITComponent">
-                                                        <div class="indent0">
-                                                            <label data-dataitemid="CONSENT_NOT_CONSENT" class="ITCheckBox">
-                                                                <div class="ITCheckBoxContainer">
-                                                                    <div class="ITCheckBoxButton  fillColor" tabindex="0">
-                                                                        <div class="ITCheckBoxCheck scaleNormal"><i class="fa fa-check checkStyle"></i></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="ITComponentLabelContainer">
-                                                                    <div class="ITComponentLabel" style="padding-left: 10px;"></div>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                        <div class="errorText errorText-ITCheckBox">&nbsp; </div>
-                                                    </div>
-                                                </div>
-                                                <div class="errorText warningText ErrorTextNoError errorText-RadioButton">&nbsp; </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-10 col-sm-10 col-md-10">
-                                        <div>
-                                            <div>
-                                                <div>
-                                                    <p style="font-size: 12px; text-align: start; line-height: 15px">I have read and agree to Sagicor Life Insurance Company's <a href="https://sagicornow.com/pages/terms" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none">Terms of Use</a>, <a href="https://sagicornow.com/pages/privacy-policy" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none"> Privacy Policy</a> and <a href="https://sagicornow.com/pages/electronic-consent-and-disclosure" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none"> Customer Electronic Consent and Disclosure</a>. I also understand that: </p><ul style="padding-left: 20px; text-align: start; font-size: 11px; line-height: 12px"> <li>If I do not agree and consent to these documents, I will be unable to obtain a quote or to complete an application;</li> <li>Any person who knowingly presents a false statement in an application for insurance may be guilty of a criminal offense and subject to penalties under state law;</li> <li>By providing a telephone number, I consent to Sagicor's authorized agents, including Sagicor's sales and servicing partner Life Quotes, Inc. (sm), calling or texting me as necessary to assist me with my application and to service any products I obtain; </li> <li>All calls will be recorded;</li> <li> By applying for life insurance electronically and providing my email address, I consent to receive electronic mail from Sagicor and the Company's authorized agents; and</li> <li>I may withdraw my consent to receiving telephone calls, texts, and emails at any time by communicating my withdrawal to Sagicor or its authorized agents, either by telephone or email. </li> </ul>
-                                                    <p></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row baselineAlign">
-                                    <div class="col-xs-2 col-sm-2 col-md-2">
-                                        <div>
-                                            <div style="position: relative;">
-                                                <div class="ITComponentRoot ITCheckBoxWrapper ">
-                                                    <div class="ITComponent">
-                                                        <div class="indent0">
-                                                            <label data-dataitemid="CONSENT_NOT_CONSENT" class="ITCheckBox">
-                                                                <div class="ITCheckBoxContainer">
-                                                                    <div class=" tabindex="0">
-                                                                        @*<div class="ITCheckBoxCheck scaleNormal"><i class="fa fa-check checkStyle" id="chk-enable-saving"></i></div>*@
-                                                                        @Html.CheckBoxFor(x => x.EnableSaving, new{@class= "ITCheckBoxButton  fillColor ITCheckBoxCheck scaleNormal" })
-                                                                    </div>
-                                                                </div>
-                                                                <div class="ITComponentLabelContainer">
-                                                                    <div class="ITComponentLabel" style="padding-left: 10px;"></div>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                        <div class="errorText errorText-ITCheckBox">&nbsp; </div>
-                                                    </div>
-                                                </div>
-                                                <div class="errorText warningText ErrorTextNoError errorText-RadioButton">&nbsp; </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="errorText col-md-12 warningText ErrorTextNoError errorText-Group">&nbsp; </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div>
-                            <div data-dataitemid="FraudGroup" class="groupField FraudGroupRight">
-                                <div>
-                                    <div class="indent0 ITText"></div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL">
-                                                <div class="indent0 ITText headerText" style="font-weight: bold;">Your rates are based upon the information you provided. Please confirm that this is correct:</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL_AGE_GENDER">
-                                                <div class="indent0 ITText"><ul style="list-style-type: disc;"><li>You are a 34 year old man</li></ul></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL_CITY_STATE">
-                                                <div class="indent0 ITText"><ul style="list-style-type: disc;"><li>You are completing and signing this application in </li></ul></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL_SMOKER">
-                                                <div class="indent0 ITText"><ul style="list-style-type: disc;"><li>You don't use tobacco / nicotine products</li></ul></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL_HEALTH">
-                                                <div class="indent0 ITText"><ul style="list-style-type: disc;"><li>You are in excellent health</li></ul></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL_COVERAGE">
-                                                <div class="indent0 ITText"><ul style="list-style-type: disc;"><li>You are buying $250,000 of coverage for 15 years</li></ul></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL">
-                                                <div class="indent0 ITText headerText" style="font-weight: bold;">To complete your application, please have the following information readily available:</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL_IDENTIFICATION">
-                                                <div class="indent0 ITText"><ul style="list-style-type: disc;"><li>Your driver's license and social security number</li></ul></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL_DOCTOR_INFO">
-                                                <div class="indent0 ITText"><ul style="list-style-type: disc;"><li>Your doctor's name and contact information</li></ul></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL_BENE_INFO">
-                                                <div class="indent0 ITText"><ul style="list-style-type: disc;"><li>Your beneficiary's name and contact information</li></ul></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div>
-                                            <div data-dataitemid="FRAUD_LABEL_ADDTNL_POLICY_INFO">
-                                                <div class="indent0 ITText"><ul style="list-style-type: disc;"><li>Info on any existing life insurance policies</li></ul></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="errorText col-md-12 warningText ErrorTextNoError errorText-Group">&nbsp; </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrap container-fluid">
-                    <div class="row navigationButton rightAlign">
-                        <div class="col-md-3 col-sm-3 col-xs-12 last-xs">
-                            <div class="ITComponentRoot undefined">
-                                <div class="ITComponent">
-                                    <div class="ITtooltip">
-                                        <button class="ITButtonInput ITButtonBack">
-                                            <div>
-                                                <div class="ITButtonText ">Go Back</div>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12 last-sm last-md">
-                            <div class="ITComponentRoot undefined">
-                                <div class="ITComponent">
-                                    <div class="ITtooltip">
-                                        <button class="ITButtonInput">
-                                            <div>
-                                                <div class="ITButtonText ">Next</div>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <div>
+    <div>
+    <div class="mainBody">
+    <div class="row centerMainRow noMargin">
+    <div class="mainRow start-xs">
+    <div class="row centerMainRow mobileNoMargin">
+        <div class="col-xs-12 center-xs">
+            <div class="PageHeaderTextStyle">
+                Hello. Let's Get Started.
+                <div class="SubHeaderTextStyle">The application typically takes about 20 minutes to complete.</div>
+            </div>
         </div>
     </div>
+    <div class="mainContent">
+    <div data-bind="with: fraudWarningModel">
+    <section class="MainITPanel">
+    <div class="row ">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+    <div data-dataitemid="FraudGroup" class="groupField splitGroup">
+    <div>
+        <div class="indent0 ITText"></div>
+    </div>
+    <div class="row ">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div data-dataitemid="FraudGroup" class="groupField FraudGroupLeft">
+            <div>
+                <div class="indent0 ITText"></div>
+            </div>
+            <div class="row baselineAlign">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="componentWrapper ">
+                        <div data-dataitemid="PROPOSED_INSURED_FNAME" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                            <div class="ITComponent">
+                                <div class="ITComponentLabelContainer">
+                                    <div class="ITComponentLabel indent0">First Name</div>
+                                </div>
+                                <div class="ITTextField">
+                                    <input maxlength="20" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_FNAME" value="" data-bind="text: FirstName">
+                                </div>
+                                <div class="validationContainer validationContainer--showText">
+                                    <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row baselineAlign">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="componentWrapper ">
+                        <div data-dataitemid="PROPOSED_INSURED_EMAIL" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                            <div class="ITComponent">
+                                <div class="ITComponentLabelContainer">
+                                    <div class="ITComponentLabel indent0">Email Address</div>
+                                </div>
+                                <div class="ITTextField">
+                                    <input maxlength="50" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_EMAIL" value="" data-bind="text: EmailAddress">
+                                </div>
+                                <div class="validationContainer validationContainer--showText">
+                                    <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row baselineAlign">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="componentWrapper ">
+                        <div data-dataitemid="PROPOSED_INSURED_HOME_PHONE" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                            <div class="ITComponent">
+                                <div class="ITComponentLabelContainer">
+                                    <div class="ITComponentLabel indent0">Phone Number</div>
+                                </div>
+                                <div class="ITTextField">
+                                    <input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_HOME_PHONE" value="" data-bind="text: PhoneNumber">
+                                </div>
+                                <div class="validationContainer validationContainer--showText">
+                                    <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row baselineAlign">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <div class="componentWrapper ">
+                        <div data-dataitemid="CONSENT_NOT_CONSENT" class="ITComponentRoot ITCheckBoxWrapper validationError--optional validationError--transApplication">
+                            <div class="ITComponent">
+                                <div class="indent0">
+                                    <label data-dataitemid="CONSENT_NOT_CONSENT" class="ITCheckBoxContainer">
+                                        <div class="ITCheckBoxInput">
+                                            <div class="ITCheckBox   " tabindex="0">
+                                                <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheckAgreeToTerms">
+                                                    <i data-bind="class: $parent.agreeToTermsCheckStatus"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ITComponentLabelContainer">
+                                            <div class="ITComponentLabel"></div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="validationContainer validationContainer--showText">
+                                    <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-10 col-sm-10 col-md-10">
+                    <div>
+                        <div>
+                            <p style="font-size: 12px; text-align: start; line-height: 15px">I have read and agree to Sagicor Life Insurance Company's <a href="https://sagicornow.com/pages/terms" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none">Terms of Use</a>, <a href="https://sagicornow.com/pages/privacy-policy" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none"> Privacy Policy</a> and <a href="https://sagicornow.com/pages/electronic-consent-and-disclosure" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none"> Customer Electronic Consent and Disclosure</a>. I also understand that: </p>
+                            <ul style="padding-left: 20px; text-align: start; font-size: 11px; line-height: 12px">
+                                <li>If I do not agree and consent to these documents, I will be unable to obtain a quote or to complete an application;</li> <li>Any person who knowingly presents a false statement in an application for insurance may be guilty of a criminal offense and subject to penalties under state law;</li> <li>By providing a telephone number, I consent to Sagicor's authorized agents calling or texting me as necessary to assist me with my application and to service any products I obtain; </li> <li>All calls will be recorded;</li> <li> By applying for life insurance electronically and providing my email address, I consent to receive electronic mail from Sagicor and the Company's authorized agents; and</li> <li>I may withdraw my consent to receiving telephone calls, texts, and emails at any time by communicating my withdrawal to Sagicor or its authorized agents, either by telephone or email. </li>
+                            </ul>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row baselineAlign">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <div class="componentWrapper">
+                        <div class="ITComponentRoot ITCheckBoxWrapper validationError--optional validationError--transApplication">
+                            <div class="ITComponent">
+                                <div class="indent0">
+                                    <label class="ITCheckBoxContainer">
+                                        <div class="ITCheckBoxInput">
+                                            <div class="ITCheckBox" tabindex="1">
+                                                <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheckEnableSave">
+                                                    <i data-bind="class: $parent.enableSaveCheckStatus"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div data-dataitemid="FraudGroup" class="groupField FraudGroupRight">
+            <div>
+                <div class="indent0 ITText"></div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL">
+                        <div class="indent0 ITText headerText" style="font-weight: bold;">Your rates are based upon the information you provided. Please confirm that this is correct:</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL_AGE_GENDER">
+                        <div class="indent0 ITText">
+                            <ul style="list-style-type: disc;">
+                                <li>You are a 34 year old man</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL_CITY_STATE">
+                        <div class="indent0 ITText">
+                            <ul style="list-style-type: disc;">
+                                <li>You are completing and signing this application in Arizona</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL_SMOKER">
+                        <div class="indent0 ITText">
+                            <ul style="list-style-type: disc;">
+                                <li>You don't use tobacco / nicotine products</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL_HEALTH">
+                        <div class="indent0 ITText">
+                            <ul style="list-style-type: disc;">
+                                <li>You are in excellent health</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL_COVERAGE">
+                        <div class="indent0 ITText">
+                            <ul style="list-style-type: disc;">
+                                <li>You are buying $450,000 of coverage for 10 years</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL">
+                        <div class="indent0 ITText headerText" style="font-weight: bold;">To complete your application, please have the following information readily available:</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL_IDENTIFICATION">
+                        <div class="indent0 ITText">
+                            <ul style="list-style-type: disc;">
+                                <li>Your driver's license and social security number</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL_DOCTOR_INFO">
+                        <div class="indent0 ITText">
+                            <ul style="list-style-type: disc;">
+                                <li>Your doctor's name and contact information</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL_BENE_INFO">
+                        <div class="indent0 ITText">
+                            <ul style="list-style-type: disc;">
+                                <li>Your beneficiary's name and contact information</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div data-dataitemid="FRAUD_LABEL_ADDTNL_POLICY_INFO">
+                        <div class="indent0 ITText">
+                            <ul style="list-style-type: disc;">
+                                <li>Info on any existing life insurance policies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="navigationButtonsContainer ">
+        <div class="navigationButtons" style="">
+            <div class="row navigationButton rightAlign">
+                <div class="col-md-3 col-sm-3 col-xs-12 last-xs">
+                    <div class="ITComponentRoot undefined">
+                        <div class="ITComponent">
+                            <div style="height: 100%;">
+                                <button class="ITButtonInput   ITButtonBack">
+                                    <div>
+                                        <div class="ITButtonText ">Go Back</div>
+                                    </div>
+                                </button>
+                                <div class="validationContainer validationContainer--showText">
+                                    <div class="errorText undefined">&nbsp; </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 last-sm last-md">
+                    <div class="ITComponentRoot undefined">
+                        <div class="ITComponent">
+                            <div style="height: 100%;">
+                                <button class="ITButtonInput  ">
+                                    <div>
+                                        <div class="ITButtonText ">Next</div>
+                                    </div>
+                                </button>
+                                <div class="validationContainer validationContainer--showText">
+                                    <div class="errorText undefined">&nbsp; </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 center-xs contentFooter"></div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
 </div>
 
