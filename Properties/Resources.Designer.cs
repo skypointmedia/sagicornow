@@ -133,5 +133,21 @@ namespace SagicorNow.Properties {
                 return ResourceManager.GetString("FS_Quote_Request_Template4", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;s:Envelope xmlns:s=&quot;http://www.w3.org/2003/05/soap-envelope&quot; xmlns:a=&quot;http://www.w3.org/2005/08/addressing&quot;&gt;
+        ///	&lt;s:Header&gt;
+        ///		&lt;a:Action s:mustUnderstand=&quot;1&quot;&gt;http://ACORD.org/Standards/Life/2/ProcessTXLifeRequest/ProcessTXLifeRequest&lt;/a:Action&gt;
+        ///		&lt;a:MessageID&gt;urn:uuid:&lt;&lt;uuid&gt;&gt;&lt;/a:MessageID&gt;
+        ///		&lt;a:ReplyTo&gt;
+        ///			&lt;a:Address&gt;http://www.w3.org/2005/08/addressing/anonymous&lt;/a:Address&gt;
+        ///		&lt;/a:ReplyTo&gt;
+        ///		&lt;a:To s:mustUnderstand=&quot;1&quot;&gt;https://illustration.test.sagicorlifeusa.com/SLI6/Core/Acord/TXLifeService.svc&lt;/a:To&gt; [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string FS_Quote_Request_Template5 {
+            get {
+                return ResourceManager.GetString("FS_Quote_Request_Template5", resourceCulture);
+            }
+        }
     }
 }

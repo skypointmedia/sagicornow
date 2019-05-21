@@ -113,12 +113,7 @@ namespace SagicorNow.ViewModels
             var states = QuoteModel.States();
 
             var state = states.FirstOrDefault(s => s.TC == tc);
-            if (null != state)
-            {
-                return new StateInfo { Code = state.Value, Name = state.Text, TC = state.TC, Value = state.TCValue };
-            }
-            else
-                return null;
+            return null != state ? new StateInfo { Code = state.Value, Name = state.Text, TC = state.TC, Value = state.TCValue } : null;
         }
 
         private AccordOlifeValue GetGenderInfoFromCode(string g)
@@ -177,7 +172,6 @@ namespace SagicorNow.ViewModels
 
         }
 
-
         /// <summary>
         /// all the new risk classes and their values as enumerations
         /// </summary>
@@ -213,7 +207,6 @@ namespace SagicorNow.ViewModels
             return maxCoverage;
         }
 
-
         private AccordOlifeValue GetSmokerStatInfoFromCode(string h)
         {
             switch (h)
@@ -228,24 +221,37 @@ namespace SagicorNow.ViewModels
         }
 
         public decimal TenYearTermPerMonthCost { get; set; }
+
         public bool TenYearTerm { get; set; }
 
         public decimal FifteenYearTermPerMonthCost { get; set; }
+
         public bool FifteenYearTerm { get; set; }
 
         public decimal TwentyYearTermPerMonthCost { get; set; }
+
         public bool TwentyYearTerm { get; set; }
 
         public decimal WholeLifePerMonthCost { get; set; }
+
         public bool WholeLife { get; set; }
 
         public bool WavierPremium { get; set; }
+
         public bool AccidentalDeath { get; set; }
+
         public bool ChildrenCoverage { get; set; }
 
         public string FirstName { get; set; }
+
         public string EmailAddress { get; set; }
+
         public string PhoneNumber { get; set; }
+
         public bool EnableSaving { get; set; }
+
+        public string Password { get; set; }
+
+        public string ConfirmPassword { get; set; }
     }
 }

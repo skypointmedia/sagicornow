@@ -160,6 +160,31 @@ $(document).ready(function () {
         }
     });
 
+    $('#create-password-form').formValidation({
+        framework: 'Bootstrap4',
+        fields: {
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Password is required"
+                    }
+                }
+            },
+            confirmPassword: {
+                validators: {
+                    notEmpty: {
+                        message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> Confirmation of Password is required"
+                    },
+                    identical: {
+                        compare: function () {
+                            return form.querySelector('[name="password"]').value;
+                        },
+                        message: 'The password and its confirm are not the same'
+                    }
+                }
+            }
+        }
+    });
 
     $('#quote-form').formValidation({
         framework: 'Bootstrap4',

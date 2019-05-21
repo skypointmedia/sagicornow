@@ -13,7 +13,7 @@
 }(window.SagicorNow));
 
 (function (sn) {
-    var viewModelHelper = function () {
+    var ViewModelHelper = function () {
 
         var self = this;
 
@@ -23,6 +23,54 @@
 
         self.statePopped = false;
         self.stateInfo = {};
+
+        self.apiGetSync = function (uri, data, success, failure, always) {
+            self.isLoading(true);
+            self.modelIsValid(true);
+            $.ajax({ type: 'Get', async: false, url: FundManager.rootPath + uri, data: data })
+                .done(success)
+                .fail(function (result) {
+                    if (failure == null) {
+                        if (result.status !== 400)
+                            self.modelErrors([result.status + ':' + result.statusText + ' - ' + result.responseText]);
+                        else
+                            self.modelErrors(JSON.parse(result.responseText));
+                        self.modelIsValid(false);
+                    }
+                    else
+                        failure(result);
+                })
+                .always(function () {
+                    if (always == null)
+                        self.isLoading(false);
+                    else
+                        always();
+                });
+        }
+
+        self.apiPostSync = function (uri, data, success, failure, always) {
+            self.isLoading(true);
+            self.modelIsValid(true);
+            $.ajax({ type: 'Post', async: false, url: FundManager.rootPath + uri, data: data })
+                .done(success)
+                .fail(function (result) {
+                    if (failure == null) {
+                        if (result.status !== 400)
+                            self.modelErrors([result.status + ':' + result.statusText + ' - ' + result.responseText]);
+                        else
+                            self.modelErrors(JSON.parse(result.responseText));
+                        self.modelIsValid(false);
+                    }
+                    else
+                        failure(result);
+                })
+                .always(function () {
+                    if (always == null)
+                        self.isLoading(false);
+                    else
+                        always();
+                });
+        };
 
         self.apiGet = function (uri, data, success, failure, always) {
             self.isLoading(true);
@@ -93,7 +141,7 @@
             return initialState;
         }
     }
-    sn.viewModelHelper = viewModelHelper;
+    sn.ViewModelHelper = ViewModelHelper;
 }(window.SagicorNow));
 
 ko.bindingHandlers.loadingWhen = {
@@ -102,7 +150,7 @@ ko.bindingHandlers.loadingWhen = {
     init: function (element) {
         var
             $element = $(element),
-            currentPosition = $element.css("position")
+            currentPosition = $element.css("position");
         $loader = $("<div>").addClass("loading-loader").hide();
 
         //add the loader

@@ -7,23 +7,16 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
 using System.Web.Mvc;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 using Sagicor.Core.Common.Contracts;
 using SagicorNow.Business;
 using SagicorNow.Business.Models;
-using SagicorNow.Client.Contracts;
 using SagicorNow.Common;
 using SagicorNow.Data;
 using SagicorNow.Data.Entities;
-using SagicorNow.Foresight;
-using SagicorNow.Properties;
 
 namespace SagicorNow.Controllers
 {
@@ -63,7 +56,7 @@ namespace SagicorNow.Controllers
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> Index(QuoteViewModel vm)
         {
             try
@@ -141,21 +134,74 @@ namespace SagicorNow.Controllers
             }
         }
 
+        [System.Web.Mvc.HttpPost]
+        public async Task<ActionResult> EmbeddedApp(ProposalHistory vm)
+        {
+            try
+            {
+                
+                //if coverage supplied, limit coverage to max of 1,000,000 based on age
+                var maxCoverage = QuoteViewModel.GetMaxCoverageBasedOnAge(vm.Age);
 
-        public ViewResult ProductSlider(QuoteViewModel quoteViewModel)
+                vm.CoverageAmount = vm.CoverageAmount > maxCoverage ? maxCoverage : vm.CoverageAmount; //update coverage based on max 
+                                                                                                       //vm.SocialSecurityNumber = vm.SocialSecurityNumber.Replace("-", String.Empty);
+
+                //override coverage based on risk class
+                if (vm.Age < 56 && vm.CoverageAmount < 525000M && (int.Parse(vm.RiskClassTc) == (int)QuoteViewModel.RiskClasses.RATED_TOBACCO ||
+                    int.Parse(vm.RiskClassTc) == (int)QuoteViewModel.RiskClasses.RATED2_NONTOBACCO ||
+                    int.Parse(vm.RiskClassTc) == (int)QuoteViewModel.RiskClasses.RATED2_TOBACCO))
+                {
+                    vm.CoverageAmount = 525000M;
+                }
+
+                // Determine eligibility
+                var eligibility = BusinessRules.IsEligible(vm.Age, vm.StateName, vm.Tobacco, vm.Health, vm.ReplacementPolicy ?? false);
+
+                // If eligible build XML and send to firelight
+                if (eligibility.IsEligible)
+                {
+                    var accessToken = await GetAccessToken();
+                    var activityRequestApiString = this.CreateEAppActivity(accessToken, "26", vm); // 26 = Sage Term 
+                    var activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(activityRequestApiString);
+
+                    var evm = new EmbeddedViewModel {
+                        AccessToken = accessToken,
+                        //AccessToken = FirelightAccessToken,
+                        FirelightBaseUrl = FireLightSession.BaseUrl,
+                        IsNew = true, //vm.IsNewProposal
+                        ActivityId = activityReturn.ActivityId
+                    };
+
+                    return View("EmbeddedApp", evm);
+                }
+
+                TempData["ContactViewModel"] = new ContactModel { denialMessage = eligibility.EligibilityMessage, isReplacementReject = eligibility.IsReplacememtReject, state = eligibility.State };
+                return RedirectToActionPermanent("Contact", "Contact");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                var msg = "There was an error connecting to the application portal.";
+                //vm.ViewMessages.Add(msg);
+                return View("FraudWarning",vm);
+            }
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public ViewResult FraudWarning(ProposalHistory model)
         {
             ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
            
-            return View("FraudWarning", quoteViewModel);
+            return View(model);
         }
 
-        [HttpGet]
+        [System.Web.Mvc.HttpGet]
         public ViewResult RetrievePrevious()
         {
             return View(new RetrievePreviousQuoteViewModel());
         }
 
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public async Task<ViewResult> RetrievePrevious(RetrievePreviousQuoteViewModel model)
         {
             try
@@ -188,22 +234,59 @@ namespace SagicorNow.Controllers
             }
         }
 
-        
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="quote"></param>
         /// <returns></returns>
-        [HttpPost]
-        public ActionResult ForesightQuoteRequest(QuoteViewModel model)
+        [System.Web.Mvc.HttpPost]
+        public ActionResult ProductSlider(QuoteViewModel quote)
+        {
+            quote.CoverageAmount = decimal.Parse(FireLightSession.DefaultCoverage);
+            ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
+            ViewBag.QuoteViewModel = quote;
+
+
+            var maxCoverage = QuoteViewModel.GetMaxCoverageBasedOnAge(quote.Age);
+
+            quote.CoverageAmount = quote.CoverageAmount > maxCoverage ? maxCoverage : quote.CoverageAmount; //update coverage based on max 
+            //vm.SocialSecurityNumber = vm.SocialSecurityNumber.Replace("-", String.Empty);
+
+            //override coverage based on risk class
+            if (quote.Age < 56 && quote.CoverageAmount < 525000M && (quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED_TOBACCO ||
+                                                               quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED2_NONTOBACCO ||
+                                                               quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED2_TOBACCO))
+            {
+                quote.CoverageAmount = 525000M;
+            }
+
+            var soapRequest = ForesightServiceHelpers.GenerateRequestXml(quote.smokerStatusInfo, quote.genderInfo,
+                quote.riskClass, quote.birthday, quote.CoverageAmount);
+         
+            var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
+
+            return View(txLife.TxLifeResponse);
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="proposal"></param>
+        /// <returns></returns>
+        [System.Web.Mvc.HttpPost]
+        public ActionResult ReturnToProductSlider(ProposalHistory proposal)
         {
             ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
-            ViewBag.QuoteViewModel = model;
+            ViewBag.QuoteViewModel = proposal;
 
-            var soapRequest = ForesightServiceHelpers.GenerateRequestXml(model.smokerStatusInfo, model.genderInfo,
-                model.birthday, model.CoverageAmount);
-         
+            var smokerStatusInfo = new AccordOlifeValue {TC = int.Parse(proposal.SmokerStatusTc),Value = proposal.Tobacco};
+            var genderInfo = new AccordOlifeValue{TC = int.Parse(proposal.GenderTc),Value = proposal.Gender};
+            var riskClass = new AccordOlifeValue{TC=int.Parse(proposal.RiskClassTc),Value = proposal.Health};
+
+            var soapRequest = ForesightServiceHelpers.GenerateRequestXml(smokerStatusInfo, genderInfo,riskClass,
+                DateTime.Parse(proposal.Birthday), proposal.CoverageAmount);
+
             var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
 
             return View("ProductSlider", txLife.TxLifeResponse);
@@ -229,7 +312,7 @@ namespace SagicorNow.Controllers
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        [HttpGet]
+        [System.Web.Mvc.HttpGet]
         public JsonResult ProposalExist(string email)
         {
             var ssn = email.Replace("-", string.Empty);
@@ -255,11 +338,47 @@ namespace SagicorNow.Controllers
         /// </summary>
         /// <param name="gcid"></param>
         /// <returns></returns>
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public ActionResult SetGoogleCid(string gcid)
         {
             Session["GCId"] = gcid; //store value in session
             return Content("SUCCESS");
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public async Task<JsonResult> CreatePassword(QuoteViewModel model)
+        {
+            bool succeeded;
+            if (ModelState.IsValid)
+            {
+                var proposal = new ProposalHistory
+                {
+                    CoverageAmount = model.CoverageAmount,
+                    FirstName = model.FirstName,
+                    //EnableSaving = model.EnableSaving,
+                    AccidentalDeath = model.AccidentalDeath,
+                    ChildrenCoverage = model.ChildrenCoverage,
+                    Email = model.EmailAddress,
+                    FifteenYearTerm = model.FifteenYearTerm,
+                    FifteenYearTermPerMonthCost = model.FifteenYearTermPerMonthCost,
+                    HashedPassword = SecurityHelpers.HashPassword(model.PhoneNumber),
+                    PhoneNumber = model.PhoneNumber,
+                    TenYearTerm = model.TenYearTerm,
+                    TenYearTermPerMonthCost = model.FifteenYearTermPerMonthCost,
+                    TwentyYearTerm = model.TwentyYearTerm,
+                    TwentyYearTermPerMonthCost = model.TwentyYearTermPerMonthCost,
+                    WavierPremium = model.WavierPremium,
+                    WholeLife = model.WholeLife,
+                    WholeLifePerMonthCost = model.WholeLifePerMonthCost,
+                };
+                _db.ProposalHistories.Add(proposal);
+                await _db.SaveChangesAsync();
+                succeeded = true;
+            }
+            else
+             succeeded = false;
+
+            return Json(succeeded, JsonRequestBehavior.AllowGet);
         }
 
         #region Helpers
@@ -330,46 +449,74 @@ namespace SagicorNow.Controllers
             return builder.ToString();
         }
 
-        private static HttpWebRequest CreateWebRequest(string url)
-        {
-            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
-            //webRequest.Headers.Add("SOAPAction", action);
-            webRequest.Headers.Add("Action", "http://ACORD.org/Standards/Life/2/ProcessTXLifeRequest/ProcessTXLifeRequest");
-            webRequest.Headers.Add("MessageID", Guid.NewGuid().ToString());
-            webRequest.Headers.Add("ReplyTo", "<a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address>");
-            webRequest.Headers.Add("To", "https://illustration.test.sagicorlifeusa.com/SLI6/Core/Acord/TXLifeService.svc");
-            webRequest.ContentType = "application/soap+xml;charset=\"utf-8\"";
-            webRequest.Accept = "text/xml";
-            webRequest.Method = "POST";
-            return webRequest;
+        
+
+        private string CreateEAppActivity(string token, string cusip, QuoteViewModel quote) {
+            var body = InternalCreateEAppActivity(cusip, quote.stateInfo, quote.birthday, quote.genderInfo,
+                quote.riskClass, quote.smokerStatusInfo, quote.CoverageAmount);
+            return CreateActivity(token, body);
         }
 
-        private string CreateEAppActivity(string token, string cusip, QuoteViewModel vm)
+        private string CreateEAppActivity(string token, string cusip, ProposalHistory proposal)
+        {
+            var smokerStatusInfo = new AccordOlifeValue { TC = int.Parse(proposal.SmokerStatusTc), Value = proposal.Tobacco };
+            var genderInfo = new AccordOlifeValue { TC = int.Parse(proposal.GenderTc), Value = proposal.Gender };
+            var sateInfo = new StateInfo
+            {
+                Code = proposal.StateCode, Value = proposal.StateName, TC = int.Parse(proposal.StateTc),
+                Name = proposal.StateName
+            };
+
+            var riskClass = new AccordOlifeValue();
+
+            var body = InternalCreateEAppActivity(cusip, sateInfo, DateTime.Parse(proposal.Birthday), genderInfo,
+                riskClass, smokerStatusInfo, proposal.CoverageAmount);
+
+            return CreateActivity(token, body);
+        }
+
+        private string InternalCreateEAppActivity(string cusip, StateInfo stateInfo, DateTime? birthday,
+            AccordOlifeValue genderInfo, AccordOlifeValue riskClass, AccordOlifeValue smokerStatusInfo,
+            decimal coverageAmount)
         {
             var reqId = Guid.NewGuid().ToString();
 
-            var actBody = new FirelightActivityBody {
+            var actBody = new FirelightActivityBody
+            {
                 Id = reqId,
                 CUSIP = cusip,
-                Jurisdiction = vm.stateInfo.TC,
+                Jurisdiction = stateInfo.TC,
                 CarrierCode = FireLightSession.SagCarrierCode,
                 TransactionType = 1,
                 DataItems = new List<FirelightActivityDataItem>
                 {
-                    new FirelightActivityDataItem { DataItemId = "Owner_NonNaturalName", Value = $"" },
-                    new FirelightActivityDataItem { DataItemId = "SourceInfoName", Value = "D2C" },
-                    new FirelightActivityDataItem { DataItemId = "HiddenField_DOB", Value = vm.birthday.Value.ToString("MM/dd/yyyy") },
-                    new FirelightActivityDataItem { DataItemId = "PROPOSED_OWNER_SIGNED_STATE", Value = vm.stateInfo.TC.ToString() },
-                    new FirelightActivityDataItem { DataItemId = "INSURED_STATE_NAME", Value = vm.stateInfo.Name },
-                    new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_GENDER", Value = (vm.genderInfo.TC == 1 ? "M" : vm.genderInfo.TC == 2 ? "F" : "") },
-                    new FirelightActivityDataItem { DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(vm.riskClass.TC) },
-                    new FirelightActivityDataItem { DataItemId = "PREMIUM_TOBACCO_USER", Value = vm.smokerStatusInfo.TC == 1 ? "N" : "Y"},
-                    new FirelightActivityDataItem { DataItemId = "APP_FACE_AMOUNT", Value = vm.CoverageAmount > 0? vm.CoverageAmount.ToString(CultureInfo.InvariantCulture) : FireLightSession.DefaultCoverage}
+                    new FirelightActivityDataItem {DataItemId = "Owner_NonNaturalName", Value = $""},
+                    new FirelightActivityDataItem {DataItemId = "SourceInfoName", Value = "D2C"},
+                    new FirelightActivityDataItem
+                        {DataItemId = "HiddenField_DOB", Value = birthday.Value.ToString("MM/dd/yyyy")},
+                    new FirelightActivityDataItem
+                        {DataItemId = "PROPOSED_OWNER_SIGNED_STATE", Value = stateInfo.TC.ToString()},
+                    new FirelightActivityDataItem {DataItemId = "INSURED_STATE_NAME", Value = stateInfo.Name},
+                    new FirelightActivityDataItem
+                    {
+                        DataItemId = "PROPOSED_INSURED_GENDER",
+                        Value = (genderInfo.TC == 1 ? "M" : genderInfo.TC == 2 ? "F" : "")
+                    },
+                    new FirelightActivityDataItem {DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(riskClass.TC)},
+                    new FirelightActivityDataItem
+                        {DataItemId = "PREMIUM_TOBACCO_USER", Value = smokerStatusInfo.TC == 1 ? "N" : "Y"},
+                    new FirelightActivityDataItem
+                    {
+                        DataItemId = "APP_FACE_AMOUNT",
+                        Value = coverageAmount > 0
+                            ? coverageAmount.ToString(CultureInfo.InvariantCulture)
+                            : FireLightSession.DefaultCoverage
+                    }
                 }
             };
 
             var body = Newtonsoft.Json.JsonConvert.SerializeObject(actBody);
-            return CreateActivity(token, body);
+            return body;
         }
 
         /// <summary>
@@ -445,6 +592,5 @@ namespace SagicorNow.Controllers
 
 
         #endregion
-
     }
 }

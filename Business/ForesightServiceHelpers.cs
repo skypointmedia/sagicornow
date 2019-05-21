@@ -52,14 +52,15 @@ namespace SagicorNow.Business
         }
 
         internal static string GenerateRequestXmLString(AccordOlifeValue smokerStatusInfo, AccordOlifeValue genderInfo,
-            DateTime? birthday, decimal coverageAmount = 250000m)
+            AccordOlifeValue riskClass, DateTime? birthday, decimal coverageAmount = 250000m)
         {
-            var sb = new StringBuilder(Resources.FS_Quote_Request_Template4);
+            var sb = new StringBuilder(Resources.FS_Quote_Request_Template5);
 
             sb.Replace("<<transaction-guid>>", Guid.NewGuid().ToString());
             sb.Replace("<<transaction-guid1>>", Guid.NewGuid().ToString());
             sb.Replace("<<transaction-guid2>>", Guid.NewGuid().ToString());
             sb.Replace("<<transaction-guid3>>", Guid.NewGuid().ToString());
+            sb.Replace("<<transaction-guid4>>", Guid.NewGuid().ToString());
             sb.Replace("<<default-coverage>>", coverageAmount.ToString(CultureInfo.InvariantCulture));
             sb.Replace("<<coverage>>", coverageAmount.ToString(CultureInfo.InvariantCulture));
             sb.Replace("<<smoker-status-tc>>", smokerStatusInfo.TC.ToString());
@@ -71,13 +72,15 @@ namespace SagicorNow.Business
                     ? birthday.Value.ToString("yyyy-MM-dd")
                     : DateTime.Today.ToString("yyyy-MM-dd"));
             sb.Replace("<<uuid>>", Guid.NewGuid().ToString());
+            sb.Replace("{{risk-class}}", riskClass.Value);
+            sb.Replace("{{risk-class-tc}}", riskClass.TC.ToString());
             return sb.ToString();
         }
 
-        internal static XmlDocument GenerateRequestXml(AccordOlifeValue smokerStatusInfo, AccordOlifeValue genderInfo,
+        internal static XmlDocument GenerateRequestXml(AccordOlifeValue smokerStatusInfo, AccordOlifeValue genderInfo, AccordOlifeValue riskClass,
             DateTime? birthday, decimal coverageAmount = 250000m) {
             var xmlRequestString =
-                ForesightServiceHelpers.GenerateRequestXmLString(smokerStatusInfo, genderInfo, birthday,
+                ForesightServiceHelpers.GenerateRequestXmLString(smokerStatusInfo, genderInfo, riskClass, birthday,
                     coverageAmount);
 
             XmlDocument document = new XmlDocument();
@@ -96,6 +99,20 @@ namespace SagicorNow.Business
                 ?.Element(s + "Body")?.FirstNode;
 
             return responseXml?.ToString().Replace("xmlns=\"http://ACORD.org/Standards/Life/2\"", "");
+        }
+
+        private static HttpWebRequest CreateWebRequest(string url)
+        {
+            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
+            //webRequest.Headers.Add("SOAPAction", action);
+            webRequest.Headers.Add("Action", "http://ACORD.org/Standards/Life/2/ProcessTXLifeRequest/ProcessTXLifeRequest");
+            webRequest.Headers.Add("MessageID", Guid.NewGuid().ToString());
+            webRequest.Headers.Add("ReplyTo", "<a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address>");
+            webRequest.Headers.Add("To", "https://illustration.test.sagicorlifeusa.com/SLI6/Core/Acord/TXLifeService.svc");
+            webRequest.ContentType = "application/soap+xml;charset=\"utf-8\"";
+            webRequest.Accept = "text/xml";
+            webRequest.Method = "POST";
+            return webRequest;
         }
     }
 }

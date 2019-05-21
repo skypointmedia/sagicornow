@@ -1,25 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
-using System.Xml;
-//using AttributeRouting.Web.Http;
 using Sagicor.Core.Common.Contracts;
 using SagicorNow.Business;
-using SagicorNow.Business.Models;
-using SagicorNow.Foresight;
-using SagicorNow.Client.Contracts;
-using SagicorNow.Common;
 using SagicorNow.Core;
-using SagicorNow.Foresight;
-using SagicorNow.Properties;
+using SagicorNow.Data;
+using SagicorNow.Data.Entities;
 using SagicorNow.ViewModels;
 
 namespace SagicorNow.Controllers.API
@@ -40,6 +28,7 @@ namespace SagicorNow.Controllers.API
         }
 
         //private readonly IProcessTXLifeRequestClient _processTxLifeRequestClient;
+        private readonly SageNowContext _db = new SageNowContext();
 
         protected override void RegisterServices(List<IServiceContract> disposableServices)
         {
@@ -51,14 +40,54 @@ namespace SagicorNow.Controllers.API
         [Route("getIllustration")]
         public HttpResponseMessage GetForesightIllustration(HttpRequestMessage request, QuoteViewModel model)
         {
-            return GetHttpResponse(request,  () =>
+            return GetHttpResponse(request, () =>
             {
-               var soapRequest = ForesightServiceHelpers.GenerateRequestXml(model.smokerStatusInfo, model.genderInfo,
-                    model.birthday, model.CoverageAmount);
+                var soapRequest = ForesightServiceHelpers.GenerateRequestXml(model.smokerStatusInfo, model.genderInfo,
+                    model.riskClass, model.birthday, model.CoverageAmount);
 
                 var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
 
                 var response = request.CreateResponse(HttpStatusCode.OK, txLife.TxLifeResponse);
+                return response;
+            });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("createPassword")]
+        public HttpResponseMessage CreateNewUserPassword(HttpRequestMessage request, QuoteViewModel model)
+        {
+            return GetHttpResponse(request, () => {
+                bool succeeded;
+                if (ModelState.IsValid)
+                {
+                    var proposal = new ProposalHistory {
+                        CoverageAmount = model.CoverageAmount,
+                        FirstName = model.FirstName,
+                        //EnableSaving = model.EnableSaving,
+                        AccidentalDeath = model.AccidentalDeath,
+                        ChildrenCoverage = model.ChildrenCoverage,
+                        Email = model.EmailAddress,
+                        FifteenYearTerm = model.FifteenYearTerm,
+                        FifteenYearTermPerMonthCost = model.FifteenYearTermPerMonthCost,
+                        HashedPassword = SecurityHelpers.HashPassword(model.PhoneNumber),
+                        PhoneNumber = model.PhoneNumber,
+                        TenYearTerm = model.TenYearTerm,
+                        TenYearTermPerMonthCost = model.FifteenYearTermPerMonthCost,
+                        TwentyYearTerm = model.TwentyYearTerm,
+                        TwentyYearTermPerMonthCost = model.TwentyYearTermPerMonthCost,
+                        WavierPremium = model.WavierPremium,
+                        WholeLife = model.WholeLife,
+                        WholeLifePerMonthCost = model.WholeLifePerMonthCost,
+                    };
+                    _db.ProposalHistories.Add(proposal);
+                    _db.SaveChanges();
+                    succeeded = true;
+                }
+                else
+                    succeeded = false;
+
+                var response = request.CreateResponse(HttpStatusCode.OK, succeeded);
                 return response;
             });
         }

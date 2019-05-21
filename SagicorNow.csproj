@@ -205,9 +205,9 @@
     </Content>
     <Content Include="Binding\Models\FraudWarningModel.js" />
     <Content Include="Binding\Models\ProductSliderModel.js" />
+    <Content Include="Binding\Models\ProposalHistoryModel.js" />
     <Content Include="Binding\ViewModels\FraudWarningViewModel.js" />
     <Content Include="Binding\ViewModels\ProductSliderViewModel.js" />
-    <Content Include="Binding\ViewModels\QuoteViewModel.js" />
     <Content Include="Content\consumer-portal.css" />
     <Content Include="Content\firelight-css\consumerPortal.e203702198117be6fe06.css" />
     <Content Include="Content\firelight-css\flexboxgrid.6.3.0.min.css" />
@@ -215,6 +215,7 @@
     <Content Include="Content\firelight-css\SAG.css" />
     <Content Include="Content\firelight-css\slick-theme.1.6.0.min.css" />
     <Content Include="Content\firelight-css\slick.1.6.0.min.css" />
+    <Content Include="Content\firelight-css\consumerPortal.8130579c946594a9a55.css" />
     <Content Include="Content\flexboxgrid.6.3.0.min.css" />
     <Content Include="Content\SAG.css" />
     <Content Include="Scripts\app.js" />
@@ -227,6 +228,8 @@
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\knockout.validation.min.js" />
+    <Content Include="Scripts\numeral\numeral.js" />
+    <Content Include="Scripts\numeral\numeral.min.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -383,6 +386,7 @@
     <Content Include="Scripts\knockout.validation.min.js.map" />
     <Content Include="Views\Shared\_PreviousQuoteFormPartial.cshtml" />
     <Content Include="Views\Quote\RetrievePrevious.cshtml" />
+    <Content Include="Views\Quote\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,5 +1,5 @@
 ﻿@using Newtonsoft.Json
-@model SagicorNow.ViewModels.QuoteViewModel
+@model SagicorNow.Data.Entities.ProposalHistory
 
 @{
     ViewBag.Title = "Fraud Warning";
@@ -19,6 +19,17 @@
     <!-- React-Slick Carousel styles -->
     <link href="~/Content/firelight-css/slick.1.6.0.min.css" rel="stylesheet" />
     <link href="~/Content/firelight-css/slick-theme.1.6.0.min.css" rel="stylesheet" />
+
+    <style>
+        .modal-content {
+            background-color: #fff;
+        }
+
+        .modal-header .close {
+            padding: 1rem 1rem;
+            margin: -1rem -1rem -1rem auto;
+        }
+    </style>
 }
 
 @section scripts
@@ -29,172 +40,381 @@
 
 @section ko_apply
 {
-    var qvm = @Html.Raw(JsonConvert.SerializeObject(this.Model));
-    var viewModel = new SagicorNow.FraudWarningViewModel(qvm);
+    var pvm = @Html.Raw(JsonConvert.SerializeObject(this.Model));
+    var viewModel = new SagicorNow.FraudWarningViewModel(pvm);
     ko.applyBindingsWithValidation(viewModel,$("#fireLightMainDiv")[0], { insertMessages: false, messagesOnModified: false, grouping: { deep: true }})
-
 }
 
-<div class="modal" tabindex="-1" role="dialog" id="create-password-modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Create Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div id="fireLightMainDiv" class="reactContent">
-    <div>
-    <div>
-    <div class="mainBody">
-    <div class="row centerMainRow noMargin">
-    <div class="mainRow start-xs">
-    <div class="row centerMainRow mobileNoMargin">
-        <div class="col-xs-12 center-xs">
-            <div class="PageHeaderTextStyle">
-                Hello. Let's Get Started.
-                <div class="SubHeaderTextStyle">The application typically takes about 20 minutes to complete.</div>
-            </div>
-        </div>
-    </div>
-    <div class="mainContent">
-    <div data-bind="with: fraudWarningModel">
-    <section class="MainITPanel">
-    <div class="row ">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-    <div data-dataitemid="FraudGroup" class="groupField splitGroup">
-    <div>
-        <div class="indent0 ITText"></div>
-    </div>
-    <div class="row ">
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div data-dataitemid="FraudGroup" class="groupField FraudGroupLeft">
+<form>
+    <div id="fireLightMainDiv" class="reactContent">
+        <div>
             <div>
-                <div class="indent0 ITText"></div>
-            </div>
-            <div class="row baselineAlign">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="componentWrapper ">
-                        <div data-dataitemid="PROPOSED_INSURED_FNAME" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
-                            <div class="ITComponent">
-                                <div class="ITComponentLabelContainer">
-                                    <div class="ITComponentLabel indent0">First Name</div>
-                                </div>
-                                <div class="ITTextField">
-                                    <input maxlength="20" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_FNAME" value="" data-bind="text: FirstName">
-                                </div>
-                                <div class="validationContainer validationContainer--showText">
-                                    <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                <div class="mainBody">
+                    <div class="row centerMainRow noMargin">
+                        <div class="mainRow start-xs">
+                            <div class="row centerMainRow mobileNoMargin">
+                                <div class="col-xs-12 center-xs">
+                                    <div class="PageHeaderTextStyle" style="padding-top: 50px">
+                                        Hello. Let's Get Started.
+                                        <div class="SubHeaderTextStyle" style="padding: 5px">The application typically takes about 20 minutes to complete.</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row baselineAlign">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="componentWrapper ">
-                        <div data-dataitemid="PROPOSED_INSURED_EMAIL" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
-                            <div class="ITComponent">
-                                <div class="ITComponentLabelContainer">
-                                    <div class="ITComponentLabel indent0">Email Address</div>
-                                </div>
-                                <div class="ITTextField">
-                                    <input maxlength="50" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_EMAIL" value="" data-bind="text: EmailAddress">
-                                </div>
-                                <div class="validationContainer validationContainer--showText">
-                                    <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row baselineAlign">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="componentWrapper ">
-                        <div data-dataitemid="PROPOSED_INSURED_HOME_PHONE" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
-                            <div class="ITComponent">
-                                <div class="ITComponentLabelContainer">
-                                    <div class="ITComponentLabel indent0">Phone Number</div>
-                                </div>
-                                <div class="ITTextField">
-                                    <input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_HOME_PHONE" value="" data-bind="text: PhoneNumber">
-                                </div>
-                                <div class="validationContainer validationContainer--showText">
-                                    <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row baselineAlign">
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                    <div class="componentWrapper ">
-                        <div data-dataitemid="CONSENT_NOT_CONSENT" class="ITComponentRoot ITCheckBoxWrapper validationError--optional validationError--transApplication">
-                            <div class="ITComponent">
-                                <div class="indent0">
-                                    <label data-dataitemid="CONSENT_NOT_CONSENT" class="ITCheckBoxContainer">
-                                        <div class="ITCheckBoxInput">
-                                            <div class="ITCheckBox   " tabindex="0">
-                                                <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheckAgreeToTerms">
-                                                    <i data-bind="class: $parent.agreeToTermsCheckStatus"></i>
+                            <div class="mainContent">
+                                <div data-bind="with: fraudWarningModel">
+                                    <section class="MainITPanel">
+                                        <div class="row ">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div data-dataitemid="FraudGroup" class="groupField splitGroup">
+                                                    <div>
+                                                        <div class="indent0 ITText"></div>
+                                                    </div>
+                                                    <div class="row ">
+                                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                                            <div data-dataitemid="FraudGroup" class="groupField FraudGroupLeft">
+                                                                <div>
+                                                                    <div class="indent0 ITText"></div>
+                                                                </div>
+                                                                <div class="row baselineAlign">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div class="componentWrapper ">
+                                                                            <div data-dataitemid="PROPOSED_INSURED_FNAME" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                                <div class="ITComponent">
+                                                                                    <div class="ITComponentLabelContainer">
+                                                                                        <div class="ITComponentLabel indent0">First Name</div>
+                                                                                    </div>
+                                                                                    <div class="ITTextField">
+                                                                                        <input maxlength="20" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_FNAME"  data-bind="value: FirstName">
+                                                                                    </div>
+                                                                                    <div class="validationContainer validationContainer--showText">
+                                                                                        <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row baselineAlign">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div class="componentWrapper ">
+                                                                            <div data-dataitemid="PROPOSED_INSURED_EMAIL" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                                <div class="ITComponent">
+                                                                                    <div class="ITComponentLabelContainer">
+                                                                                        <div class="ITComponentLabel indent0">Email Address</div>
+                                                                                    </div>
+                                                                                    <div class="ITTextField">
+                                                                                        <input maxlength="50" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_EMAIL" data-bind="value: EmailAddress">
+                                                                                    </div>
+                                                                                    <div class="validationContainer validationContainer--showText">
+                                                                                        <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row baselineAlign">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div class="componentWrapper ">
+                                                                            <div data-dataitemid="PROPOSED_INSURED_HOME_PHONE" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                                <div class="ITComponent">
+                                                                                    <div class="ITComponentLabelContainer">
+                                                                                        <div class="ITComponentLabel indent0">Phone Number</div>
+                                                                                    </div>
+                                                                                    <div class="ITTextField">
+                                                                                        <input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_HOME_PHONE" data-bind="value: PhoneNumber">
+                                                                                    </div>
+                                                                                    <div class="validationContainer validationContainer--showText">
+                                                                                        <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row baselineAlign">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div class="componentWrapper ">
+                                                                            <div data-dataitemid="PROPOSED_INSURED_PASSWORD" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                                <div class="ITComponent" data-bind="style: { display: $parent.enableSave() ? 'block' : 'none' }">
+                                                                                    <div class="ITComponentLabelContainer">
+                                                                                        <div class="ITComponentLabel indent0">Password</div>
+                                                                                    </div>
+                                                                                    <div class="ITTextField">
+                                                                                        <input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_PASSWORD" data-bind="value: Password">
+                                                                                    </div>
+                                                                                    <div class="validationContainer validationContainer--showText">
+                                                                                        <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row baselineAlign">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div class="componentWrapper ">
+                                                                            <div data-dataitemid="PROPOSED_INSURED_CONFIRM_PASSWORD" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                                <div class="ITComponent" data-bind="style: { display: $parent.enableSave() ? 'block' : 'none' }">
+                                                                                    <div class="ITComponentLabelContainer">
+                                                                                        <div class="ITComponentLabel indent0">Confirm Password</div>
+                                                                                    </div>
+                                                                                    <div class="ITTextField">
+                                                                                        <input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_CONFIRM_PASSWORD" data-bind="value: ConfirmPassword">
+                                                                                    </div>
+                                                                                    <div class="validationContainer validationContainer--showText">
+                                                                                        <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row baselineAlign">
+                                                                    <div class="col-xs-2 col-sm-2 col-md-2">
+                                                                        <div class="componentWrapper">
+                                                                            <div class="ITComponentRoot ITCheckBoxWrapper validationError--optional validationError--transApplication">
+                                                                                <div class="ITComponent">
+                                                                                    <div class="indent0">
+                                                                                        <label class="ITCheckBoxContainer">
+                                                                                            <div class="ITCheckBoxInput">
+                                                                                                <div class="ITCheckBox" tabindex="1">
+                                                                                                    <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheckEnableSave">
+                                                                                                        <i data-bind="class: $parent.enableSaveCheckStatus"></i>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xs-10 col-sm-10 col-md-10">
+                                                                        <div class="componentWrapper ">
+                                                                            <div class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                                <div class="ITComponent" style="margin-left: 0em">
+                                                                                    <div class="ITComponentLabelContainer">
+                                                                                        <div class="ITComponentLabel indent0" style="font-weight: normal">Save Quote for future retrieval</div>
+                                                                                    </div>
+                                                                                    <div class="validationContainer validationContainer--showText">
+                                                                                        <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row baselineAlign">
+                                                                    <div class="col-xs-2 col-sm-2 col-md-2">
+                                                                        <div class="componentWrapper ">
+                                                                            <div data-dataitemid="CONSENT_NOT_CONSENT" class="ITComponentRoot ITCheckBoxWrapper validationError--optional validationError--transApplication">
+                                                                                <div class="ITComponent">
+                                                                                    <div class="indent0">
+                                                                                        <label data-dataitemid="CONSENT_NOT_CONSENT" class="ITCheckBoxContainer">
+                                                                                            <div class="ITCheckBoxInput">
+                                                                                                <div class="ITCheckBox   " tabindex="0">
+                                                                                                    <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheckAgreeToTerms">
+                                                                                                        <i data-bind="class: $parent.agreeToTermsCheckStatus"></i>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="validationContainer validationContainer--showText">
+                                                                                        <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xs-10 col-sm-10 col-md-10">
+                                                                        <div>
+                                                                            <div>
+                                                                                <p style="font-size: 12px; text-align: start; line-height: 15px">I have read and agree to Sagicor Life Insurance Company's <a href="https://sagicornow.com/pages/terms" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none">Terms of Use</a>, <a href="https://sagicornow.com/pages/privacy-policy" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none"> Privacy Policy</a> and <a href="https://sagicornow.com/pages/electronic-consent-and-disclosure" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none"> Customer Electronic Consent and Disclosure</a>. I also understand that: </p>
+                                                                                <ul style="padding-left: 20px; text-align: start; font-size: 11px; line-height: 12px">
+                                                                                    <li>If I do not agree and consent to these documents, I will be unable to obtain a quote or to complete an application;</li>
+                                                                                    <li>Any person who knowingly presents a false statement in an application for insurance may be guilty of a criminal offense and subject to penalties under state law;</li>
+                                                                                    <li>By providing a telephone number, I consent to Sagicor's authorized agents calling or texting me as necessary to assist me with my application and to service any products I obtain; </li>
+                                                                                    <li>All calls will be recorded;</li>
+                                                                                    <li> By applying for life insurance electronically and providing my email address, I consent to receive electronic mail from Sagicor and the Company's authorized agents; and</li>
+                                                                                    <li>I may withdraw my consent to receiving telephone calls, texts, and emails at any time by communicating my withdrawal to Sagicor or its authorized agents, either by telephone or email. </li>
+                                                                                </ul>
+                                                                                <p></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                                            <div data-dataitemid="FraudGroup" class="groupField FraudGroupRight">
+                                                                <div>
+                                                                    <div class="indent0 ITText"></div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL">
+                                                                            <div class="indent0 ITText headerText" style="font-weight: bold;">Your rates are based upon the information you provided. Please confirm that this is correct:</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL_AGE_GENDER">
+                                                                            <div class="indent0 ITText">
+                                                                                <ul style="list-style-type: disc;">
+                                                                                    <li>You are a 34 year old man</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL_CITY_STATE">
+                                                                            <div class="indent0 ITText">
+                                                                                <ul style="list-style-type: disc;">
+                                                                                    <li>You are completing and signing this application in Arizona</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL_SMOKER">
+                                                                            <div class="indent0 ITText">
+                                                                                <ul style="list-style-type: disc;">
+                                                                                    <li>You don't use tobacco / nicotine products</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL_HEALTH">
+                                                                            <div class="indent0 ITText">
+                                                                                <ul style="list-style-type: disc;">
+                                                                                    <li>You are in excellent health</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL_COVERAGE">
+                                                                            <div class="indent0 ITText">
+                                                                                <ul style="list-style-type: disc;">
+                                                                                    <li>You are buying $450,000 of coverage for 10 years</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL">
+                                                                            <div class="indent0 ITText headerText" style="font-weight: bold;">To complete your application, please have the following information readily available:</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL_IDENTIFICATION">
+                                                                            <div class="indent0 ITText">
+                                                                                <ul style="list-style-type: disc;">
+                                                                                    <li>Your driver's license and social security number</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL_DOCTOR_INFO">
+                                                                            <div class="indent0 ITText">
+                                                                                <ul style="list-style-type: disc;">
+                                                                                    <li>Your doctor's name and contact information</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL_BENE_INFO">
+                                                                            <div class="indent0 ITText">
+                                                                                <ul style="list-style-type: disc;">
+                                                                                    <li>Your beneficiary's name and contact information</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                        <div data-dataitemid="FRAUD_LABEL_ADDTNL_POLICY_INFO">
+                                                                            <div class="indent0 ITText">
+                                                                                <ul style="list-style-type: disc;">
+                                                                                    <li>Info on any existing life insurance policies</li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="ITComponentLabelContainer">
-                                            <div class="ITComponentLabel"></div>
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="validationContainer validationContainer--showText">
-                                    <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-10 col-sm-10 col-md-10">
-                    <div>
-                        <div>
-                            <p style="font-size: 12px; text-align: start; line-height: 15px">I have read and agree to Sagicor Life Insurance Company's <a href="https://sagicornow.com/pages/terms" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none">Terms of Use</a>, <a href="https://sagicornow.com/pages/privacy-policy" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none"> Privacy Policy</a> and <a href="https://sagicornow.com/pages/electronic-consent-and-disclosure" target="_blank" style="color: #37B0EE; font-weight: bold; text-decoration: none"> Customer Electronic Consent and Disclosure</a>. I also understand that: </p>
-                            <ul style="padding-left: 20px; text-align: start; font-size: 11px; line-height: 12px">
-                                <li>If I do not agree and consent to these documents, I will be unable to obtain a quote or to complete an application;</li> <li>Any person who knowingly presents a false statement in an application for insurance may be guilty of a criminal offense and subject to penalties under state law;</li> <li>By providing a telephone number, I consent to Sagicor's authorized agents calling or texting me as necessary to assist me with my application and to service any products I obtain; </li> <li>All calls will be recorded;</li> <li> By applying for life insurance electronically and providing my email address, I consent to receive electronic mail from Sagicor and the Company's authorized agents; and</li> <li>I may withdraw my consent to receiving telephone calls, texts, and emails at any time by communicating my withdrawal to Sagicor or its authorized agents, either by telephone or email. </li>
-                            </ul>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row baselineAlign">
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                    <div class="componentWrapper">
-                        <div class="ITComponentRoot ITCheckBoxWrapper validationError--optional validationError--transApplication">
-                            <div class="ITComponent">
-                                <div class="indent0">
-                                    <label class="ITCheckBoxContainer">
-                                        <div class="ITCheckBoxInput">
-                                            <div class="ITCheckBox" tabindex="1">
-                                                <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheckEnableSave">
-                                                    <i data-bind="class: $parent.enableSaveCheckStatus"></i>
+                                        <div class="navigationButtonsContainer ">
+                                            <div class="navigationButtons" style="">
+                                                <div class="row navigationButton rightAlign">
+                                                    <div class="col-md-3 col-sm-3 col-xs-12 last-xs">
+                                                        <div class="ITComponentRoot undefined">
+                                                            <div class="ITComponent">
+                                                                <div style="height: 100%;">
+                                                                    <button class="ITButtonInput   ITButtonBack" data-bind="click: $parent.goBack">
+                                                                        <div>
+                                                                            <div class="ITButtonText ">Go Back</div>
+                                                                        </div>
+                                                                    </button>
+                                                                    <div class="validationContainer validationContainer--showText">
+                                                                        <div class="errorText undefined">&nbsp; </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-3 col-xs-12 last-sm last-md">
+                                                        <div class="ITComponentRoot undefined">
+                                                            <div class="ITComponent">
+                                                                <div style="height: 100%;">
+                                                                    <button class="ITButtonInput" data-bind="click: $parent.submit">
+                                                                        <div>
+                                                                            <div class="ITButtonText ">Next</div>
+                                                                        </div>
+                                                                    </button>
+                                                                    <div class="validationContainer validationContainer--showText">
+                                                                        <div class="errorText undefined">&nbsp; </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </label>
+                                    </section>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 center-xs contentFooter"></div>
                                 </div>
                             </div>
                         </div>
@@ -202,180 +422,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div data-dataitemid="FraudGroup" class="groupField FraudGroupRight">
-            <div>
-                <div class="indent0 ITText"></div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL">
-                        <div class="indent0 ITText headerText" style="font-weight: bold;">Your rates are based upon the information you provided. Please confirm that this is correct:</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL_AGE_GENDER">
-                        <div class="indent0 ITText">
-                            <ul style="list-style-type: disc;">
-                                <li>You are a 34 year old man</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL_CITY_STATE">
-                        <div class="indent0 ITText">
-                            <ul style="list-style-type: disc;">
-                                <li>You are completing and signing this application in Arizona</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL_SMOKER">
-                        <div class="indent0 ITText">
-                            <ul style="list-style-type: disc;">
-                                <li>You don't use tobacco / nicotine products</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL_HEALTH">
-                        <div class="indent0 ITText">
-                            <ul style="list-style-type: disc;">
-                                <li>You are in excellent health</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL_COVERAGE">
-                        <div class="indent0 ITText">
-                            <ul style="list-style-type: disc;">
-                                <li>You are buying $450,000 of coverage for 10 years</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL">
-                        <div class="indent0 ITText headerText" style="font-weight: bold;">To complete your application, please have the following information readily available:</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL_IDENTIFICATION">
-                        <div class="indent0 ITText">
-                            <ul style="list-style-type: disc;">
-                                <li>Your driver's license and social security number</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL_DOCTOR_INFO">
-                        <div class="indent0 ITText">
-                            <ul style="list-style-type: disc;">
-                                <li>Your doctor's name and contact information</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL_BENE_INFO">
-                        <div class="indent0 ITText">
-                            <ul style="list-style-type: disc;">
-                                <li>Your beneficiary's name and contact information</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div data-dataitemid="FRAUD_LABEL_ADDTNL_POLICY_INFO">
-                        <div class="indent0 ITText">
-                            <ul style="list-style-type: disc;">
-                                <li>Info on any existing life insurance policies</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="navigationButtonsContainer ">
-        <div class="navigationButtons" style="">
-            <div class="row navigationButton rightAlign">
-                <div class="col-md-3 col-sm-3 col-xs-12 last-xs">
-                    <div class="ITComponentRoot undefined">
-                        <div class="ITComponent">
-                            <div style="height: 100%;">
-                                <button class="ITButtonInput   ITButtonBack">
-                                    <div>
-                                        <div class="ITButtonText ">Go Back</div>
-                                    </div>
-                                </button>
-                                <div class="validationContainer validationContainer--showText">
-                                    <div class="errorText undefined">&nbsp; </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 last-sm last-md">
-                    <div class="ITComponentRoot undefined">
-                        <div class="ITComponent">
-                            <div style="height: 100%;">
-                                <button class="ITButtonInput  ">
-                                    <div>
-                                        <div class="ITButtonText ">Next</div>
-                                    </div>
-                                </button>
-                                <div class="validationContainer validationContainer--showText">
-                                    <div class="errorText undefined">&nbsp; </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </section>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 center-xs contentFooter"></div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
 
-</div>
+    </div>
+</form>
+
 

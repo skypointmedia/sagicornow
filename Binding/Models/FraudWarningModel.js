@@ -20,7 +20,7 @@
             required: { message: "Password is required" },
             minLength: { message: "Password must be at least 6 characters", params: 6 }
         });
-        self.PasswordConfirm = ko.observable("").extend({
+        self.ConfirmPassword = ko.observable("").extend({
             validation: { validator: SagicorNow.mustEqual, message: "Password do not match", params: self.Password() }
         });
 
