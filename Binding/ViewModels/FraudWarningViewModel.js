@@ -71,9 +71,12 @@
                         } else
                             self.passwordCreated(false);
                     });
-            }
 
-            ko.utils.postJson("Quote", self.proposalModel);
+                if (self.passwordCreated())
+                    ko.utils.postJson("Quote", self.proposalModel);
+            }
+            else
+                ko.utils.postJson("Quote", self.proposalModel);
         };
 
         self.goBack = function(model) {

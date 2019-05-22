@@ -72,8 +72,8 @@ namespace SagicorNow.Business
                     ? birthday.Value.ToString("yyyy-MM-dd")
                     : DateTime.Today.ToString("yyyy-MM-dd"));
             sb.Replace("<<uuid>>", Guid.NewGuid().ToString());
-            sb.Replace("{{risk-class}}", riskClass.Value);
-            sb.Replace("{{risk-class-tc}}", riskClass.TC.ToString());
+            sb.Replace("{{risk-class}}", "riskClass");
+            sb.Replace("{{risk-class-tc}}", GetRiskClassFromTC(riskClass.TC));
             return sb.ToString();
         }
 
@@ -88,7 +88,29 @@ namespace SagicorNow.Business
 
             return document;
         }
-
+        private static string GetRiskClassFromTC(int tc)
+        {
+            switch (tc)
+            {
+                case 1:
+                case 2:
+                    return "2";
+                case 3:
+                case 4:
+                    return "1";
+                case 5:
+                case 6:
+                    return "3";
+                case 7:
+                case 8:
+                    return "19";
+                case 9:
+                case 10:
+                    return "8";
+                default:
+                    return "";
+            }
+        }
         private static string ExtractTxLifeString(StreamReader reader)
         {
             var xmlDocument = XDocument.Load(reader);

@@ -448,7 +448,7 @@
                                                                                 <div>
                                                                                     <div>
                                                                                         <div>
-                                                                                            <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.twentyYearTermPerMonthCostText"> <sup style="font-size: 28px; font-weight: bold">$</sup>24</p>
+                                                                                            <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.twentyYearTermPerMonthCostText"> <sup style="font-size: 28px; font-weight: bold">$</sup>0</p>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -555,16 +555,16 @@
                                                             </div>
                                                             <div class="row ">
                                                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                    <div data-dataitemid="QUOTE_WL_GROUP" data-bind="class: $parent.isCoverageGreaterThan250K() ? 'groupField InnerGroup_WL InnerGroup_WL_Disabled':'groupField InnerGroup_WL' " >
+                                                                    <div data-dataitemid="QUOTE_WL_GROUP" class="groupField InnerGroup_WL" data-bind="class: $parent.disableWholeLifeProduct() ? 'groupField InnerGroup_WL InnerGroup_WL_Disabled':'groupField InnerGroup_WL' " >
                                                                         <div>
                                                                             <div class="indent0 ITText"></div>
                                                                         </div>
-                                                                        <div class="row " data-bind="hidden: $parent.isCoverageGreaterThan250K()">
+                                                                        <div class="row " data-bind="hidden: $parent.disableWholeLifeProduct()">
                                                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                                                 <div>
                                                                                     <div>
                                                                                         <div>
-                                                                                            <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.wholeLifePerMonthCostText"></p>
+                                                                                            <p style="font-family: Arial; margin: 0; color: white; font-weight: 800; font-size: 48px" data-bind="html: $parent.wholeLifePerMonthCostText"><sup style="font-size: 28px; font-weight: bold">$</sup>0</p>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -572,10 +572,10 @@
                                                                         </div>
                                                                         <div class="row ">
                                                                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                                <div data-dataitemid="QUOTE_WL_GROUP_DISABLED" data-bind="visible: $parent.isCoverageGreaterThan250K()">
+                                                                                <div data-dataitemid="QUOTE_WL_GROUP_DISABLED" data-bind="visible: $parent.disableWholeLifeProduct()">
                                                                                     <div class="indent0 ITText medium">NOT AVAILABLE</div>
                                                                                 </div>
-                                                                                <div data-dataitemid="Quote_WL_Frequency" data-bind="hidden: $parent.isCoverageGreaterThan250K()">
+                                                                                <div data-dataitemid="Quote_WL_Frequency" data-bind="hidden: $parent.disableWholeLifeProduct">
                                                                                     <div class="indent0 ITText centerAlign quoteFrequency">per month</div>
                                                                                 </div>
                                                                             </div>
@@ -630,7 +630,7 @@
                                                                                                         <div class="indent0">
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBoxContainer">
                                                                                                                 <div class="ITCheckBoxInput">
-                                                                                                                    <div  tabindex="0" data-bind="class: $parent.isCoverageGreaterThan250K() ? 'ITCheckBox disabled' : 'ITCheckBox'">
+                                                                                                                    <div  tabindex="0" data-bind="class: $parent.disableWholeLifeProduct() ? 'ITCheckBox disabled' : 'ITCheckBox'">
                                                                                                                         <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheckWL"><i data-bind="class: $parent.wholeLifeTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                     <div class="validationContainer validationContainer--showText">

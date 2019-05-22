@@ -11,13 +11,17 @@
         self.viewModelHelper = new SagicorNow.ViewModelHelper();
         self.productSliderModel = new SagicorNow.ProductSliderModel();
         self.quoteViewModel = qvm;
-        
 
-        self.initialize = function () {
-            self.productSliderModel.TenYearTermPerMonthCost(data[0].IllustrationResult.ResultBasis.Vector.V[0]);
-            self.productSliderModel.FifteenYearTermPerMonthCost(data[1].IllustrationResult.ResultBasis.Vector.V[0]);
-            self.productSliderModel.TwentyYearTermPerMonthCost(data[2].IllustrationResult.ResultBasis.Vector.V[0]);
-            self.productSliderModel.WholeLifePerMonthCost(data[3].IllustrationResult.ResultBasis.Vector.V[0]);
+
+        self.initialize = function() {
+            if (data[0].IllustrationResult)
+                self.productSliderModel.TenYearTermPerMonthCost(data[0].IllustrationResult.ResultBasis.Vector.V[0]);
+            if (data[1].IllustrationResult)
+                self.productSliderModel.FifteenYearTermPerMonthCost(data[1].IllustrationResult.ResultBasis.Vector.V[0]);
+            if (data[2].IllustrationResult)
+                self.productSliderModel.TwentyYearTermPerMonthCost(data[2].IllustrationResult.ResultBasis.Vector.V[0]);
+            if (data[3].IllustrationResult)
+                self.productSliderModel.WholeLifePerMonthCost(data[3].IllustrationResult.ResultBasis.Vector.V[0]);
         };
 
         self.applyNow = function (model) {
@@ -85,7 +89,7 @@
         });
 
         self.enableWholeLifeCssClass = ko.pureComputed(function() {
-            return self.productSliderModel.CoverageAmount() <= 250000 ? "groupField OuterGroup_WL" :"groupField OuterGroup_WL OuterGroup_WL_Disabled";
+            return self.disableWholeLifeProduct() ? "groupField OuterGroup_WL OuterGroup_WL_Disabled" : "groupField OuterGroup_WL";
         });
 
         self.coverageAmountText = ko.pureComputed(function() {
@@ -108,20 +112,31 @@
             return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.WholeLifePerMonthCost());
         });
 
+        self.checkStatus = function(c) {
+            self.productSliderModel.TenYearTerm(c === 10);
+            self.productSliderModel.FifteenYearTerm(c === 15);
+            self.productSliderModel.TwentyYearTerm(c === 20);
+            self.productSliderModel.WholeLife(c === 100);
+        };
+
         self.checkUncheck10Yr = function() {
-            self.productSliderModel.TenYearTerm(!self.productSliderModel.TenYearTerm());
+            //self.productSliderModel.TenYearTerm(!self.productSliderModel.TenYearTerm());
+            self.checkStatus(10);
         };
 
         self.checkUncheck15Yr = function () {
-            self.productSliderModel.FifteenYearTerm(!self.productSliderModel.FifteenYearTerm());
+            //self.productSliderModel.FifteenYearTerm(!self.productSliderModel.FifteenYearTerm());
+            self.checkStatus(15);
         };
 
         self.checkUncheck20Yr = function () {
-            self.productSliderModel.TwentyYearTerm(!self.productSliderModel.TwentyYearTerm());
+            //self.productSliderModel.TwentyYearTerm(!self.productSliderModel.TwentyYearTerm());
+            self.checkStatus(20);
         };
 
         self.checkUncheckWL = function () {
-            self.productSliderModel.WholeLife(!self.productSliderModel.WholeLife());
+            //self.productSliderModel.WholeLife(!self.productSliderModel.WholeLife());
+            self.checkStatus(100);
         };
 
         self.checkUncheckWavierPremium = function () {
@@ -212,8 +227,17 @@
         self.disableWholeLifeProduct = ko.pureComputed(function () {
             var coverage = self.productSliderModel.CoverageAmount();
             var age = self.quoteViewModel.Age;
+            var riskClass = self.quoteViewModel.riskClass.Value;
+            if (riskClass === "OLI_UNWRITE_SUPERB" ||
+                riskClass === "OLI_UNWRITE_POOR" ||
+                coverage < 25000 ||
+                coverage > 250000 ||
+                (age > 55 && coverage > 500000) ||
+                (age > 45 && age < 56 && coverage > 750000))
+                return true;
+            else
+                return false;
         });
-
 
 
         self.initialize();
