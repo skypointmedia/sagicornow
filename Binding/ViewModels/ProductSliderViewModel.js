@@ -8,11 +8,14 @@
 
         var self = this;
 
+        // Properties
         self.viewModelHelper = new SagicorNow.ViewModelHelper();
         self.productSliderModel = new SagicorNow.ProductSliderModel();
         self.quoteViewModel = qvm;
+        self.submissionRequested = ko.observable(false);
+        
 
-
+        // Methods
         self.initialize = function() {
             if (data[0].IllustrationResult)
                 self.productSliderModel.TenYearTermPerMonthCost(data[0].IllustrationResult.ResultBasis.Vector.V[0]);
@@ -25,10 +28,19 @@
         };
 
         self.applyNow = function (model) {
-            
+
+            // Validation requires to know when a submission is made.
+            self.submissionRequested(true);
+
+            // we should not move fwd unless product selection is validated.           
+            if (!self.isValidProductSelection())
+                return;
+
+            // the objects are currently in an KO Observable form; need them in plain JS.
             var proposalHistoryModel = ko.mapping.toJS(new SagicorNow.ProposalHistoryModel());
             var productSliderModel = ko.mapping.toJS(model);
 
+            // not all the values needed are in the product slider model.
             proposalHistoryModel.Birthday = self.quoteViewModel.birthday;
             proposalHistoryModel.Gender = self.quoteViewModel.gender;
             proposalHistoryModel.GenderTc = self.quoteViewModel.genderInfo.TC;
@@ -84,39 +96,11 @@
                 });
         };
 
-        self.isCoverageGreaterThan250K = ko.pureComputed(function() {
-            return self.productSliderModel.CoverageAmount() > 250000;
-        });
-
-        self.enableWholeLifeCssClass = ko.pureComputed(function() {
-            return self.disableWholeLifeProduct() ? "groupField OuterGroup_WL OuterGroup_WL_Disabled" : "groupField OuterGroup_WL";
-        });
-
-        self.coverageAmountText = ko.pureComputed(function() {
-            return window.numeral(self.productSliderModel.CoverageAmount()).format("$0,0");
-        });
-
-        self.tenYearTermPerMonthCostText = ko.pureComputed(function () {
-            return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.TenYearTermPerMonthCost());
-        });
-
-        self.fifteenYearTermPerMonthCostText = ko.pureComputed(function () {
-            return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.FifteenYearTermPerMonthCost());
-        });
-
-        self.twentyYearTermPerMonthCostText = ko.pureComputed(function () {
-            return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.TwentyYearTermPerMonthCost());
-        });
-
-        self.wholeLifePerMonthCostText = ko.pureComputed(function () {
-            return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.WholeLifePerMonthCost());
-        });
-
         self.checkStatus = function(c) {
-            self.productSliderModel.TenYearTerm(c === 10);
-            self.productSliderModel.FifteenYearTerm(c === 15);
-            self.productSliderModel.TwentyYearTerm(c === 20);
-            self.productSliderModel.WholeLife(c === 100);
+            self.productSliderModel.TenYearTerm(c === 10 && !self.disable10YrTermProduct());
+            self.productSliderModel.FifteenYearTerm(c === 15 && !self.disable15YrTermProduct());
+            self.productSliderModel.TwentyYearTerm(c === 20 && !self.disable20YrTermProduct());
+            self.productSliderModel.WholeLife(c === 100 && !self.disableWholeLifeProduct());
         };
 
         self.checkUncheck10Yr = function() {
@@ -156,6 +140,42 @@
         self.checkUncheckChildrenCoverage = function () {
             self.productSliderModel.ChildrenCoverage(!self.productSliderModel.ChildrenCoverage());
         };
+
+        // Computed Properties.
+        self.isCoverageGreaterThan250K = ko.pureComputed(function() {
+            return self.productSliderModel.CoverageAmount() > 250000;
+        });
+
+        self.enableWholeLifeCssClass = ko.pureComputed(function() {
+            return self.disableWholeLifeProduct() ? "groupField OuterGroup_WL OuterGroup_WL_Disabled" : "groupField OuterGroup_WL";
+        });
+
+        self.coverageAmountText = ko.pureComputed(function() {
+            return window.numeral(self.productSliderModel.CoverageAmount()).format("$0,0");
+        });
+
+        self.tenYearTermPerMonthCostText = ko.pureComputed(function () {
+            return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.TenYearTermPerMonthCost());
+        });
+
+        self.fifteenYearTermPerMonthCostText = ko.pureComputed(function () {
+            return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.FifteenYearTermPerMonthCost());
+        });
+
+        self.twentyYearTermPerMonthCostText = ko.pureComputed(function () {
+            return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.TwentyYearTermPerMonthCost());
+        });
+
+        self.wholeLifePerMonthCostText = ko.pureComputed(function () {
+            return "<sup style='font-size: 28px; font-weight: bold'>$</sup>" + Math.ceil(self.productSliderModel.WholeLifePerMonthCost());
+        });
+
+        self.isValidProductSelection = ko.pureComputed(function () {
+            return self.productSliderModel.TenYearTerm() ||
+                self.productSliderModel.FifteenYearTerm() ||
+                self.productSliderModel.TwentyYearTerm() ||
+                self.productSliderModel.WholeLife();
+        });
 
         self.tenYearTermCheckStatus = ko.pureComputed(function () {
             return self.productSliderModel.TenYearTerm() ? "fa fa-check checkStyle" : "";

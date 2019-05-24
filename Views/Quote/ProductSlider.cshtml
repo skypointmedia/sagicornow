@@ -145,7 +145,7 @@
                                                 <div class="row ">
                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                         <div data-dataitemid="APP_FACE_AMOUNTL">
-                                                            <div class="indent0 ITText centerAlign xxlarge" style="font-weight: bold;" data-bind="html: $parent.coverageAmountText">$350,000</div>
+                                                            <div class="indent0 ITText centerAlign xxlarge" style="font-weight: bold;" data-bind="html: $parent.coverageAmountText">$0</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -277,7 +277,7 @@
                                                                                     <div class="row baselineAlign">
                                                                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                                                                             <div class="componentWrapper InnerGroup4_10Yr">
-                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication">
+                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication" data-bind="class: ($parent.submissionRequested() && !$parent.isValidProductSelection()) ? 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--visible' : 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication'" >
                                                                                                     <div class="ITComponent">
                                                                                                         <div class="indent0">
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBoxContainer">
@@ -393,7 +393,7 @@
                                                                                     <div class="row baselineAlign">
                                                                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                                                                             <div class="componentWrapper InnerGroup4_15Yr">
-                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication">
+                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication" data-bind="class: ($parent.submissionRequested() && !$parent.isValidProductSelection()) ? 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--visible' : 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication'">
                                                                                                     <div class="ITComponent">
                                                                                                         <div class="indent0">
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBoxContainer">
@@ -509,7 +509,7 @@
                                                                                     <div class="row baselineAlign">
                                                                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                                                                             <div class="componentWrapper InnerGroup4_20Yr">
-                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication">
+                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication" data-bind="class: ($parent.submissionRequested() && !$parent.isValidProductSelection()) ? 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--visible' : 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication'">
                                                                                                     <div class="ITComponent">
                                                                                                         <div class="indent0">
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBoxContainer">
@@ -555,7 +555,7 @@
                                                             </div>
                                                             <div class="row ">
                                                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                    <div data-dataitemid="QUOTE_WL_GROUP" class="groupField InnerGroup_WL" data-bind="class: $parent.disableWholeLifeProduct() ? 'groupField InnerGroup_WL InnerGroup_WL_Disabled':'groupField InnerGroup_WL' " >
+                                                                    <div data-dataitemid="QUOTE_WL_GROUP" class="groupField InnerGroup_WL" data-bind="class: $parent.disableWholeLifeProduct() ? 'groupField InnerGroup_WL InnerGroup_WL_Disabled':'groupField InnerGroup_WL' ">
                                                                         <div>
                                                                             <div class="indent0 ITText"></div>
                                                                         </div>
@@ -625,12 +625,12 @@
                                                                                     <div class="row baselineAlign">
                                                                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                                                                             <div class="componentWrapper InnerGroup4_WL">
-                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication">
+                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication" data-bind="class: ($parent.submissionRequested() && !$parent.isValidProductSelection()) ? 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--visible' : 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication'">
                                                                                                     <div class="ITComponent">
                                                                                                         <div class="indent0">
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBoxContainer">
                                                                                                                 <div class="ITCheckBoxInput">
-                                                                                                                    <div  tabindex="0" data-bind="class: $parent.disableWholeLifeProduct() ? 'ITCheckBox disabled' : 'ITCheckBox'">
+                                                                                                                    <div tabindex="0" data-bind="class: $parent.disableWholeLifeProduct() ? 'ITCheckBox disabled' : 'ITCheckBox'">
                                                                                                                         <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheckWL"><i data-bind="class: $parent.wholeLifeTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                     <div class="validationContainer validationContainer--showText">
@@ -658,7 +658,7 @@
                                                 </div>
                                                 <div class="row ">
                                                     <div class="col-xs-12 col-sm-3 col-md-3">
-                                                        <div data-dataitemid="IType_10_Mobile" class="groupField OuterGroup_10Yr_Mobile">
+                                                        <div data-dataitemid="IType_10_Mobile" class="groupField OuterGroup_10Yr_Mobile" data-bind="class: $parent.disable10YrTermProduct() ? 'groupField OuterGroup_10Yr_Mobile OuterGroup_10Yr_Mobile_Disabled':'groupField OuterGroup_10Yr_Mobile' ">
                                                             <div>
                                                                 <div class="indent0 ITText">10 YEAR TERM</div>
                                                             </div>
@@ -673,9 +673,16 @@
                                                             </div>
                                                             <div class="row ">
                                                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                    <div data-dataitemid="QUOTE_TERM_10_GROUP" class="groupField InnerGroup_10Yr">
+                                                                    <div data-dataitemid="QUOTE_TERM_10_GROUP" class="groupField InnerGroup_10Yr" data-bind="class: $parent.disable10YrTermProduct() ? 'groupField InnerGroup_10Yr InnerGroup_10Yr_Disabled' : 'groupField InnerGroup_10Yr'">
                                                                         <div>
                                                                             <div class="indent0 ITText"></div>
+                                                                        </div>
+                                                                        <div class="row " data-bind="visible: $parent.disable10YrTermProduct()">
+                                                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                                <div data-dataitemid="QUOTE_TERM_10_DISABLED">
+                                                                                    <div class="indent0 ITText medium">NOT AVAILABLE</div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="row ">
                                                                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -684,7 +691,7 @@
                                                                                         <div class="indent2 ITText"></div>
                                                                                     </div>
                                                                                     <div class="row baselineAlign">
-                                                                                        <div class="col-xs-3 col-sm-3 col-md-3">
+                                                                                        <div class="col-xs-3 col-sm-3 col-md-3" data-bind="hidden: $parent.disable10YrTermProduct()">
                                                                                             <div>
                                                                                                 <div>
                                                                                                     <div class="mobileProduct">
@@ -719,12 +726,12 @@
                                                                                         </div>
                                                                                         <div class="col-xs-3 col-sm-3 col-md-3">
                                                                                             <div class="componentWrapper InnerGroup4_10Yr">
-                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication">
+                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication" data-bind="class: ($parent.submissionRequested() && !$parent.isValidProductSelection()) ? 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--visible' : 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication'">
                                                                                                     <div class="ITComponent">
                                                                                                         <div class="indent0">
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBoxContainer">
                                                                                                                 <div class="ITCheckBoxInput">
-                                                                                                                    <div class="ITCheckBox   " tabindex="0">
+                                                                                                                    <div class="ITCheckBox   " tabindex="0" data-bind="class: $parent.disable10YrTermProduct() ? 'ITCheckBox disabled' : 'ITCheckBox'">
                                                                                                                         <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheck10Yr"><i data-bind="class: $parent.tenYearTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                     <div class="validationContainer validationContainer--showText">
@@ -750,7 +757,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-3 col-md-3">
-                                                        <div data-dataitemid="IType_15_Mobile" class="groupField OuterGroup_15Yr_Mobile">
+                                                        <div data-dataitemid="IType_15_Mobile" class="groupField OuterGroup_15Yr_Mobile" data-bind="class: $parent.disable15YrTermProduct() ? 'groupField OuterGroup_15Yr_Mobile OuterGroup_15Yr_Mobile_Disabled':'groupField OuterGroup_15Yr_Mobile' ">
                                                             <div>
                                                                 <div class="indent0 ITText">15 YEAR TERM</div>
                                                             </div>
@@ -765,9 +772,16 @@
                                                             </div>
                                                             <div class="row ">
                                                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                    <div data-dataitemid="QUOTE_TERM_15_GROUP" class="groupField InnerGroup_15Yr">
+                                                                    <div data-dataitemid="QUOTE_TERM_15_GROUP" class="groupField InnerGroup_15Yr" data-bind="class: $parent.disable15YrTermProduct() ? 'groupField InnerGroup_15Yr InnerGroup_15Yr_Disabled' : 'groupField InnerGroup_15Yr'">
                                                                         <div>
                                                                             <div class="indent0 ITText"></div>
+                                                                        </div>
+                                                                        <div class="row " data-bind="visible: $parent.disable15YrTermProduct()">
+                                                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                                <div data-dataitemid="QUOTE_TERM_15_DISABLED">
+                                                                                    <div class="indent0 ITText medium">NOT AVAILABLE</div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="row ">
                                                                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -776,7 +790,7 @@
                                                                                         <div class="indent2 ITText"></div>
                                                                                     </div>
                                                                                     <div class="row baselineAlign">
-                                                                                        <div class="col-xs-3 col-sm-3 col-md-3">
+                                                                                        <div class="col-xs-3 col-sm-3 col-md-3" data-bind="hidden: $parent.disable15YrTermProduct()">
                                                                                             <div>
                                                                                                 <div>
                                                                                                     <div class="mobileProduct">
@@ -811,12 +825,12 @@
                                                                                         </div>
                                                                                         <div class="col-xs-3 col-sm-3 col-md-3">
                                                                                             <div class="componentWrapper InnerGroup4_15Yr">
-                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication">
+                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication" data-bind="class: ($parent.submissionRequested() && !$parent.isValidProductSelection()) ? 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--visible' : 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication'">
                                                                                                     <div class="ITComponent">
                                                                                                         <div class="indent0">
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBoxContainer">
                                                                                                                 <div class="ITCheckBoxInput">
-                                                                                                                    <div class="ITCheckBox   " tabindex="0">
+                                                                                                                    <div class="ITCheckBox   " tabindex="0" data-bind="class: $parent.disable15YrTermProduct() ? 'ITCheckBox disabled' : 'ITCheckBox'">
                                                                                                                         <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheck15Yr"><i data-bind="class: $parent.fifteenYearTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                     <div class="validationContainer validationContainer--showText">
@@ -842,7 +856,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-3 col-md-3">
-                                                        <div data-dataitemid="IType_20_Mobile" class="groupField OuterGroup_20Yr_Mobile">
+                                                        <div data-dataitemid="IType_20_Mobile" class="groupField OuterGroup_20Yr_Mobile" data-bind="class: $parent.disable20YrTermProduct() ? 'groupField OuterGroup_20Yr_Mobile OuterGroup_20Yr_Mobile_Disabled':'groupField OuterGroup_20Yr_Mobile' ">
                                                             <div>
                                                                 <div class="indent0 ITText">20 YEAR TERM</div>
                                                             </div>
@@ -857,9 +871,16 @@
                                                             </div>
                                                             <div class="row ">
                                                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                    <div data-dataitemid="QUOTE_TERM_20_GROUP" class="groupField InnerGroup_20Yr">
+                                                                    <div data-dataitemid="QUOTE_TERM_20_GROUP" class="groupField InnerGroup_20Yr" data-bind="class: $parent.disable20YrTermProduct() ? 'groupField InnerGroup_20Yr InnerGroup_20Yr_Disabled' : 'groupField InnerGroup_20Yr'">
                                                                         <div>
                                                                             <div class="indent0 ITText"></div>
+                                                                        </div>
+                                                                        <div class="row " data-bind="visible: $parent.disable20YrTermProduct()">
+                                                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                                <div data-dataitemid="QUOTE_TERM_20_DISABLED">
+                                                                                    <div class="indent0 ITText medium">NOT AVAILABLE</div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="row ">
                                                                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -868,7 +889,7 @@
                                                                                         <div class="indent2 ITText"></div>
                                                                                     </div>
                                                                                     <div class="row baselineAlign">
-                                                                                        <div class="col-xs-3 col-sm-3 col-md-3">
+                                                                                        <div class="col-xs-3 col-sm-3 col-md-3" data-bind="hidden: $parent.disable20YrTermProduct()">
                                                                                             <div>
                                                                                                 <div>
                                                                                                     <div class="mobileProduct">
@@ -903,12 +924,12 @@
                                                                                         </div>
                                                                                         <div class="col-xs-3 col-sm-3 col-md-3">
                                                                                             <div class="componentWrapper InnerGroup4_20Yr">
-                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication">
+                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication" data-bind="class: ($parent.submissionRequested() && !$parent.isValidProductSelection()) ? 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--visible' : 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication'">
                                                                                                     <div class="ITComponent">
                                                                                                         <div class="indent0">
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBoxContainer">
                                                                                                                 <div class="ITCheckBoxInput">
-                                                                                                                    <div class="ITCheckBox   " tabindex="0">
+                                                                                                                    <div class="ITCheckBox   " tabindex="0" data-bind="class: $parent.disable20YrTermProduct() ? 'ITCheckBox disabled' : 'ITCheckBox'">
                                                                                                                         <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheck20Yr"><i data-bind="class: $parent.twentyYearTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                     <div class="validationContainer validationContainer--showText">
@@ -934,7 +955,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-3 col-md-3">
-                                                        <div data-dataitemid="IType_WL_Mobile" class="groupField OuterGroup_WL_Mobile">
+                                                        <div data-dataitemid="IType_WL_Mobile" class="groupField OuterGroup_WL_Mobile" data-bind="class: $parent.disableWholeLifeProduct() ? 'groupField OuterGroup_WL_Mobile OuterGroup_WL_Mobile_Disabled' :'groupField OuterGroup_WL_Mobile' ">
                                                             <div>
                                                                 <div class="indent0 ITText">WHOLE LIFE COVERAGE</div>
                                                             </div>
@@ -949,9 +970,16 @@
                                                             </div>
                                                             <div class="row ">
                                                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                    <div data-dataitemid="QUOTE_WL_GROUP" class="groupField InnerGroup_WL">
+                                                                    <div data-dataitemid="QUOTE_WL_GROUP" class="groupField InnerGroup_WL" data-bind="class: $parent.disableWholeLifeProduct() ? 'groupField InnerGroup_WL InnerGroup_WL_Disabled':'groupField InnerGroup_WL' ">
                                                                         <div>
                                                                             <div class="indent0 ITText"></div>
+                                                                        </div>
+                                                                        <div class="row " data-bind="visible: $parent.disableWholeLifeProduct()">
+                                                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                                <div data-dataitemid="QUOTE_WL_GROUP_DISABLED">
+                                                                                    <div class="indent0 ITText medium">NOT AVAILABLE</div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="row ">
                                                                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -960,7 +988,7 @@
                                                                                         <div class="indent2 ITText"></div>
                                                                                     </div>
                                                                                     <div class="row baselineAlign">
-                                                                                        <div class="col-xs-3 col-sm-3 col-md-3">
+                                                                                        <div class="col-xs-3 col-sm-3 col-md-3" data-bind="hidden: $parent.disableWholeLifeProduct()">
                                                                                             <div>
                                                                                                 <div>
                                                                                                     <div class="mobileProduct">
@@ -995,13 +1023,13 @@
                                                                                         </div>
                                                                                         <div class="col-xs-3 col-sm-3 col-md-3">
                                                                                             <div class="componentWrapper InnerGroup4_WL">
-                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication">
+                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication" data-bind="class: ($parent.submissionRequested() && !$parent.isValidProductSelection()) ? 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--visible' : 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication'">
                                                                                                     <div class="ITComponent">
                                                                                                         <div class="indent0">
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBoxContainer">
                                                                                                                 <div class="ITCheckBoxInput">
-                                                                                                                    <div class="ITCheckBox   " tabindex="0">
-                                                                                                                        <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheckWL"><i  data-bind="class: $parent.wholeLifeTermCheckStatus"></i></div>
+                                                                                                                    <div class="ITCheckBox   " tabindex="0" data-bind="class: $parent.disableWholeLifeProduct() ? 'ITCheckBox disabled' : 'ITCheckBox'">
+                                                                                                                        <div class="ITCheckBoxCheck" data-bind="click: $parent.checkUncheckWL"><i data-bind="class: $parent.wholeLifeTermCheckStatus"></i></div>
                                                                                                                     </div>
                                                                                                                     <div class="validationContainer validationContainer--showText">
                                                                                                                         <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
@@ -1024,6 +1052,22 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="validationContainer validationContainer--showText" data-bind="visible: $parent.submissionRequested() && !$parent.isValidProductSelection()">
+                                                    <div class="errorText ">
+                                                        <div class="ITValidationImage">
+                                                            <div class="ITIconContainer">
+                                                                <div class="ITTooltipContainer">
+                                                                    <i class="ITIcon ITIcon--size16 fa fa-exclamation-circle"></i>
+                                                                    <div class="ITTooltip">
+                                                                        <div class="ITTooltipArrowBorder"></div>
+                                                                        <div class="ITTooltipArrow"></div>
+                                                                        <div class="ITTooltipContents"><span>Please select one of the coverage options above.</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div><span class="validationText">Please select one of the coverage options above.</span>
                                                     </div>
                                                 </div>
                                             </div>
