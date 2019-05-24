@@ -1223,14 +1223,28 @@
                                                                                 <div class="row baselineAlign">
                                                                                     <div class="col-xs-12 col-sm-10 col-md-10" data-bind="visible: AccidentalDeath">
                                                                                         <div class="componentWrapper ">
-                                                                                            <div data-dataitemid="ADB_AMOUNT" class="ITComponentRoot ITTextFieldWrapper ">
+                                                                                            <div data-dataitemid="ADB_AMOUNT" class="ITComponentRoot ITTextFieldWrapper " data-bind="class: AccidentalDeathRiderAmount.isValid() ? 'ITComponentRoot ITTextFieldWrapper ' : 'ITComponentRoot ITTextFieldWrapper validationError--visible' ">
                                                                                                 <div class="ITComponent">
                                                                                                     <div class="ITComponentLabelContainer">
                                                                                                         <div class="ITComponentLabel indent0">Rider Amount ($)</div>
                                                                                                     </div>
                                                                                                     <div class="ITTextField"><input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="ADB_AMOUNT" data-bind="value: AccidentalDeathRiderAmount, disable: WholeLife"></div>
                                                                                                     <div class="validationContainer validationContainer--showText">
-                                                                                                        <div class="errorText  errorText--warning errorText--noError">&nbsp; </div>
+                                                                                                        <div class="errorText  errorText--warning errorText--noError" data-bind="class: AccidentalDeathRiderAmount.isValid() ? 'errorText  errorText--warning errorText--noError' : 'errorText '">
+                                                                                                            <div class="ITValidationImage" data-bind="hidden: AccidentalDeathRiderAmount.isValid()">
+                                                                                                                <div class="ITIconContainer">
+                                                                                                                    <div class="ITTooltipContainer">
+                                                                                                                        <i class="ITIcon ITIcon--size16 fa fa-exclamation-circle"></i>
+                                                                                                                        <div class="ITTooltip">
+                                                                                                                            <div class="ITTooltipArrowBorder"></div>
+                                                                                                                            <div class="ITTooltipArrow"></div>
+                                                                                                                            <div class="ITTooltipContents"><span>You entered an invalid amount. See tool-tip for more information.</span></div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <span class="validationText" data-bind="hidden: AccidentalDeathRiderAmount.isValid()">You entered an invalid amount. See tool-tip for more information.</span>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -1288,14 +1302,30 @@
                                                                                 <div class="row baselineAlign">
                                                                                     <div class="col-xs-12 col-sm-11 col-md-11" data-bind="visible: ChildrenCoverage">
                                                                                         <div class="componentWrapper ">
-                                                                                            <div data-dataitemid="CHILD_RIDER_AMOUNT_FORMATTED" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                                            <div data-dataitemid="CHILD_RIDER_AMOUNT_FORMATTED" class="ITComponentRoot ITTextFieldWrapper" data-bind="class: ChildrenCoverageRiderAmount.isValid() ? 'ITComponentRoot ITCheckBoxWrapper' : 'ITComponentRoot ITTextFieldWrapper validationError--visible'">
                                                                                                 <div class="ITComponent">
                                                                                                     <div class="ITComponentLabelContainer">
                                                                                                         <div class="ITComponentLabel indent2">Rider Amount ($)</div>
                                                                                                     </div>
-                                                                                                    <div class="indent2 ITTextField"><input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="CHILD_RIDER_AMOUNT_FORMATTED" data-bind="value: ChildrenCoverageRiderAmount"></div>
+                                                                                                    <div class="indent2 ITTextField">
+                                                                                                        <input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="CHILD_RIDER_AMOUNT_FORMATTED" data-bind="value: ChildrenCoverageRiderAmount">
+                                                                                                    </div>
                                                                                                     <div class="validationContainer">
-                                                                                                        <div class="indent2 errorText  errorText--optional errorText--transApplication indent2">&nbsp; </div>
+                                                                                                        <div class="indent2 errorText  errorText--warning errorText--noError indent2" data-bind="class: ChildrenCoverageRiderAmount.isValid() ? 'indent2 errorText  errorText--warning errorText--noError indent2' : 'indent2 errorText  indent2'">
+                                                                                                            <div class="ITValidationImage" data-bind="hidden: ChildrenCoverageRiderAmount.isValid()">
+                                                                                                                <div class="ITIconContainer">
+                                                                                                                    <div class="ITTooltipContainer">
+                                                                                                                        <i class="ITIcon ITIcon--size16 fa fa-exclamation-circle"></i>
+                                                                                                                        <div class="ITTooltip">
+                                                                                                                            <div class="ITTooltipArrowBorder"></div>
+                                                                                                                            <div class="ITTooltipArrow"></div>
+                                                                                                                            <div class="ITTooltipContents"><span>You entered an invalid amount. See tool-tip for more information.</span></div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <span class="validationText" data-bind="hidden: ChildrenCoverageRiderAmount.isValid()">You entered an invalid amount. See tool-tip for more information.</span>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -1305,14 +1335,28 @@
                                                                                 <div class="row baselineAlign">
                                                                                     <div class="col-xs-12 col-sm-11 col-md-11" data-bind="visible: ChildrenCoverage">
                                                                                         <div class="componentWrapper ">
-                                                                                            <div data-dataitemid="YOUNG_CHILD_RIDER_DOB" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                                            <div data-dataitemid="YOUNG_CHILD_RIDER_DOB" class="ITComponentRoot ITTextFieldWrapper " data-bind="class: AgeOfYoungest.isValid()? 'ITComponentRoot ITTextFieldWrapper' : 'ITComponentRoot ITTextFieldWrapper validationError--visible'">
                                                                                                 <div class="ITComponent">
                                                                                                     <div class="ITComponentLabelContainer">
                                                                                                         <div class="ITComponentLabel indent2">Age of Youngest Child</div>
                                                                                                     </div>
                                                                                                     <div class="indent2 ITTextField"><input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="YOUNG_CHILD_RIDER_DOB" data-bind="value: AgeOfYoungest"></div>
                                                                                                     <div class="validationContainer">
-                                                                                                        <div class="indent2 errorText  errorText--optional errorText--transApplication indent2">&nbsp; </div>
+                                                                                                        <div class="indent2 errorText  errorText--warning errorText--noError indent2" data-bind="class: AgeOfYoungest.isValid() ? 'indent2 errorText  errorText--warning errorText--noError indent2' : 'indent2 errorText  indent2'">
+                                                                                                            <div class="ITValidationImage" data-bind="hidden: AgeOfYoungest.isValid() ">
+                                                                                                                <div class="ITIconContainer">
+                                                                                                                    <div class="ITTooltipContainer">
+                                                                                                                        <i class="ITIcon ITIcon--size16 fa fa-exclamation-circle"></i>
+                                                                                                                        <div class="ITTooltip">
+                                                                                                                            <div class="ITTooltipArrowBorder"></div>
+                                                                                                                            <div class="ITTooltipArrow"></div>
+                                                                                                                            <div class="ITTooltipContents"><span>This is a required field.</span></div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <span class="validationText" data-bind="hidden: AgeOfYoungest.isValid(), html: $parent.ageOfYoungestValidationMessage">This is a required field.</span>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>

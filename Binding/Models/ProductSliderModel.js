@@ -24,11 +24,31 @@
         self.WaiverPremium = ko.observable(false);
 
         self.AccidentalDeath = ko.observable(false);
-        self.AccidentalDeathRiderAmount = ko.observable(0);
+        self.AccidentalDeathRiderAmount = ko.observable(0).extend({
+            required: {
+                onlyIf: function() { return self.AccidentalDeath(); }
+            },
+            number: true,
+            min: 50000
+        });
 
         self.ChildrenCoverage = ko.observable(false);
-        self.ChildrenCoverageRiderAmount = ko.observable(0).extend({min: 2000, max: 20000, message: "You entered an invalid amount. See tool-tip for more information."});
-        self.AgeOfYoungest = ko.observable(0).extend({max: 19, message: "Child's age cannot exceed 19"});
+        self.ChildrenCoverageRiderAmount = ko.observable(2000).extend({
+            min: 2000,
+            max: 20000,
+            message: "You entered an invalid amount. See tool-tip for more information.",
+            required: {
+                onlyIf: function () { return self.ChildrenCoverage(); }
+            },
+            number: true
+        });
+        self.AgeOfYoungest = ko.observable(1).extend({
+            max: 19, message: "Child's age cannot exceed 19",
+            required: {
+                onlyIf: function () { return self.ChildrenCoverage(); }
+            },
+            number: true
+        });
     }
     sn.ProductSliderModel = ProductSliderModel;
 }(window.SagicorNow))

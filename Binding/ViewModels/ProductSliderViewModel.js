@@ -36,6 +36,9 @@
             if (!self.isValidProductSelection())
                 return;
 
+            if (!self.productSliderModel.isValid())
+                return;
+
             // the objects are currently in an KO Observable form; need them in plain JS.
             var proposalHistoryModel = ko.mapping.toJS(new SagicorNow.ProposalHistoryModel());
             var productSliderModel = ko.mapping.toJS(model);
@@ -52,9 +55,6 @@
             proposalHistoryModel.Tobacco = self.quoteViewModel.tobacco;
             proposalHistoryModel.SmokerStatusTc = self.quoteViewModel.smokerStatusInfo.TC;
             proposalHistoryModel.RiskClassTc = self.quoteViewModel.riskClass.TC;
-           
-            //unmappedModel = $.extend(unmappedModel, self.quoteViewModel);
-            //unmappedModel = $.extend(unmappedModel, productSliderModel);
 
             var data = $.extend(true, proposalHistoryModel, self.quoteViewModel, productSliderModel);
 
@@ -104,22 +104,18 @@
         };
 
         self.checkUncheck10Yr = function() {
-            //self.productSliderModel.TenYearTerm(!self.productSliderModel.TenYearTerm());
             self.checkStatus(10);
         };
 
         self.checkUncheck15Yr = function () {
-            //self.productSliderModel.FifteenYearTerm(!self.productSliderModel.FifteenYearTerm());
             self.checkStatus(15);
         };
 
         self.checkUncheck20Yr = function () {
-            //self.productSliderModel.TwentyYearTerm(!self.productSliderModel.TwentyYearTerm());
             self.checkStatus(20);
         };
 
         self.checkUncheckWL = function () {
-            //self.productSliderModel.WholeLife(!self.productSliderModel.WholeLife());
             self.checkStatus(100);
         };
 
@@ -259,6 +255,12 @@
                 return false;
         });
 
+        self.ageOfYoungestValidationMessage = ko.pureComputed(function() {
+            if (self.productSliderModel.AgeOfYoungest() > 19) {
+                return "Child's age cannot exceed 19.";
+            } 
+                return "This is a required field.";
+        });
 
         self.initialize();
     }
