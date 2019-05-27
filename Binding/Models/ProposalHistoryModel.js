@@ -9,11 +9,11 @@
         self.StateName = ko.observable("");
         self.StateCode = ko.observable("");
         self.StateTc = ko.observable("");
-        self.Gender = ko.observable("");
+        self.Gender = ko.observable();
         self.GenderTc = ko.observable("");
-        self.Birthday = ko.observable("");
+        self.Birthday = ko.observable();
         self.Age = ko.observable("");
-        self.Tobacco = ko.observable("");
+        self.Tobacco = ko.observable();
         self.SmokerStatusTc = ko.observable("");
         self.Health = ko.observable("");
         self.RiskClassTc = ko.observable("");

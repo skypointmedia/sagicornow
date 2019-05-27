@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../scripts/app.js" />
 /// <reference path="../../scripts/knockout-3.5.0.js" />
 /// <reference path="../models/productSliderModel.js" />
+/// <reference path="../models/proposalhistorymodel.js" />
 
 
 (function (sn) {
@@ -36,7 +37,8 @@
             if (!self.isValidProductSelection())
                 return;
 
-            if (!self.productSliderModel.isValid())
+            // we should not move fwd unless product slider model is validated.    
+            if (!ko.validatedObservable(model).isValid())
                 return;
 
             // the objects are currently in an KO Observable form; need them in plain JS.
@@ -56,9 +58,9 @@
             proposalHistoryModel.SmokerStatusTc = self.quoteViewModel.smokerStatusInfo.TC;
             proposalHistoryModel.RiskClassTc = self.quoteViewModel.riskClass.TC;
 
-            var data = $.extend(true, proposalHistoryModel, self.quoteViewModel, productSliderModel);
+            var data = $.extend(true, proposalHistoryModel, productSliderModel);
 
-            ko.utils.postJson("FraudWarning", data);
+            ko.utils.postJson("FraudWarning", {model: data});
         };
 
         self.getRevisedIllustrationAsync = function (coverage) {

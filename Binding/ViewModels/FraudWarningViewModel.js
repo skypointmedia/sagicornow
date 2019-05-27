@@ -5,15 +5,15 @@
     var FraudWarningViewModel = function (pm) {
         // this may become lost based on context.
         var self = this;
-
-        self.viewModelHelper = new SagicorNow.ViewModelHelper();
-        self.fraudWarningModel = new SagicorNow.FraudWarningModel();
-
+        
         // properties
         self.enableSave = ko.observable(false);
         self.passwordCreated = ko.observable(false);
         self.agreeToTerms = ko.observable(false);
         self.proposalModel = pm;
+
+        self.viewModelHelper = new SagicorNow.ViewModelHelper();
+        self.fraudWarningModel = new SagicorNow.FraudWarningModel(self);
         // --
 
         self.initialize = function() {
@@ -31,6 +31,64 @@
         self.agreeToTermsCheckStatus = ko.pureComputed(function () {
             return self.agreeToTerms() ? "fa fa-check checkStyle" : "";
         });
+
+        self.ageGenderStatement = ko.pureComputed(function() {
+            var text = "You are a " + self.proposalModel.Age + " year old ";
+            if (self.proposalModel.Gender === "OLI_GENDER_MALE")
+                text += "man";
+            else
+                text += "woman";
+            return text;
+        });
+
+        self.locationStatement = ko.pureComputed(function() {
+            return "You are completing and signing this application in " + self.proposalModel.StateName;
+        });
+
+        self.tobaccoUseStatement = ko.pureComputed(function() {
+            var text = "You ";
+            if (self.proposalModel.Tobacco === "OLI_TOBACCO_NEVER")
+                text += "don't ";
+            text += "use tobacco / nicotine products";
+            return text;
+        });
+
+        self.healthStatement = ko.pureComputed(function() {
+            return "You are in "+self.getHealthStatus(self.proposalModel.Health)+" health";
+        });
+
+        self.coverageStatement = ko.pureComputed(function() {
+            var text = "You are buying " +
+                window.numeral(self.proposalModel.CoverageAmount).format("$0,0") +
+                " of coverage for ";
+            if (self.proposalModel.TenYearTerm)
+                text += "10 years";
+            else if (self.proposalModel.FifteenYearTerm)
+                text += "15 years";
+            else if (self.proposalModel.TwentyYearTerm)
+                text += "20 years";
+            else
+                text += "for Life";
+            return text;
+        });
+
+        self.getHealthStatus = function(rc) {
+            switch (rc) {
+                case "OLI_UNWRITE_SUPERB":
+                    return "Superb";
+                case "OLI_UNWRITE_PREFERRED":
+                    return "Excellent";
+                case "OLI_UNWRITE_STANDARD":
+                    return "Good";
+                case "OLI_UNWRITE_RATED":
+                    return "Fair";
+                case "OLI_UNWRITE_POOR":
+                    return "Poor";
+                
+                default:
+                    return "Unknown";
+            }
+        };
 
         self.checkUncheckEnableSave = function () {
             self.enableSave(!self.enableSave());
@@ -55,12 +113,21 @@
             }
         });
 
-        self.submit = function(model) {
+        self.submit = function (model) {
+
+            // we should not move fwd unless product slider model is validated.    
+            if (!ko.validatedObservable(model).isValid())
+                return;
+
             var unmappedModel;
             var fraudWarningModel = ko.mapping.toJS(model);
 
             unmappedModel = $.extend(unmappedModel, self.proposalModel);
             unmappedModel = $.extend(unmappedModel, fraudWarningModel);
+
+            // TODO: Find out why I had to do this hack below and fix it.
+            unmappedModel.Birthday = unmappedModel.Birthday.replace('"', '');
+            unmappedModel.Birthday = unmappedModel.Birthday.replace('"', '');
 
             if (self.enableSave()) {
                 self.viewModelHelper.apiPostSync('api/quote/createPassword',

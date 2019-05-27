@@ -150,6 +150,7 @@
     <Compile Include="Controllers\MVC\HomeController.cs" />
     <Compile Include="Common\FireLightSession.cs" />
     <Compile Include="Core\ApiControllerBase.cs" />
+    <Compile Include="Core\FromJsonAttribute.cs" />
     <Compile Include="Core\IServiceAwareController.cs" />
     <Compile Include="Core\MefApiDependencyResolver.cs" />
     <Compile Include="Core\MefDependencyResolver.cs" />
@@ -199,10 +200,6 @@
     <Compile Include="ViewModels\RetrievePreviousQuoteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SagicorNow.mdf" />
-    <Content Include="App_Data\SagicorNow_log.ldf">
-      <DependentUpon>SagicorNow.mdf</DependentUpon>
-    </Content>
     <Content Include="Binding\Models\FraudWarningModel.js" />
     <Content Include="Binding\Models\ProductSliderModel.js" />
     <Content Include="Binding\Models\ProposalHistoryModel.js" />

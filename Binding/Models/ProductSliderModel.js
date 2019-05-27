@@ -24,7 +24,7 @@
         self.WaiverPremium = ko.observable(false);
 
         self.AccidentalDeath = ko.observable(false);
-        self.AccidentalDeathRiderAmount = ko.observable(0).extend({
+        self.AccidentalDeathRiderAmount = ko.observable(50000).extend({
             required: {
                 onlyIf: function() { return self.AccidentalDeath(); }
             },

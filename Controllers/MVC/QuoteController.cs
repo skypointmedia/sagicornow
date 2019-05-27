@@ -15,6 +15,7 @@ using Sagicor.Core.Common.Contracts;
 using SagicorNow.Business;
 using SagicorNow.Business.Models;
 using SagicorNow.Common;
+using SagicorNow.Core;
 using SagicorNow.Data;
 using SagicorNow.Data.Entities;
 
@@ -188,8 +189,9 @@ namespace SagicorNow.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public ViewResult FraudWarning(ProposalHistory model)
+        public ViewResult FraudWarning([FromJson]ProposalHistory model)
         {
+
             ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
            
             return View(model);
@@ -280,12 +282,12 @@ namespace SagicorNow.Controllers
             ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
             ViewBag.QuoteViewModel = proposal;
 
-            var smokerStatusInfo = new AccordOlifeValue {TC = int.Parse(proposal.SmokerStatusTc),Value = proposal.Tobacco};
-            var genderInfo = new AccordOlifeValue{TC = int.Parse(proposal.GenderTc),Value = proposal.Gender};
-            var riskClass = new AccordOlifeValue{TC=int.Parse(proposal.RiskClassTc),Value = proposal.Health};
+            var smokerStatusInfo = new AccordOlifeValue {TC = int.Parse(proposal.SmokerStatusTc.Replace("\"","")),Value = proposal.Tobacco.Replace("\"", "") };
+            var genderInfo = new AccordOlifeValue{TC = int.Parse(proposal.GenderTc.Replace("\"", "")),Value = proposal.Gender.Replace("\"", "") };
+            var riskClass = new AccordOlifeValue{TC=int.Parse(proposal.RiskClassTc.Replace("\"", "")),Value = proposal.Health.Replace("\"", "") };
 
             var soapRequest = ForesightServiceHelpers.GenerateRequestXml(smokerStatusInfo, genderInfo,riskClass,
-                DateTime.Parse(proposal.Birthday), proposal.CoverageAmount);
+                DateTime.Parse(proposal.Birthday.Replace("\"", "")), proposal.CoverageAmount);
 
             var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
 

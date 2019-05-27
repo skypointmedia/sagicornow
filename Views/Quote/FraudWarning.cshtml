@@ -141,7 +141,7 @@
                                                                                         <div class="ITComponentLabel indent0">Password</div>
                                                                                     </div>
                                                                                     <div class="ITTextField">
-                                                                                        <input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_PASSWORD" data-bind="value: Password">
+                                                                                        <input type="password" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_PASSWORD" data-bind="value: Password">
                                                                                     </div>
                                                                                     <div class="validationContainer validationContainer--showText">
                                                                                         <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
@@ -160,7 +160,7 @@
                                                                                         <div class="ITComponentLabel indent0">Confirm Password</div>
                                                                                     </div>
                                                                                     <div class="ITTextField">
-                                                                                        <input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_CONFIRM_PASSWORD" data-bind="value: ConfirmPassword">
+                                                                                        <input type="password" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_CONFIRM_PASSWORD" data-bind="value: ConfirmPassword">
                                                                                     </div>
                                                                                     <div class="validationContainer validationContainer--showText">
                                                                                         <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
@@ -266,7 +266,7 @@
                                                                         <div data-dataitemid="FRAUD_LABEL_AGE_GENDER">
                                                                             <div class="indent0 ITText">
                                                                                 <ul style="list-style-type: disc;">
-                                                                                    <li>You are a 34 year old man</li>
+                                                                                    <li data-bind="html: $parent.ageGenderStatement">You are a 34 year old man</li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -277,7 +277,7 @@
                                                                         <div data-dataitemid="FRAUD_LABEL_CITY_STATE">
                                                                             <div class="indent0 ITText">
                                                                                 <ul style="list-style-type: disc;">
-                                                                                    <li>You are completing and signing this application in Arizona</li>
+                                                                                    <li data-bind="html: $parent.locationStatement">You are completing and signing this application in Arizona</li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -288,7 +288,7 @@
                                                                         <div data-dataitemid="FRAUD_LABEL_SMOKER">
                                                                             <div class="indent0 ITText">
                                                                                 <ul style="list-style-type: disc;">
-                                                                                    <li>You don't use tobacco / nicotine products</li>
+                                                                                    <li data-bind="html: $parent.tobaccoUseStatement">You don't use tobacco / nicotine products</li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -299,7 +299,7 @@
                                                                         <div data-dataitemid="FRAUD_LABEL_HEALTH">
                                                                             <div class="indent0 ITText">
                                                                                 <ul style="list-style-type: disc;">
-                                                                                    <li>You are in excellent health</li>
+                                                                                    <li data-bind="html: $parent.healthStatement">You are in excellent health</li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -310,7 +310,7 @@
                                                                         <div data-dataitemid="FRAUD_LABEL_COVERAGE">
                                                                             <div class="indent0 ITText">
                                                                                 <ul style="list-style-type: disc;">
-                                                                                    <li>You are buying $450,000 of coverage for 10 years</li>
+                                                                                    <li data-bind="html: $parent.coverageStatement">You are buying $450,000 of coverage for 10 years</li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>

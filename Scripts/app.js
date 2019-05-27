@@ -27,7 +27,7 @@
         self.apiGetSync = function (uri, data, success, failure, always) {
             self.isLoading(true);
             self.modelIsValid(true);
-            $.ajax({ type: 'Get', async: false, url: FundManager.rootPath + uri, data: data })
+            $.ajax({ type: 'Get', async: false, url: SagicorNow.rootPath + uri, data: data })
                 .done(success)
                 .fail(function (result) {
                     if (failure == null) {
@@ -51,7 +51,7 @@
         self.apiPostSync = function (uri, data, success, failure, always) {
             self.isLoading(true);
             self.modelIsValid(true);
-            $.ajax({ type: 'Post', async: false, url: FundManager.rootPath + uri, data: data })
+            $.ajax({ type: 'Post', async: false, url: SagicorNow.rootPath + uri, data: data })
                 .done(success)
                 .fail(function (result) {
                     if (failure == null) {

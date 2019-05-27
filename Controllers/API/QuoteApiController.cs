@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Data.Entity.Migrations;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -80,7 +81,7 @@ namespace SagicorNow.Controllers.API
                         WholeLife = model.WholeLife,
                         WholeLifePerMonthCost = model.WholeLifePerMonthCost,
                     };
-                    _db.ProposalHistories.Add(proposal);
+                    _db.ProposalHistories.AddOrUpdate(proposal);
                     _db.SaveChanges();
                     succeeded = true;
                 }
