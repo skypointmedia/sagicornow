@@ -11,7 +11,7 @@
         self.passwordCreated = ko.observable(false);
         self.agreeToTerms = ko.observable(false);
         self.proposalModel = pm;
-
+        self.submissionRequested = ko.observable(false);
         self.viewModelHelper = new SagicorNow.ViewModelHelper();
         self.fraudWarningModel = new SagicorNow.FraudWarningModel(self);
         // --
@@ -114,6 +114,8 @@
         });
 
         self.submit = function (model) {
+            // Validation requires to know when a submission is made.
+            self.submissionRequested(true);
 
             // we should not move fwd unless product slider model is validated.    
             if (!ko.validatedObservable(model).isValid())
@@ -124,10 +126,6 @@
 
             unmappedModel = $.extend(unmappedModel, self.proposalModel);
             unmappedModel = $.extend(unmappedModel, fraudWarningModel);
-
-            // TODO: Find out why I had to do this hack below and fix it.
-            unmappedModel.Birthday = unmappedModel.Birthday.replace('"', '');
-            unmappedModel.Birthday = unmappedModel.Birthday.replace('"', '');
 
             if (self.enableSave()) {
                 self.viewModelHelper.apiPostSync('api/quote/createPassword',

@@ -78,7 +78,7 @@
                                                                 <div class="row baselineAlign">
                                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                                         <div class="componentWrapper ">
-                                                                            <div data-dataitemid="PROPOSED_INSURED_FNAME" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                            <div data-dataitemid="PROPOSED_INSURED_FNAME" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication" data-bind="class: $parent.submissionRequested() && !FirstName.isValid() ? 'ITComponentRoot ITTextFieldWrapper validationError--visible' : 'ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication'">
                                                                                 <div class="ITComponent">
                                                                                     <div class="ITComponentLabelContainer">
                                                                                         <div class="ITComponentLabel indent0">First Name</div>
@@ -87,7 +87,21 @@
                                                                                         <input maxlength="20" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_FNAME"  data-bind="value: FirstName">
                                                                                     </div>
                                                                                     <div class="validationContainer validationContainer--showText">
-                                                                                        <div class="errorText  errorText--optional errorText--transApplication">&nbsp; </div>
+                                                                                        <div class="errorText  errorText--optional errorText--transApplication" data-bind="class: $parent.submissionRequested() && !FirstName.isValid() ?'errorText ' : 'errorText  errorText--optional errorText--transApplication'">
+                                                                                            <div class="ITValidationImage" data-bind="visible: !FirstName.isValid() && $parent.submissionRequested()">
+                                                                                                <div class="ITIconContainer">
+                                                                                                    <div class="ITTooltipContainer">
+                                                                                                        <i class="ITIcon ITIcon--size16 fa fa-exclamation-circle"></i>
+                                                                                                        <div class="ITTooltip">
+                                                                                                            <div class="ITTooltipArrowBorder"></div>
+                                                                                                            <div class="ITTooltipArrow"></div>
+                                                                                                            <div class="ITTooltipContents"><span>This is a required field.</span></div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <span class="validationText" data-bind="visible: !FirstName.isValid() && $parent.submissionRequested()">This is a required field.</span>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -97,7 +111,7 @@
                                                                 <div class="row baselineAlign">
                                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                                         <div class="componentWrapper ">
-                                                                            <div data-dataitemid="PROPOSED_INSURED_EMAIL" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                            <div data-dataitemid="PROPOSED_INSURED_EMAIL" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication" data-bind="class: $parent.submissionRequested() && !EmailAddress.isValid() ? 'ITComponentRoot ITTextFieldWrapper validationError--visible' : 'ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication'">
                                                                                 <div class="ITComponent">
                                                                                     <div class="ITComponentLabelContainer">
                                                                                         <div class="ITComponentLabel indent0">Email Address</div>
@@ -116,7 +130,7 @@
                                                                 <div class="row baselineAlign">
                                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                                         <div class="componentWrapper ">
-                                                                            <div data-dataitemid="PROPOSED_INSURED_HOME_PHONE" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                            <div data-dataitemid="PROPOSED_INSURED_HOME_PHONE" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication" data-bind="class: $parent.submissionRequested() && !PhoneNumber.isValid() ? 'ITComponentRoot ITTextFieldWrapper validationError--visible' : 'ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication'">
                                                                                 <div class="ITComponent">
                                                                                     <div class="ITComponentLabelContainer">
                                                                                         <div class="ITComponentLabel indent0">Phone Number</div>
@@ -135,7 +149,7 @@
                                                                 <div class="row baselineAlign">
                                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                                         <div class="componentWrapper ">
-                                                                            <div data-dataitemid="PROPOSED_INSURED_PASSWORD" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                            <div data-dataitemid="PROPOSED_INSURED_PASSWORD" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication" data-bind="class: $parent.submissionRequested() && !Password.isValid() ? 'ITComponentRoot ITTextFieldWrapper validationError--visible' : 'ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication'">
                                                                                 <div class="ITComponent" data-bind="style: { display: $parent.enableSave() ? 'block' : 'none' }">
                                                                                     <div class="ITComponentLabelContainer">
                                                                                         <div class="ITComponentLabel indent0">Password</div>
@@ -154,7 +168,7 @@
                                                                 <div class="row baselineAlign">
                                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                                         <div class="componentWrapper ">
-                                                                            <div data-dataitemid="PROPOSED_INSURED_CONFIRM_PASSWORD" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication">
+                                                                            <div data-dataitemid="PROPOSED_INSURED_CONFIRM_PASSWORD" class="ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication" data-bind="class: $parent.submissionRequested() && !ConfirmPassword.isValid() ? 'ITComponentRoot ITTextFieldWrapper validationError--visible' : 'ITComponentRoot ITTextFieldWrapper validationError--optional validationError--transApplication'">
                                                                                 <div class="ITComponent" data-bind="style: { display: $parent.enableSave() ? 'block' : 'none' }">
                                                                                     <div class="ITComponentLabelContainer">
                                                                                         <div class="ITComponentLabel indent0">Confirm Password</div>

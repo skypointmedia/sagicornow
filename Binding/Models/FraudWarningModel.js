@@ -30,9 +30,10 @@
         });
 
         self.ConfirmPassword = ko.observable("").extend({
-            validation: {
+            /*validation: {
                  validator: SagicorNow.mustEqual, message: "Password do not match", params: self.Password()
-            }
+            }*/
+            /*mustEqual: self.Password()*/
         });
 
         self.EnableSave = ko.observable(false);

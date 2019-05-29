@@ -185,3 +185,11 @@ ko.bindingHandlers.loadingWhen = {
         }
     }
 };
+
+ko.validation.rules['mustEqual'] = {
+    validator: function (val, otherVal) {
+        return val === otherVal;
+    },
+    message: 'The field must equal {0}'
+};
+ko.validation.registerExtenders();

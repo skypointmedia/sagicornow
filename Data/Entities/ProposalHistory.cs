@@ -16,7 +16,7 @@ namespace SagicorNow.Data.Entities
             LastActiveDateTime = DateTime.Now;
         }
 
-        [Key] public string Id { get; set; }
+        [Key] 
         public string Email { get; set; }
         public string ActivityId { get; set; }
         public string HashedPassword { get; set; }

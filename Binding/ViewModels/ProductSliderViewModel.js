@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../scripts/app.js" />
 /// <reference path="../../scripts/knockout-3.5.0.js" />
 /// <reference path="../models/productSliderModel.js" />
-/// <reference path="../models/proposalhistorymodel.js" />
+/// <reference path="../models/proposalHistoryModel.js" />
 
 
 (function (sn) {
@@ -60,7 +60,7 @@
 
             var data = $.extend(true, proposalHistoryModel, productSliderModel);
 
-            ko.utils.postJson("FraudWarning", {model: data});
+            ko.utils.postJson("FraudWarning", { model: data });
         };
 
         self.getRevisedIllustrationAsync = function (coverage) {
