@@ -138,10 +138,9 @@
                     });
 
                 if (self.passwordCreated())
-                    ko.utils.postJson("Quote", self.proposalModel);
-            }
-            else
-                ko.utils.postJson("Quote", self.proposalModel);
+                    ko.utils.postJson("EmbeddedApp", { vm: self.proposalModel });
+            } else
+                ko.utils.postJson("EmbeddedApp", { vm: self.proposalModel });
         };
 
         self.goBack = function(model) {
