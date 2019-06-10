@@ -253,5 +253,11 @@ namespace SagicorNow.ViewModels
         public string Password { get; set; }
 
         public string ConfirmPassword { get; set; }
+
+        public decimal AccidentalDeathRiderAmount { get; set; }
+
+        public decimal ChildrenCoverageRiderAmount { get; set; }
+
+        public int AgeOfYoungest { get; set; }
     }
 }

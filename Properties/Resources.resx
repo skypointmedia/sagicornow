@@ -884,4 +884,27 @@
 	&lt;/s:Body&gt;
 &lt;/s:Envelope&gt;</value>
   </data>
+  <data name="FS_Quote_Request_Template6" xml:space="preserve">
+    <value>&lt;s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing"&gt;
+	&lt;s:Header&gt;
+		&lt;a:Action s:mustUnderstand="1"&gt;http://ACORD.org/Standards/Life/2/ProcessTXLifeRequest/ProcessTXLifeRequest&lt;/a:Action&gt;
+		&lt;a:MessageID&gt;urn:uuid:&lt;&lt;uuid&gt;&gt;&lt;/a:MessageID&gt;
+		&lt;a:ReplyTo&gt;
+			&lt;a:Address&gt;http://www.w3.org/2005/08/addressing/anonymous&lt;/a:Address&gt;
+		&lt;/a:ReplyTo&gt;
+		&lt;a:To s:mustUnderstand="1"&gt;https://illustration.test.sagicorlifeusa.com/SLI6/Core/Acord/TXLifeService.svc&lt;/a:To&gt;
+	&lt;/s:Header&gt;
+	&lt;s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+		{{request-body}}
+	&lt;/s:Body&gt;
+&lt;/s:Envelope&gt;</value>
+  </data>
+  <data name="Headers" xml:space="preserve">
+    <value>&lt;a:Action s:mustUnderstand="1"&gt;http://ACORD.org/Standards/Life/2/ProcessTXLifeRequest/ProcessTXLifeRequest&lt;/a:Action&gt;
+		&lt;a:MessageID&gt;urn:uuid:&lt;&lt;uuid&gt;&gt;&lt;/a:MessageID&gt;
+		&lt;a:ReplyTo&gt;
+			&lt;a:Address&gt;http://www.w3.org/2005/08/addressing/anonymous&lt;/a:Address&gt;
+		&lt;/a:ReplyTo&gt;
+		&lt;a:To s:mustUnderstand="1"&gt;https://illustration.test.sagicorlifeusa.com/SLI6/Core/Acord/TXLifeService.svc&lt;/a:To&gt;</value>
+  </data>
 </root>

@@ -54,6 +54,7 @@
             proposalHistoryModel.StateCode = self.quoteViewModel.state;
             proposalHistoryModel.StateTc = self.quoteViewModel.stateInfo.TC;
             proposalHistoryModel.Age = self.quoteViewModel.Age;
+            proposalHistoryModel.AgeOfYoungest = self.quoteViewModel.AgeOfYoungest;
             proposalHistoryModel.Tobacco = self.quoteViewModel.tobacco;
             proposalHistoryModel.SmokerStatusTc = self.quoteViewModel.smokerStatusInfo.TC;
             proposalHistoryModel.RiskClassTc = self.quoteViewModel.riskClass.TC;
@@ -64,7 +65,21 @@
         };
 
         self.getRevisedIllustrationAsync = function (coverage) {
+
+            // we should not move fwd unless product slider model is validated.    
+            if (!ko.validatedObservable(self.productSliderModel).isValid())
+                return;
+
             self.quoteViewModel.CoverageAmount = coverage;
+
+            // Must keep both models in sync.
+            self.quoteViewModel.AccidentalDeath = self.productSliderModel.AccidentalDeath();
+            self.quoteViewModel.WavierPremium = self.productSliderModel.WaiverPremium();
+            self.quoteViewModel.ChildrenCoverage = self.productSliderModel.ChildrenCoverage();
+            self.quoteViewModel.AccidentalDeathRiderAmount = self.productSliderModel.AccidentalDeathRiderAmount();
+            self.quoteViewModel.ChildrenCoverageRiderAmount = self.productSliderModel.ChildrenCoverageRiderAmount();
+            self.quoteViewModel.AgeOfYoungest = self.productSliderModel.AgeOfYoungest();
+
             self.viewModelHelper.apiPost('api/quote/getIllustration', self.quoteViewModel,
                 function (result) {
                     if (result[0].IllustrationResult)
@@ -103,6 +118,12 @@
             self.productSliderModel.FifteenYearTerm(c === 15 && !self.disable15YrTermProduct());
             self.productSliderModel.TwentyYearTerm(c === 20 && !self.disable20YrTermProduct());
             self.productSliderModel.WholeLife(c === 100 && !self.disableWholeLifeProduct());
+
+            // Must keep both models in sync.
+            self.quoteViewModel.TenYearTerm = (c === 10 && !self.disable10YrTermProduct());
+            self.quoteViewModel.FifteenYearTerm = (c === 15 && !self.disable15YrTermProduct());
+            self.quoteViewModel.TwentyYearTerm = (c === 20 && !self.disable20YrTermProduct());
+            self.quoteViewModel.WholeLife = (c === 100 && !self.disableWholeLifeProduct());
         };
 
         self.checkUncheck10Yr = function() {
@@ -210,11 +231,6 @@
             return self.productSliderModel.ChildrenCoverage() ? "fa fa-check checkStyle" : "";
         });
 
-        self.productSliderModel.AccidentalDeath.subscribe(function(value) {
-            if (value)
-                self.productSliderModel.AccidentalDeathRiderAmount(self.productSliderModel.CoverageAmount());
-        });
-
         self.disable10YrTermProduct = ko.pureComputed(function () {
             var coverage = self.productSliderModel.CoverageAmount();
             var age = self.quoteViewModel.Age;
@@ -262,6 +278,34 @@
                 return "Child's age cannot exceed 19.";
             } 
                 return "This is a required field.";
+        });
+
+        // Event Handlers 
+        self.productSliderModel.AccidentalDeath.subscribe(function (value) {
+            if (value)
+                self.productSliderModel.AccidentalDeathRiderAmount(self.productSliderModel.CoverageAmount());
+
+            self.getRevisedIllustrationAsync(self.quoteViewModel.CoverageAmount);
+        });
+
+        self.productSliderModel.AgeOfYoungest.subscribe(function(value) {
+            self.getRevisedIllustrationAsync(self.quoteViewModel.CoverageAmount);
+        });
+
+        self.productSliderModel.AccidentalDeathRiderAmount.subscribe(function(value) {
+            self.getRevisedIllustrationAsync(self.quoteViewModel.CoverageAmount);
+        });
+
+        self.productSliderModel.ChildrenCoverage.subscribe(function() {
+            self.getRevisedIllustrationAsync(self.quoteViewModel.CoverageAmount);
+        });
+
+        self.productSliderModel.ChildrenCoverageRiderAmount.subscribe(function() {
+            self.getRevisedIllustrationAsync(self.quoteViewModel.CoverageAmount);
+        });
+
+        self.productSliderModel.WaiverPremium.subscribe(function() {
+            self.getRevisedIllustrationAsync(self.quoteViewModel.CoverageAmount);
         });
 
         self.initialize();

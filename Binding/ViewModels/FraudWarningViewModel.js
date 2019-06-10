@@ -144,7 +144,7 @@
         };
 
         self.goBack = function(model) {
-            ko.utils.postJson("ReturnToProductSlider", self.proposalModel);
+            ko.utils.postJson("ReturnToProductSlider", { proposal: self.proposalModel });
         }
 
         self.createPassword = function (model) {

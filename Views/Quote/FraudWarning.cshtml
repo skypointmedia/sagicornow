@@ -34,6 +34,7 @@
 
 @section scripts
 {
+    <script src="https://unpkg.com/imask"></script>
     <script src="~/Binding/Models/FraudWarningModel.js"></script>
     <script src="~/Binding/ViewModels/FraudWarningViewModel.js"></script>
 }
@@ -84,7 +85,7 @@
                                                                                         <div class="ITComponentLabel indent0">First Name</div>
                                                                                     </div>
                                                                                     <div class="ITTextField">
-                                                                                        <input maxlength="20" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_FNAME"  data-bind="value: FirstName">
+                                                                                        <input maxlength="20" class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="PROPOSED_INSURED_FNAME" data-bind="value: FirstName">
                                                                                     </div>
                                                                                     <div class="validationContainer validationContainer--showText">
                                                                                         <div class="errorText  errorText--optional errorText--transApplication" data-bind="class: $parent.submissionRequested() && !FirstName.isValid() ?'errorText ' : 'errorText  errorText--optional errorText--transApplication'">

@@ -9,7 +9,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http;
 using System.Web.Mvc;
 using Sagicor.Core.Common.Contracts;
 using SagicorNow.Business;
@@ -30,7 +29,7 @@ namespace SagicorNow.Controllers
        [ImportingConstructor]
         public QuoteController(/*IProcessTXLifeRequestClient processTxLifeRequestClient*/)
         {
-            //_serviceFactory= serviceFactory;
+            //_serviceFactory = serviceFactory;
             //_processTxLifeRequestClient = processTxLifeRequestClient;
         }
 
@@ -51,70 +50,7 @@ namespace SagicorNow.Controllers
         {
             return View(new QuoteViewModel());
         }
-
-        //[System.Web.Mvc.HttpPost]
-        //public async Task<ActionResult> Wizard(ProposalHistory quote)
-        //{
-        //    try
-        //    {
-        //        //if coverage supplied, limit coverage to max of 1,000,000 based on age
-        //        var maxCoverage = QuoteViewModel.GetMaxCoverageBasedOnAge(quote.Age);
-
-        //        quote.CoverageAmount = quote.CoverageAmount > maxCoverage ? maxCoverage : quote.CoverageAmount; //update coverage based on max 
-        //                                                                                               //vm.SocialSecurityNumber = vm.SocialSecurityNumber.Replace("-", String.Empty);
-
-        //        //override coverage based on risk class
-        //        if (quote.Age < 56 && quote.CoverageAmount < 525000M && (int.Parse(quote.RiskClassTc) == (int)QuoteViewModel.RiskClasses.RATED_TOBACCO ||
-        //            int.Parse(quote.RiskClassTc) == (int)QuoteViewModel.RiskClasses.RATED2_NONTOBACCO ||
-        //            int.Parse(quote.RiskClassTc) == (int)QuoteViewModel.RiskClasses.RATED2_TOBACCO))
-        //        {
-        //            quote.CoverageAmount = 525000M;
-        //        }
-
-        //        // Determine eligibility
-        //        var eligibility = BusinessRules.IsEligible(quote.Age, quote.StateName, quote.Tobacco, quote.Health, quote.ReplacementPolicy ?? false);
-
-        //        // If eligible build XML and send to firelight
-        //        if (eligibility.IsEligible)
-        //        {
-        //            var accessToken = await GetAccessToken();
-
-        //            var equote = new EmbeddedViewModel {
-        //                AccessToken = accessToken,
-        //                //AccessToken = FirelightAccessToken,
-        //                FirelightBaseUrl = FireLightSession.BaseUrl,
-        //                IsNew = true
-        //            };
-
-        //            var proposalHistory = _db.ProposalHistories.Find(quote.Email);
-
-        //            if (true)
-        //            {
-        //                var activityRequestApiString = this.CreateEAppActivity(accessToken, "26", quote); // 26 = Sage Term 
-        //                var activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(activityRequestApiString);
-
-        //                equote.ActivityId = activityReturn.ActivityId;
-        //            }
-        //            else
-        //            {
-        //                equote.ActivityId = proposalHistory.ActivityId;
-        //                proposalHistory.LastActiveDateTime = DateTime.Now;
-        //            }
-
-        //            return View("EmbeddedApp", equote);
-        //        }
-
-        //        TempData["ContactViewModel"] = new ContactModel { denialMessage = eligibility.EligibilityMessage, isReplacementReject = eligibility.IsReplacememtReject, state = eligibility.State };
-        //        return RedirectToActionPermanent("Contact", "Contact");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TempData["ErrorMessage"] = ex.Message;
-        //        var msg = "There was an error connecting to the application portal.";
-        //        quote.ViewMessages.Add(msg);
-        //        return View(quote);
-        //    }
-        //}
+        
 
         /// <summary>
         /// 
@@ -327,11 +263,18 @@ namespace SagicorNow.Controllers
                 quote.CoverageAmount = 525000M;
             }
 
-            var soapRequest = ForesightServiceHelpers.GenerateRequestXml(quote.smokerStatusInfo, quote.genderInfo,
-                quote.riskClass, quote.birthday, quote.CoverageAmount);
-         
-            var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
+            var illustrationRequest = new IllustrationRequestParameters
+            {
+                SmokerStatusInfo = quote.smokerStatusInfo,
+                GenderInfo = quote.genderInfo,
+                RiskClass = quote.riskClass,
+                Birthday = quote.birthday,
+                CoverageAmount = quote.CoverageAmount
+            };
 
+            var soapRequest = ForesightServiceHelpers.GenerateRequestXml(illustrationRequest);
+
+            var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
             return View(txLife.TxLifeResponse);
         }
         
@@ -341,17 +284,26 @@ namespace SagicorNow.Controllers
         /// <param name="proposal"></param>
         /// <returns></returns>
         [System.Web.Mvc.HttpPost]
-        public ActionResult ReturnToProductSlider(ProposalHistory proposal)
+        public ActionResult ReturnToProductSlider([FromJson]ProposalHistory proposal)
         {
             ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
             ViewBag.QuoteViewModel = proposal;
 
-            var smokerStatusInfo = new AccordOlifeValue {TC = int.Parse(proposal.SmokerStatusTc.Replace("\"","")),Value = proposal.Tobacco.Replace("\"", "") };
-            var genderInfo = new AccordOlifeValue{TC = int.Parse(proposal.GenderTc.Replace("\"", "")),Value = proposal.Gender.Replace("\"", "") };
-            var riskClass = new AccordOlifeValue{TC=int.Parse(proposal.RiskClassTc.Replace("\"", "")),Value = proposal.Health.Replace("\"", "") };
+            var illustrationRequest = new IllustrationRequestParameters {
+                SmokerStatusInfo = new AccordOlifeValue { TC = int.Parse(proposal.SmokerStatusTc), Value = proposal.Tobacco },
+                GenderInfo = new AccordOlifeValue { TC = int.Parse(proposal.GenderTc), Value = proposal.Gender },
+                RiskClass = new AccordOlifeValue { TC = int.Parse(proposal.RiskClassTc), Value = proposal.Health },
+                Birthday = DateTime.Parse(proposal.Birthday),
+                CoverageAmount = proposal.CoverageAmount,
+                ChildrenCoverage = proposal.ChildrenCoverage,
+                WavierOfPremium = proposal.WavierPremium,
+                AccidentalDeath = proposal.AccidentalDeath,
+                AgeOfYoungest = proposal.AgeOfYoungest,
+                RiderAmountAccidentalDeath = proposal.AccidentalDeathRiderAmount,
+                RiderAmountChildrenCoverage = proposal.ChildrenCoverageRiderAmount
+            };
 
-            var soapRequest = ForesightServiceHelpers.GenerateRequestXml(smokerStatusInfo, genderInfo,riskClass,
-                DateTime.Parse(proposal.Birthday.Replace("\"", "")), proposal.CoverageAmount);
+            var soapRequest = ForesightServiceHelpers.GenerateRequestXml(illustrationRequest);
 
             var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
 

@@ -39,12 +39,25 @@ namespace SagicorNow.Controllers.API
         [HttpPost]
         [AllowAnonymous]
         [Route("getIllustration")]
-        public HttpResponseMessage GetForesightIllustration(HttpRequestMessage request, QuoteViewModel model)
+        public HttpResponseMessage GetForesightIllustration(HttpRequestMessage request, QuoteViewModel quoteViewModel)
         {
             return GetHttpResponse(request, () =>
             {
-                var soapRequest = ForesightServiceHelpers.GenerateRequestXml(model.smokerStatusInfo, model.genderInfo,
-                    model.riskClass, model.birthday, model.CoverageAmount);
+                var illustrationRequest = new IllustrationRequestParameters {
+                    SmokerStatusInfo = quoteViewModel.smokerStatusInfo,
+                    GenderInfo = quoteViewModel.genderInfo,
+                    RiskClass = quoteViewModel.riskClass,
+                    Birthday = quoteViewModel.birthday,
+                    CoverageAmount = quoteViewModel.CoverageAmount,
+                    ChildrenCoverage = quoteViewModel.ChildrenCoverage,
+                    WavierOfPremium = quoteViewModel.WavierPremium,
+                    AccidentalDeath = quoteViewModel.AccidentalDeath,
+                    AgeOfYoungest = quoteViewModel.AgeOfYoungest,
+                    RiderAmountAccidentalDeath = quoteViewModel.AccidentalDeathRiderAmount,
+                    RiderAmountChildrenCoverage = quoteViewModel.ChildrenCoverageRiderAmount
+                };
+
+                var soapRequest = ForesightServiceHelpers.GenerateRequestXml(illustrationRequest);
 
                 var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
 

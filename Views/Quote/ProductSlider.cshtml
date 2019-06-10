@@ -15,12 +15,13 @@
     <link href="~/Content/firelight-css/slick.1.6.0.min.css" rel="stylesheet" />
     <link href="~/Content/firelight-css/slick-theme.1.6.0.min.css" rel="stylesheet" />
     <link href="~/Content/firelight-css/font-awesome.min.css" rel="stylesheet" />
-    
+
     <style>
         .container-fluid {
             padding-right: 0;
             padding-left: 0;
         }
+
         .sliderContainer .outerSliderTrack {
             border: none
         }
@@ -33,38 +34,8 @@
             width: 100%
         }
     </style>
-
-
-    @*<link type="text/css" rel="stylesheet" href="@Url.Content(ViewBag.FirelightBaseUrl + "Resource/CSS/eApp")" />
-        <link href="~/Content/SAG.css" rel="stylesheet" type="text/css" />
-        <link href="~/Content/consumer-portal.css" rel="stylesheet" />*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css" />
 
-    @*<style>
-            .ITCheckBox {
-                border: none;
-            }
-
-            .ITTooltipContainer {
-                display: block;
-            }
-
-            .InnerGroup2_10Yr .ITCheckBox {
-                margin-bottom: 20px;
-            }
-
-            .InnerGroup2_20Yr .ITCheckBox {
-                margin-bottom: 20px;
-            }
-
-            .InnerGroup2_15Yr .ITCheckBox {
-                margin-bottom: 20px;
-            }
-
-            .InnerGroup2_WL .ITCheckBox {
-                margin-bottom: 20px;
-            }
-        </style>*@
 }
 
 @section scripts{
@@ -72,22 +43,36 @@
     <script src="~/Binding/ViewModels/ProductSliderViewModel.js"></script>
     <script src="~/Binding/Models/ProposalHistoryModel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
+    <script src="https://unpkg.com/imask"></script>
 }
 @section ko_apply{
     var data = @Html.Raw(JsonConvert.SerializeObject(this.Model));
     var qvm = @Html.Raw(JsonConvert.SerializeObject(this.ViewBag.QuoteViewModel));
+
     var viewModel = new SagicorNow.ProductSliderViewModel(data,qvm);
     ko.applyBindingsWithValidation(viewModel,$("#fireLightMainDiv")[0], { insertMessages: false, messagesOnModified: false, grouping: { deep: true }})
+
     $(".sliderThumb").ionRangeSlider({
-    skin: "big",
-    min: 0,
-    max: 1000000,
-    from: 250000,
-    step: 25000,
-    grid: true,
-    onFinish: function (data) {
-    viewModel.getRevisedIllustrationAsync(data.from);
-    }
+        skin: "big",
+        min: 0,
+        max: 1000000,
+        from: 250000,
+        step: 25000,
+        grid: true,
+        onFinish: function (data) {
+            viewModel.getRevisedIllustrationAsync(data.from);
+        }
+    });
+
+    var element = document.getElementById("CHILD_RIDER_AMOUNT_FORMATTED")
+
+    var numberMask = IMask(element, {
+        mask: Number,
+        scale: 2,  // digits after point, 0 for integers
+        signed: false,  // disallow negative
+        thousandsSeparator: ",",
+        min: 2000,
+        max: 20000
     });
 }
 
@@ -277,7 +262,7 @@
                                                                                     <div class="row baselineAlign">
                                                                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                                                                             <div class="componentWrapper InnerGroup4_10Yr">
-                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication" data-bind="class: ($parent.submissionRequested() && !$parent.isValidProductSelection()) ? 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--visible' : 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication'" >
+                                                                                                <div data-dataitemid="PRODUCT" class="ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication" data-bind="class: ($parent.submissionRequested() && !$parent.isValidProductSelection()) ? 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--visible' : 'ITComponentRoot ITCheckBoxWrapper ITCheckBoxWrapper--bottomLabel validationError--optional validationError--transApplication'">
                                                                                                     <div class="ITComponent">
                                                                                                         <div class="indent0">
                                                                                                             <label data-dataitemid="PRODUCT" class="ITCheckBoxContainer">
@@ -1228,7 +1213,7 @@
                                                                                                     <div class="ITComponentLabelContainer">
                                                                                                         <div class="ITComponentLabel indent0">Rider Amount ($)</div>
                                                                                                     </div>
-                                                                                                    <div class="ITTextField"><input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="ADB_AMOUNT" data-bind="value: AccidentalDeathRiderAmount, disable: WholeLife"></div>
+                                                                                                    <div class="ITTextField"><input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="ADB_AMOUNT" id="ADB_AMOUNT" data-bind="value: AccidentalDeathRiderAmount, disable: WholeLife"></div>
                                                                                                     <div class="validationContainer validationContainer--showText">
                                                                                                         <div class="errorText  errorText--warning errorText--noError" data-bind="class: AccidentalDeathRiderAmount.isValid() ? 'errorText  errorText--warning errorText--noError' : 'errorText '">
                                                                                                             <div class="ITValidationImage" data-bind="hidden: AccidentalDeathRiderAmount.isValid()">
@@ -1308,7 +1293,7 @@
                                                                                                         <div class="ITComponentLabel indent2">Rider Amount ($)</div>
                                                                                                     </div>
                                                                                                     <div class="indent2 ITTextField">
-                                                                                                        <input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="CHILD_RIDER_AMOUNT_FORMATTED" data-bind="value: ChildrenCoverageRiderAmount">
+                                                                                                        <input class="ITTextFieldInput leftAlign " tabindex="0" id="CHILD_RIDER_AMOUNT_FORMATTED" data-dataitemid="CHILD_RIDER_AMOUNT_FORMATTED" data-bind="value: ChildrenCoverageRiderAmount">
                                                                                                     </div>
                                                                                                     <div class="validationContainer">
                                                                                                         <div class="indent2 errorText  errorText--warning errorText--noError indent2" data-bind="class: ChildrenCoverageRiderAmount.isValid() ? 'indent2 errorText  errorText--warning errorText--noError indent2' : 'indent2 errorText  indent2'">

@@ -139,9 +139,11 @@
   <ItemGroup>
     <Compile Include="Business\ForesightServiceHelpers.cs" />
     <Compile Include="Business\Models\ForesightTxLifeReturn.cs" />
+    <Compile Include="Business\IllustrationRequestParameters.cs" />
     <Compile Include="Business\SecurityHelpers.cs" />
     <Compile Include="Client\Bootstrapper\MEFLoader.cs" />
     <Compile Include="Client\Contracts\IProcessTXLifeRequestClient.cs" />
+    <Compile Include="Business\DataContracts\Classes.cs" />
     <Compile Include="Client\Proxies\ProcessTxLifeRequestClient.cs" />
     <Compile Include="Client\Proxies\ServiceFactory.cs" />
     <Compile Include="Controllers\API\QuoteApiController.cs" />
@@ -400,6 +402,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

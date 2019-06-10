@@ -6,6 +6,11 @@
 
         var self = this;
 
+        self.checkPassword = function (val, other) {
+            return val == other;
+        }
+
+
         self.FirstName = ko.observable("").extend({
             required: { message: "First name is required" }
         });
@@ -30,10 +35,12 @@
         });
 
         self.ConfirmPassword = ko.observable("").extend({
-            /*validation: {
-                 validator: SagicorNow.mustEqual, message: "Password do not match", params: self.Password()
-            }*/
-            /*mustEqual: self.Password()*/
+            validation: {
+                validator: function (val, other) {
+                    return val === self.Password();
+                },
+                message: 'Passwords do not match!'
+            }  
         });
 
         self.EnableSave = ko.observable(false);

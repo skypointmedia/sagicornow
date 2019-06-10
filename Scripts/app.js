@@ -6,13 +6,6 @@
 }(window.SagicorNow));
 
 (function (sn) {
-    var mustEqual = function (val, other) {
-        return val === other;
-    }
-    sn.mustEqual = mustEqual;
-}(window.SagicorNow));
-
-(function (sn) {
     var ViewModelHelper = function () {
 
         var self = this;
@@ -185,11 +178,3 @@ ko.bindingHandlers.loadingWhen = {
         }
     }
 };
-
-ko.validation.rules['mustEqual'] = {
-    validator: function (val, otherVal) {
-        return val === otherVal;
-    },
-    message: 'The field must equal {0}'
-};
-ko.validation.registerExtenders();
