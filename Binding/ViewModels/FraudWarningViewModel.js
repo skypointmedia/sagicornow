@@ -14,10 +14,18 @@
         self.submissionRequested = ko.observable(false);
         self.viewModelHelper = new SagicorNow.ViewModelHelper();
         self.fraudWarningModel = new SagicorNow.FraudWarningModel(self);
+        self.phoneNumberFormatted = ko.observable("");
+        self.phoneNumberMask = null;
         // --
 
         self.initialize = function() {
             self.passwordCreated(false);
+            var phoneNumberInputElement = document.getElementById("PROPOSED_INSURED_HOME_PHONE");
+
+            self.phoneNumberMask = window.IMask(phoneNumberInputElement,
+                {
+                    mask: '+{1}(000)000-0000'
+                });
         }
 
         self.disableCheckbox = ko.pureComputed(function() {
@@ -111,6 +119,10 @@
                 self.fraudWarningModel.Password("");
                 self.fraudWarningModel.ConfirmPassword("");
             }
+        });
+
+        self.phoneNumberFormatted.subscribe(function() {
+            self.fraudWarningModel.PhoneNumber(self.phoneNumberMask.unmaskedValue);
         });
 
         self.submit = function (model) {
