@@ -236,7 +236,7 @@ namespace SagicorNow.ViewModels
 
         public bool WholeLife { get; set; }
 
-        public bool WavierPremium { get; set; }
+        public bool WaiverPremium { get; set; }
 
         public bool AccidentalDeath { get; set; }
 

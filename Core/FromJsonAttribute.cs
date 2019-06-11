@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
 namespace SagicorNow.Core
@@ -20,6 +23,7 @@ namespace SagicorNow.Core
                 if (string.IsNullOrEmpty(stringified))
                     return null;
                 return Serializer.Deserialize(stringified, bindingContext.ModelType);
+                
             }
         }
     }

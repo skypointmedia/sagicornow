@@ -40,7 +40,7 @@ namespace SagicorNow.Data.Entities
         public bool TwentyYearTerm { get; set; }
         public decimal WholeLifePerMonthCost { get; set; }
         public bool WholeLife { get; set; }
-        public bool WavierPremium { get; set; }
+        public bool WaiverPremium { get; set; }
         public bool AccidentalDeath { get; set; }
         public bool ChildrenCoverage { get; set; }
         public string FirstName { get; set; }

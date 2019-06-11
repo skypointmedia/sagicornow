@@ -118,7 +118,7 @@ namespace SagicorNow.Business
 
             txLife.TXLifeRequest = new[] {tenYearsRequest, fifteenYearsRequest, twentyYearsRequest, wholeLifeRequest};
 
-            if (!parameters.AccidentalDeath && !parameters.ChildrenCoverage && !parameters.WavierOfPremium)
+            if (!parameters.AccidentalDeath && !parameters.ChildrenCoverage && !parameters.WaiverOfPremium)
                 return txLife;
 
             var txLifeTxLifeRequest = txLife.TXLifeRequest;
@@ -139,7 +139,7 @@ namespace SagicorNow.Business
             if (parameters.ChildrenCoverage)
                 AddRider(parameters, ref requests, RiderType.ChildrenCoverage, productType);
 
-            if (parameters.WavierOfPremium)
+            if (parameters.WaiverOfPremium)
                 AddRider(parameters, ref requests, RiderType.WavierOfPremium, productType);
         }
 

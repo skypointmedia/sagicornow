@@ -95,7 +95,7 @@
 
             // Must keep both models in sync.
             self.quoteViewModel.AccidentalDeath = self.productSliderModel.AccidentalDeath();
-            self.quoteViewModel.WavierPremium = self.productSliderModel.WaiverPremium();
+            self.quoteViewModel.WaiverPremium = self.productSliderModel.WaiverPremium();
             self.quoteViewModel.ChildrenCoverage = self.productSliderModel.ChildrenCoverage();
             self.quoteViewModel.AccidentalDeathRiderAmount = self.productSliderModel.AccidentalDeathRiderAmount();
             self.quoteViewModel.ChildrenCoverageRiderAmount = self.productSliderModel.ChildrenCoverageRiderAmount();

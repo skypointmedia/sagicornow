@@ -50,7 +50,7 @@ namespace SagicorNow.Controllers.API
                     Birthday = quoteViewModel.birthday,
                     CoverageAmount = quoteViewModel.CoverageAmount,
                     ChildrenCoverage = quoteViewModel.ChildrenCoverage,
-                    WavierOfPremium = quoteViewModel.WavierPremium,
+                    WaiverOfPremium = quoteViewModel.WaiverPremium,
                     AccidentalDeath = quoteViewModel.AccidentalDeath,
                     AgeOfYoungest = quoteViewModel.AgeOfYoungest,
                     RiderAmountAccidentalDeath = quoteViewModel.AccidentalDeathRiderAmount,
@@ -90,7 +90,7 @@ namespace SagicorNow.Controllers.API
                         TenYearTermPerMonthCost = model.FifteenYearTermPerMonthCost,
                         TwentyYearTerm = model.TwentyYearTerm,
                         TwentyYearTermPerMonthCost = model.TwentyYearTermPerMonthCost,
-                        WavierPremium = model.WavierPremium,
+                        WaiverPremium = model.WaiverPremium,
                         WholeLife = model.WholeLife,
                         WholeLifePerMonthCost = model.WholeLifePerMonthCost,
                     };

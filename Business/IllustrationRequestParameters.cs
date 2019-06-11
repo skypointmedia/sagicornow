@@ -8,7 +8,7 @@ namespace SagicorNow.Business
         public IllustrationRequestParameters()
         {
             CoverageAmount = 250000;
-            WavierOfPremium = false;
+            WaiverOfPremium = false;
             AccidentalDeath = false;
             ChildrenCoverage = false;
         }
@@ -16,7 +16,7 @@ namespace SagicorNow.Business
         public AccordOlifeValue GenderInfo { get; set; }
         public AccordOlifeValue RiskClass { get; set; }
         public decimal CoverageAmount { get; set; }
-        public bool WavierOfPremium { get; set; }
+        public bool WaiverOfPremium { get; set; }
         public bool AccidentalDeath { get; set; }
         public bool ChildrenCoverage { get; set; }
         public decimal RiderAmountAccidentalDeath { get; set; }

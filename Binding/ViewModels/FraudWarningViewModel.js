@@ -16,6 +16,9 @@
         self.fraudWarningModel = new SagicorNow.FraudWarningModel(self);
         self.phoneNumberFormatted = ko.observable("");
         self.phoneNumberMask = null;
+        self.hasADBRider = ko.observable(pm.AccidentalDeath);
+        self.hasWOPRider = ko.observable(pm.WaiverPremium);
+        self.hasCCRider = ko.observable(pm.ChildrenCoverage);
         // --
 
         self.initialize = function() {
@@ -26,6 +29,10 @@
                 {
                     mask: '+{1}(000)000-0000'
                 });
+
+            self.hasADBRider(pm.AccidentalDeath);
+            self.hasWOPRider(pm.WaiverPremium);
+            self.hasCCRider(pm.ChildrenCoverage);
         }
 
         self.disableCheckbox = ko.pureComputed(function() {

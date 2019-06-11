@@ -296,7 +296,7 @@ namespace SagicorNow.Controllers
                 Birthday = DateTime.Parse(proposal.Birthday),
                 CoverageAmount = proposal.CoverageAmount,
                 ChildrenCoverage = proposal.ChildrenCoverage,
-                WavierOfPremium = proposal.WavierPremium,
+                WaiverOfPremium = proposal.WaiverPremium,
                 AccidentalDeath = proposal.AccidentalDeath,
                 AgeOfYoungest = proposal.AgeOfYoungest,
                 RiderAmountAccidentalDeath = proposal.AccidentalDeathRiderAmount,
@@ -385,7 +385,7 @@ namespace SagicorNow.Controllers
                     TenYearTermPerMonthCost = model.FifteenYearTermPerMonthCost,
                     TwentyYearTerm = model.TwentyYearTerm,
                     TwentyYearTermPerMonthCost = model.TwentyYearTermPerMonthCost,
-                    WavierPremium = model.WavierPremium,
+                    WaiverPremium = model.WaiverPremium,
                     WholeLife = model.WholeLife,
                     WholeLifePerMonthCost = model.WholeLifePerMonthCost,
                 };
