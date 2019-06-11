@@ -48,32 +48,21 @@
 @section ko_apply{
     var data = @Html.Raw(JsonConvert.SerializeObject(this.Model));
     var qvm = @Html.Raw(JsonConvert.SerializeObject(this.ViewBag.QuoteViewModel));
-
     var viewModel = new SagicorNow.ProductSliderViewModel(data,qvm);
     ko.applyBindingsWithValidation(viewModel,$("#fireLightMainDiv")[0], { insertMessages: false, messagesOnModified: false, grouping: { deep: true }})
-
     $(".sliderThumb").ionRangeSlider({
-        skin: "big",
-        min: 0,
-        max: 1000000,
-        from: 250000,
-        step: 25000,
-        grid: true,
-        onFinish: function (data) {
-            viewModel.getRevisedIllustrationAsync(data.from);
-        }
+    skin: "big",
+    min: 0,
+    max: 1000000,
+    from: 250000,
+    step: 25000,
+    grid: true,
+    onFinish: function (data) {
+    viewModel.getRevisedIllustrationAsync(data.from);
+    }
     });
+    
 
-    var element = document.getElementById("CHILD_RIDER_AMOUNT_FORMATTED")
-
-    var numberMask = IMask(element, {
-        mask: Number,
-        scale: 2,  // digits after point, 0 for integers
-        signed: false,  // disallow negative
-        thousandsSeparator: ",",
-        min: 2000,
-        max: 20000
-    });
 }
 
 <div id="fireLightMainDiv" class="reactContent">
@@ -1213,7 +1202,7 @@
                                                                                                     <div class="ITComponentLabelContainer">
                                                                                                         <div class="ITComponentLabel indent0">Rider Amount ($)</div>
                                                                                                     </div>
-                                                                                                    <div class="ITTextField"><input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="ADB_AMOUNT" id="ADB_AMOUNT" data-bind="value: AccidentalDeathRiderAmount, disable: WholeLife"></div>
+                                                                                                    <div class="ITTextField"><input class="ITTextFieldInput leftAlign " tabindex="0" data-dataitemid="ADB_AMOUNT" id="ADB_AMOUNT" data-bind="value: $parent.adRiderAmountFormatted, disable: WholeLife"></div>
                                                                                                     <div class="validationContainer validationContainer--showText">
                                                                                                         <div class="errorText  errorText--warning errorText--noError" data-bind="class: AccidentalDeathRiderAmount.isValid() ? 'errorText  errorText--warning errorText--noError' : 'errorText '">
                                                                                                             <div class="ITValidationImage" data-bind="hidden: AccidentalDeathRiderAmount.isValid()">
@@ -1293,7 +1282,7 @@
                                                                                                         <div class="ITComponentLabel indent2">Rider Amount ($)</div>
                                                                                                     </div>
                                                                                                     <div class="indent2 ITTextField">
-                                                                                                        <input class="ITTextFieldInput leftAlign " tabindex="0" id="CHILD_RIDER_AMOUNT_FORMATTED" data-dataitemid="CHILD_RIDER_AMOUNT_FORMATTED" data-bind="value: ChildrenCoverageRiderAmount">
+                                                                                                        <input class="ITTextFieldInput leftAlign " tabindex="0" id="CHILD_RIDER_AMOUNT_FORMATTED" data-dataitemid="CHILD_RIDER_AMOUNT_FORMATTED" data-bind="value: $parent.ccRiderAmountFormatted">
                                                                                                     </div>
                                                                                                     <div class="validationContainer">
                                                                                                         <div class="indent2 errorText  errorText--warning errorText--noError indent2" data-bind="class: ChildrenCoverageRiderAmount.isValid() ? 'indent2 errorText  errorText--warning errorText--noError indent2' : 'indent2 errorText  indent2'">

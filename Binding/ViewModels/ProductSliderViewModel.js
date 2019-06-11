@@ -5,7 +5,7 @@
 
 
 (function (sn) {
-    var ProductSliderViewModel = function(data, qvm) {
+    var productSliderViewModel = function(data, qvm) {
 
         var self = this;
 
@@ -14,6 +14,10 @@
         self.productSliderModel = new SagicorNow.ProductSliderModel();
         self.quoteViewModel = qvm;
         self.submissionRequested = ko.observable(false);
+        self.ccRiderAmountFormatted = ko.observable("2,000");
+        self.adRiderAmountFormatted = ko.observable("250,000");
+        self.ccRiderAmountMask = null;
+        self.adRiderAmountMask = null;
         
 
         // Methods
@@ -26,6 +30,23 @@
                 self.productSliderModel.TwentyYearTermPerMonthCost(data[2].IllustrationResult.ResultBasis.Vector.V[0]);
             if (data[3].IllustrationResult)
                 self.productSliderModel.WholeLifePerMonthCost(data[3].IllustrationResult.ResultBasis.Vector.V[0]);
+
+            var ccRiderAmountInputElement = document.getElementById("CHILD_RIDER_AMOUNT_FORMATTED");
+            var adRiderAmountInputElement = document.getElementById("ADB_AMOUNT");
+
+            self.ccRiderAmountMask = window.IMask(ccRiderAmountInputElement, {
+                mask: Number,
+                scale: 2,  // digits after point, 0 for integers
+                signed: false,  // disallow negative
+                thousandsSeparator: ","
+            });
+
+            self.adRiderAmountMask = window.IMask(adRiderAmountInputElement, {
+                mask: Number,
+                scale: 2,  // digits after point, 0 for integers
+                signed: false,  // disallow negative
+                thousandsSeparator: ","
+            });
         };
 
         self.applyNow = function (model) {
@@ -308,7 +329,15 @@
             self.getRevisedIllustrationAsync(self.quoteViewModel.CoverageAmount);
         });
 
+        self.ccRiderAmountFormatted.subscribe(function () {
+            self.productSliderModel.ChildrenCoverageRiderAmount(self.ccRiderAmountMask.unmaskedValue);
+        });
+
+        self.adRiderAmountFormatted.subscribe(function() {
+            self.productSliderModel.AccidentalDeathRiderAmount(self.adRiderAmountMask.unmaskedValue);
+        });
+
         self.initialize();
     }
-    sn.ProductSliderViewModel = ProductSliderViewModel;
+    sn.ProductSliderViewModel = productSliderViewModel;
 }(window.SagicorNow))
