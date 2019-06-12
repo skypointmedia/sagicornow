@@ -87,6 +87,20 @@
             return text;
         });
 
+        self.AccidentalDeathStatement = ko.pureComputed(function() {
+            var text = "You are adding a " +
+                window.numeral(self.proposalModel.AccidentalDeathRiderAmount).format("$0,0") +
+                " Accidental Death Benefit Rider to your policy";
+            return text;
+        });
+
+        self.childrenCoverageStatement = ko.pureComputed(function() {
+            var text = "You are adding a " +
+                window.numeral(self.proposalModel.ChildrenCoverageRiderAmount).format("$0,0") +
+                " Child Benefit Rider to your policy";
+            return text;
+        });
+
         self.getHealthStatus = function(rc) {
             switch (rc) {
                 case "OLI_UNWRITE_SUPERB":
