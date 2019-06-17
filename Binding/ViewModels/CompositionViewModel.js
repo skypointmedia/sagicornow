@@ -278,6 +278,26 @@
             unmappedModel = $.extend(unmappedModel, self.quoteViewModel);
             unmappedModel = $.extend(unmappedModel, fraudWarningModel);
 
+            // the objects are currently in an KO Observable form; need them in plain JS.
+            var proposalHistoryModel = ko.mapping.toJS(new SagicorNow.ProposalHistoryModel());
+            var productSliderModel = ko.mapping.toJS(self.productSliderModel);
+
+            // not all the values needed are in the product slider model.
+            proposalHistoryModel.Birthday = self.quoteViewModel.birthday;
+            proposalHistoryModel.Gender = self.quoteViewModel.gender;
+            proposalHistoryModel.GenderTc = self.quoteViewModel.genderInfo.TC;
+            proposalHistoryModel.Health = self.quoteViewModel.health;
+            proposalHistoryModel.StateName = self.quoteViewModel.stateInfo.Name;
+            proposalHistoryModel.StateCode = self.quoteViewModel.state;
+            proposalHistoryModel.StateTc = self.quoteViewModel.stateInfo.TC;
+            proposalHistoryModel.Age = self.quoteViewModel.Age;
+            proposalHistoryModel.AgeOfYoungest = self.quoteViewModel.AgeOfYoungest;
+            proposalHistoryModel.Tobacco = self.quoteViewModel.tobacco;
+            proposalHistoryModel.SmokerStatusTc = self.quoteViewModel.smokerStatusInfo.TC;
+            proposalHistoryModel.RiskClassTc = self.quoteViewModel.riskClass.TC;
+
+            var data = $.extend(true, proposalHistoryModel, productSliderModel);
+
             if (self.enableSave()) {
                 self.viewModelHelper.apiPostSync('api/quote/createPassword',
                     unmappedModel,
@@ -289,9 +309,9 @@
                     });
 
                 if (self.passwordCreated())
-                    ko.utils.postJson("EmbeddedApp", { vm: self.quoteViewModel });
+                    ko.utils.postJson("EmbeddedApp", { vm: data });
             } else
-                ko.utils.postJson("EmbeddedApp", { vm: self.quoteViewModel });
+                ko.utils.postJson("EmbeddedApp", { vm: data });
         };
 
 
