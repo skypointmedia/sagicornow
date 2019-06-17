@@ -30,9 +30,9 @@
                     mask: '+{1}(000)000-0000'
                 });
 
-            self.hasADBRider(pm.AccidentalDeath);
-            self.hasWOPRider(pm.WaiverPremium);
-            self.hasCCRider(pm.ChildrenCoverage);
+            //self.hasADBRider(pm.AccidentalDeath);
+            //self.hasWOPRider(pm.WaiverPremium);
+            //self.hasCCRider(pm.ChildrenCoverage);
         }
 
         self.disableCheckbox = ko.pureComputed(function() {

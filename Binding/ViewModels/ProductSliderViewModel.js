@@ -9,6 +9,8 @@
 
         var self = this;
 
+        var initialState = 'composition'; // represents the first view mode - in other VMs, can come through an argument
+
         // Properties
         self.viewModelHelper = new SagicorNow.ViewModelHelper();
         self.productSliderModel = new SagicorNow.ProductSliderModel();
@@ -18,6 +20,9 @@
         self.adRiderAmountFormatted = ko.observable("250,000");
         self.ccRiderAmountMask = null;
         self.adRiderAmountMask = null;
+        self.viewMode = ko.observable();
+        self.step1 = ko.observable();
+        self.step2 = ko.observable();
         
 
         // Methods
@@ -31,6 +36,17 @@
             if (data[3].IllustrationResult)
                 self.productSliderModel.WholeLifePerMonthCost(data[3].IllustrationResult.ResultBasis.Vector.V[0]);
 
+            self.viewMode('step1'); // this will perform the first url-state handling round
+        };
+
+        self.goBack = function(model) {
+            self.viewModelHelper.modelIsValid(true);
+            if (self.viewMode() == 'step2') {
+                self.viewMode('step1');
+            }
+        };
+
+        self.applyMask = function() {
             var ccRiderAmountInputElement = document.getElementById("CHILD_RIDER_AMOUNT_FORMATTED");
             var adRiderAmountInputElement = document.getElementById("ADB_AMOUNT");
 
@@ -49,6 +65,39 @@
             });
         };
 
+        self.applyMask2 = function() {
+            var phoneNumberInputElement = document.getElementById("PROPOSED_INSURED_HOME_PHONE");
+
+            self.phoneNumberMask = window.IMask(phoneNumberInputElement,
+                {
+                    mask: '+{1}(000)000-0000'
+                });
+        };
+
+        self.viewMode.subscribe(function () {
+            switch (self.viewMode()) {
+                case 'step1':
+                    self.viewModelHelper.pushUrlState('step1', null, null, 'quote/composition');
+
+
+                    break;
+                case 'step2':
+                    self.viewModelHelper.pushUrlState('step2', null, null, 'quote/composition');
+                    break;
+            }
+
+            initialState = self.viewModelHelper.handleUrlState(initialState);
+        });
+
+        if (Modernizr.history) {
+            window.onpopstate = function (arg) {
+                if (arg.state != null) {
+                    self.viewModelHelper.statePopped = true;
+                    self.viewMode(arg.state.Code);
+                }
+            };
+        }
+
         self.applyNow = function (model) {
 
             // Validation requires to know when a submission is made.
@@ -62,27 +111,32 @@
             if (!ko.validatedObservable(model).isValid())
                 return;
 
+            // We will need the original quote in case the use choose to go back.
+            //window.sessionStorage.setItem("quote", self.quoteViewModel);
+
             // the objects are currently in an KO Observable form; need them in plain JS.
-            var proposalHistoryModel = ko.mapping.toJS(new SagicorNow.ProposalHistoryModel());
-            var productSliderModel = ko.mapping.toJS(model);
+            //var proposalHistoryModel = ko.mapping.toJS(new SagicorNow.ProposalHistoryModel());
+            //var productSliderModel = ko.mapping.toJS(model);
 
-            // not all the values needed are in the product slider model.
-            proposalHistoryModel.Birthday = self.quoteViewModel.birthday;
-            proposalHistoryModel.Gender = self.quoteViewModel.gender;
-            proposalHistoryModel.GenderTc = self.quoteViewModel.genderInfo.TC;
-            proposalHistoryModel.Health = self.quoteViewModel.health;
-            proposalHistoryModel.StateName = self.quoteViewModel.stateInfo.Name;
-            proposalHistoryModel.StateCode = self.quoteViewModel.state;
-            proposalHistoryModel.StateTc = self.quoteViewModel.stateInfo.TC;
-            proposalHistoryModel.Age = self.quoteViewModel.Age;
-            proposalHistoryModel.AgeOfYoungest = self.quoteViewModel.AgeOfYoungest;
-            proposalHistoryModel.Tobacco = self.quoteViewModel.tobacco;
-            proposalHistoryModel.SmokerStatusTc = self.quoteViewModel.smokerStatusInfo.TC;
-            proposalHistoryModel.RiskClassTc = self.quoteViewModel.riskClass.TC;
+            //// not all the values needed are in the product slider model.
+            //proposalHistoryModel.Birthday = self.quoteViewModel.birthday;
+            //proposalHistoryModel.Gender = self.quoteViewModel.gender;
+            //proposalHistoryModel.GenderTc = self.quoteViewModel.genderInfo.TC;
+            //proposalHistoryModel.Health = self.quoteViewModel.health;
+            //proposalHistoryModel.StateName = self.quoteViewModel.stateInfo.Name;
+            //proposalHistoryModel.StateCode = self.quoteViewModel.state;
+            //proposalHistoryModel.StateTc = self.quoteViewModel.stateInfo.TC;
+            //proposalHistoryModel.Age = self.quoteViewModel.Age;
+            //proposalHistoryModel.AgeOfYoungest = self.quoteViewModel.AgeOfYoungest;
+            //proposalHistoryModel.Tobacco = self.quoteViewModel.tobacco;
+            //proposalHistoryModel.SmokerStatusTc = self.quoteViewModel.smokerStatusInfo.TC;
+            //proposalHistoryModel.RiskClassTc = self.quoteViewModel.riskClass.TC;
 
-            var data = $.extend(true, proposalHistoryModel, productSliderModel);
+            //var data = $.extend(true, proposalHistoryModel, productSliderModel);
 
-            ko.utils.postJson("FraudWarning", { model: data });
+            //ko.utils.postJson("FraudWarning", { model: data });
+
+            self.viewMode('step2');
         };
 
         self.getRevisedIllustrationAsync = function (coverage) {

@@ -1,0 +1,93 @@
+﻿@using Newtonsoft.Json
+@model SagicorNow.Business.Models.ForesightTxLifeResponse[]
+
+@{
+    ViewBag.Title = "Product Slider";
+}
+
+@section header{
+    <link href="~/Content/firelight-css/consumerPortal.8130579c946594a9a55.css" rel="stylesheet" />
+    <!-- ORGANIZATION'S BASE CSS  -->
+    <link href="~/Content/firelight-css/SAG.css" rel="stylesheet" />
+    <!-- Flex box Grid - Used for Responsive Grid Layout -->
+    <link href="~/Content/firelight-css/flexboxgrid.6.3.0.min.css" rel="stylesheet" />
+    <!-- React-Slick Carousel styles -->
+    <link href="~/Content/firelight-css/slick.1.6.0.min.css" rel="stylesheet" />
+    <link href="~/Content/firelight-css/slick-theme.1.6.0.min.css" rel="stylesheet" />
+    <link href="~/Content/firelight-css/font-awesome.min.css" rel="stylesheet" />
+
+    <style>
+        .container-fluid {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .sliderContainer .outerSliderTrack {
+            border: none
+        }
+
+        .ITComponentLabelContainer {
+            width: auto
+        }
+
+        .ITCheckBoxContainer {
+            width: 100%
+        }
+
+
+        .modal-content {
+            background-color: #fff;
+        }
+
+        .modal-header .close {
+            padding: 1rem 1rem;
+            margin: -1rem -1rem -1rem auto;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css" />
+
+}
+
+@section scripts{
+    <script src="~/Binding/Models/ProductSliderModel.js"></script>
+    <script src="~/Binding/ViewModels/ProductSliderViewModel.js"></script>
+    <script src="~/Binding/Models/ProposalHistoryModel.js"></script>
+    <script src="~/Binding/Models/FraudWarningModel.js"></script>
+    <script src="~/Binding/ViewModels/FraudWarningViewModel.js"></script>
+    <script src="~/Binding/ViewModels/CompositionViewModel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
+    <script src="https://unpkg.com/imask"></script>
+}
+
+@section ko_apply{
+    var data = @Html.Raw(JsonConvert.SerializeObject(this.Model, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
+    var qvm = @Html.Raw(JsonConvert.SerializeObject(this.ViewBag.QuoteViewModel));
+    var viewModel = new SagicorNow.CompositionViewModel(data,qvm);
+    ko.applyBindingsWithValidation(viewModel,$("#fireLightMainDiv")[0], { insertMessages: false, messagesOnModified: false, grouping: { deep: true }})
+        $(".sliderThumb").ionRangeSlider({
+            skin: "big",
+            min: 0,
+            max: 1000000,
+            from: 250000,
+            step: 25000,
+            grid: true,
+            onFinish: function (data) {
+            viewModel.getRevisedIllustrationAsync(data.from);
+        }
+    });
+}
+
+
+<div id="fireLightMainDiv" class="reactContent">
+    <div data-bind="visible: viewMode() == 'step1', template: { name: 'product-slider-template', afterRender: applyMask }"></div>
+    <div data-bind="visible: viewMode() == 'step2', template: { name: 'fraud-warning-template', afterRender: applyMask2 }"></div>
+</div>
+
+<script type="text/html" id="product-slider-template">   
+    @Html.Partial("_ProductSliderPartial")
+</script>
+
+<script type="text/html" id="fraud-warning-template">
+    @Html.Partial("_FraudWarningPartial")
+</script>

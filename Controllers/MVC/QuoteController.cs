@@ -277,6 +277,52 @@ namespace SagicorNow.Controllers
             var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
             return View(txLife.TxLifeResponse);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="quote"></param>
+        /// <returns></returns>
+        public ActionResult Composition(QuoteViewModel quote)
+        {
+            // Should the user refresh the page the quote is stored with the session.
+            if (Session["quote"] == null)
+                Session["quote"] = quote;
+            else
+                quote = (QuoteViewModel) Session["quote"]; // A refresh on the page will be a get without the supplied parameter.
+            
+            quote.CoverageAmount = decimal.Parse(FireLightSession.DefaultCoverage);
+            ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
+            ViewBag.QuoteViewModel = quote;
+
+
+            var maxCoverage = QuoteViewModel.GetMaxCoverageBasedOnAge(quote.Age);
+
+            quote.CoverageAmount = quote.CoverageAmount > maxCoverage ? maxCoverage : quote.CoverageAmount; //update coverage based on max 
+            //vm.SocialSecurityNumber = vm.SocialSecurityNumber.Replace("-", String.Empty);
+
+            //override coverage based on risk class
+            if (quote.Age < 56 && quote.CoverageAmount < 525000M && (quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED_TOBACCO ||
+                                                               quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED2_NONTOBACCO ||
+                                                               quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED2_TOBACCO))
+            {
+                quote.CoverageAmount = 525000M;
+            }
+
+            var illustrationRequest = new IllustrationRequestParameters
+            {
+                SmokerStatusInfo = quote.smokerStatusInfo,
+                GenderInfo = quote.genderInfo,
+                RiskClass = quote.riskClass,
+                Birthday = quote.birthday,
+                CoverageAmount = quote.CoverageAmount
+            };
+
+            var soapRequest = ForesightServiceHelpers.GenerateRequestXml(illustrationRequest);
+
+            var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
+            return View(txLife.TxLifeResponse);
+        }
         
         /// <summary>
         /// 
@@ -287,17 +333,40 @@ namespace SagicorNow.Controllers
         public ActionResult ReturnToProductSlider([FromJson]ProposalHistory proposal)
         {
             ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
-            ViewBag.QuoteViewModel = proposal;
 
-            var illustrationRequest = new IllustrationRequestParameters {
-                SmokerStatusInfo = new AccordOlifeValue { TC = int.Parse(proposal.SmokerStatusTc), Value = proposal.Tobacco },
-                GenderInfo = new AccordOlifeValue { TC = int.Parse(proposal.GenderTc), Value = proposal.Gender },
-                RiskClass = new AccordOlifeValue { TC = int.Parse(proposal.RiskClassTc), Value = proposal.Health },
-                Birthday = DateTime.Parse(proposal.Birthday),
+            var quote = new QuoteViewModel
+            {
+                genderInfo = new AccordOlifeValue { TC = int.Parse(proposal.GenderTc), Value = proposal.Gender },
+                riskClass = new AccordOlifeValue { TC = int.Parse(proposal.RiskClassTc), Value = proposal.Health },
+                smokerStatusInfo = new AccordOlifeValue { TC = int.Parse(proposal.SmokerStatusTc), Value = proposal.Tobacco },
+                birthday = DateTime.Parse(proposal.Birthday),
                 CoverageAmount = proposal.CoverageAmount,
                 ChildrenCoverage = proposal.ChildrenCoverage,
-                WaiverOfPremium = proposal.WaiverPremium,
+                //WaiverOfPremium = proposal.WaiverPremium,
                 AccidentalDeath = proposal.AccidentalDeath,
+                AgeOfYoungest = proposal.AgeOfYoungest,
+                //RiderAmountAccidentalDeath = proposal.AccidentalDeathRiderAmount,
+                //RiderAmountChildrenCoverage = proposal.ChildrenCoverageRiderAmount,
+                stateInfo = new StateInfo
+                {
+                    Value = proposal.StateName,
+                    TC = int.Parse(proposal.StateTc),
+                    Name = proposal.StateName,
+                    Code = proposal.StateCode
+                }
+            };
+
+            ViewBag.QuoteViewModel = quote;
+
+            var illustrationRequest = new IllustrationRequestParameters {
+                SmokerStatusInfo = quote.smokerStatusInfo,
+                GenderInfo = quote.genderInfo,
+                RiskClass = quote.riskClass,
+                Birthday = quote.birthday,
+                CoverageAmount = quote.CoverageAmount,
+                ChildrenCoverage = quote.ChildrenCoverage,
+                WaiverOfPremium = proposal.WaiverPremium,
+                AccidentalDeath = quote.AccidentalDeath,
                 AgeOfYoungest = proposal.AgeOfYoungest,
                 RiderAmountAccidentalDeath = proposal.AccidentalDeathRiderAmount,
                 RiderAmountChildrenCoverage = proposal.ChildrenCoverageRiderAmount

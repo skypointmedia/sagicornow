@@ -5,7 +5,7 @@
     var colSize = fpDisplay ? 4 : 12;
 }
     <div class="@(fpDisplay?"container":"slim-container")">
-        <form id="quote-form" method="POST" action="/quote/productslider">
+        <form id="quote-form" method="POST" action="/quote/composition">
             @Html.HiddenFor(x => x.IsNewProposal, new {id="field-isNew"})
             <section class="input-section" style="@(!fpDisplay ? "background-color:transparent;padding-bottom:0px;" : "")" id="step-one@(fpDisplay?"":"-slim")">
                 <div class="row main-inputs">

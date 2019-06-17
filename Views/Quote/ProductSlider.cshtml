@@ -46,7 +46,7 @@
     <script src="https://unpkg.com/imask"></script>
 }
 @section ko_apply{
-    var data = @Html.Raw(JsonConvert.SerializeObject(this.Model));
+    var data = @Html.Raw(JsonConvert.SerializeObject(this.Model, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
     var qvm = @Html.Raw(JsonConvert.SerializeObject(this.ViewBag.QuoteViewModel));
     var viewModel = new SagicorNow.ProductSliderViewModel(data,qvm);
     ko.applyBindingsWithValidation(viewModel,$("#fireLightMainDiv")[0], { insertMessages: false, messagesOnModified: false, grouping: { deep: true }})

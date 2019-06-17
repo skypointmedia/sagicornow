@@ -6,6 +6,11 @@
 }(window.SagicorNow));
 
 (function (sn) {
+    var initialState;
+    sn.initialState = initialState;
+}(window.SagicorNow));
+
+(function (sn) {
     var ViewModelHelper = function () {
 
         var self = this;

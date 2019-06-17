@@ -205,6 +205,7 @@
     <Content Include="Binding\Models\FraudWarningModel.js" />
     <Content Include="Binding\Models\ProductSliderModel.js" />
     <Content Include="Binding\Models\ProposalHistoryModel.js" />
+    <Content Include="Binding\ViewModels\CompositionViewModel.js" />
     <Content Include="Binding\ViewModels\FraudWarningViewModel.js" />
     <Content Include="Binding\ViewModels\ProductSliderViewModel.js" />
     <Content Include="Content\consumer-portal.css" />
@@ -227,6 +228,7 @@
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\knockout.validation.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\numeral\numeral.js" />
     <Content Include="Scripts\numeral\numeral.min.js" />
     <Content Include="Views\Web.config" />
@@ -386,6 +388,9 @@
     <Content Include="Views\Shared\_PreviousQuoteFormPartial.cshtml" />
     <Content Include="Views\Quote\RetrievePrevious.cshtml" />
     <Content Include="Views\Quote\View.cshtml" />
+    <Content Include="Views\Quote\_ProductSliderPartial.cshtml" />
+    <Content Include="Views\Quote\_FraudWarningPartial.cshtml" />
+    <Content Include="Views\Quote\Composition.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
