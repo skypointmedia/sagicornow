@@ -10,14 +10,14 @@ namespace SagicorNow.Common
         internal const string EmbedTokenKeyName = "FireLightToken";
         internal const string EmbedTokenDateTimeCreatedKeyName = "TokenCreatedDateTime";
 #if DEBUG
-        //private const string BaseUrl = "https://uat.firelighteapp.com/EGApp/"; //UAT
-        internal const string BaseUrl = "https://firelight.insurancetechnologies.com/EGApp/"; //QE
+        internal const string BaseUrl = "https://uat.firelighteapp.com/EGApp/"; //UAT
+        //internal const string BaseUrl = "https://firelight.insurancetechnologies.com/EGApp/"; //QE
         internal const string ForeSightUrl = "https://illustration.test.sagicorlifeusa.com/sli6/Core/Acord/TXLifeService.svc";
 #else
         internal const string BaseUrl = "https://www.firelighteapp.com/EGApp/";                       
 #endif
-        //internal const string SagApiSecret = "38c4df2a99f8490a8ad962eb4b12402dJa"; //UAT
-        internal const string SagApiSecret = "43983160a16d4f0996f98d04fe5ea36d"; //QE
+        internal const string SagApiSecret = "b6c99d41902e46ff8dee144589bfe846"; //UAT
+        //internal const string SagApiSecret = "43983160a16d4f0996f98d04fe5ea36d"; //QE
         internal const string SagOrgId = "D2C";
         internal const string SagCarrierCode = "SAG";
         internal const string CertSerialNum = "24000001c5e9e39d3274150b7b0002000001c5";
