@@ -39,6 +39,10 @@
 }
 
 @section scripts{
+    <script type="text/javascript">
+        $("#trustpilot").hide();
+        $("#needs-analysis").hide();
+    </script>
     <script src="~/Binding/Models/ProductSliderModel.js"></script>
     <script src="~/Binding/ViewModels/ProductSliderViewModel.js"></script>
     <script src="~/Binding/Models/ProposalHistoryModel.js"></script>
@@ -61,7 +65,6 @@
     viewModel.getRevisedIllustrationAsync(data.from);
     }
     });
-    
 
 }
 

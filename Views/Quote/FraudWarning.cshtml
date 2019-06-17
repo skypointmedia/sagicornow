@@ -25,6 +25,7 @@
             padding-right: 0;
             padding-left: 0;
         }
+
         .modal-content {
             background-color: #fff;
         }
@@ -39,6 +40,10 @@
 @section scripts
 {
     <script src="https://unpkg.com/imask"></script>
+    <script type="text/javascript">
+        $("#trustpilot").hide();
+        $("#needs-analysis").hide();
+    </script>
     <script src="~/Binding/Models/FraudWarningModel.js"></script>
     <script src="~/Binding/ViewModels/FraudWarningViewModel.js"></script>
 }

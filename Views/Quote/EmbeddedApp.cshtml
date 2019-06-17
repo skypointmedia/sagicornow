@@ -65,11 +65,21 @@
             }
             activityStatus.innerText = status.percentComplete + '% Complete';
         }
-        function signatureStatusChange(sig) {            
+        function signatureStatusChange(sig) {
             if (sig.succeeded) {
                 //window.location.href = sig.redirectUrl;
-                var url = sig.redirectUrl;
-                document.getElementById("sigFrame").src = url;
+                var url = sig.redirectUrl + "&Branding=SAG-D2C";
+
+                // Adjustments to CSS
+                $(".footer").css("margin-top: -6px;");
+                $("#iframeWrapper").css("margin-top: -15px;");
+
+                $("#fireLightMainDiv").hide();
+                $("#trustpilot").hide();
+                $("#needs-analysis").hide();
+                $("#embeddedButtons").hide();
+
+                $("#iframeWrapper").html("<iframe id=\"sigFrame\" src=\"" + url + "\"  width=\"100%\" height=\"1800px\" frameborder=\"0\" ></iframe>");
             }
             else {
                 console.log('Signature status message = ' + sig.message);
@@ -91,7 +101,7 @@
         }
 
         btnProceedToSignatures.addEventListener('click', () => {
-            $("#fireLightMainDiv").html("<iframe id=\"sigFrame\" src=\"\"  width=\"100%\" height=\"800px\" ></iframe>");
+            //$("#fireLightMainDiv").html("<iframe id=\"sigFrame\" src=\"\"  width=\"100%\" height=\"800px\" ></iframe>");
             FireLightAPI.proceedToSignatures();
         });
 
