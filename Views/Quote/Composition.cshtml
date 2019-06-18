@@ -50,6 +50,10 @@
 }
 
 @section scripts{
+    <script type="text/javascript">
+        $("#trustpilot").hide();
+        $("#needs-analysis").hide();
+    </script>
     <script src="~/Binding/Models/ProductSliderModel.js"></script>
     <script src="~/Binding/ViewModels/ProductSliderViewModel.js"></script>
     <script src="~/Binding/Models/ProposalHistoryModel.js"></script>
@@ -84,7 +88,7 @@
     <div data-bind="visible: viewMode() == 'step2', template: { name: 'fraud-warning-template', afterRender: applyMask2 }"></div>
 </div>
 
-<script type="text/html" id="product-slider-template">   
+<script type="text/html" id="product-slider-template">
     @Html.Partial("_ProductSliderPartial")
 </script>
 
