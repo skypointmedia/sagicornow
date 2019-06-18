@@ -3,6 +3,7 @@ using SagicorNow.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Data.Entity.Migrations;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -136,7 +137,7 @@ namespace SagicorNow.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public async Task<ActionResult> EmbeddedApp([FromJson]ProposalHistory vm)
+        public async Task<ActionResult> EmbeddedApp([FromJson]ProposalHistory vm, bool isNew = true)
         {
             try
             {
@@ -162,15 +163,26 @@ namespace SagicorNow.Controllers
                 if (eligibility.IsEligible)
                 {
                     var accessToken = await GetAccessToken();
-                    var activityRequestApiString = this.CreateEAppActivity(accessToken, "26", vm); // 26 = Sage Term 
-                    var activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(activityRequestApiString);
+
+                    FirelightActivityReturn activityReturn = null;
+
+                    if (isNew)
+                    {
+                        var activityRequestApiString =
+                            this.CreateEAppActivity(accessToken, "26", vm); // 26 = Sage Term 
+                        activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(
+                            activityRequestApiString);
+
+                        UpdateActivityIdInDb(activityReturn.ActivityId, vm.Email);
+                    }
+
 
                     var evm = new EmbeddedViewModel {
                         AccessToken = accessToken,
                         //AccessToken = FirelightAccessToken,
                         FirelightBaseUrl = FireLightSession.BaseUrl,
-                        IsNew = true, //vm.IsNewProposal
-                        ActivityId = activityReturn.ActivityId
+                        IsNew = isNew, //vm.IsNewProposal
+                        ActivityId = isNew ? activityReturn.ActivityId : vm.ActivityId
                     };
 
                     return View("EmbeddedApp", evm);
@@ -188,6 +200,8 @@ namespace SagicorNow.Controllers
             }
         }
 
+       
+
         [System.Web.Mvc.HttpPost]
         public ViewResult FraudWarning([FromJson]ProposalHistory model)
         {
@@ -204,7 +218,7 @@ namespace SagicorNow.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public async Task<ViewResult> RetrievePrevious(RetrievePreviousQuoteViewModel model)
+        public ActionResult RetrievePrevious(RetrievePreviousQuoteViewModel model)
         {
             try
             {
@@ -217,15 +231,7 @@ namespace SagicorNow.Controllers
                     return View(model);
                 }
 
-                var accessToken = await GetAccessToken();
-
-                var evm = new EmbeddedViewModel {
-                    AccessToken = accessToken,
-                    FirelightBaseUrl = FireLightSession.BaseUrl,
-                    IsNew = false
-                };
-
-                return View("EmbeddedApp", evm);
+                return RedirectToAction("EmbeddedApp", "Quote", new {vm = proposalHistory, isNew = false});
             }
             catch (Exception ex)
             {
@@ -470,6 +476,15 @@ namespace SagicorNow.Controllers
 
         #region Helpers
 
+        private void UpdateActivityIdInDb(string activityId, string email)
+        {
+            var proposal = _db.ProposalHistories.Find(email);
+            if (proposal == null) return;
+            proposal.ActivityId = activityId;
+            _db.ProposalHistories.AddOrUpdate(proposal);
+            _db.SaveChanges();
+        }
+
         private async Task<string> GetAccessToken()
         {
             // Build XMLs
@@ -539,8 +554,27 @@ namespace SagicorNow.Controllers
         
 
         private string CreateEAppActivity(string token, string cusip, QuoteViewModel quote) {
-            var body = InternalCreateEAppActivity(cusip, quote.stateInfo, quote.birthday, quote.genderInfo,
-                quote.riskClass, quote.smokerStatusInfo, quote.CoverageAmount);
+            var parameters = new EAppRequestParameters {
+                WholeLife = quote.WholeLife,
+                FirstName = quote.FirstName,
+                CoverageAmount = quote.CoverageAmount,
+                StateInfo = quote.stateInfo,
+                Birthday = quote.birthday,
+                CUSIP = cusip,
+                WaiverOfPremium = quote.WaiverPremium,
+                AccidentalDeath = quote.AccidentalDeath,
+                ChildrenCoverage = quote.ChildrenCoverage,
+                FifteenYearTerm = quote.FifteenYearTerm,
+                GenderInfo = quote.genderInfo,
+                PhoneNumber = quote.PhoneNumber,
+                RiderAmountAccidentalDeath = quote.AccidentalDeathRiderAmount,
+                RiderAmountChildrenCoverage = quote.ChildrenCoverageRiderAmount,
+                RiskClass = quote.riskClass,
+                SmokerStatusInfo = quote.smokerStatusInfo,
+                TenYearTerm = quote.TenYearTerm,
+                TwentyYearTerm = quote.TwentyYearTerm
+            };
+            var body = InternalCreateEAppActivity(parameters);
             return CreateActivity(token, body);
         }
 
@@ -548,31 +582,52 @@ namespace SagicorNow.Controllers
         {
             var smokerStatusInfo = new AccordOlifeValue { TC = int.Parse(proposal.SmokerStatusTc), Value = proposal.Tobacco };
             var genderInfo = new AccordOlifeValue { TC = int.Parse(proposal.GenderTc), Value = proposal.Gender };
-            var sateInfo = new StateInfo
+            var stateInfo = new StateInfo
             {
                 Code = proposal.StateCode, Value = proposal.StateName, TC = int.Parse(proposal.StateTc),
                 Name = proposal.StateName
             };
 
-            var riskClass = new AccordOlifeValue();
+            var riskClass = new AccordOlifeValue{TC = int.Parse(proposal.RiskClassTc)};
 
-            var body = InternalCreateEAppActivity(cusip, sateInfo, DateTime.Parse(proposal.Birthday), genderInfo,
-                riskClass, smokerStatusInfo, proposal.CoverageAmount);
+            var parameters = new EAppRequestParameters
+            {
+                WholeLife = proposal.WholeLife,
+                FirstName = proposal.FirstName,
+                CoverageAmount = proposal.CoverageAmount,
+                StateInfo = stateInfo,
+                Birthday = DateTime.Parse(proposal.Birthday),
+                CUSIP = cusip,
+                WaiverOfPremium = proposal.WaiverPremium,
+                AccidentalDeath = proposal.AccidentalDeath,
+                ChildrenCoverage = proposal.ChildrenCoverage,
+                FifteenYearTerm = proposal.FifteenYearTerm,
+                GenderInfo = genderInfo,
+                PhoneNumber = proposal.PhoneNumber,
+                RiderAmountAccidentalDeath = proposal.AccidentalDeathRiderAmount,
+                RiderAmountChildrenCoverage = proposal.ChildrenCoverageRiderAmount,
+                RiskClass = riskClass,
+                SmokerStatusInfo = smokerStatusInfo,
+                TenYearTerm = proposal.TenYearTerm,
+                TwentyYearTerm = proposal.TwentyYearTerm,
+                Email = proposal.Email
+            };
+
+            var body = InternalCreateEAppActivity(parameters);
 
             return CreateActivity(token, body);
         }
+         
 
-        private string InternalCreateEAppActivity(string cusip, StateInfo stateInfo, DateTime? birthday,
-            AccordOlifeValue genderInfo, AccordOlifeValue riskClass, AccordOlifeValue smokerStatusInfo,
-            decimal coverageAmount)
+        private string InternalCreateEAppActivity(EAppRequestParameters parameters)
         {
             var reqId = Guid.NewGuid().ToString();
 
             var actBody = new FirelightActivityBody
             {
                 Id = reqId,
-                CUSIP = cusip,
-                Jurisdiction = stateInfo.TC,
+                CUSIP = parameters.CUSIP,
+                Jurisdiction = parameters.StateInfo.TC,
                 CarrierCode = FireLightSession.SagCarrierCode,
                 TransactionType = 1,
                 DataItems = new List<FirelightActivityDataItem>
@@ -580,27 +635,59 @@ namespace SagicorNow.Controllers
                     new FirelightActivityDataItem {DataItemId = "Owner_NonNaturalName", Value = $""},
                     new FirelightActivityDataItem {DataItemId = "SourceInfoName", Value = "D2C"},
                     new FirelightActivityDataItem
-                        {DataItemId = "HiddenField_DOB", Value = birthday.Value.ToString("MM/dd/yyyy")},
+                        {DataItemId = "HiddenField_DOB", Value = parameters.Birthday.Value.ToString("MM/dd/yyyy")},
                     new FirelightActivityDataItem
-                        {DataItemId = "PROPOSED_OWNER_SIGNED_STATE", Value = stateInfo.TC.ToString()},
-                    new FirelightActivityDataItem {DataItemId = "INSURED_STATE_NAME", Value = stateInfo.Name},
+                        {DataItemId = "PROPOSED_OWNER_SIGNED_STATE", Value = parameters.StateInfo.TC.ToString()},
+                    new FirelightActivityDataItem {DataItemId = "INSURED_STATE_NAME", Value = parameters.StateInfo.Name},
                     new FirelightActivityDataItem
                     {
                         DataItemId = "PROPOSED_INSURED_GENDER",
-                        Value = (genderInfo.TC == 1 ? "M" : genderInfo.TC == 2 ? "F" : "")
+                        Value = (parameters.GenderInfo.TC == 1 ? "M" : parameters.GenderInfo.TC == 2 ? "F" : "")
                     },
-                    new FirelightActivityDataItem {DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(riskClass.TC)},
+                    new FirelightActivityDataItem {DataItemId = "RISK_CLASS", Value = GetRickClassFromTC(parameters.RiskClass.TC)},
                     new FirelightActivityDataItem
-                        {DataItemId = "PREMIUM_TOBACCO_USER", Value = smokerStatusInfo.TC == 1 ? "N" : "Y"},
+                        {DataItemId = "PREMIUM_TOBACCO_USER", Value = parameters.SmokerStatusInfo.TC == 1 ? "N" : "Y"},
                     new FirelightActivityDataItem
                     {
                         DataItemId = "APP_FACE_AMOUNT",
-                        Value = coverageAmount > 0
-                            ? coverageAmount.ToString(CultureInfo.InvariantCulture)
+                        Value = parameters.CoverageAmount > 0
+                            ? parameters.CoverageAmount.ToString(CultureInfo.InvariantCulture)
                             : FireLightSession.DefaultCoverage
-                    }
+                    },
+                    new FirelightActivityDataItem { DataItemId = "APP_CHILD_RIDER", Value = parameters.ChildrenCoverage ? "Y":"" },
+                    new FirelightActivityDataItem { DataItemId = "CHILD_RIDER_AMOUNT", Value = parameters.RiderAmountChildrenCoverage.ToString(CultureInfo.InvariantCulture) },
+                    new FirelightActivityDataItem { DataItemId = "APP_WOP_WMD_RIDER", Value = parameters.WaiverOfPremium ? "true": "" },
+                    new FirelightActivityDataItem { DataItemId = "ADB_RIDER", Value = parameters.AccidentalDeath ? "true": "" },
+                    new FirelightActivityDataItem { DataItemId = "ADB_AMOUNT", Value = parameters.RiderAmountAccidentalDeath.ToString(CultureInfo.InvariantCulture) },
+                    new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_FNAME", Value = parameters.FirstName },
+                    new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_EMAIL", Value = parameters.Email },
+                    new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_HOME_PHONE", Value = parameters.PhoneNumber }
                 }
             };
+
+            var dataItem = new FirelightActivityDataItem
+            {
+                DataItemId = "PRODUCT_DESCRIPTION",
+            };
+
+            if (parameters.TenYearTerm)
+            {
+                dataItem.Value = "TERM10";
+            }
+            else if (parameters.FifteenYearTerm)
+            {
+                dataItem.Value = "TERM15";
+            }
+            else if (parameters.TwentyYearTerm)
+            {
+                dataItem.Value = "TERM20";
+            }
+            else if (parameters.WholeLife)
+            {
+                dataItem.Value = "PPWL";
+            }
+
+            actBody.DataItems.Add(dataItem);
 
             var body = Newtonsoft.Json.JsonConvert.SerializeObject(actBody);
             return body;

@@ -31,7 +31,7 @@
                 },
                 message: "Password is required"
             },
-            minLength: { message: "Password must be at least 6 characters", params: 6 }
+            minLength: { message: "Password must be at least 8 characters", params: 8 }
         });
 
         self.ConfirmPassword = ko.observable("").extend({

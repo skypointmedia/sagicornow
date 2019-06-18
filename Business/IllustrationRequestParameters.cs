@@ -3,9 +3,9 @@ using SagicorNow.Business.Models;
 
 namespace SagicorNow.Business
 {
-    public class IllustrationRequestParameters
+    public class BaseParameter
     {
-        public IllustrationRequestParameters()
+        public BaseParameter()
         {
             CoverageAmount = 250000;
             WaiverOfPremium = false;
@@ -23,5 +23,22 @@ namespace SagicorNow.Business
         public decimal RiderAmountChildrenCoverage { get; set; }
         public int AgeOfYoungest { get; set; }
         public DateTime? Birthday { get; set; }
+    }
+    public class IllustrationRequestParameters: BaseParameter
+    {
+
+    }
+
+    public class EAppRequestParameters: BaseParameter
+    {
+        public string CUSIP { get; set; }
+        public StateInfo StateInfo { get; set; }
+        public bool TenYearTerm { get; set; }
+        public bool FifteenYearTerm { get; set; }
+        public bool TwentyYearTerm { get; set; }
+        public bool WholeLife { get; set; }
+        public string FirstName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
     }
 }
