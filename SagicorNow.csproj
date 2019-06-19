@@ -202,6 +202,10 @@
     <Compile Include="ViewModels\RetrievePreviousQuoteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SagicorNow_v0.2.mdf" />
+    <Content Include="App_Data\SagicorNow_v0.2_log.ldf">
+      <DependentUpon>SagicorNow_v0.2.mdf</DependentUpon>
+    </Content>
     <Content Include="Binding\Models\FraudWarningModel.js" />
     <Content Include="Binding\Models\ProductSliderModel.js" />
     <Content Include="Binding\Models\ProposalHistoryModel.js" />
