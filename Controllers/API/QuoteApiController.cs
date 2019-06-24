@@ -69,32 +69,14 @@ namespace SagicorNow.Controllers.API
         [HttpPost]
         [AllowAnonymous]
         [Route("createPassword")]
-        public HttpResponseMessage CreateNewUserPassword(HttpRequestMessage request, QuoteViewModel model)
+        public HttpResponseMessage CreateNewUserPassword(HttpRequestMessage request, ProposalHistory model)
         {
             return GetHttpResponse(request, () => {
                 bool succeeded;
                 if (ModelState.IsValid)
                 {
-                    var proposal = new ProposalHistory {
-                        CoverageAmount = model.CoverageAmount,
-                        FirstName = model.FirstName,
-                        //EnableSaving = model.EnableSaving,
-                        AccidentalDeath = model.AccidentalDeath,
-                        ChildrenCoverage = model.ChildrenCoverage,
-                        Email = model.EmailAddress,
-                        FifteenYearTerm = model.FifteenYearTerm,
-                        FifteenYearTermPerMonthCost = model.FifteenYearTermPerMonthCost,
-                        HashedPassword = SecurityHelpers.HashPassword(model.PhoneNumber),
-                        PhoneNumber = model.PhoneNumber,
-                        TenYearTerm = model.TenYearTerm,
-                        TenYearTermPerMonthCost = model.FifteenYearTermPerMonthCost,
-                        TwentyYearTerm = model.TwentyYearTerm,
-                        TwentyYearTermPerMonthCost = model.TwentyYearTermPerMonthCost,
-                        WaiverPremium = model.WaiverPremium,
-                        WholeLife = model.WholeLife,
-                        WholeLifePerMonthCost = model.WholeLifePerMonthCost,
-                    };
-                    _db.ProposalHistories.AddOrUpdate(proposal);
+                    model.HashedPassword = SecurityHelpers.HashPassword(model.Password);
+                    _db.ProposalHistories.AddOrUpdate(model);
                     _db.SaveChanges();
                     succeeded = true;
                 }

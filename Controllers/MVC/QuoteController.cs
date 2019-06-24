@@ -173,7 +173,7 @@ namespace SagicorNow.Controllers
                         activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(
                             activityRequestApiString);
 
-                        UpdateActivityIdInDb(activityReturn.ActivityId, vm.Email);
+                        UpdateActivityIdInDb(activityReturn.ActivityId, vm.EmailAddress);
                     }
 
 
@@ -409,7 +409,7 @@ namespace SagicorNow.Controllers
         public JsonResult ProposalExist(string email)
         {
             var ssn = email.Replace("-", string.Empty);
-            var exist = _db.ProposalHistories.Any(record => record.Email == ssn);
+            var exist = _db.ProposalHistories.Any(record => record.EmailAddress == ssn);
             return Json(exist,JsonRequestBehavior.AllowGet);
         }
 
@@ -451,7 +451,7 @@ namespace SagicorNow.Controllers
                     //EnableSaving = model.EnableSaving,
                     AccidentalDeath = model.AccidentalDeath,
                     ChildrenCoverage = model.ChildrenCoverage,
-                    Email = model.EmailAddress,
+                    EmailAddress = model.EmailAddress,
                     FifteenYearTerm = model.FifteenYearTerm,
                     FifteenYearTermPerMonthCost = model.FifteenYearTermPerMonthCost,
                     HashedPassword = SecurityHelpers.HashPassword(model.PhoneNumber),
@@ -610,7 +610,7 @@ namespace SagicorNow.Controllers
                 SmokerStatusInfo = smokerStatusInfo,
                 TenYearTerm = proposal.TenYearTerm,
                 TwentyYearTerm = proposal.TwentyYearTerm,
-                Email = proposal.Email
+                Email = proposal.EmailAddress
             };
 
             var body = InternalCreateEAppActivity(parameters);

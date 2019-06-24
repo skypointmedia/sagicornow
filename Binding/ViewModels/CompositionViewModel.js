@@ -280,6 +280,7 @@
 
             // the objects are currently in an KO Observable form; need them in plain JS.
             var proposalHistoryModel = ko.mapping.toJS(new SagicorNow.ProposalHistoryModel());
+
             var productSliderModel = ko.mapping.toJS(self.productSliderModel);
 
             // not all the values needed are in the product slider model.
@@ -297,10 +298,10 @@
             proposalHistoryModel.RiskClassTc = self.quoteViewModel.riskClass.TC;
 
             var data = $.extend(true, proposalHistoryModel, productSliderModel);
+            data = $.extend(true, data, unmappedModel);
 
             if (self.enableSave()) {
-                self.viewModelHelper.apiPostSync('api/quote/createPassword',
-                    unmappedModel,
+                self.viewModelHelper.apiPostSync('api/quote/createPassword', data,
                     function (result) {
                         if (result) {
                             self.passwordCreated(true);

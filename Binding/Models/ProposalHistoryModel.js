@@ -6,6 +6,7 @@
 
         var self = this;
 
+        self.EmailAdress = ko.observable("");
         self.StateName = ko.observable("");
         self.StateCode = ko.observable("");
         self.StateTc = ko.observable("");
@@ -13,6 +14,7 @@
         self.GenderTc = ko.observable("");
         self.Birthday = ko.observable();
         self.Age = ko.observable("");
+        self.AgeOfYoungest = ko.observable(1);
         self.Tobacco = ko.observable();
         self.SmokerStatusTc = ko.observable("");
         self.Health = ko.observable("");
@@ -31,6 +33,9 @@
         self.ChildrenCoverage = ko.observable(false);
         self.FirstName = ko.observable("");
         self.PhoneNumber = ko.observable("");
+        self.ReplacementPolicy = ko.observable();
+        self.AccidentalDeathRiderAmount = ko.observable();
+        self.ChildrenCoverageRiderAmount = ko.observable();
     }
     sn.ProposalHistoryModel = ProposalHistoryModel;
 }(window.SagicorNow))

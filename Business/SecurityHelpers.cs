@@ -8,8 +8,8 @@ namespace SagicorNow.Business
         public static string HashPassword(string password)
         {
             byte[] data = System.Text.Encoding.ASCII.GetBytes(password);
-            data = new SHA256Managed().ComputeHash(data);
-            return System.Text.Encoding.ASCII.GetString(data);
+            data = new MD5CryptoServiceProvider().ComputeHash(data);
+            return BitConverter.ToString(data).Replace("-", ""); ;
         }
 
         public static bool VerifyHashedPassword(string hashedPassword, string password)
