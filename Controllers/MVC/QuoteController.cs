@@ -136,8 +136,8 @@ namespace SagicorNow.Controllers
             }
         }
 
-        [System.Web.Mvc.HttpPost]
-        public async Task<ActionResult> EmbeddedApp([FromJson]ProposalHistory vm, bool isNew = true)
+        //[System.Web.Mvc.HttpPost]
+        public async Task<ActionResult> EmbeddedApp(ProposalHistory vm, bool isNew = true)
         {
             try
             {
@@ -218,7 +218,7 @@ namespace SagicorNow.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public ActionResult RetrievePrevious(RetrievePreviousQuoteViewModel model)
+        public async Task<ActionResult> RetrievePrevious(RetrievePreviousQuoteViewModel model)
         {
             try
             {
@@ -231,7 +231,7 @@ namespace SagicorNow.Controllers
                     return View(model);
                 }
 
-                return RedirectToAction("EmbeddedApp", "Quote", new {vm = proposalHistory, isNew = false});
+                return await EmbeddedApp(proposalHistory, false);
             }
             catch (Exception ex)
             {
