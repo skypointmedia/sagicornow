@@ -11,15 +11,49 @@
         #fireLightMainDiv{
             padding-bottom: 4em;
         }
+        .ITPanelTitleImage{
+            padding: 0 2px;
+        }
+        .AddBene{
+            width: 180px;
+            margin: 10px 0px -5px 5px;
+        }
+        .RemoveBene {
+            width: 210px;
+            margin: 10px 0px -5px 5px;
+        }
+        .AddBene .ITButtonText, .RemoveBene .ITButtonText {
+            font-size: 18px;
+        }
+        .RemoveBene .rightAlign{
+            justify-content: flex-start !important;
+        }
+        .ITComponentLabel{
+            margin-top: -5px;
+        }
+        .ITComponent__help{
+            margin-top: -10px;
+        }
+        .navigationButtonsContainer{
+            margin-bottom: -20px;
+        }
+        .navigationButtons {
+            border-radius: 0 0 4px 4px;
+            width: calc(-1px + 100%);
+            margin-left: 1px;
+        }
+        .navigationButtons .ITButtonInput {
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
     </style>
 }
 
 <div id="embeddedButtons">
     <h2>EmbeddedApp</h2>
 
-    <p>
-        Percent Complete: <div id="activityStatus" class="percentComplete"></div>
-    </p>
+    <p>Percent Complete: </p><div id="activityStatus" class="percentComplete"></div>
     <div style="display:flex;">
         <div>
             <button class="btn btn-primary" id="btnProceedToSignatures">Proceed to Signatures</button>
@@ -37,6 +71,7 @@
 </div>
 <br /><hr /><br />
 <p id="errMessage"></p>
+<div style="display:none;"><input id="currentPageNumber" type="text" disabled="disabled" value="0" /></div>
 <div id="iframeWrapper"></div>
 <div id="fireLightMainDiv">
     Loading...
@@ -57,10 +92,11 @@
         $('#fireLightMainDiv').on('fireLightLoaded', function ()
         {
             FireLightAPI.init(token, activityId, isNew);
+            FireLightAPI.navigationEvent.subscribe(navigationChange);
             FireLightAPI.statusEvent.subscribe(statusChange);
             FireLightAPI.signatureStatusEvent.subscribe(signatureStatusChange);
             FireLightAPI.errorEvent.subscribe(handleErrorEvent);
-            FireLightAPI.ruleMessagesEvent.subscribe(ruleMessageChange);
+            //FireLightAPI.ruleMessagesEvent.subscribe(ruleMessageChange);
         });
         var statusChange = function (status) {
             console.log('statusEvent - status = ' + JSON.stringify(status));
@@ -73,11 +109,16 @@
             }
             activityStatus.innerText = status.percentComplete + '% Complete';
         }
+        var navigationChange = function (nav) {
+            //console.log(JSON.stringify(nav));
+            //console.log('Loading Page ' + nav.pageNumber);
+            document.getElementById('currentPageNumber').value = nav.pageNumber;
+            // will have navigation change trigger save, so that each page change 
+            // would save current state of application, rather than active save
+            FireLightAPI.save();
+        }
         function signatureStatusChange(sig) {
             if (sig.succeeded) {
-                //window.location.href = sig.redirectUrl;
-                //var url = sig.redirectUrl;
-                //document.getElementById("sigFrame").src = url;
                 console.log("Signature Status Change");
                 var url = sig.redirectUrl + "&Branding=SAG-D2C";
 
@@ -85,8 +126,8 @@
                 $(".footer").css("margin-top: -6px;");
                 $("#iframeWrapper").css("margin-top: -15px;");
                 $("#fireLightMainDiv").hide();
-                $("#trustpilot").hide();
-                $("#needs-analysis").hide();
+                //$("#trustpilot").hide();
+                //$("#needs-analysis").hide();
                 $("#embeddedButtons").hide();
 
                 $("#iframeWrapper").html("<iframe id=\"sigFrame\" src=\"" + url + "\"  width=\"100%\" height=\"1800px\" frameborder=\"0\" ></iframe>");
@@ -95,15 +136,22 @@
                 console.log('Signature status message = ' + sig.message);
             }
         }
-        function ruleMessageChange(x) {
-            var msgs = FireLightAPI.getRuleMessages();
-            $.each(msgs, function (item, value) {
-                console.log("Errors: ")
-                $.each(value.Errors, function (key, value2) {
-                    console.log(" Field: " + value2.DataItemid + "\r\n Message: " + value2.Message + "\r\n Page: " + value.PageNumber);
-                });
-            });
-        }
+        // For Debugging
+        //function ruleMessageChange(x) {
+        //    var msgs = FireLightAPI.getRuleMessages();
+        //    var currPage = document.getElementById('currentPageNumber').value;
+        //    var errCount = 0;
+        //    $.each(msgs, function (item, value) {
+        //        if (value.PageNumber == currPage) {
+        //            errCount += 1
+        //            console.log("Error on field: " + item);
+        //            //$.each(value.Errors, function (key, value2) {
+        //            //    console.log(" Field: " + value2.DataItemid + "\r\n Message: " + value2.Message + "\r\n Page: " + value.PageNumber);
+        //            //});
+        //        }
+        //    });
+        //    console.log("Number of Errors: " + errCount);
+        //}
         function handleErrorEvent(err) {
             var msg = err.error.ApiSource + ' - ' + err.error.ErrorMessage;
             document.getElementById('errMessage').innerHTML = 'Error message = ' + msg;
@@ -111,7 +159,6 @@
         }
 
         btnProceedToSignatures.addEventListener('click', () => {
-            //$("#fireLightMainDiv").html("<iframe id=\"sigFrame\" src=\"\"  width=\"100%\" height=\"800px\" ></iframe>");
             FireLightAPI.proceedToSignatures();
         });
 
@@ -125,7 +172,8 @@
 
         btnSaveApplication.addEventListener('click', () => {
             FireLightAPI.save();
-        });
+            console.log("Application Saved");
+        });        
     </script>
     <script src="@Url.Content(Model.FirelightBaseUrl + "Resource/Scripts/eApp")"></script>
     <script type="text/javascript">

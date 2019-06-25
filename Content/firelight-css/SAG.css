@@ -731,10 +731,6 @@ select::-ms-expand {
     margin-bottom: -40px;
 }
 
-.heightLabel {
-    margin-bottom: -15px !important;
-}
-
 .singleButton {
     margin-top: 25px;
 }
