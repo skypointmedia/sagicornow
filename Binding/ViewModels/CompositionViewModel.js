@@ -472,19 +472,19 @@
         });
 
         self.locationStatement = ko.pureComputed(function () {
-            return "You are completing and signing this application in " + self.quoteViewModel.StateName;
+            return "You are completing and signing this application in " + self.quoteViewModel.stateInfo.Name;
         });
 
         self.tobaccoUseStatement = ko.pureComputed(function () {
             var text = "You ";
-            if (self.quoteViewModel.Tobacco === "OLI_TOBACCO_NEVER")
+            if (self.quoteViewModel.tobacco === "OLI_TOBACCO_NEVER")
                 text += "don't ";
             text += "use tobacco / nicotine products";
             return text;
         });
 
         self.healthStatement = ko.pureComputed(function () {
-            return "You are in " + self.getHealthStatus(self.quoteViewModel.Health) + " health";
+            return "You are in " + self.getHealthStatus(self.quoteViewModel.health) + " health";
         });
 
         self.coverageStatement = ko.pureComputed(function () {
