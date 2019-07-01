@@ -136,7 +136,7 @@ namespace SagicorNow.Controllers
             }
         }
 
-        //[System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> EmbeddedApp(ProposalHistory vm, bool isNew = true)
         {
             try
@@ -202,14 +202,14 @@ namespace SagicorNow.Controllers
 
        
 
-        [System.Web.Mvc.HttpPost]
-        public ViewResult FraudWarning([FromJson]ProposalHistory model)
-        {
+        //[System.Web.Mvc.HttpPost]
+        //public ViewResult FraudWarning([FromJson]ProposalHistory model)
+        //{
 
-            ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
+        //    ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
            
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         [System.Web.Mvc.HttpGet]
         public ViewResult RetrievePrevious()
@@ -248,41 +248,41 @@ namespace SagicorNow.Controllers
         /// </summary>
         /// <param name="quote"></param>
         /// <returns></returns>
-        [System.Web.Mvc.HttpPost]
-        public ActionResult ProductSlider(QuoteViewModel quote)
-        {
-            quote.CoverageAmount = decimal.Parse(FireLightSession.DefaultCoverage);
-            ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
-            ViewBag.QuoteViewModel = quote;
+        //[System.Web.Mvc.HttpPost]
+        //public ActionResult ProductSlider(QuoteViewModel quote)
+        //{
+        //    quote.CoverageAmount = decimal.Parse(FireLightSession.DefaultCoverage);
+        //    ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
+        //    ViewBag.QuoteViewModel = quote;
 
 
-            var maxCoverage = QuoteViewModel.GetMaxCoverageBasedOnAge(quote.Age);
+        //    var maxCoverage = QuoteViewModel.GetMaxCoverageBasedOnAge(quote.Age);
 
-            quote.CoverageAmount = quote.CoverageAmount > maxCoverage ? maxCoverage : quote.CoverageAmount; //update coverage based on max 
-            //vm.SocialSecurityNumber = vm.SocialSecurityNumber.Replace("-", String.Empty);
+        //    quote.CoverageAmount = quote.CoverageAmount > maxCoverage ? maxCoverage : quote.CoverageAmount; //update coverage based on max 
+        //    //vm.SocialSecurityNumber = vm.SocialSecurityNumber.Replace("-", String.Empty);
 
-            //override coverage based on risk class
-            if (quote.Age < 56 && quote.CoverageAmount < 525000M && (quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED_TOBACCO ||
-                                                               quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED2_NONTOBACCO ||
-                                                               quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED2_TOBACCO))
-            {
-                quote.CoverageAmount = 525000M;
-            }
+        //    //override coverage based on risk class
+        //    if (quote.Age < 56 && quote.CoverageAmount < 525000M && (quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED_TOBACCO ||
+        //                                                       quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED2_NONTOBACCO ||
+        //                                                       quote.riskClass.TC == (int)QuoteViewModel.RiskClasses.RATED2_TOBACCO))
+        //    {
+        //        quote.CoverageAmount = 525000M;
+        //    }
 
-            var illustrationRequest = new IllustrationRequestParameters
-            {
-                SmokerStatusInfo = quote.smokerStatusInfo,
-                GenderInfo = quote.genderInfo,
-                RiskClass = quote.riskClass,
-                Birthday = quote.birthday,
-                CoverageAmount = quote.CoverageAmount
-            };
+        //    var illustrationRequest = new IllustrationRequestParameters
+        //    {
+        //        SmokerStatusInfo = quote.smokerStatusInfo,
+        //        GenderInfo = quote.genderInfo,
+        //        RiskClass = quote.riskClass,
+        //        Birthday = quote.birthday,
+        //        CoverageAmount = quote.CoverageAmount
+        //    };
 
-            var soapRequest = ForesightServiceHelpers.GenerateRequestXml(illustrationRequest);
+        //    var soapRequest = ForesightServiceHelpers.GenerateRequestXml(illustrationRequest);
 
-            var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
-            return View(txLife.TxLifeResponse);
-        }
+        //    var txLife = ForesightServiceHelpers.GetForesightTxLifeReturn(soapRequest);
+        //    return View(txLife.TxLifeResponse);
+        //}
 
         /// <summary>
         /// 
