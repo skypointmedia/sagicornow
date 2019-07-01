@@ -136,8 +136,8 @@ namespace SagicorNow.Controllers
             }
         }
 
-        [System.Web.Mvc.HttpPost]
-        public async Task<ActionResult> EmbeddedApp(ProposalHistory vm, bool isNew = true)
+        [HttpPost]
+        public async Task<ActionResult> EmbeddedApp([FromJson]ProposalHistory vm, bool isNew = true)
         {
             try
             {
