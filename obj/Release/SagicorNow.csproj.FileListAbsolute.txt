@@ -17,6 +17,7 @@
 /Users/mrsantucci/Projects/SagicorNow/SagicorNow/obj/Release/SagicorNow.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/SagicorNow.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/BouncyCastle.Crypto.dll
+/Users/mrsantucci/Projects/SagicorNow/bin/CaptchaMvc.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/MailKit.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/MaxMind.Db.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/MaxMind.GeoIP2.dll
@@ -25,6 +26,7 @@
 /Users/mrsantucci/Projects/SagicorNow/bin/MimeKit.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/Newtonsoft.Json.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/Owin.dll
+/Users/mrsantucci/Projects/SagicorNow/bin/System.Data.SQLite.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Net.Http.Formatting.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.Helpers.dll
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.Http.dll
@@ -51,6 +53,11 @@
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.WebPages.Deployment.xml
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.WebPages.xml
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Web.WebPages.Razor.xml
+/Users/mrsantucci/Projects/SagicorNow/bin/System.Data.SQLite.xml
+/Users/mrsantucci/Projects/SagicorNow/bin/System.Data.SQLite.dll.config
+/Users/mrsantucci/Projects/SagicorNow/bin/CaptchaMvc.pdb
+/Users/mrsantucci/Projects/SagicorNow/bin/CaptchaMvc.xml
 /Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.csproj.CoreCompileInputs.cache
 /Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.csproj.CopyComplete
 /Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.dll
+/Users/mrsantucci/Projects/SagicorNow/obj/Release/SagicorNow.csprojAssemblyReference.cache
