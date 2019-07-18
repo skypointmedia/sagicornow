@@ -1066,6 +1066,10 @@ body#calculator small {
 body#calculator section {
     padding-bottom: 20px;
 }
+
+div.modal-content small {
+    color: #292b2c !important;
+}
 body#calculator #step-one {
     padding-top: 40px;
     border-top: none;
