@@ -588,6 +588,8 @@ namespace SagicorNow.Controllers
                 Name = proposal.StateName
             };
 
+            var phn10Digit = proposal.PhoneNumber.Remove(0, 1);
+
             var riskClass = new AccordOlifeValue{TC = int.Parse(proposal.RiskClassTc)};
 
             var parameters = new EAppRequestParameters
@@ -603,7 +605,7 @@ namespace SagicorNow.Controllers
                 ChildrenCoverage = proposal.ChildrenCoverage,
                 FifteenYearTerm = proposal.FifteenYearTerm,
                 GenderInfo = genderInfo,
-                PhoneNumber = proposal.PhoneNumber,
+                PhoneNumber = phn10Digit,
                 RiderAmountAccidentalDeath = proposal.AccidentalDeathRiderAmount,
                 RiderAmountChildrenCoverage = proposal.ChildrenCoverageRiderAmount,
                 RiskClass = riskClass,
@@ -661,7 +663,8 @@ namespace SagicorNow.Controllers
                     new FirelightActivityDataItem { DataItemId = "ADB_AMOUNT", Value = parameters.RiderAmountAccidentalDeath.ToString(CultureInfo.InvariantCulture) },
                     new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_FNAME", Value = parameters.FirstName },
                     new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_EMAIL", Value = parameters.Email },
-                    new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_HOME_PHONE", Value = parameters.PhoneNumber }
+                    new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_HOME_PHONE", Value = parameters.PhoneNumber },
+                    new FirelightActivityDataItem { DataItemId = "CONSENT_NOT_CONSENT", Value = "Y"}
                 }
             };
 

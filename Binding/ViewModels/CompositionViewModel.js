@@ -464,7 +464,7 @@
 
         self.ageGenderStatement = ko.pureComputed(function () {
             var text = "You are a " + self.quoteViewModel.Age + " year old ";
-            if (self.quoteViewModel.Gender === "OLI_GENDER_MALE")
+            if (self.quoteViewModel.gender === "OLI_GENDER_MALE")
                 text += "man";
             else
                 text += "woman";
