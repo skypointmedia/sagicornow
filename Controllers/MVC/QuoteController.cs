@@ -625,6 +625,23 @@ namespace SagicorNow.Controllers
         {
             var reqId = Guid.NewGuid().ToString();
 
+            var product = "";
+            if (parameters.WholeLife == true){
+                product = "PPWL";
+            }
+            else if (parameters.FifteenYearTerm == true)
+            {
+                product = "TERM15";
+            }
+            else if (parameters.TenYearTerm == true)
+            {
+                product = "TERM10";
+            }
+            else if (parameters.TwentyYearTerm == true)
+            {
+                product = "TERM20";
+            }
+
             var actBody = new FirelightActivityBody
             {
                 Id = reqId,
@@ -634,6 +651,7 @@ namespace SagicorNow.Controllers
                 TransactionType = 1,
                 DataItems = new List<FirelightActivityDataItem>
                 {
+                    new FirelightActivityDataItem {DataItemId = "PRODUCT", Value = product},
                     new FirelightActivityDataItem {DataItemId = "Owner_NonNaturalName", Value = $""},
                     new FirelightActivityDataItem {DataItemId = "SourceInfoName", Value = "D2C"},
                     new FirelightActivityDataItem

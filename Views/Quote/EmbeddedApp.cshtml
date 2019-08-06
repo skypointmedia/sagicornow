@@ -8,48 +8,59 @@
     <link type="text/css" rel="stylesheet" href="@Url.Content(Model.FirelightBaseUrl+"Resource/CSS/eApp")" />
     <link href="~/Content/SAG.css" rel="stylesheet" type="text/css" />
     <style>
-        #fireLightMainDiv{
+        #fireLightMainDiv {
             padding-bottom: 4em;
         }
-        .ITPanelTitleImage{
+
+        .ITPanelTitleImage {
             padding: 0 2px;
         }
-        .AddBene{
+
+        .AddBene {
             width: 180px;
             margin: 10px 0px -5px 5px;
             border: 1px solid green;
             border-radius: 4px;
         }
+
         .RemoveBene {
             width: 210px;
             margin: 10px 0px -5px 5px;
             border: 1px solid green;
             border-radius: 4px;
         }
-        .AddBene .ITButtonText, .RemoveBene .ITButtonText, .findPhysician .ITButtonText {
-            font-size: 18px;
-        }
-        .RemoveBene .rightAlign{
-            justify-content: flex-start !important;
-        }
-        .ITComponentLabel{
+
+            .AddBene .ITButtonText, .RemoveBene .ITButtonText, .findPhysician .ITButtonText {
+                font-size: 18px;
+            }
+
+            .RemoveBene .rightAlign {
+                justify-content: flex-start !important;
+            }
+
+        .ITComponentLabel {
             margin-top: -5px;
         }
-        .ITComponent__help{
+
+        .ITComponent__help {
             margin-top: -10px;
         }
-        .navigationButtonsContainer{
+
+        .navigationButtonsContainer {
             margin-bottom: -20px;
         }
+
         .navigationButtons {
             border-radius: 0 0 4px 4px;
             width: calc(-2px + 100%);
             margin-left: 1px;
         }
+
         .navigationButtons .ITButtonInput {
             margin-top: 10px;
             margin-right: 10px;
         }
+
         .findPhysician {
             min-width: 200px;
             margin: -2px 0px -5px 2px;
@@ -57,38 +68,191 @@
             border-radius: 4px;
         }
 
+        #FireLightNavBar{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .NavToSectionBar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #NavGroup1, #NavGroup2, #NavGroup3, #NavGroup4, #NavGroup5 {
+            display: flex;
+            min-width: 100px;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+
+        .NavDot {
+            height: 40px;
+            width: 40px;
+            margin: auto;
+            border-radius: 50%;
+            background: #BABABA;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .NavLabel {
+            word-wrap: break-word;
+            width: 100px;
+            text-align: center;
+            font-size: 12px;
+            font-family: Arial;
+            cursor: pointer;
+        }
+
+        .NavLine{
+            position: absolute;
+            height: 2px;
+            width: 61px;
+            margin: 34px 0px 0px -99px;
+            background: #BABABA;
+        }
+
+        .NavActive{
+            background: #00AEEF !important;
+        }
+
+        .CompleteDot {
+            background: #88C348 !important;
+        }
+
+        .IconContainer{
+            text-align: center;
+            position: relative;
+        }
+        .NavInfoBar{
+            background: #88C348;
+            padding: 10px;
+            margin-bottom: 10px;
+            /*margin-top: -18px;*/
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+        .NavComments{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 40px;
+            margin-top: 25px;
+        }
+
+        #CommentHeader {
+            font-family: Arial;
+            font-size: 32px;
+            color: #474747;
+            margin: 0 auto;
+            line-height: 27px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #CommentBody {
+            font-family: Arial;
+            font-size: 22px;
+            max-width: 850px;
+            color: #474747;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 27px;
+        }
+
+        .heart{
+            color: red;
+            font-size: 22px;
+        }
+
+        #infoText {
+            font-size: 20px;
+            color: white;
+            font-family: Arial;
+            margin-top: 3px;
+            padding: 0 5px;
+        }
+
+        .ripple {
+            background: rgba(136, 195, 72, 0.5);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+        }
+
+        #btnProceedToSignatures {
+            border: 0px;
+            height: 50px;
+            width: 250px;
+            background: #88C348;
+            color: white;
+            font-family: Arial;
+            font-weight: 600;
+            font-size: 24px;
+            text-align: center;
+
+        }
+        #CompleteButton {
+            display: none;
+            text-align: center
+        }
     </style>
 }
-
-    <div id="embeddedButtons">
-        @* Hide this section in Production *@
-        <h2>EmbeddedApp</h2>
-
-        <p>Percent Complete: </p><div id="activityStatus" class="percentComplete"></div>
-        <div style="display:flex;">
-            <div>
-                <button class="btn btn-primary" id="btnProceedToSignatures">Proceed to Signatures</button>
-            </div>
-            <div>
-                <button class="btn btn-primary" id="btnShowDocumentsDialog">Show Documents Dialog</button>
-            </div>
-            <div>
-                <button class="btn btn-primary" id="btnSubmitApplication">Submit Application</button>
-            </div>
-            <div>
-                <button class="btn btn-primary" id="btnSaveApplication">Save Application</button>
+<p id="errMessage" style="border-top:1px solid #D2D2D2;display:none;"></p>
+<div id="FireLightNavBar" style="display:none;">
+    <div class="NavInfoBar" id="NavInfoBar">
+        <span class="heart">&#x2764;</span><span id="infoText">You are buying $ of protection for just $ per month.</span><span class="heart">&#x2764;</span>
+    </div>
+    <div class="NavToSectionBar">
+        <div id="NavGroup1">
+            <div class="IconContainer">
+                <div class="NavDot NavActive" data-page="3"></div>
+                <div class="NavLabel" data-page="3">Beneficiaries</div>
             </div>
         </div>
-        <br />
-        <button id="navToBene" type="button" onclick="navToPage(3)">Beneficiary</button>  --
-        <button id="navToBene" type="button" onclick="navToPage(4)">History</button>  --
-        <button id="navToBene" type="button" onclick="navToPage(9)">Insured</button>  --
-        <button id="navToBene" type="button" onclick="navToPage(11)">Payment</button>
-        <br />
-        <br />
+        <div id="NavGroup2">
+            <div class="NavLine"></div>
+            <div class="IconContainer">
+                <div class="NavDot" data-page="4"></div>
+                <div class="NavLabel" data-page="4">Health</div>
+            </div>
+        </div>
+        <div id="NavGroup3">
+            <div class="NavLine"></div>
+            <div class="IconContainer">
+                <div class="NavDot" data-page="9"></div>
+                <div class="NavLabel" data-page="9">Personal Info</div>
+            </div>
+        </div>
+        <div id="NavGroup4">
+            <div class="NavLine"></div>
+            <div class="IconContainer">
+                <div class="NavDot" data-page="11"></div>
+                <div class="NavLabel" data-page="11">Payment</div>
+            </div>
+        </div>
+        @*<div id="NavGroup5">
+            <div class="NavLine"></div>
+            <div class="IconContainer">
+                <button id="btnProceedToSignatures" class="NavDot"></button>
+                <div ></div>
+                <div class="NavLabel">Review &amp; Sign</div>
+            </div>
+        </div>*@
     </div>
-<p id="errMessage" style="border-top:1px solid #D2D2D2;"></p>
-<div style="display:none;"><input id="currentPageNumber" type="text" disabled="disabled" value="0" /></div>
+    <div class="NavComments">
+        <div id="CommentHeader">Who do you want to protect with this policy?</div>
+        <div id="CommentBody">Before we move on to the health questions, name your beneficiaries. Money can be divided up however you choose among up to five beneficiaries.</div>
+        <div id="CompleteButton"><button id="btnProceedToSignatures">Review &amp; Sign</button></div>
+    </div>
+</div>
+<div style="display:none;"><div id="activityStatus" class="percentComplete"></div><input id="currentPageNumber" type="text" disabled="disabled" value="0" /></div>
 <div id="iframeWrapper"></div>
 <div id="fireLightMainDiv">
     Loading...
@@ -104,13 +268,7 @@
         const btnShowDocumentsDialog = document.getElementById('btnShowDocumentsDialog');
         const btnSubmitApplication = document.getElementById('btnSubmitApplication');
         const btnSaveApplication = document.getElementById('btnSaveApplication');
-
-
-        const navigatePageDiv = document.getElementById('goToPage');
-        function navToPage(pageNum) {
-            FireLightAPI.navigateToPage(pageNum);
-        }
-
+        const activityStatus = document.getElementById('activityStatus');
         btnProceedToSignatures.disabled = true;
         $('#fireLightMainDiv').on('fireLightLoaded', function ()
         {
@@ -120,25 +278,92 @@
             FireLightAPI.signatureStatusEvent.subscribe(signatureStatusChange);
             FireLightAPI.errorEvent.subscribe(handleErrorEvent);
             FireLightAPI.ruleMessagesEvent.subscribe(ruleMessageChange);
+            document.getElementById("FireLightNavBar").style.display = "block";
+            addNavs();
         });
+
         var statusChange = function (status) {
-            console.log('statusEvent - status = ' + JSON.stringify(status));
+            //console.log('statusEvent - status = ' + JSON.stringify(status));
             console.log('statusEvent = Field: percentComplete = ' + status.percentComplete);
             if (status.percentComplete === 100) {
-            btnProceedToSignatures.disabled = false;
+                topFunction();
+                btnProceedToSignatures.disabled = false;
+                //document.getElementById('NavGroup5').addEventListener('click', function () {
+                //    FireLightAPI.proceedToSignatures();
+                //});
+                complete();
             }
             else {
-            btnProceedToSignatures.disabled = true;
+                //incomplete();
+                document.getElementById("CompleteButton").style.display = "none";
+                btnProceedToSignatures.disabled = true;
+                //document.getElementById('NavGroup5').removeEventListener('click', function () {
+                //    FireLightAPI.proceedToSignatures();
+                //});
             }
-            activityStatus.innerText = status.percentComplete + '% Complete';
         }
+
+        function complete() {
+            document.getElementById("CommentHeader").innerHTML = "Your policy is ready for review and signature!";
+            document.getElementById("CommentBody").innerHTML = "";
+            document.getElementById("CompleteButton").style.display = "block";
+        }
+
+        btnProceedToSignatures.addEventListener('click', () => {
+            FireLightAPI.proceedToSignatures();
+        });
+
         var navigationChange = function (nav) {
-            //console.log(JSON.stringify(nav));
-            //console.log('Loading Page ' + nav.pageNumber);
             document.getElementById('currentPageNumber').value = nav.pageNumber;
-            // will have navigation change trigger save, so that each page change 
-            // would save current state of application, rather than active save
             FireLightAPI.save();
+            // Handle Navigation Bar changes
+            var pg = nav.pageNumber;
+            if (pg <= 3) {
+                // Beneficiaries
+                document.getElementById("infoText").innerHTML = "You are buying $<face-amount> of protection for just $<quote> per month.";
+                document.getElementById("CommentHeader").innerHTML = "Who do you want to protect with this policy?";
+                document.getElementById("CommentBody").innerHTML = "Before we move on to the health questions, name your beneficiaries. Money can be divided up however you choose among up to five beneficiaries.";
+                $("#NavGroup2 .NavLine, #NavGroup3 .NavLine, #NavGroup4 .NavLine, #NavGroup5 .NavLine").removeClass("NavActive");
+                $("#NavGroup2 .NavDot, #NavGroup3 .NavDot, #NavGroup4 .NavDot, #NavGroup5 .NavDot").removeClass("NavActive");
+            } else if (pg >= 4 && pg < 9) {
+                // Health
+                document.getElementById("CommentHeader").innerHTML = "";
+                document.getElementById("CommentBody").innerHTML = "";
+                document.getElementById("infoText").innerHTML = "Your $ policy will help protect the ones you love.";
+                $("#NavGroup2 .NavLine").addClass("NavActive");
+                $("#NavGroup2 .NavDot").addClass("NavActive");
+                $("#NavGroup3 .NavLine, #NavGroup4 .NavLine, #NavGroup5 .NavLine").removeClass("NavActive");
+                $("#NavGroup3 .NavDot, #NavGroup4 .NavDot, #NavGroup5 .NavDot").removeClass("NavActive");
+            } else if (pg >= 9 && pg < 11) {
+                // Personal Info
+                document.getElementById("CommentHeader").innerHTML = "";
+                document.getElementById("CommentBody").innerHTML = "";
+                document.getElementById("infoText").innerHTML = "Your $ policy will help protect the ones you love.";
+                $("#NavGroup2 .NavLine, #NavGroup3 .NavLine").addClass("NavActive");
+                $("#NavGroup2 .NavDot, #NavGroup3 .NavDot").addClass("NavActive");
+                $("#NavGroup4 .NavLine, #NavGroup5 .NavLine").removeClass("NavActive");
+                $("#NavGroup4 .NavDot, #NavGroup5 .NavDot").removeClass("NavActive");
+            } else if (pg == 11) {
+                // Payment
+                document.getElementById("CommentHeader").innerHTML = "How will you be paying for your Policy?";
+                document.getElementById("CommentBody").innerHTML = "Pay each month using your checking or savings account. Save even more when you pay quarterly, semi-annually, or annually.";
+                document.getElementById("infoText").innerHTML = "Your $ policy will help protect the ones you love.";
+                $("#NavGroup2 .NavLine, #NavGroup3 .NavLine, #NavGroup4 .NavLine").addClass("NavActive");
+                $("#NavGroup2 .NavDot, #NavGroup3 .NavDot, #NavGroup4 .NavDot").addClass("NavActive");
+                $("#NavGroup5 .NavLine").removeClass("NavActive");
+                $("#NavGroup5 .NavDot").removeClass("NavActive");
+            } else if (pg == 12) {
+                document.getElementById("CommentHeader").innerHTML = "";
+                document.getElementById("CommentBody").innerHTML = "";
+                document.getElementById("infoText").innerHTML = "You are almost ready to review and sign your application!";
+            } else if (pg > 12) {
+                document.getElementById("CommentHeader").innerHTML = "";
+                document.getElementById("CommentBody").innerHTML = "";
+                $(".NavInfoBar").hide();
+                $("#NavGroup5 .NavLine").addClass("NavActive");
+                $("#NavGroup5 .NavDot").addClass("NavActive");    
+            }
+            
         }
         function signatureStatusChange(sig) {
             if (sig.succeeded) {
@@ -149,9 +374,7 @@
                 $(".footer").css("margin-top: -6px;");
                 $("#iframeWrapper").css("margin-top: -15px;");
                 $("#fireLightMainDiv").hide();
-                //$("#trustpilot").hide();
-                //$("#needs-analysis").hide();
-                $("#embeddedButtons").hide();
+                $("#FireLightNavBar").hide();
 
                 $("#iframeWrapper").html("<iframe id=\"sigFrame\" src=\"" + url + "\"  width=\"100%\" height=\"1800px\" frameborder=\"0\" ></iframe>");
             }
@@ -165,19 +388,21 @@
             var currPage = document.getElementById('currentPageNumber').value;
             var errCount = 0;
             $.each(msgs, function (item, value) {
+                // To See All Errors On Entire Application:
                 //$.each(value.Errors, function (key, value2) {
                 //        console.log(" Field: " + value2.DataItemid + "\r\n Message: " + value2.Message + "\r\n Page: " + value.PageNumber);
                 //    });
                 if (value.PageNumber == currPage) {
                     errCount += 1
+                    // To See All Errors On Current Page:
                     //console.log("Error on field: " + item);
                     //$.each(value.Errors, function (key, value2) {
                     //    console.log(" Field: " + value2.DataItemid + "\r\n Message: " + value2.Message + "\r\n Page: " + value.PageNumber);
                     //});
                 }
             });
-            console.log("Current Page Number: " + currPage);
-            console.log("Number of errors on page: " + errCount);
+            //console.log("Current Page Number: " + currPage);
+            //console.log("Number of errors on page: " + errCount);
         }
         function handleErrorEvent(err) {
             var msg = err.error.ApiSource + ' - ' + err.error.ErrorMessage;
@@ -185,22 +410,29 @@
             console.log('errorEvent = ' + msg);
         }
 
-        btnProceedToSignatures.addEventListener('click', () => {
-            FireLightAPI.proceedToSignatures();
-        });
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
 
-        btnShowDocumentsDialog.addEventListener('click', () => {
-            FireLightAPI.showDocumentsDialog();
-        });
-
-        btnSubmitApplication.addEventListener('click', () => {
-            FireLightAPI.submitApplication();
-        });
-
-        btnSaveApplication.addEventListener('click', () => {
-            FireLightAPI.save();
-            console.log("Application Saved");
-        });        
+        function addNavs() {
+            var dots = document.querySelectorAll(".NavDot");
+            Array.prototype.forEach.call(dots, function (e) {
+                e.addEventListener('click', function () {
+                    if (e.dataset.page) {
+                        FireLightAPI.navigateToPage(e.dataset.page);
+                    }
+                });
+            });
+            var titles = document.querySelectorAll(".NavLabel");
+            Array.prototype.forEach.call(titles, function (e) {
+                e.addEventListener('click', function () {
+                    if (e.dataset.page) {
+                        FireLightAPI.navigateToPage(e.dataset.page);
+                    }
+                });
+            });
+        }
     </script>
     <script src="@Url.Content(Model.FirelightBaseUrl + "Resource/Scripts/eApp")"></script>
     <script type="text/javascript">
