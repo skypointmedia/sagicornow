@@ -56,10 +56,10 @@
             margin-left: 1px;
         }
 
-        .navigationButtons .ITButtonInput {
-            margin-top: 10px;
-            margin-right: 10px;
-        }
+            .navigationButtons .ITButtonInput {
+                margin-top: 10px;
+                margin-right: 10px;
+            }
 
         .findPhysician {
             min-width: 200px;
@@ -68,7 +68,7 @@
             border-radius: 4px;
         }
 
-        #FireLightNavBar{
+        #FireLightNavBar {
             display: flex;
             justify-content: center;
             flex-direction: column;
@@ -109,7 +109,7 @@
             cursor: pointer;
         }
 
-        .NavLine{
+        .NavLine {
             position: absolute;
             height: 2px;
             width: 61px;
@@ -117,7 +117,7 @@
             background: #BABABA;
         }
 
-        .NavActive{
+        .NavActive {
             background: #00AEEF !important;
         }
 
@@ -125,20 +125,21 @@
             background: #88C348 !important;
         }
 
-        .IconContainer{
+        .IconContainer {
             text-align: center;
             position: relative;
         }
-        .NavInfoBar{
+
+        .NavInfoBar {
             background: #88C348;
             padding: 10px;
             margin-bottom: 10px;
-            /*margin-top: -18px;*/
             display: flex;
             justify-content: center;
             flex-wrap: nowrap;
         }
-        .NavComments{
+
+        .NavComments {
             display: flex;
             justify-content: center;
             flex-direction: column;
@@ -166,7 +167,7 @@
             line-height: 27px;
         }
 
-        .heart{
+        .heart {
             color: red;
             font-size: 22px;
         }
@@ -196,10 +197,9 @@
             font-weight: 600;
             font-size: 24px;
             text-align: center;
-
         }
+
         #CompleteButton {
-            display: none;
             text-align: center
         }
     </style>
@@ -237,18 +237,44 @@
                 <div class="NavLabel" data-page="11">Payment</div>
             </div>
         </div>
-        @*<div id="NavGroup5">
-            <div class="NavLine"></div>
-            <div class="IconContainer">
-                <button id="btnProceedToSignatures" class="NavDot"></button>
-                <div ></div>
-                <div class="NavLabel">Review &amp; Sign</div>
-            </div>
-        </div>*@
     </div>
     <div class="NavComments">
         <div id="CommentHeader">Who do you want to protect with this policy?</div>
         <div id="CommentBody">Before we move on to the health questions, name your beneficiaries. Money can be divided up however you choose among up to five beneficiaries.</div>
+    </div>
+</div>
+<div id="FireLightNavBarComplete" style="display:none;">
+    <div class="NavToSectionBar">
+        <div id="NavGroup1">
+            <div class="IconContainer">
+                <div class="NavDot NavActive" data-page="3"></div>
+                <div class="NavLabel" data-page="3">Beneficiaries</div>
+            </div>
+        </div>
+        <div id="NavGroup2">
+            <div class="NavLine NavActive"></div>
+            <div class="IconContainer">
+                <div class="NavDot NavActive" data-page="4"></div>
+                <div class="NavLabel" data-page="4">Health</div>
+            </div>
+        </div>
+        <div id="NavGroup3">
+            <div class="NavLine NavActive"></div>
+            <div class="IconContainer">
+                <div class="NavDot NavActive" data-page="9"></div>
+                <div class="NavLabel" data-page="9">Personal Info</div>
+            </div>
+        </div>
+        <div id="NavGroup4">
+            <div class="NavLine NavActive"></div>
+            <div class="IconContainer">
+                <div class="NavDot NavActive" data-page="11"></div>
+                <div class="NavLabel" data-page="11">Payment</div>
+            </div>
+        </div>
+    </div>
+    <div class="NavComments">
+        <div id="CommentHeader">Your policy is ready for review and signature!</div>
         <div id="CompleteButton"><button id="btnProceedToSignatures">Review &amp; Sign</button></div>
     </div>
 </div>
@@ -287,26 +313,15 @@
             console.log('statusEvent = Field: percentComplete = ' + status.percentComplete);
             if (status.percentComplete === 100) {
                 topFunction();
+                document.getElementById("FireLightNavBarComplete").style.display = "block";
+                document.getElementById("FireLightNavBar").style.display = "none";
                 btnProceedToSignatures.disabled = false;
-                //document.getElementById('NavGroup5').addEventListener('click', function () {
-                //    FireLightAPI.proceedToSignatures();
-                //});
-                complete();
             }
             else {
-                //incomplete();
-                document.getElementById("CompleteButton").style.display = "none";
+                document.getElementById("FireLightNavBarComplete").style.display = "none";
+                document.getElementById("FireLightNavBar").style.display = "block";
                 btnProceedToSignatures.disabled = true;
-                //document.getElementById('NavGroup5').removeEventListener('click', function () {
-                //    FireLightAPI.proceedToSignatures();
-                //});
             }
-        }
-
-        function complete() {
-            document.getElementById("CommentHeader").innerHTML = "Your policy is ready for review and signature!";
-            document.getElementById("CommentBody").innerHTML = "";
-            document.getElementById("CompleteButton").style.display = "block";
         }
 
         btnProceedToSignatures.addEventListener('click', () => {
@@ -323,47 +338,38 @@
                 document.getElementById("infoText").innerHTML = "You are buying $<face-amount> of protection for just $<quote> per month.";
                 document.getElementById("CommentHeader").innerHTML = "Who do you want to protect with this policy?";
                 document.getElementById("CommentBody").innerHTML = "Before we move on to the health questions, name your beneficiaries. Money can be divided up however you choose among up to five beneficiaries.";
-                $("#NavGroup2 .NavLine, #NavGroup3 .NavLine, #NavGroup4 .NavLine, #NavGroup5 .NavLine").removeClass("NavActive");
-                $("#NavGroup2 .NavDot, #NavGroup3 .NavDot, #NavGroup4 .NavDot, #NavGroup5 .NavDot").removeClass("NavActive");
+                $("#FireLightNavBar #NavGroup2 .NavLine, #FireLightNavBar #NavGroup3 .NavLine, #FireLightNavBar #NavGroup4 .NavLine").removeClass("NavActive");
+                $("#FireLightNavBar #NavGroup2 .NavDot, #FireLightNavBar #NavGroup3 .NavDot, #FireLightNavBar #NavGroup4 .NavDot").removeClass("NavActive");
             } else if (pg >= 4 && pg < 9) {
                 // Health
                 document.getElementById("CommentHeader").innerHTML = "";
                 document.getElementById("CommentBody").innerHTML = "";
                 document.getElementById("infoText").innerHTML = "Your $ policy will help protect the ones you love.";
-                $("#NavGroup2 .NavLine").addClass("NavActive");
-                $("#NavGroup2 .NavDot").addClass("NavActive");
-                $("#NavGroup3 .NavLine, #NavGroup4 .NavLine, #NavGroup5 .NavLine").removeClass("NavActive");
-                $("#NavGroup3 .NavDot, #NavGroup4 .NavDot, #NavGroup5 .NavDot").removeClass("NavActive");
+                $("#FireLightNavBar #NavGroup2 .NavLine").addClass("NavActive");
+                $("#FireLightNavBar #NavGroup2 .NavDot").addClass("NavActive");
+                $("#FireLightNavBar #NavGroup3 .NavLine, #FireLightNavBar #NavGroup4 .NavLine").removeClass("NavActive");
+                $("#FireLightNavBar #NavGroup3 .NavDot, #FireLightNavBar #NavGroup4 .NavDot").removeClass("NavActive");
             } else if (pg >= 9 && pg < 11) {
                 // Personal Info
                 document.getElementById("CommentHeader").innerHTML = "";
                 document.getElementById("CommentBody").innerHTML = "";
                 document.getElementById("infoText").innerHTML = "Your $ policy will help protect the ones you love.";
-                $("#NavGroup2 .NavLine, #NavGroup3 .NavLine").addClass("NavActive");
-                $("#NavGroup2 .NavDot, #NavGroup3 .NavDot").addClass("NavActive");
-                $("#NavGroup4 .NavLine, #NavGroup5 .NavLine").removeClass("NavActive");
-                $("#NavGroup4 .NavDot, #NavGroup5 .NavDot").removeClass("NavActive");
+                $("#FireLightNavBar #NavGroup2 .NavLine, #FireLightNavBar #NavGroup3 .NavLine").addClass("NavActive");
+                $("#FireLightNavBar #NavGroup2 .NavDot, #FireLightNavBar #NavGroup3 .NavDot").addClass("NavActive");
+                $("#FireLightNavBar #NavGroup4 .NavLine").removeClass("NavActive");
+                $("#FireLightNavBar #NavGroup4 .NavDot").removeClass("NavActive");
             } else if (pg == 11) {
                 // Payment
                 document.getElementById("CommentHeader").innerHTML = "How will you be paying for your Policy?";
                 document.getElementById("CommentBody").innerHTML = "Pay each month using your checking or savings account. Save even more when you pay quarterly, semi-annually, or annually.";
                 document.getElementById("infoText").innerHTML = "Your $ policy will help protect the ones you love.";
-                $("#NavGroup2 .NavLine, #NavGroup3 .NavLine, #NavGroup4 .NavLine").addClass("NavActive");
-                $("#NavGroup2 .NavDot, #NavGroup3 .NavDot, #NavGroup4 .NavDot").addClass("NavActive");
-                $("#NavGroup5 .NavLine").removeClass("NavActive");
-                $("#NavGroup5 .NavDot").removeClass("NavActive");
+                $("#FireLightNavBar #NavGroup2 .NavLine, #FireLightNavBar #NavGroup3 .NavLine, #FireLightNavBar #NavGroup4 .NavLine").addClass("NavActive");
+                $("#FireLightNavBar #NavGroup2 .NavDot, #FireLightNavBar #NavGroup3 .NavDot, #FireLightNavBar #NavGroup4 .NavDot").addClass("NavActive");
             } else if (pg == 12) {
                 document.getElementById("CommentHeader").innerHTML = "";
                 document.getElementById("CommentBody").innerHTML = "";
                 document.getElementById("infoText").innerHTML = "You are almost ready to review and sign your application!";
-            } else if (pg > 12) {
-                document.getElementById("CommentHeader").innerHTML = "";
-                document.getElementById("CommentBody").innerHTML = "";
-                $(".NavInfoBar").hide();
-                $("#NavGroup5 .NavLine").addClass("NavActive");
-                $("#NavGroup5 .NavDot").addClass("NavActive");    
             }
-            
         }
         function signatureStatusChange(sig) {
             if (sig.succeeded) {
