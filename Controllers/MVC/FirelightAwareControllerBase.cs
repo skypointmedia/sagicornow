@@ -107,7 +107,7 @@ namespace SagicorNow.Controllers
             return true;
         }
         protected bool FirelightTokenExist() {
-            return string.IsNullOrEmpty(Session[FireLightSession.EmbedTokenKeyName] as string);
+            return !string.IsNullOrEmpty(Session[FireLightSession.EmbedTokenKeyName] as string);
         }
     }
 }

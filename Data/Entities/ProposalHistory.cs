@@ -53,5 +53,7 @@ namespace SagicorNow.Data.Entities
         public int AgeOfYoungest { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime LastActiveDateTime { get; set; }
+        [NotMapped]
+        public bool EnableSave { get; set; }
     }
 }

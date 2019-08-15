@@ -172,8 +172,8 @@ namespace SagicorNow.Controllers
                             this.CreateEAppActivity(accessToken, "26", vm); // 26 = Sage Term 
                         activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(
                             activityRequestApiString);
-
-                        UpdateActivityIdInDb(activityReturn.ActivityId, vm.EmailAddress);
+                        if(vm.EnableSave)
+                            UpdateActivityIdInDb(activityReturn.ActivityId, vm.EmailAddress);
                     }
 
 
@@ -199,17 +199,6 @@ namespace SagicorNow.Controllers
                 return View("FraudWarning",vm);
             }
         }
-
-       
-
-        //[System.Web.Mvc.HttpPost]
-        //public ViewResult FraudWarning([FromJson]ProposalHistory model)
-        //{
-
-        //    ViewBag.FirelightBaseUrl = FireLightSession.BaseUrl;
-           
-        //    return View(model);
-        //}
 
         [System.Web.Mvc.HttpGet]
         public ViewResult RetrievePrevious()
