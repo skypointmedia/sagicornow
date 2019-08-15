@@ -577,6 +577,8 @@ namespace SagicorNow.Controllers
                 Name = proposal.StateName
             };
 
+            var phn10Digit = proposal.PhoneNumber.Remove(0, 1);
+
             var riskClass = new AccordOlifeValue{TC = int.Parse(proposal.RiskClassTc)};
 
             var parameters = new EAppRequestParameters
@@ -592,7 +594,7 @@ namespace SagicorNow.Controllers
                 ChildrenCoverage = proposal.ChildrenCoverage,
                 FifteenYearTerm = proposal.FifteenYearTerm,
                 GenderInfo = genderInfo,
-                PhoneNumber = proposal.PhoneNumber,
+                PhoneNumber = phn10Digit,
                 RiderAmountAccidentalDeath = proposal.AccidentalDeathRiderAmount,
                 RiderAmountChildrenCoverage = proposal.ChildrenCoverageRiderAmount,
                 RiskClass = riskClass,
@@ -612,6 +614,23 @@ namespace SagicorNow.Controllers
         {
             var reqId = Guid.NewGuid().ToString();
 
+            var product = "";
+            if (parameters.WholeLife == true){
+                product = "PPWL";
+            }
+            else if (parameters.FifteenYearTerm == true)
+            {
+                product = "TERM15";
+            }
+            else if (parameters.TenYearTerm == true)
+            {
+                product = "TERM10";
+            }
+            else if (parameters.TwentyYearTerm == true)
+            {
+                product = "TERM20";
+            }
+
             var actBody = new FirelightActivityBody
             {
                 Id = reqId,
@@ -621,6 +640,7 @@ namespace SagicorNow.Controllers
                 TransactionType = 1,
                 DataItems = new List<FirelightActivityDataItem>
                 {
+                    new FirelightActivityDataItem {DataItemId = "PRODUCT", Value = product},
                     new FirelightActivityDataItem {DataItemId = "Owner_NonNaturalName", Value = $""},
                     new FirelightActivityDataItem {DataItemId = "SourceInfoName", Value = "D2C"},
                     new FirelightActivityDataItem
@@ -650,7 +670,8 @@ namespace SagicorNow.Controllers
                     new FirelightActivityDataItem { DataItemId = "ADB_AMOUNT", Value = parameters.RiderAmountAccidentalDeath.ToString(CultureInfo.InvariantCulture) },
                     new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_FNAME", Value = parameters.FirstName },
                     new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_EMAIL", Value = parameters.Email },
-                    new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_HOME_PHONE", Value = parameters.PhoneNumber }
+                    new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_HOME_PHONE", Value = parameters.PhoneNumber },
+                    new FirelightActivityDataItem { DataItemId = "CONSENT_NOT_CONSENT", Value = "Y"}
                 }
             };
 
