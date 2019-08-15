@@ -1,7 +1,13 @@
-﻿namespace SagicorNow.ViewModels
+﻿using System.Collections.Generic;
+
+namespace SagicorNow.ViewModels
 {
     public class EmbeddedViewModel
     {
+        public EmbeddedViewModel()
+        {
+            ViewMessages = new List<string>();
+        }
         public string AccessToken { get; set; }
 
         public bool IsNew { get; set; }
@@ -18,5 +24,6 @@
             }
         }
 
+        public List<string> ViewMessages { get; set; }
     }
 }

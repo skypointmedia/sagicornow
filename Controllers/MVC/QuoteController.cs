@@ -137,34 +137,40 @@ namespace SagicorNow.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> EmbeddedApp([FromJson]ProposalHistory vm, bool isNew = true)
+        public async Task<ActionResult> EmbeddedApp([FromJson] ProposalHistory vm, bool isNew = true)
         {
-            try
+            var activityId = "";
+            var evm = new EmbeddedViewModel();
+
+            //if coverage supplied, limit coverage to max of 1,000,000 based on age
+            var maxCoverage = QuoteViewModel.GetMaxCoverageBasedOnAge(vm.Age);
+
+            vm.CoverageAmount =
+                vm.CoverageAmount > maxCoverage ? maxCoverage : vm.CoverageAmount; //update coverage based on max 
+            //vm.SocialSecurityNumber = vm.SocialSecurityNumber.Replace("-", String.Empty);
+
+            //override coverage based on risk class
+            if (vm.Age < 56 && vm.CoverageAmount < 525000M &&
+                (int.Parse(vm.RiskClassTc) == (int) QuoteViewModel.RiskClasses.RATED_TOBACCO ||
+                 int.Parse(vm.RiskClassTc) == (int) QuoteViewModel.RiskClasses.RATED2_NONTOBACCO ||
+                 int.Parse(vm.RiskClassTc) == (int) QuoteViewModel.RiskClasses.RATED2_TOBACCO))
             {
-                
-                //if coverage supplied, limit coverage to max of 1,000,000 based on age
-                var maxCoverage = QuoteViewModel.GetMaxCoverageBasedOnAge(vm.Age);
+                vm.CoverageAmount = 525000M;
+            }
 
-                vm.CoverageAmount = vm.CoverageAmount > maxCoverage ? maxCoverage : vm.CoverageAmount; //update coverage based on max 
-                                                                                                       //vm.SocialSecurityNumber = vm.SocialSecurityNumber.Replace("-", String.Empty);
+            // Determine eligibility
+            var eligibility = BusinessRules.IsEligible(vm.Age, vm.StateName, vm.Tobacco, vm.Health,
+                vm.ReplacementPolicy ?? false);
 
-                //override coverage based on risk class
-                if (vm.Age < 56 && vm.CoverageAmount < 525000M && (int.Parse(vm.RiskClassTc) == (int)QuoteViewModel.RiskClasses.RATED_TOBACCO ||
-                    int.Parse(vm.RiskClassTc) == (int)QuoteViewModel.RiskClasses.RATED2_NONTOBACCO ||
-                    int.Parse(vm.RiskClassTc) == (int)QuoteViewModel.RiskClasses.RATED2_TOBACCO))
-                {
-                    vm.CoverageAmount = 525000M;
-                }
-
-                // Determine eligibility
-                var eligibility = BusinessRules.IsEligible(vm.Age, vm.StateName, vm.Tobacco, vm.Health, vm.ReplacementPolicy ?? false);
-
-                // If eligible build XML and send to firelight
-                if (eligibility.IsEligible)
+            // If eligible build XML and send to firelight
+            if (eligibility.IsEligible)
+            {
+                try
                 {
                     var accessToken = await GetAccessToken();
 
                     FirelightActivityReturn activityReturn = null;
+
 
                     if (isNew)
                     {
@@ -172,32 +178,37 @@ namespace SagicorNow.Controllers
                             this.CreateEAppActivity(accessToken, "26", vm); // 26 = Sage Term 
                         activityReturn = Newtonsoft.Json.JsonConvert.DeserializeObject<FirelightActivityReturn>(
                             activityRequestApiString);
-                        if(vm.EnableSave)
+
+                        if (vm.EnableSave)
                             UpdateActivityIdInDb(activityReturn.ActivityId, vm.EmailAddress);
                     }
 
+                    activityId = isNew ? activityReturn.ActivityId : vm.ActivityId;
 
-                    var evm = new EmbeddedViewModel {
-                        AccessToken = accessToken,
-                        //AccessToken = FirelightAccessToken,
-                        FirelightBaseUrl = FireLightSession.BaseUrl,
-                        IsNew = isNew, //vm.IsNewProposal
-                        ActivityId = isNew ? activityReturn.ActivityId : vm.ActivityId
-                    };
-
-                    return View("EmbeddedApp", evm);
+                    evm.AccessToken = accessToken;
+                    evm.FirelightBaseUrl = FireLightSession.BaseUrl;
+                    evm.IsNew = isNew;
+                    evm.ActivityId = activityId;
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = ex.Message;
+                    var msg = "There was an error connecting to the application portal.";
+                    evm.FirelightBaseUrl = FireLightSession.BaseUrl;
+                    evm.IsNew = isNew;
+                    evm.ActivityId = activityId;
+                    evm.ViewMessages.Add(msg);
                 }
 
-                TempData["ContactViewModel"] = new ContactModel { denialMessage = eligibility.EligibilityMessage, isReplacementReject = eligibility.IsReplacememtReject, state = eligibility.State };
-                return RedirectToActionPermanent("Contact", "Contact");
+                return View("EmbeddedApp", evm);
             }
-            catch (Exception ex)
+
+            TempData["ContactViewModel"] = new ContactModel
             {
-                TempData["ErrorMessage"] = ex.Message;
-                var msg = "There was an error connecting to the application portal.";
-                //vm.ViewMessages.Add(msg);
-                return View("FraudWarning",vm);
-            }
+                denialMessage = eligibility.EligibilityMessage, isReplacementReject = eligibility.IsReplacememtReject,
+                state = eligibility.State
+            };
+            return RedirectToActionPermanent("Contact", "Contact");
         }
 
         [System.Web.Mvc.HttpGet]

@@ -204,6 +204,12 @@
         }
     </style>
 }
+
+@foreach (var m in Model.ViewMessages)
+{
+    <span style="color:red;font-size:10pt;padding:0 20px;text-align:0 auto;">@m</span>
+    <br />
+}
 <p id="errMessage" style="border-top:1px solid #D2D2D2;display:none;"></p>
 <div id="FireLightNavBar" style="display:none;">
     <div class="NavInfoBar" id="NavInfoBar">
