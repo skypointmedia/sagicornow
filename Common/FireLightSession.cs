@@ -16,14 +16,12 @@ namespace SagicorNow.Common
         // https://firelight.insurancetechnologies.com/EGAppNext/ (QE Next)
         internal static readonly string BaseUrl = ConfigurationManager.AppSettings["BaseUrl"];
 
-        // https://illustration.test.sagicorlifeusa.com/sli6/Core/Acord/TXLifeService.svc"
-        internal static readonly string ForeSightUrl = ConfigurationManager.AppSettings["ForeSightUrl"];
-
         // b6c99d41902e46ff8dee144589bfe846 - UAT
         // afb68d89cd474c5cabea892bae716cff - QE Next
         // 43983160a16d4f0996f98d04fe5ea36d - QE
         internal static readonly string SagApiSecret = ConfigurationManager.AppSettings["SagApiSecret"];
 
+        internal static readonly string ForeSightUrl = ConfigurationManager.AppSettings["ForeSightUrl"];
         internal static readonly string SagOrgId = ConfigurationManager.AppSettings["SagOrgId"];
         internal static readonly string SagCarrierCode = ConfigurationManager.AppSettings["SagCarrierCode"];
         internal static readonly string CertSerialNum = ConfigurationManager.AppSettings["CertSerialNum"];
