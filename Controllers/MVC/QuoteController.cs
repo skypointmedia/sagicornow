@@ -539,7 +539,7 @@ namespace SagicorNow.Controllers
             builder.Append("</Producer>");
             builder.Append("</Party>");
             builder.Append("<OLifEExtension VendorCode=\"25\">");
-            builder.Append("<UserRoleCode tc=\"InsTech\">InsTech</UserRoleCode>");
+            builder.Append("<UserRoleCode tc=\"EMB\">EMB</UserRoleCode>");
             builder.Append("</OLifEExtension>");
             builder.Append("<Relation OriginatingObjectID=\"" + FireLightSession.AgentPartyId + "\">");
             builder.Append("<RelationRoleCode tc=\"11\">OLI_REL_AGENT</RelationRoleCode>");
