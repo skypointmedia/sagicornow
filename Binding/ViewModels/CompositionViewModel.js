@@ -305,6 +305,7 @@
                     function (result) {
                         if (result) {
                             self.passwordCreated(true);
+                            data.EnableSave = true;
                         } else
                             self.passwordCreated(false);
                     });
