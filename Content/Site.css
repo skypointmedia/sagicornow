@@ -515,6 +515,10 @@ body#short .footer {
     margin-bottom: 30px;
 }
 
+.footer_copy {
+    color: #B5B5B5;
+}
+
 .footer-bbb-logo {
     width: 100px;
 }
@@ -543,7 +547,7 @@ ul.social-nav {
 }
 
 ul.nav li a{
-    color: #8c8c8c;
+    color: #B5B5B5;
     font-size: 14px;
 
 }
@@ -569,8 +573,7 @@ ul.legal li {
 }
 
 a.legal {
-    color: #636c72 !important;
-
+    color: #b5b5b5 !important;
     font-size: 14px;
 }
 

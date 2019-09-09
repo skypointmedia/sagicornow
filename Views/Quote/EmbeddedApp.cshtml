@@ -14,6 +14,43 @@
 
         .ITPanelTitleImage {
             padding: 0 2px;
+            margin: -1px 3px 0 3px;
+        }
+
+        .ITPanelTitleImage {
+            padding: 0 2px;
+            margin: -1px 3px 0 3px;
+        }
+
+        .ITCheckBox {
+            width: 28px;
+            height: 28px;
+        }
+
+        .ITComponentLabel {
+            margin: -5px 0;
+        }
+
+        .ITComponent__help {
+            margin-top: -10px;
+        }
+
+        .row {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9 {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .row.baselineAlign {
+            margin: -10px 0 -5px 0;
+        }
+
+        .errorText {
+            white-space: nowrap;
         }
 
         .AddBene {
@@ -38,14 +75,6 @@
                 justify-content: flex-start !important;
             }
 
-        .ITComponentLabel {
-            margin-top: -5px;
-        }
-
-        .ITComponent__help {
-            margin-top: -10px;
-        }
-
         .navigationButtonsContainer {
             margin-bottom: -20px;
         }
@@ -53,6 +82,7 @@
         .navigationButtons {
             border-radius: 0 0 4px 4px;
             width: calc(-2px + 100%);
+            height: 80px;
             margin-left: 1px;
         }
 
@@ -180,13 +210,6 @@
             padding: 0 5px;
         }
 
-        .ripple {
-            background: rgba(136, 195, 72, 0.5);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-        }
-
         #btnProceedToSignatures {
             border: 0px;
             height: 50px;
@@ -213,7 +236,7 @@
 <p id="errMessage" style="border-top:1px solid #D2D2D2;display:none;"></p>
 <div id="FireLightNavBar" style="display:none;">
     <div class="NavInfoBar" id="NavInfoBar">
-        <span class="heart">&#x2764;</span><span id="infoText">You are buying $ of protection for just $ per month.</span><span class="heart">&#x2764;</span>
+        <span class="heart">&#x2764;</span><span id="infoText"></span><span class="heart">&#x2764;</span>
     </div>
     <div class="NavToSectionBar">
         <div id="NavGroup1">
@@ -301,8 +324,8 @@
         const btnSubmitApplication = document.getElementById('btnSubmitApplication');
         const btnSaveApplication = document.getElementById('btnSaveApplication');
         const activityStatus = document.getElementById('activityStatus');
-        const faceAmount = '@(Model.FaceAmount.ToString("C"))';
-        const quote = '@(Model.Quote.ToString("N"))';
+        const faceAmount = '@(Model.FaceAmount.ToString("C0"))';
+        const quote = '@(Math.Round(Model.Quote).ToString("C0"))';
 
         btnProceedToSignatures.disabled = true;
         $('#fireLightMainDiv').on('fireLightLoaded', function ()
@@ -353,7 +376,7 @@
                 // Health
                 document.getElementById("CommentHeader").innerHTML = "";
                 document.getElementById("CommentBody").innerHTML = "";
-                document.getElementById("infoText").innerHTML = "Your $ policy will help protect the ones you love.";
+                document.getElementById("infoText").innerHTML = "Your " + faceAmount + " policy will help protect the ones you love.";
                 $("#FireLightNavBar #NavGroup2 .NavLine").addClass("NavActive");
                 $("#FireLightNavBar #NavGroup2 .NavDot").addClass("NavActive");
                 $("#FireLightNavBar #NavGroup3 .NavLine, #FireLightNavBar #NavGroup4 .NavLine").removeClass("NavActive");
@@ -362,7 +385,7 @@
                 // Personal Info
                 document.getElementById("CommentHeader").innerHTML = "";
                 document.getElementById("CommentBody").innerHTML = "";
-                document.getElementById("infoText").innerHTML = "Your $ policy will help protect the ones you love.";
+                document.getElementById("infoText").innerHTML = "Your " + faceAmount + " policy will help protect the ones you love.";
                 $("#FireLightNavBar #NavGroup2 .NavLine, #FireLightNavBar #NavGroup3 .NavLine").addClass("NavActive");
                 $("#FireLightNavBar #NavGroup2 .NavDot, #FireLightNavBar #NavGroup3 .NavDot").addClass("NavActive");
                 $("#FireLightNavBar #NavGroup4 .NavLine").removeClass("NavActive");
@@ -371,7 +394,7 @@
                 // Payment
                 document.getElementById("CommentHeader").innerHTML = "How will you be paying for your Policy?";
                 document.getElementById("CommentBody").innerHTML = "Pay each month using your checking or savings account. Save even more when you pay quarterly, semi-annually, or annually.";
-                document.getElementById("infoText").innerHTML = "Your $ policy will help protect the ones you love.";
+                document.getElementById("infoText").innerHTML = "Your " + faceAmount + " policy will help protect the ones you love.";
                 $("#FireLightNavBar #NavGroup2 .NavLine, #FireLightNavBar #NavGroup3 .NavLine, #FireLightNavBar #NavGroup4 .NavLine").addClass("NavActive");
                 $("#FireLightNavBar #NavGroup2 .NavDot, #FireLightNavBar #NavGroup3 .NavDot, #FireLightNavBar #NavGroup4 .NavDot").addClass("NavActive");
             } else if (pg == 12) {

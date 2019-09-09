@@ -543,7 +543,7 @@ namespace SagicorNow.Controllers
             builder.Append("</Producer>");
             builder.Append("</Party>");
             builder.Append("<OLifEExtension VendorCode=\"25\">");
-            builder.Append("<UserRoleCode tc=\"EMB\">EMB</UserRoleCode>");
+            builder.Append("<UserRoleCode tc=\"CPEmbedded\">CPEmbedded</UserRoleCode>");
             builder.Append("</OLifEExtension>");
             builder.Append("<Relation OriginatingObjectID=\"" + FireLightSession.AgentPartyId + "\">");
             builder.Append("<RelationRoleCode tc=\"11\">OLI_REL_AGENT</RelationRoleCode>");
@@ -655,6 +655,7 @@ namespace SagicorNow.Controllers
                 TransactionType = 1,
                 DataItems = new List<FirelightActivityDataItem>
                 {
+                    new FirelightActivityDataItem {DataItemId = "WRITING_PRODUCER_PRODUCER_NUMBER", Value = "SAG0301"},
                     new FirelightActivityDataItem {DataItemId = "PRODUCT", Value = product},
                     new FirelightActivityDataItem {DataItemId = "Owner_NonNaturalName", Value = $""},
                     new FirelightActivityDataItem {DataItemId = "SourceInfoName", Value = "D2C"},
