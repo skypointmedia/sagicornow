@@ -457,7 +457,7 @@ namespace SagicorNow.Controllers
                     HashedPassword = SecurityHelpers.HashPassword(model.PhoneNumber),
                     PhoneNumber = model.PhoneNumber,
                     TenYearTerm = model.TenYearTerm,
-                    TenYearTermPerMonthCost = model.FifteenYearTermPerMonthCost,
+                    TenYearTermPerMonthCost = model.TenYearTermPerMonthCost,
                     TwentyYearTerm = model.TwentyYearTerm,
                     TwentyYearTermPerMonthCost = model.TwentyYearTermPerMonthCost,
                     WaiverPremium = model.WaiverPremium,

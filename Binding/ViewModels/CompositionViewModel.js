@@ -272,11 +272,7 @@
             if (!ko.validatedObservable(model).isValid())
                 return;
 
-            var unmappedModel;
             var fraudWarningModel = ko.mapping.toJS(model);
-
-            unmappedModel = $.extend(unmappedModel, self.quoteViewModel);
-            unmappedModel = $.extend(unmappedModel, fraudWarningModel);
 
             // the objects are currently in an KO Observable form; need them in plain JS.
             var proposalHistoryModel = ko.mapping.toJS(new SagicorNow.ProposalHistoryModel());
@@ -297,8 +293,7 @@
             proposalHistoryModel.SmokerStatusTc = self.quoteViewModel.smokerStatusInfo.TC;
             proposalHistoryModel.RiskClassTc = self.quoteViewModel.riskClass.TC;
 
-            var data = $.extend(true, proposalHistoryModel, productSliderModel);
-            data = $.extend(true, data, unmappedModel);
+            var data = $.extend(true, proposalHistoryModel, productSliderModel,fraudWarningModel);
 
             if (self.enableSave()) {
                 self.viewModelHelper.apiPostSync('api/quote/createPassword', data,
