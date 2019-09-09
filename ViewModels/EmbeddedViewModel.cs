@@ -25,5 +25,7 @@ namespace SagicorNow.ViewModels
         }
 
         public List<string> ViewMessages { get; set; }
+        public decimal FaceAmount { get; set; }
+        public decimal Quote { get; set; }
     }
 }

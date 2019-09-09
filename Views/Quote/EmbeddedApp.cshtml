@@ -301,6 +301,9 @@
         const btnSubmitApplication = document.getElementById('btnSubmitApplication');
         const btnSaveApplication = document.getElementById('btnSaveApplication');
         const activityStatus = document.getElementById('activityStatus');
+        const faceAmount = '@(Model.FaceAmount.ToString("C"))';
+        const quote = '@(Model.Quote.ToString("N"))';
+
         btnProceedToSignatures.disabled = true;
         $('#fireLightMainDiv').on('fireLightLoaded', function ()
         {
@@ -341,7 +344,7 @@
             var pg = nav.pageNumber;
             if (pg <= 3) {
                 // Beneficiaries
-                document.getElementById("infoText").innerHTML = "You are buying $<face-amount> of protection for just $<quote> per month.";
+                document.getElementById("infoText").innerHTML = "You are buying " + faceAmount + " of protection for just " + quote +" per month.";
                 document.getElementById("CommentHeader").innerHTML = "Who do you want to protect with this policy?";
                 document.getElementById("CommentBody").innerHTML = "Before we move on to the health questions, name your beneficiaries. Money can be divided up however you choose among up to five beneficiaries.";
                 $("#FireLightNavBar #NavGroup2 .NavLine, #FireLightNavBar #NavGroup3 .NavLine, #FireLightNavBar #NavGroup4 .NavLine").removeClass("NavActive");

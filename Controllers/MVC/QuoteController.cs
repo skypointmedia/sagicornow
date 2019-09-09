@@ -140,7 +140,11 @@ namespace SagicorNow.Controllers
         public async Task<ActionResult> EmbeddedApp([FromJson] ProposalHistory vm, bool isNew = true)
         {
             var activityId = "";
-            var evm = new EmbeddedViewModel();
+            var evm = new EmbeddedViewModel
+            {
+                FaceAmount = vm.CoverageAmount,
+                Quote = vm.TenYearTerm?vm.TenYearTermPerMonthCost : vm.FifteenYearTerm? vm.FifteenYearTermPerMonthCost : vm.TwentyYearTerm? vm.TwentyYearTermPerMonthCost : vm.WholeLifePerMonthCost
+            };
 
             //if coverage supplied, limit coverage to max of 1,000,000 based on age
             var maxCoverage = QuoteViewModel.GetMaxCoverageBasedOnAge(vm.Age);
