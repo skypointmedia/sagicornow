@@ -53,6 +53,17 @@
             min-width: 196px;
         }
 
+        .PaymentBoxes {
+            height: 321px;
+            width: 218px;
+        }
+        .PaymentBoxHeader {
+            min-height:96px;
+        }
+            .PaymentBoxHeader .ITPanelTitleText {
+                font-size:16px;
+            }
+
         .AddBene {
             width: 180px;
             margin: 10px 0px -5px 5px;
@@ -90,6 +101,10 @@
                 margin-top: 10px;
                 margin-right: 10px;
             }
+
+        .navigationButtons--fixBottom {
+            position: absolute;
+        }
 
         .findPhysician {
             min-width: 200px;
@@ -330,13 +345,17 @@
         btnProceedToSignatures.disabled = true;
         $('#fireLightMainDiv').on('fireLightLoaded', function ()
         {
+            //var el = document.querySelector(".ITWizardRoot");
             FireLightAPI.init(token, activityId, isNew);
             FireLightAPI.navigationEvent.subscribe(navigationChange);
             FireLightAPI.statusEvent.subscribe(statusChange);
             FireLightAPI.signatureStatusEvent.subscribe(signatureStatusChange);
             FireLightAPI.errorEvent.subscribe(handleErrorEvent);
             FireLightAPI.ruleMessagesEvent.subscribe(ruleMessageChange);
-            document.getElementById("FireLightNavBar").style.display = "block";
+            //if (typeof (el) != 'undefined' && el != null) {
+            //    console.log("Got Here!!");
+            //    document.getElementById("FireLightNavBar").style.display = "block";
+            //}           
             addNavs();
         });
 

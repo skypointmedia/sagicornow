@@ -1281,9 +1281,9 @@ select::-ms-expand {
     display: none;
 }
 
-.saBanner .ITPanelTitle {
+/*.saBanner .ITPanelTitle {
     padding: 0 0 22px 0;
-}
+}*/
 
 .savingsText {
     color: white;
