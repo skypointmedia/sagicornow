@@ -357,10 +357,7 @@
             FireLightAPI.signatureStatusEvent.subscribe(signatureStatusChange);
             FireLightAPI.errorEvent.subscribe(handleErrorEvent);
             FireLightAPI.ruleMessagesEvent.subscribe(ruleMessageChange);
-            //if (typeof (el) != 'undefined' && el != null) {
-            //    console.log("Got Here!!");
             //    document.getElementById("FireLightNavBar").style.display = "block";
-            //}           
             addNavs();
         });
 
@@ -464,8 +461,6 @@
                     //});
                 }
             });
-            //console.log("Current Page Number: " + currPage);
-            //console.log("Number of errors on page: " + errCount);
         }
         function handleErrorEvent(err) {
             var msg = err.error.ApiSource + ' - ' + err.error.ErrorMessage;
