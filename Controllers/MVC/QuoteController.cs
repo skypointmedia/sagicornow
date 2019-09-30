@@ -689,9 +689,11 @@ namespace SagicorNow.Controllers
                     new FirelightActivityDataItem { DataItemId = "PROPOSED_INSURED_HOME_PHONE", Value = parameters.PhoneNumber },
                     new FirelightActivityDataItem { DataItemId = "CONSENT_NOT_CONSENT", Value = "Y"},
 
-                    new FirelightActivityDataItem { DataItemId = "HAS_CHILD_RIDER", Value = parameters.ChildrenCoverage ? "Y":"" },
-                    new FirelightActivityDataItem { DataItemId = "HAS_WOP", Value = parameters.WaiverOfPremium ? "Y":"" },
-                    new FirelightActivityDataItem { DataItemId = "HAS_ADB", Value = parameters.AccidentalDeath ? "Y":"" }
+                    new FirelightActivityDataItem { DataItemId = "A_D_B_A", Value = parameters.RiderAmountAccidentalDeath.ToString(CultureInfo.InvariantCulture) },
+                    new FirelightActivityDataItem { DataItemId = "C_R_A", Value = parameters.RiderAmountChildrenCoverage.ToString(CultureInfo.InvariantCulture) },
+                    new FirelightActivityDataItem { DataItemId = "HAS_CHILD_RIDER", Value = parameters.ChildrenCoverage ? "Y":"N" },
+                    new FirelightActivityDataItem { DataItemId = "HAS_WOP", Value = parameters.WaiverOfPremium ? "Y":"N" },
+                    new FirelightActivityDataItem { DataItemId = "HAS_ADB", Value = parameters.AccidentalDeath ? "Y":"N" }
                 }
             };
 
