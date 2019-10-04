@@ -152,7 +152,7 @@ C:/Users/am4759/Source/Repos/msantucci/sagicornow/obj/Debug/SagicorNow.pdb
 /Users/mrsantucci/Projects/SagicorNow/bin/System.Data.SQLite.dll.config
 /Users/mrsantucci/Projects/SagicorNow/bin/CaptchaMvc.pdb
 /Users/mrsantucci/Projects/SagicorNow/bin/CaptchaMvc.xml
-/Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.csproj.CoreCompileInputs.cache
 /Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.csproj.CopyComplete
 /Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.dll
 /Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.pdb
+/Users/mrsantucci/Projects/SagicorNow/obj/Debug/SagicorNow.csprojAssemblyReference.cache

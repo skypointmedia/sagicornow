@@ -2,8 +2,8 @@
 
 @{ Layout = "~/Views/Shared/_StaticTemplate1.cshtml";
     ViewBag.Title = "Contact Us | Sagicor Life Insurance";
-
 }
+
 <!--HERO-->
 <div class="container-fluid push60">
     <div class="row hero hero_contact_us">
@@ -16,6 +16,7 @@
         </div>
     </div>
 </div>
+
 <!--MAIN PAGE CONTENT-->
 <div class="container push60" role="main">
     <div class="row">
@@ -36,32 +37,38 @@
             </p>
         </div>
     </div>
+
     @using (Html.BeginForm("SendEmail", "Contact", FormMethod.Post, new { id = "contactform", name = "contactform" }))
     {
         <div class="row pad60">
             <div class="col-lg-6 text-center">
                 <div class="form-group">
-                    @Html.TextBoxFor(x => x.firstName, "", new { @class = "form-control", maxlength = "20", placeholder = "First Name" })
+                    @Html.TextBoxFor(x => x.firstName, "", new { @class = "form-control ", maxlength = "20", placeholder = "First Name", autocomplete = "off" })
+                    <div class="form-control-feedback"></div>
+                </div>
+                <div class="form-group ln">
+                    @Html.TextBoxFor(x => x.lastName, "", new { @class = "form-control ln", maxlength = "20", placeholder = "Last Name", autocomplete = "off" })
+                    <div class="form-control-feedback "></div>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.email, "", new { @class = "form-control ", maxlength = "50", placeholder = "Email", autocomplete = "off" })
                     <div class="form-control-feedback"></div>
                 </div>
                 <div class="form-group">
-                    @Html.TextBoxFor(x => x.email, "", new { @class = "form-control", maxlength = "50", placeholder = "Email" })
-                    <div class="form-control-feedback"></div>
-                </div>
-                <div class="form-group">
-                    @Html.TextBoxFor(x => x.phone, "", new { @class = "form-control", placeholder = "Phone Number" })
+                    @Html.TextBoxFor(x => x.phone, "", new { @class = "form-control ", placeholder = "Phone Number", autocomplete = "off" })
                     <div class="form-control-feedback"></div>
                 </div>
             </div>
             <div class="col-lg-6 text-center">
                 <div class="form-group">
                     @Html.TextArea("comment", (Model != null ? Model.comment : ""), new { @class = "form-control", maxlength = "500", form = "contactform", cols = "50", rows = "7", placeholder = "Comment" })
-                    @*<textarea rows="7" class="form-control" cols="50" name="comment" id="comment" maxlegnth="500" form="contactform"> </textarea>*@
+                    @*<textarea rows="7" class="form-control" cols="50" name="Comment" id="comment" maxlegnth="500" form="contactform"> </textarea>*@
                     <div class="form-control-feedback"></div>
                 </div>
             </div>
         </div>
-
+       
+     
         <div class="row">
             <div class="col-lg-12 text-right">
                 <span style="margin-right:50px;color:red;">@TempData["ContactSendEmailMessage"]</span><button type="submit" class="btn contact-btn btn-lg">SEND</button>
@@ -70,6 +77,7 @@
         </div>
     }
 </div>
+
 <!--END MAIN CONTENT-->
 @section scripts{
     <script type="text/javascript">
@@ -90,6 +98,7 @@
         </div>
     </div>
 </div>
+
 <!--  2 COL 50/50    -->
 <div class="container pad60">
     <div class="row">
@@ -101,6 +110,7 @@
                 Scottsdale, AZ 85251
             </p>
         </div>
+
         <div class="col-lg-6">
             <h2>Toll-Free Phone Number</h2>
             <p>
@@ -108,7 +118,9 @@
                 Monday - Friday, 7:30 AM to 4:30 PM MT
             </p>
         </div>
+
     </div>
+
     <div class="row">
         <div class="col-lg-12 padtop60">
             <p>Sagicor Life Insurance Company is committed to offering customers world-class service with integrity and value.</p>

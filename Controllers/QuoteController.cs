@@ -71,7 +71,7 @@ namespace SagicorNow.Controllers
                     {
                         //redirect to url
 #if DEBUG
-                        string url = String.Format("https://uat.firelighteapp.com/egapp/PassiveCall.aspx?O=3138&C=D2C&refid={0}", response.TXLifeResponse[0].TransRefGUID ?? String.Empty, Session["GCId"] ?? String.Empty);
+                        string url = String.Format("https://staging.firelighteapp.com/egapp/PassiveCall.aspx?O=3138&C=D2C&refid={0}", response.TXLifeResponse[0].TransRefGUID ?? String.Empty, Session["GCId"] ?? String.Empty);
 #else
                         string url = String.Format("https://www.firelighteapp.com/EGApp/PassiveCall.aspx?O=3138&C=D2C&refid={0}&GAT=UA-97044577-1&GAC={1}", response.TXLifeResponse[0].TransRefGUID ?? String.Empty, Session["GCId"] ?? String.Empty);
 #endif
@@ -185,7 +185,7 @@ namespace SagicorNow.Controllers
                             CarrierAppointment = new NewBusinessService.CarrierAppointment[] {
                                 new NewBusinessService.CarrierAppointment() {
                                     PartyID = agentPartyId,
-                                    CompanyProducerID = "SAG0301",
+                                    CompanyProducerID = "SAG0034",
                                     CarrierCode = "SAG",
                                 }
                             }

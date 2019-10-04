@@ -31,6 +31,7 @@ namespace SagicorNow.Controllers
 
                 //data being posted from I.T.
                 this.SendContactEmail(cmodl);
+
                 return RedirectPermanent("~/pages/thankyou");
             }
             else

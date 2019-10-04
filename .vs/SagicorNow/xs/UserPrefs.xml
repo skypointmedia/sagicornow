@@ -1,8 +1,31 @@
 ﻿<Properties StartupConfiguration="{A8F41264-346E-45F0-B6E7-735768311F26}|">
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Static/contact-us.cshtml">
+    <Files>
+      <File FileName="Content/Site.css" Line="1070" Column="21" IsPinned="True" />
+      <File FileName="Views/Static/contact-us.cshtml" Line="48" Column="23" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SagicorNow" expanded="True">
+            <Node name="SagicorNow" expanded="True">
+              <Node name="Content" expanded="True">
+                <Node name="js" expanded="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Static" expanded="True">
+                  <Node name="contact-us.cshtml" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.ItemProperties.SagicorNow PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.SagicorNow PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

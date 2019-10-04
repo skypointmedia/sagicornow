@@ -271,6 +271,13 @@ $(document).ready(function () {
             $(this).maskMoney('mask', $(this).val());
         });
 
+
+
+
+
+
+
+
     $('#contactform').formValidation({
         framework: 'Bootstrap4',
         live: 'submitted',
@@ -284,6 +291,12 @@ $(document).ready(function () {
                 validators: {
                     notEmpty: {
                         message: "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> The First Name is required."
+                    }
+                }
+            },
+            lastName: {
+                validators: {
+                    lastName: {
                     }
                 }
             },
@@ -333,28 +346,14 @@ $(document).ready(function () {
 });
 
 
-
 (function ($) {
-    FormValidation.Validator.email = {
+    FormValidation.Validator.lastName = {
         validate: function (validator, $field, options) {
             var value = $field.val();
-            if (value === '') {
-                return true;
-            }
-            // Check the password strength
-            if (value.length < 8) {
-                return false;
-            }
-            // The password doesn't contain any uppercase character
-            if (value === value.toLowerCase()) {
-                return false;
-            }
-            // The password doesn't contain any uppercase character
-            if (value === value.toUpperCase()) {
-                return false;
-            }
-            // The password doesn't contain any digit
-            if (value.search(/[0-9]/) < 0) {
+
+            if (value.length > 0) {
+
+                window.location.replace("http://sagicornow.azurewebsites.net/pages/thankyou");
                 return false;
             }
             return true;
